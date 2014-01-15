@@ -198,8 +198,11 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\foundation-icons.css" />
     <Content Include="Content\foundation.css" />
     <Content Include="Content\foundation.min.css" />
+    <Content Include="Content\Images\A9781430247739-small_3.png" />
+    <Content Include="Content\foundation-icons.svg" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
@@ -211,9 +214,15 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\Application\app.js" />
     <Content Include="Scripts\Application\Controllers\BookCtrl.js" />
+    <Content Include="Scripts\Application\Controllers\BookUploadCtrl.js" />
+    <Content Include="Scripts\Application\Controllers\BookDetailsCtrl.js" />
     <Content Include="Scripts\Application\Controllers\StudentCtrl.js" />
     <Content Include="Content\toastr.less" />
+    <Content Include="Content\foundation-icons.eot" />
+    <Content Include="Content\foundation-icons.ttf" />
+    <Content Include="Content\foundation-icons.woff" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
+    <Content Include="Scripts\Application\Directives\Directives.js" />
     <Content Include="Scripts\Application\Services\DataService.js" />
     <Content Include="Scripts\Application\Services\Notifier.js" />
     <Content Include="Scripts\foundation.min.js" />
@@ -225,7 +234,9 @@
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Template\Book\Details.html" />
     <Content Include="Template\Book\Index.html" />
+    <Content Include="Template\Book\Upload.html" />
     <Content Include="Template\Student\Index.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -256,8 +267,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\Application\Directives\" />
-    <Folder Include="Views\Books\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

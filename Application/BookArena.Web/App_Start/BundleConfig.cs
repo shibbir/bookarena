@@ -23,13 +23,17 @@ namespace BookArena.Web.App_Start
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/Scripts/Application/app.js",
                 "~/Scripts/Application/Services/DataService.js",
+                "~/Scripts/Application/Directives/Directives.js",
                 "~/Scripts/Application/Services/Notifier.js",
                 "~/Scripts/Application/Controllers/BookCtrl.js",
+                "~/Scripts/Application/Controllers/BookDetailsCtrl.js",
+                "~/Scripts/Application/Controllers/BookUploadCtrl.js",
                 "~/Scripts/Application/Controllers/StudentCtrl.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/toastr.css",
                 "~/Content/foundation.css",
+                "~/Content/foundation-icons.css",
                 "~/Content/site.css"));
 
             BundleTable.EnableOptimizations = false;

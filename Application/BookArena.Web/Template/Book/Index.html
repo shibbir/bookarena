@@ -1,10 +1,10 @@
 ﻿<div ng-repeat="book in books">
     <div class="book-wrapper">
         <a ng-href="#/book/details/{{book.Id}}">
-            <img src="{{book.ImageFileName}}" alt="">
+            <img ng-src="/Content/Images/{{book.ImageFileName}}" alt="{{book.Title}}">
         </a>
         <div class="book-footer">
-            <strong>{{book.StatusText}}</strong>
+            <strong data-cd-book-status="{{book.StatusId}}"></strong>
         </div>
     </div>
 </div>

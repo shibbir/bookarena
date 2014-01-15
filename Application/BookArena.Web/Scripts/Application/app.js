@@ -7,7 +7,13 @@
         $routeProvider.when("/", {
             templateUrl: "Template/Book/Index.html",
             controller: "BookCtrl"
-        }).when("/Student", {
+        }).when("/book/details/:id", {
+            templateUrl: "Template/Book/Details.html",
+            controller: "BookDetailsCtrl"
+        }).when("/book/upload", {
+            templateUrl: "Template/Book/Upload.html",
+            controller: "BookUploadCtrl"
+        }).when("/student", {
             templateUrl: "Template/Student/Index.html",
             controller: "StudentCtrl"
         }).otherwise({

@@ -6,9 +6,9 @@
 
         service.get("/books/get").then(function(data) {
             if (data.length) {
+                $scope.books = data;
                 notifier.notify({responseType: "success", message: "Data retrieved successfully!"});
             }
-            $scope.books = data;
         });
     }]);
 })(angular.module("bookArenaApp"));

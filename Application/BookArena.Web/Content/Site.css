@@ -34,3 +34,13 @@
     margin-top: 10px;
     text-align: center;
 }
+
+.red {
+    color: red;
+}
+.green {
+    color: green;
+}
+.note {
+    color: orange;
+}

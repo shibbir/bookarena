@@ -29,7 +29,16 @@ namespace BookArena.DAL.Repository
 
         public Book GetById(int id)
         {
-            throw new NotImplementedException();
+            return new Book
+            {
+                Id = 1,
+                Title = "Beginning ASP.NET MVC 4",
+                Author = "Scott Allen",
+                Edition = "First Edition",
+                Description = "ASP.NET MVC 4",
+                StatusId = 1,
+                ImageFileName = "A9781430247739-small_3.png"
+            };
         }
 
         public IEnumerable<Book> GetAll()
@@ -43,8 +52,8 @@ namespace BookArena.DAL.Repository
                     Author = "Scott Allen",
                     Edition = "First Edition",
                     Description = "ASP.NET MVC 4",
-                    StatusText = GetBookStatus(1),
-                    ImageFileName = "http://www.apress.com/media/catalog/product/cache/9/small_image/125x159/040ec09b1e35df139433887a97daa66f/A/9/A9781430247739-small_3.png"
+                    StatusId = 1,
+                    ImageFileName = "A9781430247739-small_3.png"
                 },
                 new Book
                 {
@@ -53,8 +62,8 @@ namespace BookArena.DAL.Repository
                     Author = "Karl Swedberg and Jonathan Chaffer",
                     Edition = "First Edition",
                     Description = "ASP.NET MVC 4",
-                    StatusText = GetBookStatus(2),
-                    ImageFileName = "http://www.apress.com/media/catalog/product/cache/9/small_image/125x159/040ec09b1e35df139433887a97daa66f/A/9/A9781430247739-small_3.png"
+                    StatusId = 2,
+                    ImageFileName = "A9781430247739-small_3.png"
                 },
                 new Book
                 {
@@ -63,8 +72,8 @@ namespace BookArena.DAL.Repository
                     Author = "Scott Allen",
                     Edition = "First Edition",
                     Description = "ASP.NET MVC 4",
-                    StatusText = GetBookStatus(3),
-                    ImageFileName = "http://www.apress.com/media/catalog/product/cache/9/small_image/125x159/040ec09b1e35df139433887a97daa66f/A/9/A9781430247739-small_3.png"
+                    StatusId = 3,
+                    ImageFileName = "A9781430247739-small_3.png"
                 },
                 new Book
                 {
@@ -73,8 +82,8 @@ namespace BookArena.DAL.Repository
                     Author = "Scott Allen",
                     Edition = "First Edition",
                     Description = "ASP.NET MVC 4",
-                    StatusText = GetBookStatus(1),
-                    ImageFileName = "http://www.apress.com/media/catalog/product/cache/9/small_image/125x159/040ec09b1e35df139433887a97daa66f/A/9/A9781430247739-small_3.png"
+                    StatusId = 1,
+                    ImageFileName = "A9781430247739-small_3.png"
                 },
                 new Book
                 {
@@ -83,8 +92,8 @@ namespace BookArena.DAL.Repository
                     Author = "Scott Allen",
                     Edition = "First Edition",
                     Description = "ASP.NET MVC 4",
-                    StatusText = GetBookStatus(1),
-                    ImageFileName = "http://www.apress.com/media/catalog/product/cache/9/small_image/125x159/040ec09b1e35df139433887a97daa66f/A/9/A9781430247739-small_3.png"
+                    StatusId = 2,
+                    ImageFileName = "A9781430247739-small_3.png"
                 }
             };
         }
@@ -92,12 +101,6 @@ namespace BookArena.DAL.Repository
         public void Save()
         {
             throw new NotImplementedException();
-        }
-
-        private string GetBookStatus(int statusId)
-        {
-            if (statusId == 1) return "Available";
-            return statusId == 2 ? "Not Available" : "Rented";
         }
     }
 }

@@ -25,8 +25,5 @@ namespace BookArena.Model
         public string ImageFileName { get; set; }
 
         public int StatusId { get; set; }
-
-        [NotMapped]
-        public string StatusText { get; set; }
     }
 }
