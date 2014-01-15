@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BookArena - Library Manager</title>
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+
+    </head>
+    <body ng-app="bookArenaApp">
+        @Html.Partial("_Navigation")
+        <div class="row">
+            <div class="small-3 large-3 columns">
+                @Html.Partial("_SideNavigation")
+            </div>
+            <div class="small-9 large-9 columns">
+                <div class="body-content">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+
+        @Scripts.Render("~/bundles/library")
+        @Scripts.Render("~/bundles/app")
+        <script>
+            $(document).foundation();
+        </script>
+    </body>
+</html>

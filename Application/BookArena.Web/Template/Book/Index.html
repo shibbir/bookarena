@@ -1,0 +1,10 @@
+﻿<div ng-repeat="book in books">
+    <div class="book-wrapper">
+        <a ng-href="#/book/details/{{book.Id}}">
+            <img src="{{book.ImageFileName}}" alt="">
+        </a>
+        <div class="book-footer">
+            <strong>{{book.StatusText}}</strong>
+        </div>
+    </div>
+</div>

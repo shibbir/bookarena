@@ -1,0 +1,36 @@
+﻿.sidebar {
+    background: none repeat scroll 0 0 #FAFAFA;
+    padding: 32px 20px;
+}
+
+.body-content {
+    padding: 32px 20px;
+}
+
+.book-wrapper {
+    float: left;
+    height: 155px;
+    margin-bottom: 15px;
+    padding: 5px;
+}
+
+.book-wrapper a {
+    text-decoration: none;
+    color: #CCCCCC;
+}
+
+.side-nav a:hover {
+    text-decoration: underline !important;
+}
+.book-body {
+    border: 1px solid #CCCCCC;
+    margin-bottom: 10px;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.book-footer {
+    font-size: 13px;
+    margin-top: 10px;
+    text-align: center;
+}
