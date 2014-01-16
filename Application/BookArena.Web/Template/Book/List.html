@@ -1,4 +1,6 @@
-﻿<div ng-repeat="book in books">
+﻿<input type="search" ng-model="searchText" placeholder="filter: e.g name, author" />
+
+<div ng-repeat="book in books | filter:searchText">
     <div class="book-wrapper">
         <a ng-href="#/book/details/{{book.Id}}">
             <img ng-src="/Content/Images/{{book.ImageFileName}}" alt="{{book.Title}}">

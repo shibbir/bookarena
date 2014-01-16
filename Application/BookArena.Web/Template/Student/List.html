@@ -1,0 +1,9 @@
+﻿<input type="search" ng-model="searchText" placeholder="filter: e.g name, id" />
+
+<div ng-repeat="student in students | filter: searchText">
+    <div class="book-wrapper">
+        <a ng-href="#/api/student/{{student.Id}}">
+            {{student.FirstName}}
+        </a>
+    </div>
+</div>

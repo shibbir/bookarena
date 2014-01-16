@@ -10,8 +10,8 @@
 .book-wrapper {
     float: left;
     height: 155px;
-    margin-bottom: 15px;
-    padding: 5px;
+    margin-bottom: 70px;
+    width: 135px;
 }
 
 .book-wrapper a {

@@ -2,10 +2,6 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Web;
-using BookArena.Model;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace BookArena.DAL
 {
@@ -15,31 +11,11 @@ namespace BookArena.DAL
     {
         private TContext _dataContext;
         private readonly DbSet<TEntity> _dbSet;
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly ApplicationUser _currentUser;
 
         protected RepositoryBase()
         {
             _dataContext = new TContext();
             _dbSet = _dataContext.Set<TEntity>();
-            _userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new BookArenaDbContext()));
-            _currentUser = _userManager.FindById(HttpContext.Current.User.Identity.GetUserId() ?? "");
-        }
-
-        protected virtual UserManager<ApplicationUser> UserManager
-        {
-            get
-            {
-                return _userManager;
-            }
-        }
-
-        protected virtual ApplicationUser ApplicationUser
-        {
-            get
-            {
-                return _currentUser;
-            }
         }
 
         protected virtual TContext DataContext

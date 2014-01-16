@@ -18,17 +18,21 @@ namespace BookArena.Web.App_Start
                 "~/Scripts/toastr.js",
                 "~/Scripts/respond.js",
                 "~/Scripts/angular.js",
-                "~/Scripts/angular-route.js"));
+                "~/Scripts/angular-route.js",
+                "~/Scripts/angular-animate.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/Scripts/Application/app.js",
-                "~/Scripts/Application/Services/DataService.js",
+                "~/Scripts/Application/Services/api-service.js",
+                "~/Scripts/Application/Services/notifier-service.js",
                 "~/Scripts/Application/Directives/Directives.js",
-                "~/Scripts/Application/Services/Notifier.js",
-                "~/Scripts/Application/Controllers/BookCtrl.js",
+                "~/Scripts/Application/Controllers/LoginCtrl.js",
+                "~/Scripts/Application/Controllers/WelcomeCtrl.js",
+                "~/Scripts/Application/Controllers/BookListCtrl.js",
                 "~/Scripts/Application/Controllers/BookDetailsCtrl.js",
                 "~/Scripts/Application/Controllers/BookUploadCtrl.js",
-                "~/Scripts/Application/Controllers/StudentCtrl.js"));
+                "~/Scripts/Application/Controllers/StudentListCtrl.js",
+                "~/Scripts/Application/Controllers/StudentRegisterCtrl.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/toastr.css",

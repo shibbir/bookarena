@@ -1,0 +1,23 @@
+﻿<div data-alert class="alert-box">
+    Please login with the current credentials
+    <a href="#" class="close">&times;</a>
+</div>
+
+<form name="LoginForm" novalidate id="LoginForm">
+    <div class="row">
+        <div class="large-12 columns">
+            <label>Username</label>
+            <input type="text" ng-class="LoginForm.UserName.$invalid ? 'error': ''" ng-model="data.userName" name="UserName" required />
+            <small ng-show="LoginForm.UserName.$error.required" class="error">Invalid Username</small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-12 columns">
+            <label>Password</label>
+            <input type="password" ng-class="LoginForm.Password.$invalid ? 'error': ''" ng-model="data.password" name="Password" required />
+            <small ng-show="LoginForm.Password.$error.required" class="error">Invalid Password</small>
+        </div>
+    </div>
+
+    <button ng-disabled="LoginForm.$invalid" class="button" ng-click="login()">Login</button>
+</form>
