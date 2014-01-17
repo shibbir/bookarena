@@ -5,25 +5,24 @@ using System.Linq.Expressions;
 
 namespace BookArena.DAL
 {
-    public abstract class RepositoryBase<TContext, TEntity> : IDisposable
-        where TContext : DbContext, new()
+    public abstract class RepositoryBase<TEntity> : IDisposable
         where TEntity : class
     {
-        private TContext _dataContext;
+        private BookArenaDbContext _dataContext;
         private readonly DbSet<TEntity> _dbSet;
 
         protected RepositoryBase()
         {
-            _dataContext = new TContext();
+            _dataContext = new BookArenaDbContext();
             _dbSet = _dataContext.Set<TEntity>();
         }
 
-        protected virtual TContext DataContext
+        protected virtual BookArenaDbContext DataContext
         {
             get
             {
                 if (_dataContext != null) return _dataContext;
-                _dataContext = new TContext();
+                _dataContext = new BookArenaDbContext();
                 AllowSerialization = true;
                 return _dataContext;
             }

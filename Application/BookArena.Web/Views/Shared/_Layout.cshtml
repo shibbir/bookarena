@@ -9,14 +9,16 @@
 
     </head>
     <body ng-app="bookArenaApp">
-        @Html.Partial("_Navigation")
-        <div class="row">
-            <div class="small-3 large-3 columns">
-                @Html.Partial("_SideNavigation")
-            </div>
-            <div class="small-9 large-9 columns">
-                <div class="body-content">
-                    @RenderBody()
+        <div ng-controller="RootCtrl">
+            @Html.Partial("_Navigation")
+            <div class="row">
+                <div class="small-3 large-3 columns">
+                    @Html.Partial("_SideNavigation")
+                </div>
+                <div class="small-9 large-9 columns">
+                    <div class="body-content">
+                        @RenderBody()
+                    </div>
                 </div>
             </div>
         </div>

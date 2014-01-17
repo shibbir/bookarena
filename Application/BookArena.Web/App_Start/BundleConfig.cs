@@ -26,6 +26,7 @@ namespace BookArena.Web.App_Start
                 "~/Scripts/Application/Services/api-service.js",
                 "~/Scripts/Application/Services/notifier-service.js",
                 "~/Scripts/Application/Directives/Directives.js",
+                "~/Scripts/Application/Controllers/RootCtrl.js",
                 "~/Scripts/Application/Controllers/LoginCtrl.js",
                 "~/Scripts/Application/Controllers/WelcomeCtrl.js",
                 "~/Scripts/Application/Controllers/BookListCtrl.js",

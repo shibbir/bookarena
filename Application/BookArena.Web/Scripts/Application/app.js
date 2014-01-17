@@ -1,6 +1,6 @@
 ﻿"use strict";
 
-(function() {
+(function () {
     var routes =
     {
         "/": {
@@ -41,26 +41,35 @@
     };
     var bookArenaApp = angular.module("bookArenaApp", ["ngRoute", "ngAnimate"]);
 
-    bookArenaApp.config(["$routeProvider", function($routeProvider) {
+    bookArenaApp.config(["$routeProvider", function ($routeProvider) {
         for (var path in routes) {
             $routeProvider.when(path, routes[path]);
         }
         $routeProvider.otherwise({ redirectTo: "/" });
     }]);
 
-    bookArenaApp.run(["$rootScope", "$location", "apiService", function($rootScope, $location, service) {
-        $rootScope.$on("$locationChangeSuccess", function(event, next) {
+    bookArenaApp.run(["$rootScope", "$location", function ($rootScope, $location) {
+        $rootScope.$on("$locationChangeSuccess", function (event, next) {
             for (var i in routes) {
                 if (next.indexOf(i) != -1) {
-                    if (routes[i].requireLogin) {
-                        service.call("/account/isauthenticated").then(function(data) {
-                            if (data !== "true") {
-                                $location.path("/account/login");
-                            }
-                        });
+                    if (routes[i].requireLogin && !$rootScope.authenticatedUser.isAuthenticated) {
+                        $location.path("/account/login");
                     }
                 }
             }
         });
     }]);
 })();
+
+//if ($location.path() === "/account/login" && $rootScope.authenticatedUser.isAuthenticated) {
+//    $location.path("/");
+//}
+//else {
+//    for (var i in routes) {
+//        if (next.indexOf(i) != -1) {
+//            if (routes[i].requireLogin) {
+//                $location.path("/account/login");
+//            }
+//        }
+//    }
+//}

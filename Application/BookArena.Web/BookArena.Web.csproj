@@ -117,7 +117,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\APIController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -148,6 +147,7 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\Application\app.js" />
+    <Content Include="Scripts\Application\Controllers\RootCtrl.js" />
     <Content Include="Scripts\Application\Controllers\WelcomeCtrl.js" />
     <Content Include="Scripts\Application\Controllers\BookListCtrl.js" />
     <Content Include="Scripts\Application\Controllers\BookDetailsCtrl.js" />

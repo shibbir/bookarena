@@ -5,11 +5,12 @@
     </ul>
     <section class="top-bar-section">
         <!-- Right Nav Section -->
-        <ul class="right">
+        <ul class="right" ng-show="authenticatedUser.isAuthenticated">
             <li class="has-dropdown">
-                <a href="#">Right Button with Dropdown</a>
+                <a href="#">Hello, {{authenticatedUser.name}}</a>
                 <ul class="dropdown">
-                    <li><a href="#">First link in dropdown</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#" ng-click="logout()">Logout</a></li>
                 </ul>
             </li>
         </ul> <!-- Left Nav Section -->

@@ -5,26 +5,36 @@ using BookArena.Model;
 
 namespace BookArena.DAL.Repository
 {
-    public class AccountRepository : IAccountRepository
+    public class AccountRepository : RepositoryBase<ApplicationUser>, IAccountRepository
     {
-        public ApplicationUser User(int id)
+        public ApplicationUser User()
         {
-            throw new NotImplementedException();
+            return new ApplicationUser
+            {
+                Id = 1,
+                UserName = "admin",
+                Password = "123456",
+                Name = "Shibbir Ahmed",
+                Email = "shibbir.cse@gmail.com",
+                Address = "Rampura, Dhaka"
+            };
         }
 
-        public bool IsUserAuthenticated()
+        public ApplicationUser Login(ApplicationUser applicationUser)
         {
-            return false;
-        }
-
-        public bool Login(ApplicationUser applicationUser)
-        {
-            return false;
-        }
-
-        public void LogOut()
-        {
-            throw new NotImplementedException();
+            if (applicationUser.UserName == "admin" && applicationUser.Password == "123456")
+            {
+                return new ApplicationUser
+                {
+                    Id = 1,
+                    UserName = "admin",
+                    Password = "123456",
+                    Name = "Shibbir Ahmed",
+                    Email = "shibbir.cse@gmail.com",
+                    Address = "Rampura, Dhaka"
+                };
+            }
+            return null;
         }
     }
 }
