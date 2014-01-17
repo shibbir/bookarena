@@ -1,9 +1,25 @@
 ﻿<div class="panel callout radius">
     <h5>{{book.Title}}</h5>
-    <p>By <a href="">{{book.Author}}</a></p>
+    <p>By <a ng-href="#/authors">{{book.Author}}</a></p>
 </div>
 
-<p>{{book.Description}}</p>
+<div class="row">
+    <div class="small-3 large-3 columns">
+        <img ng-src="/Content/Images/{{book.ImageFileName}}" alt="{{book.Title}}" />
+    </div>
+    <div class="small-9 large-9 columns">
+        <div class="row">
+            <div class="small-12 large-12 columns">
+                <p>{{book.Description}}</p>
+            </div>
+            <div class="small-3 large-3 columns" ng-show="authenticatedUser.isAuthenticated">
+                <a ng-href="#/books/book/edit/{{book.Id}}" class="button success medium-12">Edit</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr />
 
 <h3>What you’ll learn</h3>
 

@@ -10,10 +10,10 @@
     </head>
     <body ng-app="bookArenaApp">
         <div ng-controller="RootCtrl">
-            @Html.Partial("_Navigation")
+            <div data-cd-navigation></div>
             <div class="row">
                 <div class="small-3 large-3 columns">
-                    @Html.Partial("_SideNavigation")
+                    <div data-cd-side-navigation></div>
                 </div>
                 <div class="small-9 large-9 columns">
                     <div class="body-content">
@@ -25,8 +25,5 @@
 
         @Scripts.Render("~/bundles/library")
         @Scripts.Render("~/bundles/app")
-        <script>
-            $(document).foundation();
-        </script>
     </body>
 </html>

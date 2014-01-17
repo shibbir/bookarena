@@ -1,0 +1,27 @@
+﻿<form name="BookEditForm" novalidate>
+    <div class="row">
+        <div class="large-6 columns">
+            <label>Title</label>
+            <input type="text" ng-class="BookEditForm.Title.$invalid ? 'error': ''" ng-model="book.title" name="Title" required />
+            <small ng-show="BookEditForm.Title.$error.required" class="error">Invalid Title</small>
+        </div>
+        <div class="large-6 columns">
+            <label>Author</label>
+            <input type="text" ng-class="BookEditForm.Author.$invalid ? 'error': ''" ng-model="data.author" name="Author" required />
+            <small ng-show="BookEditForm.Author.$error.required" class="error">Invalid Author</small>
+        </div>
+    </div>
+    <textarea ng-class="BookEditForm.Description.$invalid ? 'error': ''" placeholder="Description..." ng-model="data.description" name="Description" required></textarea>
+    <small ng-show="BookEditForm.Description.$error.required" class="error">Invalid Description</small>
+
+    <div class="row">
+        <div class="large-12 columns">
+            <label>Book Status</label>
+            <input type="radio" id="pokemonRed" value="Red" name="Status" ng-model="data.Status"><label for="pokemonRed">Available</label>
+            <input type="radio" id="pokemonBlue" value="Blue" name="Status" ng-model="data.Status"><label for="pokemonBlue">Not Available</label>
+            <input type="radio" id="pokemonBlue" value="Blue" name="Status" ng-model="data.Status"><label for="pokemonBlue">Rented By Others</label>
+        </div>
+    </div>
+
+    <button ng-disabled="BookEditForm.$invalid" class="button" ng-click="uploadBook()">Upload Book</button>
+</form>

@@ -2,8 +2,8 @@
 
 <div ng-repeat="book in books | filter:searchText">
     <div class="book-wrapper">
-        <a ng-href="#/book/details/{{book.Id}}">
-            <img ng-src="/Content/Images/{{book.ImageFileName}}" alt="{{book.Title}}">
+        <a ng-href="#/books/book/{{book.Id}}">
+            <img ng-src="/Content/Images/{{book.ImageFileName}}" alt="{{book.Title}}" />
         </a>
         <div class="book-footer">
             <strong data-cd-book-status="{{book.StatusId}}"></strong>

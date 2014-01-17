@@ -18,5 +18,15 @@
                 $element.html(text);
             }
         };
+    }).directive("cdNavigation", function() {
+        return {
+            restrict: "A",
+            templateUrl: "/Template/Common/Navigation.html"
+        };
+    }).directive("cdSideNavigation", function() {
+        return {
+            restrict: "A",
+            templateUrl: "/Template/Common/SideNavigation.html"
+        };
     });
 })(angular.module("bookArenaApp"));

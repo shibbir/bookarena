@@ -1,6 +1,6 @@
 ﻿"use strict";
 
-(function () {
+(function() {
     var routes =
     {
         "/": {
@@ -13,63 +13,57 @@
             controller: "LoginCtrl",
             requireLogin: false
         },
-        "/book": {
+        "/books": {
             templateUrl: "Template/Book/List.html",
             controller: "BookListCtrl",
             requireLogin: false
         },
-        "/book/details/:id": {
+        "/books/book/:id": {
             templateUrl: "Template/Book/Details.html",
             controller: "BookDetailsCtrl",
             requireLogin: false
         },
-        "/book/upload": {
-            templateUrl: "Template/Book/Upload.html",
-            controller: "BookUploadCtrl",
+        "/books/book/edit/:id": {
+            templateUrl: "Template/Book/Edit.html",
+            controller: "BookEditCtrl",
             requireLogin: true
         },
-        "/student": {
+        "/books/add": {
+            templateUrl: "Template/Book/Add.html",
+            controller: "BookAddCtrl",
+            requireLogin: true
+        },
+        "/students": {
             templateUrl: "Template/Student/List.html",
             controller: "StudentListCtrl",
             requireLogin: false
         },
-        "student/register": {
-            templateUrl: "Template/Student/Register.html",
-            controller: "StudentRegisterCtrl",
+        "students/add": {
+            templateUrl: "Template/Student/Add.html",
+            controller: "StudentAddCtrl",
             requireLogin: true
         }
     };
     var bookArenaApp = angular.module("bookArenaApp", ["ngRoute", "ngAnimate"]);
 
-    bookArenaApp.config(["$routeProvider", function ($routeProvider) {
+    bookArenaApp.config(["$routeProvider", function($routeProvider) {
         for (var path in routes) {
             $routeProvider.when(path, routes[path]);
         }
         $routeProvider.otherwise({ redirectTo: "/" });
     }]);
 
-    bookArenaApp.run(["$rootScope", "$location", function ($rootScope, $location) {
-        $rootScope.$on("$locationChangeSuccess", function (event, next) {
+    bookArenaApp.run(["$rootScope", "$location", function($rootScope, $location) {
+        var blackList = ["add", "edit", "delete"];
+        $rootScope.$on("$locationChangeSuccess", function(event, next) {
+            $(document).foundation();
             for (var i in routes) {
                 if (next.indexOf(i) != -1) {
                     if (routes[i].requireLogin && !$rootScope.authenticatedUser.isAuthenticated) {
-                        $location.path("/account/login");
+                        $location.path("/account/login").replace();
                     }
                 }
             }
         });
     }]);
 })();
-
-//if ($location.path() === "/account/login" && $rootScope.authenticatedUser.isAuthenticated) {
-//    $location.path("/");
-//}
-//else {
-//    for (var i in routes) {
-//        if (next.indexOf(i) != -1) {
-//            if (routes[i].requireLogin) {
-//                $location.path("/account/login");
-//            }
-//        }
-//    }
-//}
