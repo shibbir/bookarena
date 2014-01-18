@@ -23,7 +23,7 @@
             controller: "BookDetailsCtrl",
             requireLogin: false
         },
-        "/books/book/edit/:id": {
+        "/books/edit/:id": {
             templateUrl: "Template/Book/Edit.html",
             controller: "BookEditCtrl",
             requireLogin: true
@@ -38,7 +38,7 @@
             controller: "StudentListCtrl",
             requireLogin: false
         },
-        "students/add": {
+        "/students/add": {
             templateUrl: "Template/Student/Add.html",
             controller: "StudentAddCtrl",
             requireLogin: true
@@ -46,24 +46,28 @@
     };
     var bookArenaApp = angular.module("bookArenaApp", ["ngRoute", "ngAnimate"]);
 
-    bookArenaApp.config(["$routeProvider", function($routeProvider) {
-        for (var path in routes) {
-            $routeProvider.when(path, routes[path]);
+    bookArenaApp.config([
+        "$routeProvider", function($routeProvider) {
+            for (var path in routes) {
+                $routeProvider.when(path, routes[path]);
+            }
+            $routeProvider.otherwise({ redirectTo: "/" });
         }
-        $routeProvider.otherwise({ redirectTo: "/" });
-    }]);
+    ]);
 
-    bookArenaApp.run(["$rootScope", "$location", function($rootScope, $location) {
-        var blackList = ["add", "edit", "delete"];
-        $rootScope.$on("$locationChangeSuccess", function(event, next) {
-            $(document).foundation();
-            for (var i in routes) {
-                if (next.indexOf(i) != -1) {
-                    if (routes[i].requireLogin && !$rootScope.authenticatedUser.isAuthenticated) {
-                        $location.path("/account/login").replace();
+    bookArenaApp.run([
+        "$rootScope", "$location", "notifierService", function($rootScope, $location, notifier) {
+            var blackList = ["add", "edit", "delete"];
+            $rootScope.$on("$locationChangeStart", function(event, next) {
+                for (var i in routes) {
+                    if (next.indexOf(i) != -1) {
+                        if (routes[i].requireLogin && !$rootScope.authenticatedUser.isAuthenticated) {
+                            notifier.notify({ responseType: "error", message: "Access Denied! You need to login first." });
+                            event.preventDefault();
+                        }
                     }
                 }
-            }
-        });
-    }]);
+            });
+        }
+    ]);
 })();

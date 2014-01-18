@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace BookArena.Web.App_Start
+namespace BookArena.Web
 {
     public class RouteConfig
     {
@@ -14,6 +14,8 @@ namespace BookArena.Web.App_Start
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapMvcAttributeRoutes();
         }
     }
 }

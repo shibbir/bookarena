@@ -125,6 +125,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\star-half.png" />
+    <Content Include="Content\Images\star-off.png" />
+    <Content Include="Content\Images\star-on.png" />
+    <Content Include="favicon.png" />
     <Content Include="Content\foundation-icons.css" />
     <Content Include="Content\foundation-icons.svg" />
     <Content Include="Content\foundation.css" />
@@ -132,7 +136,6 @@
     <Content Include="Content\Images\A9781430247739-small_3.png" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
-    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\toastr.less" />
@@ -152,7 +155,7 @@
     <Content Include="Scripts\Application\Controllers\WelcomeCtrl.js" />
     <Content Include="Scripts\Application\Controllers\BookListCtrl.js" />
     <Content Include="Scripts\Application\Controllers\BookDetailsCtrl.js" />
-    <Content Include="Scripts\Application\Controllers\StudentRegisterCtrl.js" />
+    <Content Include="Scripts\Application\Controllers\StudentAddCtrl.js" />
     <Content Include="Scripts\Application\Controllers\BookUploadCtrl.js" />
     <Content Include="Scripts\Application\Controllers\LoginCtrl.js" />
     <Content Include="Scripts\Application\Controllers\StudentListCtrl.js" />
@@ -162,6 +165,7 @@
     <Content Include="Scripts\foundation.min.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
+    <Content Include="Scripts\jquery.raty.js" />
     <Content Include="Scripts\modernizr-2.7.1.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />

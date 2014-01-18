@@ -7,9 +7,9 @@ namespace BookArena.DAL.Repository
 {
     public class StudentRepository : IStudentRepository
     {
-        public void Create(Student entity)
+        public bool Create(Student entity)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public void Update(Student entity)
@@ -35,7 +35,7 @@ namespace BookArena.DAL.Repository
                 FirstName = "Shibbir",
                 LastName = "Ahmed",
                 Batch = "33",
-                IdCard = "CSE 033 05817",
+                IdCardNumber = "CSE 033 05817",
                 Program = "CSE"
             };
         }
@@ -50,7 +50,7 @@ namespace BookArena.DAL.Repository
                     FirstName = "Shibbir",
                     LastName = "Ahmed",
                     Batch = "33",
-                    IdCard = "CSE 033 05817",
+                    IdCardNumber = "CSE 033 05817",
                     Program = "CSE"
                 },
                 new Student
@@ -59,7 +59,7 @@ namespace BookArena.DAL.Repository
                     FirstName = "Shibbir",
                     LastName = "Ahmed",
                     Batch = "33",
-                    IdCard = "CSE 033 05817",
+                    IdCardNumber = "CSE 033 05817",
                     Program = "CSE"
                 },
                 new Student
@@ -68,7 +68,7 @@ namespace BookArena.DAL.Repository
                     FirstName = "Shibbir",
                     LastName = "Ahmed",
                     Batch = "33",
-                    IdCard = "CSE 033 05817",
+                    IdCardNumber = "CSE 033 05817",
                     Program = "CSE"
                 },
                 new Student
@@ -77,7 +77,7 @@ namespace BookArena.DAL.Repository
                     FirstName = "Shibbir",
                     LastName = "Ahmed",
                     Batch = "33",
-                    IdCard = "CSE 033 05817",
+                    IdCardNumber = "CSE 033 05817",
                     Program = "CSE"
                 },
                 new Student
@@ -86,7 +86,7 @@ namespace BookArena.DAL.Repository
                     FirstName = "Shibbir",
                     LastName = "Ahmed",
                     Batch = "33",
-                    IdCard = "CSE 033 05817",
+                    IdCardNumber = "CSE 033 05817",
                     Program = "CSE"
                 }
             };

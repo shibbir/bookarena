@@ -10,10 +10,21 @@
     <div class="small-9 large-9 columns">
         <div class="row">
             <div class="small-12 large-12 columns">
-                <p>{{book.Description}}</p>
+                <p>{{book.ShortDescription}}</p>
+                <span ng-if="book.Rating">
+                    Rating: <span cd-rating="{{book.Rating}}"></span>
+                </span>
             </div>
-            <div class="small-3 large-3 columns" ng-show="authenticatedUser.isAuthenticated">
-                <a ng-href="#/books/book/edit/{{book.Id}}" class="button success medium-12">Edit</a>
+            <div class="small-5 medium-5 columns">
+                
+                <a ng-href="#/account/login" ng-hide="authenticatedUser.isAuthenticated">
+                    <i class="fi-lock"></i>
+                    Login to edit this book
+                </a>
+                <a ng-href="#/books/edit/{{book.Id}}" ng-show="authenticatedUser.isAuthenticated">
+                    <i class="fi-page-edit"></i>
+                    Edit this book
+                </a>
             </div>
         </div>
     </div>

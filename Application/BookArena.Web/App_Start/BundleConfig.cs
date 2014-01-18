@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace BookArena.Web.App_Start
+namespace BookArena.Web
 {
     public class BundleConfig
     {
@@ -16,6 +16,7 @@ namespace BookArena.Web.App_Start
                 "~/Scripts/jquery-{version}.js",
                 "~/Scripts/foundation.min.js",
                 "~/Scripts/toastr.js",
+                "~/Scripts/jquery.raty.js",
                 "~/Scripts/respond.js",
                 "~/Scripts/angular.js",
                 "~/Scripts/angular-route.js",

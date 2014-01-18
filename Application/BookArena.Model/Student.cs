@@ -16,7 +16,7 @@ namespace BookArena.Model
         public string LastName { get; set; }
 
         [Required]
-        public string IdCard { get; set; }
+        public string IdCardNumber { get; set; }
 
         [Required]
         public string Program { get; set; }

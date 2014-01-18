@@ -6,15 +6,22 @@
     <ul class="side-nav">
         <li><h4 class="subheader">Student</h4></li>
         <li><a href="#/students">All Student</a></li>
-        <li><a href="#/students/add">Register Student</a></li>
+        <li>
+            <a href="#/students/add">Register Student</a>
+            <span class="red required-star">*</span>
+        </li>
         <li class="divider"></li>
         <li><h4 class="subheader">Books</h4></li>
         <li><a href="#/books">All Books</a></li>
         <li><a href="#/authors">Authors</a></li>
-        <li><a href="#/books/add/">Upload New Book</a></li>
+        <li>
+            <a href="#/books/add/">Upload New Book</a>
+            <span class="red required-star">*</span>
+        </li>
         <li class="divider"></li>
         <li><h4 class="subheader">Settings</h4></li>
         <li><a href="#/library/rules/">Library Rules</a></li>
     </ul>
     <a href="#/account/login/" class="button medium-12 success" ng-hide="authenticatedUser.isAuthenticated">Login Page</a>
+    <small class="red">* Login Required</small>
 </div>

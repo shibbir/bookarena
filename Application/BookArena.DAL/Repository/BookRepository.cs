@@ -7,9 +7,9 @@ namespace BookArena.DAL.Repository
 {
     public class BookRepository : IBookRepository
     {
-        public void Create(Book entity)
+        public bool Create(Book entity)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public void Update(Book entity)
@@ -35,9 +35,10 @@ namespace BookArena.DAL.Repository
                 Title = "ASP.NET MVC 4 Recipes",
                 Author = "John Ciliberti",
                 Edition = "First Edition",
-                Description = "ASP.NET MVC 4 Recipes is a practical guide for developers creating modern web applications on the Microsoft platform. It cuts through the complexities of ASP.NET, jQuery, Knockout.js and HTML 5 to provide straightforward solutions to common web development problems using proven methods based on best practices.",
+                ShortDescription = "ASP.NET MVC 4 Recipes is a practical guide for developers creating modern web applications on the Microsoft platform. It cuts through the complexities of ASP.NET, jQuery, Knockout.js and HTML 5 to provide straightforward solutions to common web development problems using proven methods based on best practices.",
                 StatusId = 1,
-                ImageFileName = "A9781430247739-small_3.png"
+                ImageFileName = "A9781430247739-small_3.png",
+                Rating = 3.5
             };
         }
 
@@ -51,7 +52,7 @@ namespace BookArena.DAL.Repository
                     Title = "Beginning ASP.NET MVC 4",
                     Author = "Scott Allen",
                     Edition = "First Edition",
-                    Description = "ASP.NET MVC 4",
+                    ShortDescription = "ASP.NET MVC 4",
                     StatusId = 1,
                     ImageFileName = "A9781430247739-small_3.png"
                 },
@@ -61,7 +62,7 @@ namespace BookArena.DAL.Repository
                     Title = "Learning jQuery Fourth Edition",
                     Author = "Karl Swedberg and Jonathan Chaffer",
                     Edition = "First Edition",
-                    Description = "ASP.NET MVC 4",
+                    ShortDescription = "ASP.NET MVC 4",
                     StatusId = 2,
                     ImageFileName = "A9781430247739-small_3.png"
                 },
@@ -69,9 +70,9 @@ namespace BookArena.DAL.Repository
                 {
                     Id = 3,
                     Title = "Beginning ASP.NET MVC 4",
-                    Author = "Scott Allen",
+                    Author = "Shibbir",
                     Edition = "First Edition",
-                    Description = "ASP.NET MVC 4",
+                    ShortDescription = "ASP.NET MVC 4",
                     StatusId = 3,
                     ImageFileName = "A9781430247739-small_3.png"
                 },
@@ -81,7 +82,7 @@ namespace BookArena.DAL.Repository
                     Title = "Beginning ASP.NET MVC 4",
                     Author = "Scott Allen",
                     Edition = "First Edition",
-                    Description = "ASP.NET MVC 4",
+                    ShortDescription = "ASP.NET MVC 4",
                     StatusId = 1,
                     ImageFileName = "A9781430247739-small_3.png"
                 },
@@ -91,7 +92,7 @@ namespace BookArena.DAL.Repository
                     Title = "Beginning ASP.NET MVC 4",
                     Author = "Scott Allen",
                     Edition = "First Edition",
-                    Description = "ASP.NET MVC 4",
+                    ShortDescription = "ASP.NET MVC 4",
                     StatusId = 2,
                     ImageFileName = "A9781430247739-small_3.png"
                 },
@@ -101,7 +102,7 @@ namespace BookArena.DAL.Repository
                     Title = "Beginning ASP.NET MVC 4",
                     Author = "Scott Allen",
                     Edition = "First Edition",
-                    Description = "ASP.NET MVC 4",
+                    ShortDescription = "ASP.NET MVC 4",
                     StatusId = 1,
                     ImageFileName = "A9781430247739-small_3.png"
                 },
@@ -111,7 +112,7 @@ namespace BookArena.DAL.Repository
                     Title = "Learning jQuery Fourth Edition",
                     Author = "Karl Swedberg and Jonathan Chaffer",
                     Edition = "First Edition",
-                    Description = "ASP.NET MVC 4",
+                    ShortDescription = "ASP.NET MVC 4",
                     StatusId = 2,
                     ImageFileName = "A9781430247739-small_3.png"
                 },
@@ -121,7 +122,7 @@ namespace BookArena.DAL.Repository
                     Title = "Beginning ASP.NET MVC 4",
                     Author = "Scott Allen",
                     Edition = "First Edition",
-                    Description = "ASP.NET MVC 4",
+                    ShortDescription = "ASP.NET MVC 4",
                     StatusId = 3,
                     ImageFileName = "A9781430247739-small_3.png"
                 },
@@ -131,7 +132,7 @@ namespace BookArena.DAL.Repository
                     Title = "Beginning ASP.NET MVC 4",
                     Author = "Scott Allen",
                     Edition = "First Edition",
-                    Description = "ASP.NET MVC 4",
+                    ShortDescription = "ASP.NET MVC 4",
                     StatusId = 1,
                     ImageFileName = "A9781430247739-small_3.png"
                 },
@@ -141,7 +142,7 @@ namespace BookArena.DAL.Repository
                     Title = "Beginning ASP.NET MVC 4",
                     Author = "Scott Allen",
                     Edition = "First Edition",
-                    Description = "ASP.NET MVC 4",
+                    ShortDescription = "ASP.NET MVC 4",
                     StatusId = 2,
                     ImageFileName = "A9781430247739-small_3.png"
                 }

@@ -21,8 +21,15 @@ namespace BookArena.Model
         public int CategoryId { get; set; }
 
         public string Edition { get; set; }
-        public string Description { get; set; }
+
+        [StringLength(300, ErrorMessage = "The {0} must be at most {1} characters long.")]
+        public string ShortDescription { get; set; }
+
+        [StringLength(1000, ErrorMessage = "The {0} must be at most {1} characters long.")]
+        public string LongDescription { get; set; }
+
         public string ImageFileName { get; set; }
+        public double Rating { get; set; }
 
         public int StatusId { get; set; }
     }

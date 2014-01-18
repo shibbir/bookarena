@@ -44,3 +44,28 @@
 .note {
     color: orange;
 }
+
+.required-star {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 0;
+}
+
+.side-nav li a {
+    display: inline-block !important;
+}
+
+.toast-message {
+    font-size: 12px;
+}
+
+.topbar-app-info {
+    color: #FFFFFF;
+}
+textarea {
+    min-height: 150px;
+}
+
+select {
+    margin: 0;
+}

@@ -22,21 +22,45 @@ namespace BookArena.Web.Controllers
         public JsonResult Books()
         {
             var model = _bookRepository.GetAll();
-            return Json(model, JsonRequestBehavior.AllowGet);
+            return Json(new
+            {
+                Data = model,
+                Response = new Response
+                {
+                    ResponseType = "Success",
+                    Message = "Books data fetched successfully!"
+                }
+            }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         public JsonResult Book(int id)
         {
             var model = _bookRepository.GetById(id);
-            return Json(model, JsonRequestBehavior.AllowGet);
+            return Json(new
+            {
+                Data = model,
+                Response = new Response
+                {
+                    ResponseType = "Success",
+                    Message = "Data fetched successfully!"
+                }
+            }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         public JsonResult Students()
         {
             var model = _studentRepository.GetAll();
-            return Json(model, JsonRequestBehavior.AllowGet);
+            return Json(new
+            {
+                Data = model,
+                Response = new Response
+                {
+                    ResponseType = "Success",
+                    Message = "Students data fetched successfully!"
+                }
+            }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -44,6 +68,25 @@ namespace BookArena.Web.Controllers
         {
             var model = _studentRepository.GetById(id);
             return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [Route("api/students/add")]
+        public JsonResult StudentAdd(Student student)
+        {
+            if (_studentRepository.Create(student))
+            {
+                return Json(new Response
+                {
+                    ResponseType = "Success",
+                    Message = "Registration is successfull!"
+                });
+            }
+            return Json(new Response
+            {
+                ResponseType = "Error",
+                Message = "Oops! Something happend. Please try again."
+            });
         }
 
         [HttpPost]
@@ -68,11 +111,13 @@ namespace BookArena.Web.Controllers
         [HttpGet]
         public JsonResult Account()
         {
-            if (Session["IsActive"] == null)
-            {
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-            return Json(_accountRepository.User(), JsonRequestBehavior.AllowGet);
+            return Json(Session["IsActive"] == null ? null : _accountRepository.User(), JsonRequestBehavior.AllowGet);
         }
+    }
+
+    public class Response
+    {
+        public string ResponseType { get; set; }
+        public string Message { get; set; }
     }
 }
