@@ -5,21 +5,21 @@ using BookArena.Model;
 
 namespace BookArena.DAL.Repository
 {
-    public class StudentRepository : IStudentRepository
+    public class StudentRepository : RepositoryBase<Student>, IStudentRepository
     {
-        public bool Create(Student entity)
+        public void Create(Student entity)
         {
-            return true;
+            Add(entity);
         }
 
         public void Update(Student entity)
         {
-            throw new NotImplementedException();
+            Edit(entity);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Reomve(GetById(id));
         }
 
         public Student Get(Student entity)
@@ -94,7 +94,10 @@ namespace BookArena.DAL.Repository
 
         public void Save()
         {
-            throw new NotImplementedException();
+            using (var dataContext = DataContext)
+            {
+                dataContext.SaveChanges();
+            }
         }
     }
 }

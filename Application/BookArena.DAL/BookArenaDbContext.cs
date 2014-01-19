@@ -11,6 +11,7 @@ namespace BookArena.DAL
         }
 
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<Category> Category { get; set; }
         public DbSet<Student> Student { get; set; }
         public DbSet<Book> Book { get; set; }
     }

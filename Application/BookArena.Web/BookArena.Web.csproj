@@ -45,6 +45,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -52,7 +60,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -150,13 +157,17 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\Application\app.js" />
+    <Content Include="Scripts\Application\Controllers\StudentDetailsCtrl.js" />
+    <Content Include="Scripts\Application\Controllers\StudentEditCtrl.js" />
     <Content Include="Scripts\Application\Controllers\BookEditCtrl.js" />
+    <Content Include="Scripts\Application\Controllers\CategoryCtrl.js" />
+    <Content Include="Scripts\Application\Controllers\ProfileCtrl.js" />
     <Content Include="Scripts\Application\Controllers\RootCtrl.js" />
     <Content Include="Scripts\Application\Controllers\WelcomeCtrl.js" />
     <Content Include="Scripts\Application\Controllers\BookListCtrl.js" />
     <Content Include="Scripts\Application\Controllers\BookDetailsCtrl.js" />
     <Content Include="Scripts\Application\Controllers\StudentAddCtrl.js" />
-    <Content Include="Scripts\Application\Controllers\BookUploadCtrl.js" />
+    <Content Include="Scripts\Application\Controllers\BookAddCtrl.js" />
     <Content Include="Scripts\Application\Controllers\LoginCtrl.js" />
     <Content Include="Scripts\Application\Controllers\StudentListCtrl.js" />
     <Content Include="Scripts\Application\Directives\Directives.js" />
@@ -173,6 +184,8 @@
     <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Template\Account\Login.html" />
+    <Content Include="Template\Account\Profile.html" />
+    <Content Include="Template\Book\Category.html" />
     <Content Include="Template\Book\Details.html" />
     <Content Include="Template\Book\Edit.html" />
     <Content Include="Template\Book\List.html" />
@@ -180,6 +193,7 @@
     <Content Include="Template\Common\Navigation.html" />
     <Content Include="Template\Common\SideNavigation.html" />
     <Content Include="Template\Home\Welcome.html" />
+    <Content Include="Template\Student\Details.html" />
     <Content Include="Template\Student\List.html" />
     <Content Include="Template\Student\Add.html" />
     <Content Include="Web.config" />

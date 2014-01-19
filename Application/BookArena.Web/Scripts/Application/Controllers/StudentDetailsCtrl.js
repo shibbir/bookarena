@@ -1,10 +1,10 @@
 ﻿"use strict";
 
 (function(app) {
-    app.controller("BookDetailsCtrl", [
+    app.controller("StudentDetailsCtrl", [
         "$scope", "$routeParams", "apiService", function($scope, $routeParams, service) {
-            service.call("/api/book/" + $routeParams.id).then(function(result) {
-                $scope.book = result;
+            service.call("/api/student/" + $routeParams.id).then(function(result) {
+                $scope.student = result;
             });
         }
     ]);

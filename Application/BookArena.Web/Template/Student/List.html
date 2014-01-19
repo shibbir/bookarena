@@ -1,9 +1,32 @@
-﻿<input type="search" ng-model="searchText" placeholder="filter: e.g name, id" />
+﻿<h2 class="content-header">All Registered Students</h2>
+<hr />
 
-<div ng-repeat="student in students | filter: searchText">
-    <div class="book-wrapper">
-        <a ng-href="#/api/student/{{student.Id}}">
-            {{student.FirstName}}
-        </a>
-    </div>
+<div ng-if="!students" class="block text-center red"><strong>Sorry, no student found!</strong></div>
+
+<div id="student-container" ng-if="students">
+    <input type="search" ng-model="searchText" placeholder="filter: e.g name, id" />
+    <table>
+        <thead>
+            <tr>
+                <th width="20">#</th>
+                <th width="20">Program</th>
+                <th width="20">Batch</th>
+                <th width="240">First Name</th>
+                <th width="240">Last Name</th>
+                <th width="180">ID Card</th>
+                <th width="100">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="student in students | filter: searchText">
+                <td>{{$index}}</td>
+                <td>{{student.Program}}</td>
+                <td>{{student.Batch}}</td>
+                <td>{{student.FirstName}}</td>
+                <td>{{student.LastName}}</td>
+                <td>{{student.IdCardNumber}}</td>
+                <td><a ng-href="#/students/student/{{student.Id}}">Details</a></td>
+            </tr>
+        </tbody>
+    </table>
 </div>

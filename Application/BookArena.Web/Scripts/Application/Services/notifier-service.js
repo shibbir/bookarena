@@ -1,5 +1,5 @@
 ﻿(function(app) {
-    app.factory("notifierService", function () {
+    app.factory("notifierService", function() {
         return {
             notify: function(data) {
                 var responseType = data.ResponseType.toLowerCase(),

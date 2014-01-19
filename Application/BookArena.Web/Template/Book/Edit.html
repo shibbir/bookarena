@@ -1,27 +1,68 @@
-﻿<form name="BookEditForm" novalidate>
+﻿<h2 class="content-header">Update Book Information</h2>
+<hr />
+
+<form name="BookEditForm" novalidate>
+    <input type="hidden" name="Id" ng-model="book.Id" />
     <div class="row">
         <div class="large-6 columns">
-            <label>Title</label>
-            <input type="text" ng-class="BookEditForm.Title.$invalid ? 'error': ''" ng-model="book.title" name="Title" required />
-            <small ng-show="BookEditForm.Title.$error.required" class="error">Invalid Title</small>
-        </div>
-        <div class="large-6 columns">
-            <label>Author</label>
-            <input type="text" ng-class="BookEditForm.Author.$invalid ? 'error': ''" ng-model="data.author" name="Author" required />
-            <small ng-show="BookEditForm.Author.$error.required" class="error">Invalid Author</small>
+            <label>Title <span class="red required-star">*</span></label>
+            <input type="text" ng-class="BookEditForm.Title.$invalid ? 'error': ''" ng-model="book.Title" name="Title" required />
+            <small ng-show="BookEditForm.Title.$error.required" class="error">The Title field is required</small>
         </div>
     </div>
-    <textarea ng-class="BookEditForm.Description.$invalid ? 'error': ''" placeholder="Description..." ng-model="data.description" name="Description" required></textarea>
-    <small ng-show="BookEditForm.Description.$error.required" class="error">Invalid Description</small>
-
     <div class="row">
-        <div class="large-12 columns">
-            <label>Book Status</label>
-            <input type="radio" id="pokemonRed" value="Red" name="Status" ng-model="data.Status"><label for="pokemonRed">Available</label>
-            <input type="radio" id="pokemonBlue" value="Blue" name="Status" ng-model="data.Status"><label for="pokemonBlue">Not Available</label>
-            <input type="radio" id="pokemonBlue" value="Blue" name="Status" ng-model="data.Status"><label for="pokemonBlue">Rented By Others</label>
+        <div class="large-6 columns">
+            <label>Author <span class="red required-star">*</span></label>
+            <input type="text" ng-class="BookEditForm.Author.$invalid ? 'error': ''" ng-model="book.Author" name="Author" required />
+            <small ng-show="BookEditForm.Author.$error.required" class="error">The Author field is required</small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-5 columns">
+            <label>Category <span class="red required-star">*</span></label>
+            <select name="CategoryId" ng-class="BookEditForm.CategoryId.$invalid ? 'error': ''" ng-model="book.CategoryId" required>
+                <option value="1">HTML</option>
+                <option value="2">CSS</option>
+                <option value="3">ASP</option>
+                <option value="4">PHP</option>
+                <option value="5">C#</option>
+                <option value="6">jQuery</option>
+                <option value="7">JavaScript</option>
+            </select>
+            <small ng-show="BookEditForm.CategoryId.$invalid" class="error">The Category field is required</small>
+        </div>
+    </div>
+    <div class="row" style="margin-top:15px;">
+        <div class="large-4 columns">
+            <label>Edition</label>
+            <select name="Edition" ng-model="book.Edition">
+                <option value="">Select Edition</option>
+                <option value="1st">1st</option>
+                <option value="2nd">2nd</option>
+                <option value="3rd">3rd</option>
+                <option value="4th">4th</option>
+                <option value="5th">5th</option>
+                <option value="6th">6th</option>
+            </select>
+        </div>
+    </div>
+    <div class="row" style="margin-top:15px;">
+        <div class="large-6 columns">
+            <label>Book Status <span class="red required-star">*</span></label>
+            <input type="radio" id="pokemonRed" value="1" name="StatusId" ng-model="book.StatusId" required><label for="pokemonRed">Available</label>
+            <input type="radio" id="pokemonBlue" value="2" name="StatusId" ng-model="book.StatusId" required><label for="pokemonBlue">Not Available</label>
+            <input type="radio" id="pokemonBlue" value="3" name="StatusId" ng-model="book.StatusId" required><label for="pokemonBlue">Rented</label>
+            <small ng-show="BookEditForm.StatusId.$error.required" class="error">The Book Status field is required.</small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-7 columns">
+            <label>Short Description</label>
+            <textarea ng-class="BookEditForm.Description.$invalid ? 'error': ''" placeholder="Short Description. e.g main topic, category etc." ng-model="book.ShortDescription" name="ShortDescription" ng-maxlength="500"></textarea>
+            <small ng-show="BookEditForm.ShortDescription.$invalid" class="error">The ShortDescription field must be at most 500 characters long.</small>
         </div>
     </div>
 
-    <button ng-disabled="BookEditForm.$invalid" class="button" ng-click="uploadBook()">Upload Book</button>
+    <a ng-disabled="BookEditForm.$invalid" class="button small medium-2" ng-click="update()">Update</a>
+    <a ng-href="#/books/book/{{book.Id}}" class="button secondary small medium-2">Cancel</a>
 </form>

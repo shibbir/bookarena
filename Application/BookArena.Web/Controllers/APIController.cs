@@ -18,6 +18,29 @@ namespace BookArena.Web.Controllers
             _studentRepository = new StudentRepository();
         }
 
+        public ApiController(IAccountRepository accountRepository, IBookRepository bookRepository,
+            IStudentRepository studentRepository)
+        {
+            _accountRepository = accountRepository;
+            _bookRepository = bookRepository;
+            _studentRepository = studentRepository;
+        }
+
+        [HttpGet]
+        public JsonResult Categories()
+        {
+            var model = _bookRepository.Categories();
+            return Json(new
+            {
+                Data = model,
+                Response = new Response
+                {
+                    ResponseType = ResponseType.Success,
+                    Message = "Categories data fetched successfully!"
+                }
+            }, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpGet]
         public JsonResult Books()
         {
@@ -27,7 +50,7 @@ namespace BookArena.Web.Controllers
                 Data = model,
                 Response = new Response
                 {
-                    ResponseType = "Success",
+                    ResponseType = ResponseType.Success,
                     Message = "Books data fetched successfully!"
                 }
             }, JsonRequestBehavior.AllowGet);
@@ -37,15 +60,55 @@ namespace BookArena.Web.Controllers
         public JsonResult Book(int id)
         {
             var model = _bookRepository.GetById(id);
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult AddBook(Book book)
+        {
+            if (!ModelState.IsValid)
+                return Json(new
+                {
+                    Response = new Response
+                    {
+                        ResponseType = ResponseType.Error,
+                        Message = "Invalid book information!"
+                    }
+                });
+            _bookRepository.Create(book);
+            _bookRepository.Save();
             return Json(new
             {
-                Data = model,
                 Response = new Response
                 {
-                    ResponseType = "Success",
+                    ResponseType = ResponseType.Success,
+                    Message = "Book uploaded successfully!"
+                }
+            });
+        }
+
+        [HttpPost]
+        public JsonResult EditBook(Book book)
+        {
+            if (!ModelState.IsValid)
+                return Json(new
+                {
+                    Response = new Response
+                    {
+                        ResponseType = ResponseType.Error,
+                        Message = "Invalid book information!"
+                    }
+                });
+            _bookRepository.Update(book);
+            _bookRepository.Save();
+            return Json(new
+            {
+                Response = new Response
+                {
+                    ResponseType = ResponseType.Success,
                     Message = "Data fetched successfully!"
                 }
-            }, JsonRequestBehavior.AllowGet);
+            });
         }
 
         [HttpGet]
@@ -57,7 +120,7 @@ namespace BookArena.Web.Controllers
                 Data = model,
                 Response = new Response
                 {
-                    ResponseType = "Success",
+                    ResponseType = ResponseType.Success,
                     Message = "Students data fetched successfully!"
                 }
             }, JsonRequestBehavior.AllowGet);
@@ -71,21 +134,20 @@ namespace BookArena.Web.Controllers
         }
 
         [HttpPost]
-        [Route("api/students/add")]
-        public JsonResult StudentAdd(Student student)
+        public JsonResult AddStudent(Student student)
         {
-            if (_studentRepository.Create(student))
-            {
+            if (!ModelState.IsValid)
                 return Json(new Response
                 {
-                    ResponseType = "Success",
-                    Message = "Registration is successfull!"
+                    ResponseType = ResponseType.Error,
+                    Message = "Invalid student information."
                 });
-            }
+            _studentRepository.Create(student);
+            _studentRepository.Save();
             return Json(new Response
             {
-                ResponseType = "Error",
-                Message = "Oops! Something happend. Please try again."
+                ResponseType = ResponseType.Success,
+                Message = "Student registered successfully."
             });
         }
 
@@ -95,17 +157,40 @@ namespace BookArena.Web.Controllers
             var model = _accountRepository.Login(user);
             if (model == null)
             {
-                return Json(null);
+                return Json(new
+                {
+                    Response = new Response
+                    {
+                        ResponseType = ResponseType.Error,
+                        Message = "Invalid username or password!"
+                    }
+                });
             }
             Session["IsActive"] = true;
-            return Json(model);
+            return Json(new
+            {
+                Data = new
+                {
+                    model.Name,
+                    IsAuthenticated = true
+                },
+                Response = new Response
+                {
+                    ResponseType = ResponseType.Success,
+                    Message = "You have been logged in!"
+                }
+            });
         }
 
         [HttpGet]
         public JsonResult Logout()
         {
             Session.RemoveAll();
-            return Json(null, JsonRequestBehavior.AllowGet);
+            return Json(new Response
+            {
+                ResponseType = ResponseType.Success,
+                Message = "You have beed logged out!"
+            }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -113,11 +198,5 @@ namespace BookArena.Web.Controllers
         {
             return Json(Session["IsActive"] == null ? null : _accountRepository.User(), JsonRequestBehavior.AllowGet);
         }
-    }
-
-    public class Response
-    {
-        public string ResponseType { get; set; }
-        public string Message { get; set; }
     }
 }

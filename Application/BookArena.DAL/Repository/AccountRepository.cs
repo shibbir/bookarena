@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Linq;
 using BookArena.DAL.Interfaces;
 using BookArena.Model;
 
@@ -9,32 +8,14 @@ namespace BookArena.DAL.Repository
     {
         public ApplicationUser User()
         {
-            return new ApplicationUser
-            {
-                Id = 1,
-                UserName = "admin",
-                Password = "123456",
-                Name = "Shibbir Ahmed",
-                Email = "shibbir.cse@gmail.com",
-                Address = "Rampura, Dhaka"
-            };
+            return FindAll().FirstOrDefault();
         }
 
         public ApplicationUser Login(ApplicationUser applicationUser)
         {
-            if (applicationUser.UserName == "admin" && applicationUser.Password == "123456")
-            {
-                return new ApplicationUser
-                {
-                    Id = 1,
-                    UserName = "admin",
-                    Password = "123456",
-                    Name = "Shibbir Ahmed",
-                    Email = "shibbir.cse@gmail.com",
-                    Address = "Rampura, Dhaka"
-                };
-            }
-            return null;
+            return
+                Find(x => x.UserName == applicationUser.UserName && x.Password == applicationUser.Password)
+                    .FirstOrDefault();
         }
     }
 }

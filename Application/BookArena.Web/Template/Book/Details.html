@@ -1,4 +1,6 @@
-﻿<div class="panel callout radius">
+﻿<hr />
+
+<div class="panel callout radius">
     <h5>{{book.Title}}</h5>
     <p>By <a ng-href="#/authors">{{book.Author}}</a></p>
 </div>
@@ -17,11 +19,11 @@
             </div>
             <div class="small-5 medium-5 columns">
                 
-                <a ng-href="#/account/login" ng-hide="authenticatedUser.isAuthenticated">
+                <a ng-href="#/account/login" ng-hide="authenticatedUser.IsAuthenticated">
                     <i class="fi-lock"></i>
                     Login to edit this book
                 </a>
-                <a ng-href="#/books/edit/{{book.Id}}" ng-show="authenticatedUser.isAuthenticated">
+                <a ng-href="#/books/edit/{{book.Id}}" ng-show="authenticatedUser.IsAuthenticated">
                     <i class="fi-page-edit"></i>
                     Edit this book
                 </a>

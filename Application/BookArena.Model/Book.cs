@@ -22,7 +22,7 @@ namespace BookArena.Model
 
         public string Edition { get; set; }
 
-        [StringLength(300, ErrorMessage = "The {0} must be at most {1} characters long.")]
+        [StringLength(500, ErrorMessage = "The {0} must be at most {1} characters long.")]
         public string ShortDescription { get; set; }
 
         [StringLength(1000, ErrorMessage = "The {0} must be at most {1} characters long.")]
@@ -32,5 +32,7 @@ namespace BookArena.Model
         public double Rating { get; set; }
 
         public int StatusId { get; set; }
+
+        public virtual Category Category { get; set; }
     }
 }

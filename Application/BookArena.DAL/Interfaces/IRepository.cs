@@ -5,7 +5,7 @@ namespace BookArena.DAL.Interfaces
     public interface IRepository<TEntity>
         where TEntity : class
     {
-        bool Create(TEntity entity);
+        void Create(TEntity entity);
         void Update(TEntity entity);
         void Delete(int id);
         TEntity Get(TEntity entity);

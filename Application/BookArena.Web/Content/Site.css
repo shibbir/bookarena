@@ -1,17 +1,17 @@
 ﻿.sidebar {
     background: none repeat scroll 0 0 #FAFAFA;
-    padding: 32px 20px;
+    padding: 0 20px 32px;
 }
 
 .body-content {
-    padding: 32px 20px;
+    padding: 0 20px 32px 0;
 }
 
 .book-wrapper {
     float: left;
     height: 155px;
     margin-bottom: 70px;
-    width: 135px;
+    width: 140px;
 }
 
 .book-wrapper a {
@@ -32,7 +32,6 @@
 .book-footer {
     font-size: 13px;
     margin-top: 10px;
-    text-align: center;
 }
 
 .red {
@@ -68,4 +67,42 @@ textarea {
 
 select {
     margin: 0;
+}
+
+.categoryBlock {
+    background: none repeat scroll 0 0 #FFFFFF;
+    -webkit-box-shadow: 1px 1px 3px 1px #CCCCCC;
+    -ms-box-shadow: 1px 1px 3px 1px #CCCCCC;
+    box-shadow: 1px 1px 3px 1px #CCCCCC;
+    display: inline-block;
+    margin-bottom: 15px;
+    margin-right: 13px;
+    padding: 5px;
+    width: 220px;
+}
+
+.pull-right {
+    float: right;
+}
+
+h5.category-header {
+    color: #FF9900;
+    font-weight: 600;
+    margin-bottom: 0.75em;
+}
+
+.block {
+    background: none repeat scroll 0 0 #FFFFFF;
+    -webkit-box-shadow: 0 2px 9px 0 #CCCCCC;
+    -ms-box-shadow: 0 2px 9px 0 #CCCCCC;
+    box-shadow: 0 2px 9px 0 #CCCCCC;
+    padding: 10px;
+}
+
+h2.content-header {
+    line-height: 50px;
+}
+
+.side-nav {
+    padding-top: 25px;
 }

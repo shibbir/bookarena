@@ -1,16 +1,16 @@
 ﻿"use strict";
 
 (function(app) {
-    app.controller("BookEditCtrl", [
+    app.controller("StudentEditCtrl", [
         "$scope", "$rootScope", "$routeParams", "apiService", "notifierService", function($scope, $rootScope, $routeParams, service, notifier) {
             $rootScope.checkForPermisssionAfter();
             $scope.book = {};
-            service.call("/api/book/" + $routeParams.id).then(function(result) {
-                $scope.book = result.Data;
+            service.call("/api/student/" + $routeParams.id).then(function(result) {
+                $scope.student = result.Data;
             });
             $scope.update = function() {
-                if ($scope.BookEditForm.$valid && $rootScope.authenticatedUser.IsAuthenticated) {
-                    service.call("/api/editbook/", $("form[name=BookEditForm]").serialize(), "POST").then(function(result) {
+                if ($scope.StudentEditForm.$valid && $rootScope.authenticatedUser.IsAuthenticated) {
+                    service.call("/api/editstudent/", $("form[name=StudentEditForm]").serialize(), "POST").then(function(result) {
                         notifier.notify(result.Response);
                     });
                 }

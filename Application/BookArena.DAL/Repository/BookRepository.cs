@@ -1,25 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BookArena.DAL.Interfaces;
 using BookArena.Model;
 
 namespace BookArena.DAL.Repository
 {
-    public class BookRepository : IBookRepository
+    public class BookRepository : RepositoryBase<Book>, IBookRepository
     {
-        public bool Create(Book entity)
+        public void Create(Book entity)
         {
-            return true;
+            Add(entity);
         }
 
         public void Update(Book entity)
         {
-            throw new NotImplementedException();
+            Edit(entity);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Reomve(GetById(id));
         }
 
         public Book Get(Book entity)
@@ -32,10 +33,12 @@ namespace BookArena.DAL.Repository
             return new Book
             {
                 Id = 1,
+                CategoryId = 1,
                 Title = "ASP.NET MVC 4 Recipes",
                 Author = "John Ciliberti",
-                Edition = "First Edition",
-                ShortDescription = "ASP.NET MVC 4 Recipes is a practical guide for developers creating modern web applications on the Microsoft platform. It cuts through the complexities of ASP.NET, jQuery, Knockout.js and HTML 5 to provide straightforward solutions to common web development problems using proven methods based on best practices.",
+                Edition = "1st",
+                ShortDescription =
+                    "ASP.NET MVC 4 Recipes is a practical guide for developers creating modern web applications on the Microsoft platform. It cuts through the complexities of ASP.NET, jQuery, Knockout.js and HTML 5 to provide straightforward solutions to common web development problems using proven methods based on best practices.",
                 StatusId = 1,
                 ImageFileName = "A9781430247739-small_3.png",
                 Rating = 3.5
@@ -44,6 +47,7 @@ namespace BookArena.DAL.Repository
 
         public IEnumerable<Book> GetAll()
         {
+
             return new List<Book>
             {
                 new Book
@@ -151,7 +155,18 @@ namespace BookArena.DAL.Repository
 
         public void Save()
         {
-            throw new NotImplementedException();
+            using (var dataContext = DataContext)
+            {
+                dataContext.SaveChanges();
+            }
+        }
+
+        public IEnumerable<Category> Categories()
+        {
+            using (var dataContext = DataContext)
+            {
+                return dataContext.Category.ToList();
+            }
         }
     }
 }

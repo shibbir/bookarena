@@ -29,13 +29,17 @@ namespace BookArena.Web
                 "~/Scripts/Application/Directives/Directives.js",
                 "~/Scripts/Application/Controllers/RootCtrl.js",
                 "~/Scripts/Application/Controllers/LoginCtrl.js",
+                "~/Scripts/Application/Controllers/ProfileCtrl.js",
                 "~/Scripts/Application/Controllers/WelcomeCtrl.js",
+                "~/Scripts/Application/Controllers/CategoryCtrl.js",
                 "~/Scripts/Application/Controllers/BookListCtrl.js",
-                "~/Scripts/Application/Controllers/BookDetailsCtrl.js",
-                "~/Scripts/Application/Controllers/BookEditCtrl.js",
                 "~/Scripts/Application/Controllers/BookAddCtrl.js",
+                "~/Scripts/Application/Controllers/BookEditCtrl.js",
+                "~/Scripts/Application/Controllers/BookDetailsCtrl.js",
                 "~/Scripts/Application/Controllers/StudentListCtrl.js",
-                "~/Scripts/Application/Controllers/StudentAddCtrl.js"));
+                "~/Scripts/Application/Controllers/StudentAddCtrl.js",
+                "~/Scripts/Application/Controllers/StudentEditCtrl.js",
+                "~/Scripts/Application/Controllers/StudentDetailsCtrl.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/toastr.css",
