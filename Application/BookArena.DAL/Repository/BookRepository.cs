@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using BookArena.DAL.Interfaces;
 using BookArena.Model;
@@ -27,13 +28,8 @@ namespace BookArena.DAL.Repository
         {
             using (var context = DataContext)
             {
-                var book = context.Book.FirstOrDefault(x => x.Id == id);
-                var category = context.Category.FirstOrDefault(x => x.Id == book.CategoryId);
+                var book = context.Book.Include(p => p.Categories).FirstOrDefault();
 
-                if (book != null && category != null)
-                {
-                    book.CategoryTitle = category.Title;
-                }
                 return book;
             }
         }
@@ -53,7 +49,7 @@ namespace BookArena.DAL.Repository
 
         public IEnumerable<Category> Categories()
         {
-            return DataContext.Category.ToList();
+            return DataContext.Category.Include(b => b.Books).ToList();
         }
     }
 }

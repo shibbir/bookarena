@@ -2,6 +2,7 @@
 using BookArena.DAL.Interfaces;
 using BookArena.DAL.Repository;
 using BookArena.Model;
+using Newtonsoft.Json;
 
 namespace BookArena.Web.Controllers
 {
@@ -45,6 +46,7 @@ namespace BookArena.Web.Controllers
         public JsonResult Books()
         {
             var model = _bookRepository.Categories();
+
             return Json(new
             {
                 Data = model,
