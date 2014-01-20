@@ -1,11 +1,10 @@
-﻿<hr />
+﻿<h2 class="content-header">Book Information</h2>
+<hr />
 
 <div class="panel callout radius">
     <h5>{{book.Title}}</h5>
     <p>By {{book.Author}}</p>
 </div>
-
-{{book.Category}}
 
 <div class="row">
     <div class="small-3 large-3 columns">
@@ -18,14 +17,16 @@
                 <span ng-if="book.Rating">
                     Rating: <span cd-rating="{{book.Rating}}"></span>
                 </span>
-                <p>Category: <a ng-href="">{{book.CategoryTitle}}</a></p>
+                <p>
+                    Category: <a ng-href="#/books/category/{{book.Category.CategoryId}}">{{book.Category.Title}}</a>
+                </p>
             </div>
             <div class="small-5 medium-5 columns">
                 <a ng-href="#/account/login" ng-hide="authenticatedUser.IsAuthenticated">
                     <i class="fi-lock"></i>
                     Login to edit this book
                 </a>
-                <a ng-href="#/books/edit/{{book.Id}}" ng-show="authenticatedUser.IsAuthenticated">
+                <a ng-href="#/books/edit/{{book.BookId}}" ng-show="authenticatedUser.IsAuthenticated">
                     <i class="fi-page-edit"></i>
                     Edit this book
                 </a>

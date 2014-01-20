@@ -41,6 +41,11 @@
                         controller: "BookEditCtrl"
                     })
                 .when(
+                    "/books/category/:categoryId", {
+                        templateUrl: "Template/Book/List.html",
+                        controller: "BookListCtrl"
+                    })
+                .when(
                     "/categories", {
                         templateUrl: "Template/Book/Category.html",
                         controller: "BookListCtrl"

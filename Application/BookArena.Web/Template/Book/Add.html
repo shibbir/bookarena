@@ -19,15 +19,8 @@
     <div class="row">
         <div class="large-5 columns">
             <label>Category <span class="red required-star">*</span></label>
-            <select name="CategoryId" ng-class="BookAddForm.CategoryId.$invalid ? 'error': ''" ng-model="book.CategoryId" required>
-                <option value="">Select Category</option>
-                <option>HTML5</option>
-                <option>CSS</option>
-                <option>ASP</option>
-                <option>PHP</option>
-                <option>C#</option>
-                <option>jQuery</option>
-                <option>JavaScript</option>
+            <select name="CategoryId" ng-class="BookAddForm.CategoryId.$invalid ? 'error': ''" ng-model="book.CategoryId" ng-options="option.CategoryId as option.Title for option in categories" required>
+                <option value="">Choose one</option>
             </select>
             <small ng-show="BookAddForm.CategoryId.$invalid" class="error">The Category field is required</small>
         </div>

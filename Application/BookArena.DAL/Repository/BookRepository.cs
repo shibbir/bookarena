@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using BookArena.DAL.Interfaces;
 using BookArena.Model;
 
@@ -9,14 +10,16 @@ namespace BookArena.DAL.Repository
 {
     public class BookRepository : RepositoryBase<Book>, IBookRepository
     {
-        public void Create(Book entity)
+        public void InsertOrUpdate(Book entity)
         {
-            Add(entity);
-        }
-
-        public void Update(Book entity)
-        {
-            Edit(entity);
+            if (entity.BookId == default(int))
+            {
+                Add(entity);
+            }
+            else
+            {
+                Edit(entity);
+            }
         }
 
         public void Delete(int id)
@@ -24,17 +27,17 @@ namespace BookArena.DAL.Repository
             throw new NotImplementedException();
         }
 
-        public Book GetById(int id)
+        public IQueryable<Book> AllIncluding(params Expression<Func<Book, object>>[] includeProperties)
         {
-            using (var context = DataContext)
-            {
-                var book = context.Book.Include(p => p.Categories).FirstOrDefault();
-
-                return book;
-            }
+            throw new NotImplementedException();
         }
 
-        public IEnumerable<Book> GetAll()
+        public Book Find(int id)
+        {
+            return DataContext.Book.Where(x => x.BookId == id).Include(p => p.Category).FirstOrDefault();
+        }
+
+        public IQueryable<Book> All()
         {
             throw new NotImplementedException();
         }
@@ -47,9 +50,9 @@ namespace BookArena.DAL.Repository
             }
         }
 
-        public IEnumerable<Category> Categories()
+        public IQueryable<Category> Categories()
         {
-            return DataContext.Category.Include(b => b.Books).ToList();
+            return DataContext.Category;
         }
     }
 }

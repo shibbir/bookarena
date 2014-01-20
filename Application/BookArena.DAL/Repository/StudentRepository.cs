@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using BookArena.DAL.Interfaces;
 using BookArena.Model;
 
@@ -8,14 +9,9 @@ namespace BookArena.DAL.Repository
 {
     public class StudentRepository : RepositoryBase<Student>, IStudentRepository
     {
-        public void Create(Student entity)
+        public void InsertOrUpdate(Student entity)
         {
             Add(entity);
-        }
-
-        public void Update(Student entity)
-        {
-            Edit(entity);
         }
 
         public void Delete(int id)
@@ -23,12 +19,17 @@ namespace BookArena.DAL.Repository
             throw new NotImplementedException();
         }
 
-        public Student GetById(int id)
+        public IQueryable<Student> AllIncluding(params Expression<Func<Student, object>>[] includeProperties)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Student Find(int id)
         {
             return Find(x => x.Id == id).FirstOrDefault();
         }
 
-        public IEnumerable<Student> GetAll()
+        public IQueryable<Student> All()
         {
             return FindAll();
         }

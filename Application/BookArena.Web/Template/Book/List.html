@@ -12,7 +12,7 @@
         <div ng-if="!category.Books.length"><h4>No books are available for this category.</h4></div>
         <div ng-if="category.Books.length" ng-repeat="book in category.Books | filter:searchText" class="books">
             <div class="book-body">
-                <a ng-href="#/books/book/{{book.Id}}">
+                <a ng-href="#/books/book/{{book.BookId}}">
                     <img ng-src="/Content/Images/{{book.ImageFileName}}" alt="{{book.Title}}" />
                 </a>
             </div>
@@ -20,6 +20,5 @@
                 <strong data-cd-book-status="{{book.StatusId}}"></strong>
             </div>
         </div>
-        <hr />
     </div>
 </div>

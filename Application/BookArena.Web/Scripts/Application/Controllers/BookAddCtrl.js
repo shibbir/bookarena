@@ -6,6 +6,10 @@
             $rootScope.checkForPermisssionAfter();
             $scope.book = {};
             $scope.book.isRequired = true;
+            $scope.categories = [];
+            service.call("/api/categories/").then(function (result) {
+                $scope.categories = result.Data;
+            });
             $scope.upload = function() {
                 if ($scope.BookAddForm.$valid) {
                     service.call("/api/addbook/", $("form[name=BookAddForm]").serialize(), "POST").then(function(result) {

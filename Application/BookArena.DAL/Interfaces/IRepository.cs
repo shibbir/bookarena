@@ -1,15 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace BookArena.DAL.Interfaces
 {
     public interface IRepository<TEntity>
         where TEntity : class
     {
-        void Create(TEntity entity);
-        void Update(TEntity entity);
+        IQueryable<TEntity> All();
+        IQueryable<TEntity> AllIncluding(params Expression<Func<TEntity, object>>[] includeProperties);
+        TEntity Find(int id);
+        void InsertOrUpdate(TEntity entity);
         void Delete(int id);
-        TEntity GetById(int id);
-        IEnumerable<TEntity> GetAll();
         void Save();
     }
 }

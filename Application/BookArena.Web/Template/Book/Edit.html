@@ -20,7 +20,7 @@
     <div class="row">
         <div class="large-5 columns">
             <label>Category <span class="red required-star">*</span></label>
-            <select name="CategoryId" ng-class="BookEditForm.CategoryId.$invalid ? 'error': ''" ng-model="book.CategoryId" ng-options="option.Id as option.Title for option in categories" required></select>
+            <select name="CategoryId" ng-class="BookEditForm.CategoryId.$invalid ? 'error': ''" ng-model="book.CategoryId" ng-options="option.CategoryId as option.Title for option in categories" required></select>
             <small ng-show="BookEditForm.CategoryId.$invalid" class="error">The Category field is required</small>
         </div>
     </div>
@@ -41,6 +41,6 @@
         </div>
     </div>
 
-    <a ng-disabled="BookEditForm.$invalid" class="button small medium-2" ng-click="update()">Update</a>
-    <a ng-href="#/books/book/{{book.Id}}" class="button secondary small medium-2">Cancel</a>
+    <a ng-disabled="BookEditForm.$invalid" class="button small medium-3" ng-click="update()">Update</a>
+    <a ng-href="#/books/book/{{book.BookId}}" class="button secondary small medium-3">Cancel</a>
 </form>

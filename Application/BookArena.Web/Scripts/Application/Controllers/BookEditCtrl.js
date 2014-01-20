@@ -10,7 +10,9 @@
                 $scope.categories = result.Data;
             });
             service.call("/api/book/" + $routeParams.id).then(function(result) {
+                result.Data = $.parseJSON(result.Data);
                 $scope.book = result.Data;
+                $scope.book.CategoryId = $scope.book.Category.CategoryId;
             });
             $scope.update = function() {
                 if ($scope.BookEditForm.$valid && $rootScope.authenticatedUser.IsAuthenticated) {

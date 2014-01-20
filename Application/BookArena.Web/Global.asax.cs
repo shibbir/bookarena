@@ -5,6 +5,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using BookArena.DAL;
 using BookArena.Model;
+using Newtonsoft.Json;
 
 namespace BookArena.Web
 {
@@ -17,6 +18,12 @@ namespace BookArena.Web
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             Database.SetInitializer(new DbInitializer());
+
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+            {
+                Formatting = Formatting.Indented,
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
         }
     }
 
@@ -27,7 +34,7 @@ namespace BookArena.Web
             context.ApplicationUser.Add(new ApplicationUser
             {
                 UserName = "admin",
-                Password = "123456",
+                Password = "Hakuna matata",
                 Name = "Shibbir Ahmed",
                 Email = "shibbir.cse@gmail.com",
                 Website = "http://shibbir.net/",

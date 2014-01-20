@@ -1,10 +1,28 @@
-﻿.sidebar {
+﻿body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+footer.credit {
+    color: #FFFFFF !important;
+    padding: 15px;
+}
+
+footer.credit a, footer.credit a:hover {
+    text-decoration: underline;
+    color: #FFFFFF !important;
+}
+
+footer.credit a:hover {
+    text-decoration: none;
+}
+
+.sidebar {
     background: none repeat scroll 0 0 #FAFAFA;
     padding: 0 20px 32px;
 }
 
 .body-content {
-    padding: 0 20px 32px 0;
+    padding: 0 20px 0 0;
 }
 
 .book-wrapper {

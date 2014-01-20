@@ -13,7 +13,7 @@
     <body ng-app="bookArenaApp">
         <div ng-controller="RootCtrl">
             <div data-cd-navigation></div>
-            <div class="row">
+            <div class="row" style="background: none repeat scroll 0 0 #FAFAFA;">
                 <div class="small-3 large-3 columns">
                     <div data-cd-side-navigation></div>
                 </div>
@@ -23,8 +23,12 @@
                     </div>
                 </div>
             </div>
+            <div class="row" style="background: none repeat scroll 0 0 #178892;">
+                <div class="small-12 large-12 columns">
+                    <footer class="credit">BookArena: A simple SPA based library manager. Copyright &copy; 2014 <a href="http://shibbir.net/" target="blank">Shibbir Ahmed</a>. All rights reserved.</footer>
+                </div>
+            </div>
         </div>
-
         @Scripts.Render("~/bundles/library")
         @Scripts.Render("~/bundles/app")
     </body>
