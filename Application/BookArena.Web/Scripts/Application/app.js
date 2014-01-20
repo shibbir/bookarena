@@ -43,7 +43,7 @@
                 .when(
                     "/categories", {
                         templateUrl: "Template/Book/Category.html",
-                        controller: "CategoryCtrl"
+                        controller: "BookListCtrl"
                     })
                 .when(
                     "/students", {

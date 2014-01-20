@@ -5,6 +5,10 @@
         "$scope", "$rootScope", "$routeParams", "apiService", "notifierService", function($scope, $rootScope, $routeParams, service, notifier) {
             $rootScope.checkForPermisssionAfter();
             $scope.book = {};
+            $scope.categories = [];
+            service.call("/api/categories/").then(function(result) {
+                $scope.categories = result.Data;
+            });
             service.call("/api/book/" + $routeParams.id).then(function(result) {
                 $scope.book = result.Data;
             });

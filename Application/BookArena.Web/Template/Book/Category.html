@@ -6,7 +6,7 @@
 <div id="category-container" ng-if="categories">
     <input type="search" ng-model="searchText" placeholder="Filter Category" />
     <div ng-repeat="category in categories | filter: searchText" class="categoryBlock">
-        <h5 class="category-header">{{category.Title}} <small class="green">(10)</small></h5>
+        <h5 class="category-header">{{category.Title}} <small class="green">({{category.Books.length}})</small></h5>
         <hr />
         <footer class="pull-right">
             <a ng-href="#/books/category/{{category.Id}}" class="button secondary tiny">

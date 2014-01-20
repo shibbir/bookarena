@@ -21,7 +21,7 @@
             <label>Category <span class="red required-star">*</span></label>
             <select name="CategoryId" ng-class="BookAddForm.CategoryId.$invalid ? 'error': ''" ng-model="book.CategoryId" required>
                 <option value="">Select Category</option>
-                <option>HTML</option>
+                <option>HTML5</option>
                 <option>CSS</option>
                 <option>ASP</option>
                 <option>PHP</option>
@@ -30,20 +30,6 @@
                 <option>JavaScript</option>
             </select>
             <small ng-show="BookAddForm.CategoryId.$invalid" class="error">The Category field is required</small>
-        </div>
-    </div>
-    <div class="row">
-        <div class="large-4 columns">
-            <label>Edition</label>
-            <select name="Edition" ng-model="book.Edition">
-                <option value="">Select Edition</option>
-                <option value="1st">1st</option>
-                <option value="2nd">2nd</option>
-                <option value="3rd">3rd</option>
-                <option value="4th">4th</option>
-                <option value="5th">5th</option>
-                <option value="6th">6th</option>
-            </select>
         </div>
     </div>
     <div class="row" style="margin-top:15px;">

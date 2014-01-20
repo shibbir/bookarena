@@ -9,13 +9,11 @@ namespace BookArena.Model
         [Key]
         public int Id { get; set; }
 
-        [StringLength(30, ErrorMessage = "The {0} must be at most {1} characters long.")]
-        public string FirstName { get; set; }
-
-        [StringLength(30, ErrorMessage = "The {0} must be at most {1} characters long.")]
-        public string LastName { get; set; }
+        [StringLength(60, ErrorMessage = "The {0} must be at most {1} characters long.")]
+        public string Name { get; set; }
 
         [Required]
+        [StringLength(20, ErrorMessage = "The {0} must be at most {1} characters long.")]
         public string IdCardNumber { get; set; }
 
         [Required]

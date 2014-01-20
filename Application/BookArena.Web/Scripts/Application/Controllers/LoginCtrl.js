@@ -3,6 +3,9 @@
 (function(app) {
     app.controller("LoginCtrl", [
         "$scope", "$rootScope", "$location", "apiService", "notifierService", function($scope, $rootScope, $location, service, notifier) {
+            if ($rootScope.authenticatedUser.IsAuthenticated) {
+                $location.path("/").replace();
+            }
             $scope.login = function() {
                 if ($scope.LoginForm.$valid) {
                     service.call("api/login", $("#LoginForm").serialize(), "POST").then(function(result) {

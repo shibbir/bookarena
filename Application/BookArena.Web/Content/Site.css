@@ -8,10 +8,7 @@
 }
 
 .book-wrapper {
-    float: left;
-    height: 155px;
-    margin-bottom: 70px;
-    width: 140px;
+    clear: both;
 }
 
 .book-wrapper a {
@@ -22,11 +19,21 @@
 .side-nav a:hover {
     text-decoration: underline !important;
 }
+
+.books {
+    float: left;
+    height: 155px;
+    margin-bottom: 70px;
+    margin-right: 93px;
+    width: 140px;
+}
+
 .book-body {
+    background-color: #000000;
     border: 1px solid #CCCCCC;
-    margin-bottom: 10px;
-    -ms-border-radius: 4px;
-    border-radius: 4px;
+    height: 160px;
+    text-align: center;
+    width: 122px;
 }
 
 .book-footer {
@@ -96,7 +103,7 @@ h5.category-header {
     -webkit-box-shadow: 0 2px 9px 0 #CCCCCC;
     -ms-box-shadow: 0 2px 9px 0 #CCCCCC;
     box-shadow: 0 2px 9px 0 #CCCCCC;
-    padding: 10px;
+    padding: 50px;
 }
 
 h2.content-header {

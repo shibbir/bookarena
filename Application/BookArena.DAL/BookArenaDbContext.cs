@@ -14,5 +14,14 @@ namespace BookArena.DAL
         public DbSet<Category> Category { get; set; }
         public DbSet<Student> Student { get; set; }
         public DbSet<Book> Book { get; set; }
+        public DbSet<Config> Config { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Category>()
+                .HasKey(c => c.Id)
+                .HasMany(b => b.Books);
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

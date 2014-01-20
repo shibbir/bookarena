@@ -132,15 +132,30 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\database_1.png" />
+    <Content Include="Content\Images\database_2.png" />
+    <Content Include="Content\Images\html5_1.jpg" />
+    <Content Include="Content\Images\apple_1.png" />
+    <Content Include="Content\Images\apple_2.png" />
+    <Content Include="Content\Images\apple_3.png" />
+    <Content Include="Content\Images\asp_1.png" />
+    <Content Include="Content\Images\html5_2.jpg" />
+    <Content Include="Content\Images\javascript_1.gif" />
+    <Content Include="Content\Images\javascript_2.png" />
+    <Content Include="Content\Images\java_1.png" />
+    <Content Include="Content\Images\java_2.png" />
+    <Content Include="Content\Images\php_1.png" />
     <Content Include="Content\Images\star-half.png" />
     <Content Include="Content\Images\star-off.png" />
     <Content Include="Content\Images\star-on.png" />
+    <Content Include="Content\Images\windows8_1.png" />
+    <Content Include="Content\Images\windows8_2.png" />
     <Content Include="favicon.png" />
     <Content Include="Content\foundation-icons.css" />
     <Content Include="Content\foundation-icons.svg" />
     <Content Include="Content\foundation.css" />
     <Content Include="Content\foundation.min.css" />
-    <Content Include="Content\Images\A9781430247739-small_3.png" />
+    <Content Include="Content\Images\asp_2.png" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="Global.asax" />
@@ -160,7 +175,6 @@
     <Content Include="Scripts\Application\Controllers\StudentDetailsCtrl.js" />
     <Content Include="Scripts\Application\Controllers\StudentEditCtrl.js" />
     <Content Include="Scripts\Application\Controllers\BookEditCtrl.js" />
-    <Content Include="Scripts\Application\Controllers\CategoryCtrl.js" />
     <Content Include="Scripts\Application\Controllers\ProfileCtrl.js" />
     <Content Include="Scripts\Application\Controllers\RootCtrl.js" />
     <Content Include="Scripts\Application\Controllers\WelcomeCtrl.js" />

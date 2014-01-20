@@ -11,8 +11,7 @@
                 <th width="20">#</th>
                 <th width="20">Program</th>
                 <th width="20">Batch</th>
-                <th width="240">First Name</th>
-                <th width="240">Last Name</th>
+                <th width="240">Name</th>
                 <th width="180">ID Card</th>
                 <th width="100">Action</th>
             </tr>
@@ -22,8 +21,7 @@
                 <td>{{$index}}</td>
                 <td>{{student.Program}}</td>
                 <td>{{student.Batch}}</td>
-                <td>{{student.FirstName}}</td>
-                <td>{{student.LastName}}</td>
+                <td>{{student.Name}}</td>
                 <td>{{student.IdCardNumber}}</td>
                 <td><a ng-href="#/students/student/{{student.Id}}">Details</a></td>
             </tr>

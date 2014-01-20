@@ -31,7 +31,6 @@ namespace BookArena.Web
                 "~/Scripts/Application/Controllers/LoginCtrl.js",
                 "~/Scripts/Application/Controllers/ProfileCtrl.js",
                 "~/Scripts/Application/Controllers/WelcomeCtrl.js",
-                "~/Scripts/Application/Controllers/CategoryCtrl.js",
                 "~/Scripts/Application/Controllers/BookListCtrl.js",
                 "~/Scripts/Application/Controllers/BookAddCtrl.js",
                 "~/Scripts/Application/Controllers/BookEditCtrl.js",

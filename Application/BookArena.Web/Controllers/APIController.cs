@@ -44,7 +44,7 @@ namespace BookArena.Web.Controllers
         [HttpGet]
         public JsonResult Books()
         {
-            var model = _bookRepository.GetAll();
+            var model = _bookRepository.Categories();
             return Json(new
             {
                 Data = model,
@@ -60,7 +60,10 @@ namespace BookArena.Web.Controllers
         public JsonResult Book(int id)
         {
             var model = _bookRepository.GetById(id);
-            return Json(model, JsonRequestBehavior.AllowGet);
+            return Json(new
+            {
+                Data = model
+            }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -115,6 +118,7 @@ namespace BookArena.Web.Controllers
         public JsonResult Students()
         {
             var model = _studentRepository.GetAll();
+
             return Json(new
             {
                 Data = model,

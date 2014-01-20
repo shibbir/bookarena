@@ -8,7 +8,6 @@ namespace BookArena.DAL.Interfaces
         void Create(TEntity entity);
         void Update(TEntity entity);
         void Delete(int id);
-        TEntity Get(TEntity entity);
         TEntity GetById(int id);
         IEnumerable<TEntity> GetAll();
         void Save();

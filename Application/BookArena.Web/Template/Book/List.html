@@ -1,16 +1,25 @@
 ﻿<h2 class="content-header">All Books</h2>
 <hr />
 
-<div ng-if="!books" class="block text-center red"><strong>Sorry, no category found!</strong></div>
+<div ng-if="!categories" class="block text-center red"><strong>Sorry, BookArena library is currently empty!</strong></div>
 
-<div id="book-container" ng-if="books">
+<div id="book-container" ng-if="categories">
     <input type="search" ng-model="searchText" placeholder="filter: e.g name, author" />
-    <div ng-repeat="book in books | filter:searchText" class="book-wrapper">
-        <a ng-href="#/books/book/{{book.Id}}">
-            <img ng-src="/Content/Images/{{book.ImageFileName}}" alt="{{book.Title}}" />
-        </a>
-        <div class="book-footer text-center">
-            <strong data-cd-book-status="{{book.StatusId}}"></strong>
+    <div ng-repeat="category in categories | filter:searchText" class="book-wrapper">
+        <div class="success alert-box">
+            {{category.Title}}
         </div>
+        <div ng-if="!category.Books.length"><h4>No books are available for this category.</h4></div>
+        <div ng-if="category.Books.length" ng-repeat="book in category.Books | filter:searchText" class="books">
+            <div class="book-body">
+                <a ng-href="#/books/book/{{book.Id}}">
+                    <img ng-src="/Content/Images/{{book.ImageFileName}}" alt="{{book.Title}}" />
+                </a>
+            </div>
+            <div class="book-footer text-center">
+                <strong data-cd-book-status="{{book.StatusId}}"></strong>
+            </div>
+        </div>
+        <hr />
     </div>
 </div>
