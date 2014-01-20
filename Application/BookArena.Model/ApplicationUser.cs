@@ -1,9 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookArena.Model
 {
-    [Table("ApplicationUser")]
     public class ApplicationUser
     {
         [Key]
@@ -27,5 +25,7 @@ namespace BookArena.Model
 
         [Url]
         public string Website { get; set; }
+
+        public string ImageFileName { get; set; }
     }
 }

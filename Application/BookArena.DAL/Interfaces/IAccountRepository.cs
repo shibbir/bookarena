@@ -4,7 +4,7 @@ namespace BookArena.DAL.Interfaces
 {
     public interface IAccountRepository
     {
-        ApplicationUser User();
-        ApplicationUser Login(ApplicationUser applicationUser);
+        ApplicationUserViewModel User();
+        ApplicationUserViewModel Login(ApplicationUser applicationUser);
     }
 }

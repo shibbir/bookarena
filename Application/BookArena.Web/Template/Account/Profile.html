@@ -1,6 +1,13 @@
 ﻿<h2 class="content-header">Administrator Profile</h2>
 <hr />
 
-<h3>Name: {{authenticatedUser.Name}}</h3>
-<h3>Website: <a href="{{authenticatedUser.Website}}" target="blank">{{authenticatedUser.Website}}</a></h3>
-<h3>Address: {{authenticatedUser.Address}}</h3>
+<div class="row">
+    <div class="small-9 large-9 columns">
+        <h3>Name: {{authenticatedUser.Name}}</h3>
+        <h3>Website: <a href="{{authenticatedUser.Website}}" target="blank">{{authenticatedUser.Website}}</a></h3>
+        <h3>Address: {{authenticatedUser.Address}}</h3>
+    </div>
+    <div class="small-3 large-3 columns">
+        <img ng-src="/Content/Images/{{authenticatedUser.ImageFileName}}" alt="profile" />
+    </div>
+</div>

@@ -38,7 +38,8 @@ namespace BookArena.Web
                 Name = "Shibbir Ahmed",
                 Email = "shibbir.cse@gmail.com",
                 Website = "http://shibbir.net/",
-                Address = "Dhaka, Bangladesh"
+                Address = "Dhaka, Bangladesh",
+                ImageFileName = "profile.jpg"
             });
 
             context.Config.Add(new Config

@@ -6,16 +6,43 @@ namespace BookArena.DAL.Repository
 {
     public class AccountRepository : RepositoryBase<ApplicationUser>, IAccountRepository
     {
-        public ApplicationUser User()
+        public ApplicationUserViewModel User()
         {
-            return FindAll().FirstOrDefault();
+            using (var context = DataContext)
+            {
+                return
+                    context.ApplicationUser
+                        .Select(user => new ApplicationUserViewModel
+                        {
+                            Id = user.Id,
+                            Name = user.Name,
+                            Email = user.Email,
+                            Website = user.Website,
+                            Address = user.Address,
+                            ImageFileName = user.ImageFileName
+                        })
+                        .FirstOrDefault();
+            }
         }
 
-        public ApplicationUser Login(ApplicationUser applicationUser)
+        public ApplicationUserViewModel Login(ApplicationUser applicationUser)
         {
-            return
-                Find(x => x.UserName == applicationUser.UserName && x.Password == applicationUser.Password)
-                    .FirstOrDefault();
+            using (var context = DataContext)
+            {
+                return
+                    context.ApplicationUser.Where(
+                        x => x.UserName == applicationUser.UserName && x.Password == applicationUser.Password)
+                        .Select(user => new ApplicationUserViewModel
+                        {
+                            Id = user.Id,
+                            Name = user.Name,
+                            Email = user.Email,
+                            Website = user.Website,
+                            Address = user.Address,
+                            ImageFileName = user.ImageFileName
+                        })
+                        .FirstOrDefault();
+            }
         }
     }
 }
