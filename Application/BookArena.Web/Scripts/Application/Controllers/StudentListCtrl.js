@@ -4,7 +4,6 @@
     app.controller("StudentListCtrl", [
         "$scope", "$routeParams", "$location", "apiService", function($scope, $routeParams, $location, service) {
             $scope.students = [];
-
             if ($routeParams.pageNumber === undefined) {
                 service.call("/students/").then(function(result) {
                     if (result.Data.Entities.length) {

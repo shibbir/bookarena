@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using BookArena.DAL.Interfaces;
 using BookArena.Model;
+using BookArena.Model.ViewModel;
 
 namespace BookArena.DAL.Repository
 {

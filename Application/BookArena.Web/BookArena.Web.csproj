@@ -176,7 +176,6 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\Application\app.js" />
     <Content Include="Scripts\Application\Controllers\StudentDetailsCtrl.js" />
-    <Content Include="Scripts\Application\Controllers\StudentEditCtrl.js" />
     <Content Include="Scripts\Application\Controllers\BookEditCtrl.js" />
     <Content Include="Scripts\Application\Controllers\ProfileCtrl.js" />
     <Content Include="Scripts\Application\Controllers\RootCtrl.js" />

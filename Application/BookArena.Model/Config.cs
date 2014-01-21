@@ -1,9 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookArena.Model
 {
-    [Table("Config")]
     public class Config
     {
         [Key]

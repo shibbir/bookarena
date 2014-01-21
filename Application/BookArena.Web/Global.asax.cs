@@ -53,123 +53,140 @@ namespace BookArena.Web
             {
                 new Student
                 {
-                    FirstName = "Nilufa Yesmin",
+                    FirstName = "Nilufa",
+                    LastName = "Yesmin",
                     Batch = "33",
                     Program = "CSE",
-                    IdCardNumber = "CSE 033 05803"
+                    IdCardNumber = "03305803"
                 },
                 new Student
                 {
-                    FirstName = "Arfina Hossain",
+                    FirstName = "Arfina",
+                    LastName = "Hossain",
                     Batch = "33",
                     Program = "CSE",
-                    IdCardNumber = "CSE 033 05804"
+                    IdCardNumber = "03305804"
                 },
                 new Student
                 {
-                    FirstName = "Farjana Sultana",
+                    FirstName = "Farjana",
+                    LastName = "Sultana",
                     Batch = "33",
                     Program = "CSE",
-                    IdCardNumber = "CSE 033 05805"
+                    IdCardNumber = "03305805"
                 },
                 new Student
                 {
-                    FirstName = "Md. Imran Hossain",
+                    FirstName = "Md. Imran",
+                    LastName = "Hossain",
                     Batch = "33",
                     Program = "CSE",
-                    IdCardNumber = "CSE 033 05806"
+                    IdCardNumber = "03305806"
                 },
                 new Student
                 {
-                    FirstName = "Md. Tarak Abdullah",
+                    FirstName = "Md. Tarak",
+                    LastName = "Abdullah",
                     Batch = "33",
                     Program = "CSE",
-                    IdCardNumber = "CSE 033 05807"
+                    IdCardNumber = "03305807"
                 },
                 new Student
                 {
-                    FirstName = "Md. Shible Sadiqe",
+                    FirstName = "Md. Shible",
+                    LastName = "Sadiqe",
                     Batch = "33",
                     Program = "CSE",
-                    IdCardNumber = "CSE 033 05809"
+                    IdCardNumber = "03305809"
                 },
                 new Student
                 {
-                    FirstName = "Saydunnesa Shirin",
+                    FirstName = "Saydunnesa",
+                    LastName = "Shirin",
                     Batch = "33",
                     Program = "CSE",
-                    IdCardNumber = "CSE 033 05812"
+                    IdCardNumber = "03305812"
                 },
                 new Student
                 {
-                    FirstName = "Shahed Hasnayeen",
+                    FirstName = "Shahed",
+                    LastName = "Hasnayeen",
                     Batch = "33",
                     Program = "CSE",
-                    IdCardNumber = "CSE 033 05816"
+                    IdCardNumber = "03305816"
                 },
                 new Student
                 {
-                    FirstName = "Shibbir Ahmed",
+                    FirstName = "Shibbir",
+                    LastName = "Ahmed",
                     Batch = "33",
                     Program = "CSE",
-                    IdCardNumber = "CSE 033 05817"
+                    IdCardNumber = "03305817"
                 },
                 new Student
                 {
-                    FirstName = "Afreen Chowdhury",
+                    FirstName = "Afreen",
+                    LastName = "Chowdhury",
                     Batch = "33",
                     Program = "CSE",
-                    IdCardNumber = "CSE 033 05819"
+                    IdCardNumber = "03305819"
                 },
                 new Student
                 {
-                    FirstName = "Alaka Bhattacharjee",
+                    FirstName = "Alaka",
+                    LastName = "Bhattacharjee",
                     Batch = "33",
                     Program = "CSE",
-                    IdCardNumber = "CSE 033 05820"
+                    IdCardNumber = "03305820"
                 },
                 new Student
                 {
                     FirstName = "Md. Kamruzzaman",
+                    LastName = "Raju",
                     Batch = "33",
                     Program = "CSE",
-                    IdCardNumber = "CSE 033 05821"
+                    IdCardNumber = "03305821"
                 },
                 new Student
                 {
                     Id = 13,
-                    FirstName = "Suchana Rani Das",
+                    FirstName = "Suchana",
+                    LastName = "Rani Das",
                     Batch = "33",
                     Program = "CSE",
-                    IdCardNumber = "CSE 033 05822"
+                    IdCardNumber = "03305822"
                 },
                 new Student
                 {
-                    FirstName = "Md. Abdullah Al Mamun",
+                    FirstName = "Md. Abdullah",
+                    LastName = "Al Mamun",
                     Batch = "33",
                     Program = "CSE",
-                    IdCardNumber = "CSE 033 05824"
+                    IdCardNumber = "03305824"
                 },
                 new Student
                 {
-                    FirstName = "Polash Singha ",
+                    FirstName = "Polash",
+                    LastName = "Singha",
                     Batch = "33",
                     Program = "CSE",
-                    IdCardNumber = "CSE 033 05834"
+                    IdCardNumber = "03305834"
                 },
                 new Student
                 {
-                    FirstName = "R.K Aboy",
+                    FirstName = "R.K",
+                    LastName = "Aboy",
                     Batch = "33",
                     Program = "CSE",
-                    IdCardNumber = "CSE 033 05835"
+                    IdCardNumber = "03305835"
                 },
                 new Student
                 {
-                    FirstName = "Md. Noman Hossain",
+                    FirstName = "Md. Noman",
+                    LastName = "Hossain",
                     Batch = "33",
                     Program = "CSE",
-                    IdCardNumber = "CSE 033 05836"
+                    IdCardNumber = "03305836"
                 }
             }.ForEach(student => context.Student.Add(student));
 

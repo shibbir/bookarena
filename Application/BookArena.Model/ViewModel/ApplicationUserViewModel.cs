@@ -1,4 +1,4 @@
-﻿namespace BookArena.Model
+﻿namespace BookArena.Model.ViewModel
 {
     public class ApplicationUserViewModel
     {

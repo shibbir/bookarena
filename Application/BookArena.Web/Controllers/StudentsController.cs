@@ -43,7 +43,7 @@ namespace BookArena.Web.Controllers
         public JsonResult Student(int id)
         {
             var model = _studentRepository.StudentDetails(id);
-            return Json(model, JsonRequestBehavior.AllowGet);
+            return Json(new {Data = model}, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -80,6 +80,46 @@ namespace BookArena.Web.Controllers
                 {
                     ResponseType = ResponseType.Success,
                     Message = "Student registered successfully."
+                }
+            });
+        }
+
+        [HttpPost]
+        public JsonResult Edit(Student student)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json(new
+                {
+                    PreserveInput = true,
+                    Response = new Response
+                    {
+                        ResponseType = ResponseType.Error,
+                        Message = "Invalid student information!"
+                    }
+                });
+            }
+            var duplicateUser =
+                _studentRepository.All()
+                    .FirstOrDefault(x => x.IdCardNumber == student.IdCardNumber && x.Id != student.Id);
+            if (duplicateUser != null)
+                return Json(new
+                {
+                    PreserveInput = true,
+                    Response = new Response
+                    {
+                        ResponseType = ResponseType.Error,
+                        Message = "The ID Card number is already exist in the record. Please check again."
+                    }
+                });
+            _studentRepository.InsertOrUpdate(student);
+            _studentRepository.Save();
+            return Json(new
+            {
+                Response = new Response
+                {
+                    ResponseType = ResponseType.Success,
+                    Message = "Student updated successfully."
                 }
             });
         }

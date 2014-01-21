@@ -37,7 +37,6 @@ namespace BookArena.Web
                 "~/Scripts/Application/Controllers/BookDetailsCtrl.js",
                 "~/Scripts/Application/Controllers/StudentListCtrl.js",
                 "~/Scripts/Application/Controllers/StudentAddCtrl.js",
-                "~/Scripts/Application/Controllers/StudentEditCtrl.js",
                 "~/Scripts/Application/Controllers/StudentDetailsCtrl.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

@@ -26,14 +26,15 @@ namespace BookArena.DAL.Repository
 
         public SingleStudentDetailsViewModel StudentDetails(int id)
         {
+            var student = Find(id);
             return new SingleStudentDetailsViewModel
             {
-                Id = 1,
-                FirstName = "Shibbir",
-                LastName = "Ahmed",
-                Batch = "33",
-                Program = "CSE",
-                IdCardNumber = "03305817",
+                Id = student.Id,
+                FirstName = student.FirstName,
+                LastName = student.LastName,
+                Batch = student.Batch,
+                Program = student.Program,
+                IdCardNumber = student.IdCardNumber,
                 Books = new List<Book>
                 {
                     new Book
