@@ -1,16 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookArena.Model
 {
-    [Table("Student")]
     public class Student
     {
         [Key]
         public int Id { get; set; }
 
-        [StringLength(60, ErrorMessage = "The {0} must be at most {1} characters long.")]
-        public string Name { get; set; }
+        [StringLength(25, ErrorMessage = "The {0} must be at most {1} characters long.")]
+        public string FirstName { get; set; }
+
+        [StringLength(25, ErrorMessage = "The {0} must be at most {1} characters long.")]
+        public string LastName { get; set; }
 
         [Required]
         [StringLength(20, ErrorMessage = "The {0} must be at most {1} characters long.")]

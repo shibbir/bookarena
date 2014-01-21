@@ -37,7 +37,7 @@ namespace BookArena.Web.Controllers
                 category.Title
             }).ToList();
 
-            return Json(model, JsonRequestBehavior.AllowGet);
+            return Json(new { Data = model }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -134,7 +134,7 @@ namespace BookArena.Web.Controllers
         [HttpGet]
         public JsonResult Student(int id)
         {
-            var model = _studentRepository.Find(id);
+            var model = _studentRepository.StudentDetails(id);
             return Json(model, JsonRequestBehavior.AllowGet);
         }
 

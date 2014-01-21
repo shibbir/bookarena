@@ -90,7 +90,7 @@ textarea {
     min-height: 150px;
 }
 
-select {
+select.error {
     margin: 0;
 }
 

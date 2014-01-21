@@ -53,84 +53,84 @@ namespace BookArena.Web
             {
                 new Student
                 {
-                    Name = "Nilufa Yesmin",
+                    FirstName = "Nilufa Yesmin",
                     Batch = "33",
                     Program = "CSE",
                     IdCardNumber = "CSE 033 05803"
                 },
                 new Student
                 {
-                    Name = "Arfina Hossain",
+                    FirstName = "Arfina Hossain",
                     Batch = "33",
                     Program = "CSE",
                     IdCardNumber = "CSE 033 05804"
                 },
                 new Student
                 {
-                    Name = "Farjana Sultana",
+                    FirstName = "Farjana Sultana",
                     Batch = "33",
                     Program = "CSE",
                     IdCardNumber = "CSE 033 05805"
                 },
                 new Student
                 {
-                    Name = "Md. Imran Hossain",
+                    FirstName = "Md. Imran Hossain",
                     Batch = "33",
                     Program = "CSE",
                     IdCardNumber = "CSE 033 05806"
                 },
                 new Student
                 {
-                    Name = "Md. Tarak Abdullah",
+                    FirstName = "Md. Tarak Abdullah",
                     Batch = "33",
                     Program = "CSE",
                     IdCardNumber = "CSE 033 05807"
                 },
                 new Student
                 {
-                    Name = "Md. Shible Sadiqe",
+                    FirstName = "Md. Shible Sadiqe",
                     Batch = "33",
                     Program = "CSE",
                     IdCardNumber = "CSE 033 05809"
                 },
                 new Student
                 {
-                    Name = "Saydunnesa Shirin",
+                    FirstName = "Saydunnesa Shirin",
                     Batch = "33",
                     Program = "CSE",
                     IdCardNumber = "CSE 033 05812"
                 },
                 new Student
                 {
-                    Name = "Shahed Hasnayeen",
+                    FirstName = "Shahed Hasnayeen",
                     Batch = "33",
                     Program = "CSE",
                     IdCardNumber = "CSE 033 05816"
                 },
                 new Student
                 {
-                    Name = "Shibbir Ahmed",
+                    FirstName = "Shibbir Ahmed",
                     Batch = "33",
                     Program = "CSE",
                     IdCardNumber = "CSE 033 05817"
                 },
                 new Student
                 {
-                    Name = "Afreen Chowdhury",
+                    FirstName = "Afreen Chowdhury",
                     Batch = "33",
                     Program = "CSE",
                     IdCardNumber = "CSE 033 05819"
                 },
                 new Student
                 {
-                    Name = "Alaka Bhattacharjee",
+                    FirstName = "Alaka Bhattacharjee",
                     Batch = "33",
                     Program = "CSE",
                     IdCardNumber = "CSE 033 05820"
                 },
                 new Student
                 {
-                    Name = "Md. Kamruzzaman",
+                    FirstName = "Md. Kamruzzaman",
                     Batch = "33",
                     Program = "CSE",
                     IdCardNumber = "CSE 033 05821"
@@ -138,35 +138,35 @@ namespace BookArena.Web
                 new Student
                 {
                     Id = 13,
-                    Name = "Suchana Rani Das",
+                    FirstName = "Suchana Rani Das",
                     Batch = "33",
                     Program = "CSE",
                     IdCardNumber = "CSE 033 05822"
                 },
                 new Student
                 {
-                    Name = "Md. Abdullah Al Mamun",
+                    FirstName = "Md. Abdullah Al Mamun",
                     Batch = "33",
                     Program = "CSE",
                     IdCardNumber = "CSE 033 05824"
                 },
                 new Student
                 {
-                    Name = "Polash Singha ",
+                    FirstName = "Polash Singha ",
                     Batch = "33",
                     Program = "CSE",
                     IdCardNumber = "CSE 033 05834"
                 },
                 new Student
                 {
-                    Name = "R.K Aboy",
+                    FirstName = "R.K Aboy",
                     Batch = "33",
                     Program = "CSE",
                     IdCardNumber = "CSE 033 05835"
                 },
                 new Student
                 {
-                    Name = "Md. Noman Hossain",
+                    FirstName = "Md. Noman Hossain",
                     Batch = "33",
                     Program = "CSE",
                     IdCardNumber = "CSE 033 05836"

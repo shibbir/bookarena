@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Linq.Expressions;
 using BookArena.DAL.Interfaces;
 using BookArena.Model;
+using BookArena.Model.ViewModel;
 
 namespace BookArena.DAL.Repository
 {
@@ -27,11 +26,6 @@ namespace BookArena.DAL.Repository
             throw new NotImplementedException();
         }
 
-        public IQueryable<Book> AllIncluding(params Expression<Func<Book, object>>[] includeProperties)
-        {
-            throw new NotImplementedException();
-        }
-
         public Book Find(int id)
         {
             return DataContext.Book.Where(x => x.BookId == id).Include(p => p.Category).FirstOrDefault();
@@ -41,6 +35,20 @@ namespace BookArena.DAL.Repository
         {
             throw new NotImplementedException();
         }
+
+        //public IQueryable<BasicBookViewModel> BooksWithBasicInformation()
+        //{
+        //    using (var context = DataContext)
+        //    {
+        //        return context.Book.Select(book => new BasicBookViewModel
+        //        {
+        //            Id = book.BookId,
+        //            Title = book.Title,
+        //            ImageFileName = book.ImageFileName,
+        //            StatusId = book.StatusId
+        //        });
+        //    }
+        //}
 
         public void Save()
         {

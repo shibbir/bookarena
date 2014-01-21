@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
+﻿using System.Linq;
 
 namespace BookArena.DAL.Interfaces
 {
@@ -8,7 +6,6 @@ namespace BookArena.DAL.Interfaces
         where TEntity : class
     {
         IQueryable<TEntity> All();
-        IQueryable<TEntity> AllIncluding(params Expression<Func<TEntity, object>>[] includeProperties);
         TEntity Find(int id);
         void InsertOrUpdate(TEntity entity);
         void Delete(int id);
