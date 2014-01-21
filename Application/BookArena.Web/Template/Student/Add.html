@@ -5,21 +5,21 @@
     <div class="row">
         <div class="large-6 columns">
             <label>First Name <span class="red required-star">*</span></label>
-            <input type="text" ng-class="StudentRegisterForm.FirstName.$invalid ? 'error': ''" ng-model="data.firstName" name="FirstName" required />
-            <small ng-show="StudentRegisterForm.FirstName.$error.required" class="error">Invalid FirstName</small>
+            <input type="text" ng-class="StudentRegisterForm.FirstName.$invalid ? 'error': ''" ng-model="student.firstName" name="FirstName" required />
+            <small ng-show="StudentRegisterForm.FirstName.$error.required" class="error">The FirstName field is required</small>
         </div>
     </div>
     <div class="row">
         <div class="large-6 columns">
             <label>Last Name <span class="red required-star">*</span></label>
-            <input type="text" ng-class="StudentRegisterForm.LastName.$invalid ? 'error': ''" ng-model="data.lastName" name="LastName" required />
-            <small ng-show="StudentRegisterForm.LastName.$error.required" class="error">Invalid LastName</small>
+            <input type="text" ng-class="StudentRegisterForm.LastName.$invalid ? 'error': ''" ng-model="student.lastName" name="LastName" required />
+            <small ng-show="StudentRegisterForm.LastName.$error.required" class="error">The LastName is required</small>
         </div>
     </div>
     <div class="row">
-        <div class="large-3 columns">
+        <div class="large-4 columns">
             <label>Program <span class="red required-star">*</span></label>
-            <select ng-class="StudentRegisterForm.Program.$invalid ? 'error': ''" ng-model="data.program" name="Program" required>
+            <select ng-class="StudentRegisterForm.Program.$invalid ? 'error': ''" ng-model="student.program" name="Program" required>
                 <option value="">Choose Program</option>
                 <option value="CSE">CSE</option>
                 <option value="EEE">EEE</option>
@@ -29,11 +29,11 @@
                 <option value="ENG">ENG</option>
                 <option value="ECO">ECO</option>
             </select>
-            <small ng-show="StudentRegisterForm.Program.$error.required" class="error">Invalid Program</small>
+            <small ng-show="StudentRegisterForm.Program.$error.required" class="error">The Program field is required</small>
         </div>
-        <div class="large-3 columns">
+        <div class="large-4 columns">
             <label>Batch <span class="red required-star">*</span></label>
-            <select ng-class="StudentRegisterForm.Batch.$invalid ? 'error': ''" ng-model="data.batch" name="Batch" required>
+            <select ng-class="StudentRegisterForm.Batch.$invalid ? 'error': ''" ng-model="student.batch" name="Batch" required>
                 <option value="">Choose Batch</option>
                 <option value="27">27</option>
                 <option value="28">28</option>
@@ -50,18 +50,14 @@
                 <option value="39">39</option>
                 <option value="40">40</option>
             </select>
-            <small ng-show="StudentRegisterForm.Batch.$error.required" class="error">Invalid Batch</small>
+            <small ng-show="StudentRegisterForm.Batch.$error.required" class="error">The Batch field is required</small>
         </div>
-        <div class="large-6 columns">
+        <div class="large-4 columns">
             <label>Id Card <span class="red required-star">*</span></label>
-            <input placeholder="e.g 033 05817" type="text" ng-class="StudentRegisterForm.IdCardNumber.$invalid ? 'error': ''" ng-model="data.idCardNumber" name="IdCardNumber" required ng-pattern="/^[0-9]{1,15}$/" />
-            <small ng-show="StudentRegisterForm.IdCardNumber.$invalid" class="error">Invalid Id card</small>
+            <input placeholder="e.g 03305817" type="text" ng-class="StudentRegisterForm.IdCardNumber.$invalid ? 'error': ''" ng-model="student.idCardNumber" name="IdCardNumber" required ng-pattern="/^[0-9]{1,15}$/" />
+            <small ng-show="StudentRegisterForm.IdCardNumber.$invalid" class="error">The Id Card field is required</small>
         </div>
     </div>
-
-    <label>Address <span class="red required-star">*</span></label>
-    <textarea ng-class="BookUploadForm.Address.$invalid ? 'error': ''" ng-model="data.address" name="Address" required></textarea>
-    <small ng-show="BookUploadForm.Address.$error.required" class="error">Invalid Address</small>
 
     <button ng-disabled="StudentRegisterForm.$invalid" class="button small medium-2" ng-click="register()">Register</button>
 </form>

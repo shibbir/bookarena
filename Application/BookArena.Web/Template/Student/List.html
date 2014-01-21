@@ -27,4 +27,7 @@
             </tr>
         </tbody>
     </table>
+    
+    <button class="button tiny medium-2" ng-disabled="!hasPrevious" ng-click="goToPage(previousPage)">Previous</button>
+    <button class="button tiny medium-2" ng-disabled="!hasNext" ng-click="goToPage(nextPage)">Next</button>
 </div>

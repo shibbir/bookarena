@@ -56,6 +56,11 @@
                         controller: "StudentListCtrl"
                     })
                 .when(
+                    "/students/page/:pageNumber", {
+                        templateUrl: "Template/Student/List.html",
+                        controller: "StudentListCtrl"
+                    })
+                .when(
                     "/students/add", {
                         templateUrl: "Template/Student/Add.html",
                         controller: "StudentAddCtrl"

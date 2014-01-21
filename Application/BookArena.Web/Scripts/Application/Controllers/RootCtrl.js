@@ -5,7 +5,7 @@
         "$scope", "$rootScope", "$location", "apiService", "notifierService", function($scope, $rootScope, $location, service, notifier) {
             $rootScope.authenticatedUser = {};
             $rootScope.checkAuthentication = function() {
-                service.call("/api/account").then(function(data) {
+                service.call("/account/").then(function(data) {
                     if (data) {
                         $rootScope.authenticatedUser = data;
                         $rootScope.authenticatedUser.IsAuthenticated = true;
@@ -30,8 +30,9 @@
             };
 
             $scope.logout = function() {
-                service.call("/api/logout").then(function(data) {
+                service.call("/account/logout").then(function(data) {
                     $rootScope.authenticatedUser = {};
+                    $location.path("/");
                 });
             };
         }

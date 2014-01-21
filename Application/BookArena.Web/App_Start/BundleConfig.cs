@@ -19,8 +19,8 @@ namespace BookArena.Web
                 "~/Scripts/jquery.raty.js",
                 "~/Scripts/respond.js",
                 "~/Scripts/angular.js",
-                "~/Scripts/angular-route.js",
-                "~/Scripts/angular-animate.js"));
+                "~/Scripts/angular-animate.js",
+                "~/Scripts/angular-route.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/Scripts/Application/app.js",

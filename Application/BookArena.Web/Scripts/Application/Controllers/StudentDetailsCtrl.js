@@ -3,7 +3,7 @@
 (function(app) {
     app.controller("StudentDetailsCtrl", [
         "$scope", "$routeParams", "apiService", function($scope, $routeParams, service) {
-            service.call("/api/student/" + $routeParams.id).then(function(result) {
+            service.call("/students/student/" + $routeParams.id).then(function(result) {
                 $scope.student = result;
             });
         }

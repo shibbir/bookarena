@@ -60,6 +60,7 @@
     <Compile Include="Book.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="PagedList.cs" />
     <Compile Include="Response.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

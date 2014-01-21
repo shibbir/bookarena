@@ -13,7 +13,7 @@
             
             $scope.login = function() {
                 if ($scope.LoginForm.$valid) {
-                    service.call("api/login", $("#LoginForm").serialize(), "POST").then(function(result) {
+                    service.call("account/login", $("#LoginForm").serialize(), "POST").then(function(result) {
                         if (result.Data) {
                             $rootScope.authenticatedUser = result.Data;
                             $rootScope.authenticatedUser.IsAuthenticated = true;
