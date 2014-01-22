@@ -26,9 +26,9 @@
 
                             if (tempGlobalContainer && tempGlobalContainer.redirectTo) {
                                 $location.path(tempGlobalContainer.redirectTo).replace();
+                            } else {
+                                $location.path("/").replace();
                             }
-                            $location.path("/").replace();
-
                         } else {
                             notifier.notify(result.Response);
                         }

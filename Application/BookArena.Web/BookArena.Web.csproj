@@ -190,6 +190,8 @@
     <Content Include="Scripts\Application\Services\api-service.js" />
     <Content Include="Scripts\Application\Services\notifier-service.js" />
     <Content Include="Scripts\foundation.min.js" />
+    <Content Include="Scripts\highcharts.js" />
+    <Content Include="Scripts\highcharts.min.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
     <Content Include="Scripts\jquery.raty.js" />

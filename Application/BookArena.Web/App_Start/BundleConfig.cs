@@ -17,6 +17,7 @@ namespace BookArena.Web
                 "~/Scripts/foundation.min.js",
                 "~/Scripts/toastr.js",
                 "~/Scripts/jquery.raty.js",
+                "~/Scripts/highcharts.js",
                 "~/Scripts/respond.js",
                 "~/Scripts/angular.js",
                 "~/Scripts/angular-animate.js",

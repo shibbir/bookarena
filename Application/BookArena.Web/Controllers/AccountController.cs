@@ -44,14 +44,16 @@ namespace BookArena.Web.Controllers
             return Json(new {Data = model});
         }
 
-        [HttpGet]
         public JsonResult Logout()
         {
             Session.RemoveAll();
-            return Json(new Response
+            return Json(new
             {
-                ResponseType = ResponseType.Success,
-                Message = "You have beed logged out!"
+                Response = new Response
+                {
+                    ResponseType = ResponseType.Success,
+                    Message = "You have been logged out!"
+                }
             }, JsonRequestBehavior.AllowGet);
         }
     }

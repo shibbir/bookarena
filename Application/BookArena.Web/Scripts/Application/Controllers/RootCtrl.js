@@ -26,11 +26,19 @@
                     $rootScope.globalContainer = {
                         redirectTo: path,
                         response: {
-                            ResponseType: "info",
+                            ResponseType: "error",
                             Message: "Access Denied! You need to login first."
                         }
                     };
-                    $location.path("/account/login");
+
+                    if ($location.path() === "/account/login") {
+                        notifier.notify({
+                            ResponseType: "error",
+                            Message: "Access Denied! You need to login first."
+                        });
+                    } else {
+                        $location.path("/account/login");
+                    }
                 } else {
                     $location.path(path);
                 }
@@ -40,10 +48,7 @@
                 service.call("/account/logout").then(function(data) {
                     $rootScope.authenticatedUser = {};
                     $rootScope.globalContainer = {
-                        response: {
-                            ResponseType: "success",
-                            Message: "You have been logged out."
-                        }
+                        response: data.Response
                     };
                     $location.path("/account/login");
                 });
