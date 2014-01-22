@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using BookArena.Model;
+using BookArena.Model.EntityModel;
 
 namespace BookArena.DAL
 {

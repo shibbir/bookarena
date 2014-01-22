@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BookArena.Model
+namespace BookArena.Model.EntityModel
 {
     public class ApplicationUser
     {

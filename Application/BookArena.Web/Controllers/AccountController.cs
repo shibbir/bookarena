@@ -2,6 +2,7 @@
 using BookArena.DAL.Interfaces;
 using BookArena.DAL.Repository;
 using BookArena.Model;
+using BookArena.Model.EntityModel;
 
 namespace BookArena.Web.Controllers
 {

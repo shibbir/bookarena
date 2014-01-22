@@ -5,6 +5,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using BookArena.DAL;
 using BookArena.Model;
+using BookArena.Model.EntityModel;
 using Newtonsoft.Json;
 
 namespace BookArena.Web
