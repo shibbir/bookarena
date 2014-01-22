@@ -23,7 +23,14 @@
 
             $scope.checkForPermisssionBefore = function(path) {
                 if (!$rootScope.authenticatedUser.IsAuthenticated) {
-                    notifier.notify({ ResponseType: "error", Message: "Access Denied! You need to login first." });
+                    $rootScope.globalContainer = {
+                        redirectTo: path,
+                        response: {
+                            ResponseType: "info",
+                            Message: "Access Denied! You need to login first."
+                        }
+                    };
+                    $location.path("/account/login");
                 } else {
                     $location.path(path);
                 }
@@ -32,7 +39,13 @@
             $scope.logout = function() {
                 service.call("/account/logout").then(function(data) {
                     $rootScope.authenticatedUser = {};
-                    $location.path("/");
+                    $rootScope.globalContainer = {
+                        response: {
+                            ResponseType: "success",
+                            Message: "You have been logged out."
+                        }
+                    };
+                    $location.path("/account/login");
                 });
             };
         }

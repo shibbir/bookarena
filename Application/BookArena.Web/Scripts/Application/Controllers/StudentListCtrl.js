@@ -2,7 +2,8 @@
 
 (function(app) {
     app.controller("StudentListCtrl", [
-        "$scope", "$routeParams", "$location", "apiService", function($scope, $routeParams, $location, service) {
+        "$scope", "$rootScope", "$routeParams", "$location", "apiService", function($scope, $rootScope, $routeParams, $location, service) {
+            $rootScope.checkForPermisssionAfter();
             $scope.students = [];
             if ($routeParams.pageNumber === undefined) {
                 service.call("/students/").then(function(result) {
@@ -35,7 +36,7 @@
                 }
             }
 
-            $scope.goToPage = function (number) {
+            $scope.goToPage = function(number) {
                 $location.path("/students/page/" + number);
             };
         }

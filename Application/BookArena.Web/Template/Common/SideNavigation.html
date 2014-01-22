@@ -3,11 +3,15 @@
     <ul class="side-nav">
         <li class="divider"></li>
         <li><h4 class="subheader">Home</h4></li>
-        <li><a ng-href="#/">Home <i class="fi-home"></i></a>
+        <li>
+            <a ng-href="#/">Home <i class="fi-home"></i></a>
         </li>
         <li class="divider"></li>
         <li><h4 class="subheader">Student</h4></li>
-        <li><a ng-href="#/students">All Student</a></li>
+        <li>
+            <a ng-click="checkForPermisssionBefore('/students/')">All Student</a>
+            <span class="red required-star">*</span>
+        </li>
         <li>
             <a ng-click="checkForPermisssionBefore('/students/add/')">Register Student</a>
             <span class="red required-star">*</span>
