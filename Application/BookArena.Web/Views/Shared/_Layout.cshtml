@@ -1,35 +1,35 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/png" href="~/favicon.png" />
-        <title>BookArena - Library Manager</title>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="~/favicon.png" />
+    <title>BookArena - Library Manager</title>
 
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
 
-    </head>
-    <body ng-app="bookArenaApp">
-        <div ng-controller="RootCtrl">
-            <div data-cd-navigation></div>
-            <div class="row" style="background: none repeat scroll 0 0 #FAFAFA;">
-                <div class="small-3 large-3 columns">
-                    <div data-cd-side-navigation></div>
-                </div>
-                <div class="small-9 large-9 columns">
-                    <div class="body-content">
-                        @RenderBody()
-                    </div>
-                </div>
+</head>
+<body ng-app="bookArenaApp">
+    <div ng-controller="RootCtrl">
+        <div data-cd-navigation></div>
+        <div class="row" style="background: none repeat scroll 0 0 #FAFAFA;">
+            <div class="small-3 large-3 columns">
+                <div data-cd-side-navigation></div>
             </div>
-            <div class="row" style="background: none repeat scroll 0 0 #178892;">
-                <div class="small-12 large-12 columns">
-                    <footer class="credit">BookArena: A simple SPA based library manager. Copyright &copy; 2014 <a href="http://shibbir.net/" target="blank">Shibbir Ahmed</a>. All rights reserved.</footer>
+            <div class="small-9 large-9 columns">
+                <div class="body-content">
+                    @RenderBody()
                 </div>
             </div>
         </div>
-        @Scripts.Render("~/bundles/library")
-        @Scripts.Render("~/bundles/app")
-    </body>
+        <div class="row" style="background: none repeat scroll 0 0 #178892;">
+            <div class="small-12 large-12 columns">
+                <footer class="credit">BookArena: A simple SPA based library manager. Copyright &copy; 2014 <a href="http://shibbir.net/" target="blank">Shibbir Ahmed</a>. All rights reserved.</footer>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/library")
+    @Scripts.Render("~/bundles/app")
+</body>
 </html>

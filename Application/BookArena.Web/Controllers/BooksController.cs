@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using BookArena.DAL.Interfaces;
 using BookArena.DAL.Repository;
 using BookArena.Model;
+using BookArena.Web.Helper;
 using Newtonsoft.Json;
 
 namespace BookArena.Web.Controllers
@@ -43,6 +44,7 @@ namespace BookArena.Web.Controllers
         [HttpPost]
         public JsonResult Add(Book book)
         {
+            if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
             if (!ModelState.IsValid)
                 return Json(new
                 {
@@ -65,8 +67,9 @@ namespace BookArena.Web.Controllers
         }
 
         [HttpPost]
-        public JsonResult EditBook(Book book)
+        public JsonResult Edit(Book book)
         {
+            if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
             if (!ModelState.IsValid)
                 return Json(new
                 {

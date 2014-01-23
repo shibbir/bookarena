@@ -1,17 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace BookArena.Model.EntityModel
 {
-    public class ApplicationUser
+    public class ApplicationUser : IdentityUser
     {
-        [Key]
-        public int Id { get; set; }
-
-        [Required]
-        public string UserName { get; set; }
-
-        public string Password { get; set; }
-
         [Required]
         [StringLength(50, ErrorMessage = "The {0} must be at most {1} characters long.")]
         public string Name { get; set; }
@@ -24,6 +17,7 @@ namespace BookArena.Model.EntityModel
         public string Address { get; set; }
 
         [Url]
+        [StringLength(25, ErrorMessage = "The {0} must be at most {1} characters long.")]
         public string Website { get; set; }
 
         public string ImageFileName { get; set; }

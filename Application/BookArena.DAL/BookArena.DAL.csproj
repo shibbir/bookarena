@@ -56,7 +56,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BookArenaDbContext.cs" />
-    <Compile Include="Interfaces\IAccountRepository.cs" />
     <Compile Include="Interfaces\IStudentRepository.cs" />
     <Compile Include="Interfaces\IBookRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
@@ -64,7 +63,6 @@
     <Compile Include="RepositoryBase.cs" />
     <Compile Include="Repository\StudentRepository.cs" />
     <Compile Include="Repository\BookRepository.cs" />
-    <Compile Include="Repository\AccountRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

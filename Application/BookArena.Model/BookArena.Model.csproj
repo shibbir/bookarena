@@ -56,7 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityModel\ApplicationUser.cs" />
-    <Compile Include="ViewModel\ApplicationUserViewModel.cs" />
+    <Compile Include="ViewModel\AccountViewModels.cs" />
     <Compile Include="EntityModel\Book.cs" />
     <Compile Include="EntityModel\Category.cs" />
     <Compile Include="EntityModel\Config.cs" />

@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using BookArena.DAL.Interfaces;
 using BookArena.DAL.Repository;
 using BookArena.Model;
+using BookArena.Web.Helper;
 
 namespace BookArena.Web.Controllers
 {
@@ -17,6 +18,8 @@ namespace BookArena.Web.Controllers
 
         public JsonResult Index(int? page)
         {
+            if (!Request.IsAuthenticated)
+                return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
             const int pageSize = 10;
             var model = GetPagedStudents((page ?? 0)*pageSize, pageSize);
 
@@ -42,6 +45,8 @@ namespace BookArena.Web.Controllers
 
         public JsonResult Student(int id)
         {
+            if (!Request.IsAuthenticated)
+                return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
             var model = _studentRepository.StudentDetails(id);
             return Json(new {Data = model}, JsonRequestBehavior.AllowGet);
         }
@@ -49,6 +54,8 @@ namespace BookArena.Web.Controllers
         [HttpPost]
         public JsonResult Add(Student student)
         {
+            if (!Request.IsAuthenticated)
+                return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
             if (!ModelState.IsValid)
             {
                 return Json(new
@@ -87,6 +94,8 @@ namespace BookArena.Web.Controllers
         [HttpPost]
         public JsonResult Edit(Student student)
         {
+            if (!Request.IsAuthenticated)
+                return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
             if (!ModelState.IsValid)
             {
                 return Json(new
