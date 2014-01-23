@@ -1,10 +1,11 @@
 # BookArena
-Library Management System
+Yet another Library Management System
 
 Tools and Technology used in this project:
 
 * [ASP.NET MVC5](http://www.asp.net/mvc)
 * [Foundation](http://foundation.zurb.com/)
 * [AngularJS](http://angularjs.org/)
+* [AutoMapper](http://automapper.org/)
 
 Project Developed By [Shibbir Ahmed](http://shibbir.net/)

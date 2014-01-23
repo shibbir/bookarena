@@ -17,11 +17,12 @@ namespace BookArena.Web
                 "~/Scripts/foundation.min.js",
                 "~/Scripts/toastr.js",
                 "~/Scripts/jquery.raty.js",
-                "~/Scripts/highcharts.js",
                 "~/Scripts/respond.js",
                 "~/Scripts/angular.js",
                 "~/Scripts/angular-animate.js",
-                "~/Scripts/angular-route.js"));
+                "~/Scripts/angular-route.js",
+                "~/Scripts/raphael.js",
+                "~/Scripts/morris.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/Scripts/Application/app.js",
@@ -44,6 +45,7 @@ namespace BookArena.Web
                 "~/Content/toastr.css",
                 "~/Content/foundation.css",
                 "~/Content/foundation-icons.css",
+                "~/Content/morris.css",
                 "~/Content/site.css"));
 
             BundleTable.EnableOptimizations = false;
