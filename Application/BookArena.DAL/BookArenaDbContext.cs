@@ -1,5 +1,4 @@
 ﻿using System.Data.Entity;
-using BookArena.Model;
 using BookArena.Model.EntityModel;
 using Microsoft.AspNet.Identity.EntityFramework;
 

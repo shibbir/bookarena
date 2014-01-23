@@ -1,4 +1,5 @@
 ﻿using BookArena.Model;
+using BookArena.Model.EntityModel;
 using BookArena.Model.ViewModel;
 
 namespace BookArena.DAL.Interfaces

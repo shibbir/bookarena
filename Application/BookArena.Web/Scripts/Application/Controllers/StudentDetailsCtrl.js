@@ -2,12 +2,22 @@
 
 (function(app) {
     app.controller("StudentDetailsCtrl", [
-        "$scope", "$rootScope", "$routeParams", "apiService", "notifierService", function($scope, $rootScope, $routeParams, service, notifier) {
-            $rootScope.checkForPermisssionAfter();
-            $scope.book = {};
-            service.call("/students/student/" + $routeParams.id).then(function(result) {
-                $scope.student = result.Data;
-            });
+        "$scope", "$rootScope", "$routeParams", "$location", "apiService", "notifierService", function($scope, $rootScope, $routeParams, $location, service, notifier) {
+            if ($rootScope.authenticatedUser.IsAuthenticated) {
+                $scope.book = {};
+                service.call("/students/student/" + $routeParams.id).then(function(result) {
+                    $scope.student = result.Data;
+                });
+            } else {
+                $rootScope.globalContainer = {
+                    redirectTo: $location.path(),
+                    response: {
+                        ResponseType: "error",
+                        Message: "Access Denied! You need to login first."
+                    }
+                };
+                $location.path("/account/login").replace();
+            }
 
             $scope.update = function() {
                 if ($scope.StudentEditForm.$valid && $rootScope.authenticatedUser.IsAuthenticated) {

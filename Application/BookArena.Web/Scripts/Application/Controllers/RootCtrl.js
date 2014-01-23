@@ -13,12 +13,6 @@
                 });
             };
 
-            $rootScope.checkForPermisssionAfter = function() {
-                if (!$rootScope.authenticatedUser.IsAuthenticated) {
-                    $location.path("/account/login").replace();
-                }
-            };
-
             $rootScope.checkAuthentication();
 
             $scope.checkForPermisssionBefore = function(path) {

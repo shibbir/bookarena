@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BookArena.Model
+namespace BookArena.Model.EntityModel
 {
     public class Config
     {
@@ -12,6 +12,6 @@ namespace BookArena.Model
         public int BookRentDurationInDays { get; set; }
 
         [StringLength(50, ErrorMessage = "The {0} must be at most {1} characters long.")]
-        public string Institue { get; set; }
+        public string Institute { get; set; }
     }
 }

@@ -1,7 +1,10 @@
-﻿(function(app) {
+﻿"use strict";
+
+(function(app) {
     app.factory("apiService", [
-        "$http", "$q", function($http, $q) {
+        "$rootScope", "$http", "$q", function($rootScope, $http, $q) {
             var call = function(url, params, method) {
+                $rootScope.fetchInProgress = true;
                 var deferred = $q.defer();
                 $http({
                     url: url,
@@ -12,6 +15,7 @@
                     }
                 }).success(function(data) {
                     deferred.resolve(data);
+                    $rootScope.fetchInProgress = false;
                 }).error(function(data, status) {
                     deferred.reject(status);
                 });

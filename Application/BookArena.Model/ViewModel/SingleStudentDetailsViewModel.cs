@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BookArena.Model.EntityModel;
 
 namespace BookArena.Model.ViewModel
 {

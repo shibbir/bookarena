@@ -40,7 +40,7 @@ namespace BookArena.Web
             {
                 FineAmount = 10,
                 BookRentDurationInDays = 10,
-                Institue = "Stamford University Bangladesh"
+                Institute = "Stamford University Bangladesh"
             });
 
             new List<Student>

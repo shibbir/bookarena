@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using BookArena.DAL.Interfaces;
 using BookArena.Model;
+using BookArena.Model.EntityModel;
 using BookArena.Model.ViewModel;
 
 namespace BookArena.DAL.Repository

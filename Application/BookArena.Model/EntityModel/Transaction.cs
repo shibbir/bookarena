@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BookArena.Model
+namespace BookArena.Model.EntityModel
 {
     public class Transaction
     {
