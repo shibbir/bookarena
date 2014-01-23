@@ -35,6 +35,12 @@ namespace BookArena.Web.Controllers
             return Json(new {Data = JsonConvert.SerializeObject(model)}, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult Latest()
+        {
+            var books = _bookRepository.LatestBooks(5);
+            return Json(new {Data = books}, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult Book(int id)
         {
             var model = _bookRepository.Find(id);

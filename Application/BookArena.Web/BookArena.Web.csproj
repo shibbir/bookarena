@@ -246,7 +246,7 @@
     <Content Include="Scripts\Application\Controllers\StudentAddCtrl.js" />
     <Content Include="Scripts\Application\Controllers\StudentDetailsCtrl.js" />
     <Content Include="Scripts\Application\Controllers\StudentListCtrl.js" />
-    <Content Include="Scripts\Application\Controllers\WelcomeCtrl.js" />
+    <Content Include="Scripts\Application\Controllers\HomeCtrl.js" />
     <Content Include="Scripts\Application\Directives\directives.js" />
     <Content Include="Scripts\Application\Services\api-service.js" />
     <Content Include="Scripts\Application\Services\notifier-service.js" />

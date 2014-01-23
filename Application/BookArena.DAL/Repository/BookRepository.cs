@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using BookArena.DAL.Interfaces;
-using BookArena.Model;
 using BookArena.Model.EntityModel;
 using BookArena.Model.ViewModel;
 
@@ -37,19 +37,17 @@ namespace BookArena.DAL.Repository
             throw new NotImplementedException();
         }
 
-        //public IQueryable<BasicBookViewModel> BooksWithBasicInformation()
-        //{
-        //    using (var context = DataContext)
-        //    {
-        //        return context.Book.Select(book => new BasicBookViewModel
-        //        {
-        //            Id = book.BookId,
-        //            Title = book.Title,
-        //            ImageFileName = book.ImageFileName,
-        //            StatusId = book.StatusId
-        //        });
-        //    }
-        //}
+        public IEnumerable<BasicBookViewModel> LatestBooks(int limit)
+        {
+            var latestBooks = FindAll().Select(book => new BasicBookViewModel
+            {
+                Id = book.BookId,
+                Title = book.Title,
+                ImageFileName = book.ImageFileName,
+                StatusId = book.StatusId
+            }).OrderByDescending(x => x.Id).Take(limit).ToList();
+            return latestBooks;
+        }
 
         public void Save()
         {

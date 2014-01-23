@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using BookArena.DAL;
-using BookArena.Model;
 using BookArena.Model.EntityModel;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -22,7 +21,8 @@ namespace BookArena.Web
                 UserName = "admin",
                 Email = "shibbir@shibbir.net",
                 Website = "http://shibbir.net/",
-                Address = "Dhaka, Bangladesh"
+                Address = "Dhaka, Bangladesh",
+                ImageFileName = "profile.jpg"
             };
 
             if (!roleManager.RoleExists(role))

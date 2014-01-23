@@ -1,71 +1,34 @@
-﻿<hr />
+﻿<h2 class="content-header">Welcome to BookArena</h2>
+<hr />
 
-<div id="chart"></div>
+<div class="widget">
+    <div class="widget-header"><h4>Latest Books</h4></div>
+    <div class="widget-body">
+        <div ng-if="fetchInProgress">
+            <div class="spinner">
+                <div></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
+            </div>
+        </div>
+        <div ng-repeat="book in latestBooks" class="latest-books">
+            <div class="book-body">
+                <a ng-href="#/books/book/{{book.Id}}">
+                    <img ng-src="/Content/Images/{{book.ImageFileName}}" alt="{{book.Title}}" />
+                </a>
+            </div>
+            <div class="book-footer text-center">
+                <div data-cd-book-status="{{book.StatusId}}"></div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<script>
-    highCharts_Pie("chart", [
-        { name: "ASP", y: 1 },
-        { name: "PHP", y: 2 },
-        { name: "JavaScript", y: 1 },
-        { name: "CSS", y: 2 },
-        { name: "Windows 8", y: 1 },
-        { name: "CMS", y: 2 },
-        { name: "PHP", y: 2 },
-        { name: "JavaScript", y: 1 },
-        { name: "CSS", y: 2 },
-        { name: "Windows 8", y: 1 },
-        { name: "CMS", y: 2 }
-    ]);
-    function highCharts_Pie(target, plotData) {
-        Highcharts.getOptions().colors = $.map(Highcharts.getOptions().colors, function(color) {
-            return {
-                radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
-                stops: [
-                    [0, color],
-                    [1, Highcharts.Color(color).brighten(-0.3).get('rgb')]
-                ]
-            };
-        });
-
-        var chart = new Highcharts.Chart({
-            chart: {
-                renderTo: target,
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false
-            },
-            title: {
-                text: ''
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage}%</b>',
-                percentageDecimals: 1
-            },
-            credits: {
-                enabled: false
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: false,
-                        color: '#000000',
-                        connectorColor: '#000000',
-                        formatter: function() {
-                            return '<b>' + this.point.name + '</b>: ' + this.y + ' books';
-                        }
-                    },
-                    showInLegend: true
-                }
-            },
-            series: [
-                {
-                    type: 'pie',
-                    name: 'Popularity',
-                    data: plotData
-                }
-            ]
-        });
-    }
-</script>
+<div class="widget">
+    <div class="widget-header"><h4>Pie Chart - Inventory category</h4></div>
+    <div class="widget-body">
+        <div id="chart"></div>
+    </div>
+</div>

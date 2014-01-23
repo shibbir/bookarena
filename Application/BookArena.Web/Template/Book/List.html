@@ -1,6 +1,16 @@
 ﻿<h2 class="content-header">All Books</h2>
 <hr />
 
+<div ng-if="fetchInProgress">
+    <div class="spinner">
+        <div></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+</div>
+
 <div ng-if="!categories" class="block text-center red"><strong>Sorry, BookArena library is currently empty!</strong></div>
 
 <div id="book-container" ng-if="categories">
@@ -17,7 +27,7 @@
                 </a>
             </div>
             <div class="book-footer text-center">
-                <strong data-cd-book-status="{{book.StatusId}}"></strong>
+                <div data-cd-book-status="{{book.StatusId}}"></div>
             </div>
         </div>
     </div>
