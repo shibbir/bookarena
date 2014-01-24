@@ -2,7 +2,8 @@
 <hr />
 
 <form name="BookEditForm" novalidate>
-    <input type="hidden" name="Id" ng-model="book.Id" />
+    <input type="hidden" name="BookId" ng-value="book.BookId" required />
+    <input type="hidden" name="ImageFileName" ng-value="book.ImageFileName" required />
     <div class="row">
         <div class="large-6 columns">
             <label>Title <span class="red required-star">*</span></label>
