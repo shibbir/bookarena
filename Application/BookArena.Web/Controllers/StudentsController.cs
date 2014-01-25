@@ -33,7 +33,7 @@ namespace BookArena.Web.Controllers
 
         private PagedList<Student> GetPagedStudents(int skip, int take)
         {
-            var query = _studentRepository.All().OrderBy(x => x.Id);
+            var query = _studentRepository.FindAll().OrderBy(x => x.Id);
             var studentCount = query.Count();
             var students = query.Skip(skip).Take(take).ToList();
             return new PagedList<Student>
@@ -48,7 +48,15 @@ namespace BookArena.Web.Controllers
         {
             if (!Request.IsAuthenticated)
                 return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
-            var model = _studentRepository.StudentDetails(id);
+            var model = _studentRepository.Find(x => x.Id == id);
+            return Json(new {Data = model}, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult StudentByIdCard(string idCard)
+        {
+            if (!Request.IsAuthenticated)
+                return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
+            var model = _studentRepository.Find(x => x.IdCardNumber == idCard);
             return Json(new {Data = model}, JsonRequestBehavior.AllowGet);
         }
 
@@ -69,7 +77,7 @@ namespace BookArena.Web.Controllers
                     }
                 });
             }
-            var duplicateUser = _studentRepository.All().FirstOrDefault(x => x.IdCardNumber == student.IdCardNumber);
+            var duplicateUser = _studentRepository.FindAll().FirstOrDefault(x => x.IdCardNumber == student.IdCardNumber);
             if (duplicateUser != null)
                 return Json(new
                 {
@@ -110,7 +118,7 @@ namespace BookArena.Web.Controllers
                 });
             }
             var duplicateUser =
-                _studentRepository.All()
+                _studentRepository.FindAll()
                     .FirstOrDefault(x => x.IdCardNumber == student.IdCardNumber && x.Id != student.Id);
             if (duplicateUser != null)
                 return Json(new

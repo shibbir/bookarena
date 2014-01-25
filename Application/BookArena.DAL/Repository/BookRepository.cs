@@ -2,23 +2,31 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using BookArena.DAL.Interfaces;
 using BookArena.Model.EntityModel;
 using BookArena.Model.ViewModel;
 
 namespace BookArena.DAL.Repository
 {
-    public class BookRepository : RepositoryBase<Book>, IBookRepository
+    public class BookRepository : IBookRepository
     {
+        private readonly BookArenaDbContext _dbContext;
+
+        public BookRepository()
+        {
+            _dbContext = new BookArenaDbContext();
+        }
+
         public void InsertOrUpdate(Book entity)
         {
             if (entity.BookId == default(int))
             {
-                Add(entity);
+                _dbContext.Book.Add(entity);
             }
             else
             {
-                Edit(entity);
+                _dbContext.Entry(entity).State = EntityState.Modified;
             }
         }
 
@@ -27,19 +35,24 @@ namespace BookArena.DAL.Repository
             throw new NotImplementedException();
         }
 
-        public Book Find(int id)
+        public IQueryable<Book> FindAll(Expression<Func<Book, bool>> predicate)
         {
-            return DataContext.Book.Where(x => x.BookId == id).Include(p => p.Category).FirstOrDefault();
+            throw new NotImplementedException();
         }
 
-        public IQueryable<Book> All()
+        public Book Find(Expression<Func<Book, bool>> predicate)
+        {
+            return _dbContext.Book.Where(predicate).FirstOrDefault();
+        }
+
+        public IQueryable<Book> FindAll()
         {
             throw new NotImplementedException();
         }
 
         public IEnumerable<BasicBookViewModel> LatestBooks(int limit)
         {
-            var latestBooks = FindAll().Select(book => new BasicBookViewModel
+            var latestBooks = _dbContext.Book.Select(book => new BasicBookViewModel
             {
                 Id = book.BookId,
                 Title = book.Title,
@@ -51,15 +64,12 @@ namespace BookArena.DAL.Repository
 
         public void Save()
         {
-            using (var dataContext = DataContext)
-            {
-                dataContext.SaveChanges();
-            }
+            _dbContext.SaveChanges();
         }
 
         public IQueryable<Category> Categories()
         {
-            return DataContext.Category;
+            return _dbContext.Category;
         }
     }
 }

@@ -1,4 +1,49 @@
-﻿<h2 class="content-header">Book Information</h2>
+﻿<button class="button loan-button" data-reveal-id="LoanModal" ng-show="authenticatedUser.IsAuthenticated">Loan</button>
+
+<div id="LoanModal" class="reveal-modal tiny" data-reveal ng-controller="BookLoanCtrl">
+    <h2>{{book.Title}}</h2>
+    <p class="lead">Search for a student.</p>
+    <div class="bouncespinner" ng-show="searchStudentInProgress">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div></div>
+    </div>
+    <div class="row collapse">
+        <div class="small-10 columns">
+            <input type="search" ng-model="data.idCardNumber" placeholder="ID Card" />
+        </div>
+        <div class="small-2 columns">
+            <button class="button postfix" ng-click="searchStudent()">Search</button>
+        </div>
+    </div>
+    <div ng-if="!searchedStudent.Id" class="error-message">
+        No record found! Try again.
+    </div>
+    <div ng-if="searchedStudent.Id">
+        <table>
+            <thead>
+                <tr>
+                    <th width="240">Name</th>
+                    <th width="20">Batch</th>
+                    <th width="180">ID Card</th>
+                    <th width="100">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{searchedStudent.FirstName}} {{searchedStudent.LastName}}</td>
+                    <td>{{searchedStudent.Batch}}</td>
+                    <td>{{searchedStudent.Program}} {{searchedStudent.IdCardNumber}}</td>
+                    <td><a ng-href="#/students/student/{{searchedStudent.Id}}">Details</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <button ng-disabled="!book.BookId || !searchedStudent.Id" class="success" style="width: 100%;" ng-click="borrowBook(searchedStudent.Id, book.BookId)">Borrow The Book</button>
+    </div>
+    <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<h2 class="content-header">Book Information</h2>
 <hr />
 
 <div class="panel callout radius">
@@ -55,6 +100,7 @@
 <p>This book is a problem-solution guide for web developers looking for a better way to build a modern web application on the Microsoft platform.</p>
 
 There are several types of developers that would find this material useful:
+
 <ul>
     <li>
         veteran ASP.NET Web Forms developers who wish to update their skillset to include ASP.NET MVC

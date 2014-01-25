@@ -1,18 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using BookArena.DAL.Interfaces;
-using BookArena.Model;
 using BookArena.Model.EntityModel;
 using BookArena.Model.ViewModel;
 
 namespace BookArena.DAL.Repository
 {
-    public class StudentRepository : RepositoryBase<Student>, IStudentRepository
+    public class StudentRepository : IStudentRepository
     {
+        private readonly BookArenaDbContext _dbContext;
+
+        public StudentRepository()
+        {
+            _dbContext = new BookArenaDbContext();
+        }
+
         public void InsertOrUpdate(Student entity)
         {
-            Add(entity);
+            _dbContext.Student.Add(entity);
         }
 
         public void Delete(int id)
@@ -20,22 +27,26 @@ namespace BookArena.DAL.Repository
             throw new NotImplementedException();
         }
 
-        public Student Find(int id)
+        public IQueryable<Student> FindAll(Expression<Func<Student, bool>> predicate)
         {
-            return Find(x => x.Id == id).FirstOrDefault();
+            throw new NotImplementedException();
         }
 
-        public SingleStudentDetailsViewModel StudentDetails(int id)
+        public Student Find(Expression<Func<Student, bool>> predicate)
         {
-            var student = Find(id);
-            return new SingleStudentDetailsViewModel
+            return _dbContext.Student.Where(predicate).FirstOrDefault();
+        }
+
+        public StudentViewModel StudentViewModel(Expression<Func<Student, bool>> predicate)
+        {
+            var student = _dbContext.Student.Where(predicate).Select(s => new StudentViewModel
             {
-                Id = student.Id,
-                FirstName = student.FirstName,
-                LastName = student.LastName,
-                Batch = student.Batch,
-                Program = student.Program,
-                IdCardNumber = student.IdCardNumber,
+                Id = s.Id,
+                FirstName = s.FirstName,
+                LastName = s.LastName,
+                Batch = s.Batch,
+                Program = s.Program,
+                IdCardNumber = s.IdCardNumber,
                 Books = new List<Book>
                 {
                     new Book
@@ -61,20 +72,18 @@ namespace BookArena.DAL.Repository
                         StatusId = 1
                     }
                 }
-            };
+            }).FirstOrDefault();
+            return student;
         }
 
-        public IQueryable<Student> All()
+        public IQueryable<Student> FindAll()
         {
-            return FindAll();
+            return _dbContext.Student;
         }
 
         public void Save()
         {
-            using (var dataContext = DataContext)
-            {
-                dataContext.SaveChanges();
-            }
+            _dbContext.SaveChanges();
         }
     }
 }

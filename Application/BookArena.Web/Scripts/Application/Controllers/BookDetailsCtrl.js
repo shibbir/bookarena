@@ -2,7 +2,8 @@
 
 (function(app) {
     app.controller("BookDetailsCtrl", [
-        "$scope", "$rootScope", "$routeParams", "$location", "apiService", function($scope, $rootScope, $routeParams, $location, service) {
+        "$scope", "$rootScope", "$routeParams", "$location", "apiService", function ($scope, $rootScope, $routeParams, $location, service) {
+            $(document).foundation();
             service.call("/books/book/" + $routeParams.id).then(function(result) {
                 result.Data = $.parseJSON(result.Data);
                 $scope.book = result.Data;

@@ -30,7 +30,6 @@
             <label>Book Status <span class="red required-star">*</span></label>
             <input type="radio" id="pokemonRed" value="1" name="StatusId" ng-model="book.StatusId" required><label for="pokemonRed">Available</label>
             <input type="radio" id="pokemonBlue" value="2" name="StatusId" ng-model="book.StatusId" required><label for="pokemonBlue">Not Available</label>
-            <input type="radio" id="pokemonBlue" value="3" name="StatusId" ng-model="book.StatusId" required><label for="pokemonBlue">Rented</label>
             <small ng-show="BookAddForm.StatusId.$error.required" class="error">The Book Status field is required.</small>
         </div>
     </div>

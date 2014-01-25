@@ -12,15 +12,18 @@ namespace BookArena.Web.Controllers
     public class BooksController : Controller
     {
         private readonly IBookRepository _bookRepository;
+        private readonly IStudentRepository _studentRepository;
 
         public BooksController()
         {
             _bookRepository = new BookRepository();
+            _studentRepository = new StudentRepository();
         }
 
-        public BooksController(IBookRepository bookRepository)
+        public BooksController(IBookRepository bookRepository, IStudentRepository studentRepository)
         {
             _bookRepository = bookRepository;
+            _studentRepository = studentRepository;
         }
 
         public JsonResult Index()
@@ -43,7 +46,7 @@ namespace BookArena.Web.Controllers
 
         public JsonResult Book(int id)
         {
-            var model = _bookRepository.Find(id);
+            var model = _bookRepository.Find(x => x.BookId == id);
 
             return Json(new {Data = JsonConvert.SerializeObject(model)}, JsonRequestBehavior.AllowGet);
         }
@@ -51,7 +54,7 @@ namespace BookArena.Web.Controllers
         [HttpPost]
         public JsonResult Add(Book book)
         {
-            if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
+            if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse());
             if (!ModelState.IsValid)
                 return Json(new
                 {
@@ -76,7 +79,7 @@ namespace BookArena.Web.Controllers
         [HttpPost]
         public JsonResult Edit(Book book)
         {
-            if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
+            if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse());
             if (!ModelState.IsValid)
                 return Json(new
                 {
@@ -119,6 +122,35 @@ namespace BookArena.Web.Controllers
             }).ToList();
 
             return Json(new {Data = JsonConvert.SerializeObject(model)}, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult Borrow(int studentId, int bookId)
+        {
+            if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse());
+            var book = _bookRepository.Find(x => x.BookId == bookId);
+            if (book == null || book.StatusId != 1)
+            {
+                return Json(new Response
+                {
+                    ResponseType = ResponseType.Error,
+                    Message = "Sorry. This book is not available now."
+                });
+            }
+            var student = _studentRepository.Find(x => x.Id == studentId);
+            if (student == null)
+            {
+                return Json(new Response
+                {
+                    ResponseType = ResponseType.Error,
+                    Message = "Invalid student information."
+                });
+            }
+            return Json(new Response
+            {
+                ResponseType = ResponseType.Success,
+                Message = "Operation Successfull."
+            });
         }
     }
 }

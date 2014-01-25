@@ -65,7 +65,6 @@ footer.credit a:hover {
 
 .book-body {
     background-color: #000000;
-    border: 1px solid #CCCCCC;
     height: 160px;
     text-align: center;
     width: 122px;
@@ -146,6 +145,14 @@ h2.content-header {
     padding-top: 25px;
 }
 
+.loan-button {
+    left: 0;
+    margin-left: 70%;
+    position: absolute;
+    top: 0;
+    width: 200px;
+}
+
 .widget {
     margin-bottom: 10px;
 }
@@ -182,6 +189,74 @@ h2.content-header {
     min-height: 230px;
     padding: 15px 15px 0;
 }
+
+.bouncespinner {
+  width: 70px;
+}
+
+.bouncespinner > div {
+    width: 18px;
+    height: 18px;
+    background-color: #1ABC9C;
+    -ms-border-radius: 100%;
+    border-radius: 100%;
+    display: inline-block;
+    -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+    -moz-animation: bouncedelay 1.4s infinite ease-in-out;
+    -ms-animation: bouncedelay 1.4s infinite ease-in-out;
+    -o-animation: bouncedelay 1.4s infinite ease-in-out;
+    animation: bouncedelay 1.4s infinite ease-in-out;
+    /* Prevent first frame from flickering when animation starts */
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -ms-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.bouncespinner .bounce1 {
+    -webkit-animation-delay: -0.32s;
+    -moz-animation-delay: -0.32s;
+    -ms-animation-delay: -0.32s;
+    -o-animation-delay: -0.32s;
+    animation-delay: -0.32s;
+}
+
+.bouncespinner .bounce2 {
+    -webkit-animation-delay: -0.16s;
+    -moz-animation-delay: -0.16s;
+    -ms-animation-delay: -0.16s;
+    -o-animation-delay: -0.16s;
+    animation-delay: -0.16s;
+}
+
+@-webkit-keyframes bouncedelay {
+    0%, 80%, 100% {
+        -webkit-transform: scale(0.0) transform: scale(0.0);
+    }
+    40% {
+        -webkit-transform: scale(1.0) transform: scale(1.0);
+    }
+}
+
+@keyframes bouncedelay {
+    0%, 80%, 100% {
+        -webkit-transform: scale(0.0);
+        -moz-transform: scale(0.0);
+        -ms-transform: scale(0.0);
+        -o-transform: scale(0.0);
+        transform: scale(0.0);
+    }
+
+    40% {
+        -moz-transform: scale(1.0);
+        -ms-transform: scale(1.0);
+        -o-transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+        transform: scale(1.0);
+    }
+}
+/************************/
 
 .spinner {
     margin: 100px auto;
@@ -287,4 +362,9 @@ h2.content-header {
         -o-transform: scaleY(1.0);
         transform: scaleY(1.0);
     }
+}
+
+.error-message {
+    color: #D35400;
+    font-weight: bold;
 }

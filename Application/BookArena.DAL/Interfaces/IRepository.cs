@@ -1,12 +1,15 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace BookArena.DAL.Interfaces
 {
     public interface IRepository<TEntity>
         where TEntity : class
     {
-        IQueryable<TEntity> All();
-        TEntity Find(int id);
+        IQueryable<TEntity> FindAll();
+        IQueryable<TEntity> FindAll(Expression<Func<TEntity, bool>> predicate);
+        TEntity Find(Expression<Func<TEntity, bool>> predicate);
         void InsertOrUpdate(TEntity entity);
         void Delete(int id);
         void Save();
