@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using BookArena.DAL.Interfaces;
@@ -17,7 +18,14 @@ namespace BookArena.DAL.Repository
 
         public void InsertOrUpdate(Student entity)
         {
-            _dbContext.Student.Add(entity);
+            if (entity.Id == default(int))
+            {
+                _dbContext.Student.Add(entity);
+            }
+            else
+            {
+                _dbContext.Entry(entity).State = EntityState.Modified;
+            }
         }
 
         public void Delete(int id)
