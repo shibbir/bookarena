@@ -237,7 +237,6 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\Application\app.js" />
-    <Content Include="Scripts\Application\Controllers\BookLoanCtrl.js" />
     <Content Include="Scripts\Application\Controllers\BookAddCtrl.js" />
     <Content Include="Scripts\Application\Controllers\BookDetailsCtrl.js" />
     <Content Include="Scripts\Application\Controllers\BookEditCtrl.js" />

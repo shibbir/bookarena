@@ -58,7 +58,7 @@ namespace BookArena.DAL.Repository
                             "Objective-C Programmer's Reference is a swift and to-the-point reference for professional programmers to the language of choice in developing applications for iOS and OSX.",
                         ImageFileName = "apple_1.png",
                         Rating = 3.5,
-                        StatusId = 2
+                        Quantity = 2
                     },
                     new Book
                     {
@@ -69,7 +69,7 @@ namespace BookArena.DAL.Repository
                             "ASP.NET MVC 4 Recipes is a practical guide for developers creating modern web applications on the Microsoft platform. It cuts through the complexities of ASP.NET, jQuery, Knockout.js and HTML 5 to provide straightforward solutions to common web development problems using proven methods based on best practices.",
                         ImageFileName = "asp_2.png",
                         Rating = 3,
-                        StatusId = 1
+                        Quantity = 1
                     }
                 }
             }).FirstOrDefault();

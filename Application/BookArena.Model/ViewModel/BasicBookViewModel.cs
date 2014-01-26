@@ -6,6 +6,6 @@
         public string Title { get; set; }
 
         public string ImageFileName { get; set; }
-        public int StatusId { get; set; }
+        public int Quantity { get; set; }
     }
 }

@@ -29,7 +29,7 @@
                         $scope.book.Author = "";
                         $scope.book.CategoryId = "";
                         $scope.book.Edition = "";
-                        $scope.book.StatusId = "";
+                        $scope.book.Quantity = "";
                         $scope.book.ShortDescription = "";
                     });
                 }

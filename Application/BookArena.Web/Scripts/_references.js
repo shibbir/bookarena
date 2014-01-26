@@ -26,4 +26,3 @@
 /// <reference path="raphael.js" />
 /// <reference path="raphael-min.js" />
 /// <reference path="foundation.js" />
-/// <reference path="application/controllers/bookloanctrl.js" />

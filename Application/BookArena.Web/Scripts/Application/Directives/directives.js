@@ -2,18 +2,15 @@
     app.directive("cdBookStatus", function() {
             return {
                 restrict: "A",
-                link: function($scope, $element, $attrs) {
-                    var statusId = $attrs.cdBookStatus,
+                link: function ($scope, $element, $attrs) {
+                    var qty = $attrs.cdBookStatus,
                         text;
-                    if (statusId === "1") {
+                    if (parseInt(qty) > 0) {
                         text = "Available <i class='fi-check'></i>";
                         $element.addClass("green");
-                    } else if (statusId === "2") {
+                    } else {
                         text = "Not Available <i class='fi-x'></i>";
                         $element.addClass("red");
-                    } else {
-                        text = "Rented <i class='fi-alert'></i>";
-                        $element.addClass("note");
                     }
                     $element.html(text);
                 }

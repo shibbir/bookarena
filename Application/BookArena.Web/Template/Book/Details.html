@@ -1,6 +1,8 @@
-﻿<button class="button loan-button" data-reveal-id="LoanModal" ng-show="authenticatedUser.IsAuthenticated">Loan</button>
+﻿
 
-<div id="LoanModal" class="reveal-modal tiny" data-reveal ng-controller="BookLoanCtrl">
+    <button class="button loan-button" data-reveal-id="LoanModal" ng-show="displayBorrowButton()">Loan</button>
+
+<div id="LoanModal" class="reveal-modal tiny" data-reveal>
     <h2>{{book.Title}}</h2>
     <p class="lead">Search for a student.</p>
     <div class="bouncespinner" ng-show="searchStudentInProgress">

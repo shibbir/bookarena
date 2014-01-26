@@ -57,7 +57,7 @@ namespace BookArena.DAL.Repository
                 Id = book.BookId,
                 Title = book.Title,
                 ImageFileName = book.ImageFileName,
-                StatusId = book.StatusId
+                Quantity = book.Quantity
             }).OrderByDescending(x => x.Id).Take(limit).ToList();
             return latestBooks;
         }

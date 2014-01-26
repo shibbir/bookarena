@@ -129,7 +129,7 @@ namespace BookArena.Web.Controllers
         {
             if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse());
             var book = _bookRepository.Find(x => x.BookId == bookId);
-            if (book == null || book.StatusId != 1)
+            if (book == null || book.Quantity != 1)
             {
                 return Json(new Response
                 {

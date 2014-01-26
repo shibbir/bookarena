@@ -27,11 +27,17 @@
     </div>
     <div class="row" style="margin-top:15px;">
         <div class="large-6 columns">
-            <label>Book Status <span class="red required-star">*</span></label>
-            <input type="radio" id="pokemonRed" value="1" name="StatusId" ng-model="book.StatusId" required><label for="pokemonRed">Available</label>
-            <input type="radio" id="pokemonBlue" value="2" name="StatusId" ng-model="book.StatusId" required><label for="pokemonBlue">Not Available</label>
-            <input type="radio" id="pokemonBlue" value="3" name="StatusId" ng-model="book.StatusId" required><label for="pokemonBlue">Rented</label>
-            <small ng-show="BookEditForm.StatusId.$error.required" class="error">The Book Status field is required.</small>
+            <label>Book Quantity <span class="red required-star">*</span></label>
+            <select name="Quantity" ng-model="book.Quantity" required ng-class="BookEditForm.Quantity.$invalid ? 'error': ''">
+                <option value="">Select Quantity</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+            </select>
+            <small ng-show="BookEditForm.Quantity.$error.required" class="error">The Book Quantity field is required.</small>
         </div>
     </div>
     <div class="row">
