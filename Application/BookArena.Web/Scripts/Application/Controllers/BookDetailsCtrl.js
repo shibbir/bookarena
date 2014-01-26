@@ -2,7 +2,7 @@
 
 (function(app) {
     app.controller("BookDetailsCtrl", [
-        "$scope", "$rootScope", "$routeParams", "$location", "apiService", function($scope, $rootScope, $routeParams, $location, service) {
+        "$scope", "$rootScope", "$routeParams", "$location", "apiService", "notifierService", function($scope, $rootScope, $routeParams, $location, service, notifier) {
             $scope.init = function() {
                 $(document).foundation();
                 $scope.book = {};
@@ -36,9 +36,7 @@
             $scope.borrowBook = function(studentId, bookId) {
                 if ($rootScope.authenticatedUser.IsAuthenticated) {
                     service.call("/books/borrow?studentId=" + studentId + "&bookId=" + bookId, null, "POST").then(function(result) {
-                        if (result.Data) {
-                        } else {
-                        }
+                        notifier.notify(result.Response);
                     });
                 }
             };

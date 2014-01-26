@@ -6,7 +6,17 @@
             if ($rootScope.authenticatedUser.IsAuthenticated) {
                 $scope.book = {};
                 service.call("/students/student/" + $routeParams.id).then(function(result) {
-                    $scope.student = result.Data;
+                    if (result.Data) {
+                        $scope.student = result.Data;
+                        if (result.Transactions.length) {
+                            $scope.transactions = result.Transactions;
+                        }
+                        else {
+                            $scope.transactions = {};
+                        }
+                    } else {
+                        $location.path("/").replace();
+                    }
                 });
             } else {
                 $rootScope.globalContainer = {

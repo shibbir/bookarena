@@ -38,6 +38,7 @@
                 <option>6</option>
             </select>
             <small ng-show="BookAddForm.Quantity.$error.required" class="error">The Book Quantity field is required.</small>
+            <input type="hidden" name="AvailableQuantity" ng-value="book.Quantity" />
         </div>
     </div>
     <div class="row">

@@ -199,7 +199,8 @@ namespace BookArena.Web
                                 "Ultra-Fast ASP.NET 4.5 provides a practical guide to building extremely fast and scalable web sites using ASP.NET and SQL Server, with eminently usable advice and all of the detail you need to understand the recommendations.",
                             ImageFileName = "asp_1.png",
                             Rating = 3,
-                            Quantity = 1
+                            Quantity = 1,
+                            AvailableQuantity = 1
                         },
                         new Book
                         {
@@ -209,7 +210,8 @@ namespace BookArena.Web
                                 "ASP.NET MVC 4 Recipes is a practical guide for developers creating modern web applications on the Microsoft platform. It cuts through the complexities of ASP.NET, jQuery, Knockout.js and HTML 5 to provide straightforward solutions to common web development problems using proven methods based on best practices.",
                             ImageFileName = "asp_2.png",
                             Rating = 3,
-                            Quantity = 1
+                            Quantity = 1,
+                            AvailableQuantity = 1
                         }
                     }
                 },
@@ -226,7 +228,8 @@ namespace BookArena.Web
                                 "Objective-C Programmer's Reference is a swift and to-the-point reference for professional programmers to the language of choice in developing applications for iOS and OSX.",
                             ImageFileName = "apple_1.png",
                             Rating = 3.5,
-                            Quantity = 2
+                            Quantity = 2,
+                            AvailableQuantity = 2
                         },
                         new Book
                         {
@@ -236,7 +239,8 @@ namespace BookArena.Web
                                 "Learn Design for iOS Development is for you if you're an iOS developer and you want to design your own apps to look great and be in tune with the latest Apple guidelines. You'll learn how to design your apps to work with the exciting new iOS 7 look and feel, which your users expect within their latest apps.",
                             ImageFileName = "apple_2.png",
                             Rating = 3,
-                            Quantity = 1
+                            Quantity = 1,
+                            AvailableQuantity = 1
                         },
                         new Book
                         {
@@ -246,7 +250,8 @@ namespace BookArena.Web
                                 "Beginning 3D Game Development with Unity 4 introduces key game production concepts in an artist-friendly manner, removes the hurdles to understanding scripting. It enables independent game artists to learn how to produce casual games for mobile, desktop, and console platforms.",
                             ImageFileName = "apple_3.png",
                             Rating = 4,
-                            Quantity = 2
+                            Quantity = 2,
+                            AvailableQuantity = 2
                         }
                     }
                 },
@@ -265,7 +270,8 @@ namespace BookArena.Web
                                 "The Definitive Guide to MongoDB, Second Edition, shows you how to install, model, and work with data in MongoDB, and write applications for MongoDB using PHP and Python.",
                             ImageFileName = "database_1.png",
                             Rating = 3,
-                            Quantity = 1
+                            Quantity = 1,
+                            AvailableQuantity = 1
                         },
                         new Book
                         {
@@ -275,7 +281,8 @@ namespace BookArena.Web
                                 "Entity Framework 6 Recipes teaches the core concepts of Entity Framework through a broad range of clear and concise solutions to everyday data access tasks.",
                             ImageFileName = "database_2.png",
                             Rating = 3.5,
-                            Quantity = 2
+                            Quantity = 2,
+                            AvailableQuantity = 2
                         }
                     }
                 },
@@ -294,7 +301,8 @@ namespace BookArena.Web
                                 "HTML5 Enterprise Application Development will guide you through the process of building an enterprise application with HTML5, CSS3, and JavaScript through creating a movie finder application. You will learn how to apply HTML5 capabilities in real development problems and how to support consistent user experiences across multiple browsers and operating systems, including mobile platforms.",
                             ImageFileName = "html5_1.jpg",
                             Rating = 3,
-                            Quantity = 1
+                            Quantity = 1,
+                            AvailableQuantity = 1
                         },
                         new Book
                         {
@@ -304,7 +312,8 @@ namespace BookArena.Web
                                 "HTML5 Data and Services Cookbook contains over 100 recipes explaining how to utilize modern features and techniques when building websites or web applications. This book will help you to explore the full power of HTML5 - from number rounding to advanced graphics to real-time data binding.",
                             ImageFileName = "html5_2.jpg",
                             Rating = 4,
-                            Quantity = 3
+                            Quantity = 3,
+                            AvailableQuantity = 3
                         }
                     }
                 },
@@ -321,7 +330,8 @@ namespace BookArena.Web
                                 "Beginning Java EE 7 is one of the first tutorials written with definitive expertise on the Java EE 7 platform. Step by step and easy to follow, this book describes the Java EE 7 features and how to use them.",
                             ImageFileName = "java_1.png",
                             Rating = 4,
-                            Quantity = 1
+                            Quantity = 1,
+                            AvailableQuantity = 1
                         },
                         new Book
                         {
@@ -331,7 +341,8 @@ namespace BookArena.Web
                                 "Pro JPA 2, Second Edition introduces, explains, and demonstrates how to use the new Java Persistence API (JPA) 2.1 from the perspective of one of the specification creators. A one-of-a-kind resource, it provides both theoretical and extremely practical coverage of JPA usage for both beginning and advanced developers.",
                             ImageFileName = "java_2.png",
                             Rating = 4.5,
-                            Quantity = 1
+                            Quantity = 1,
+                            AvailableQuantity = 1
                         }
                     }
                 },
@@ -348,7 +359,8 @@ namespace BookArena.Web
                                 "This book is a practical, hands-on approach to using dependency injection and implementing test-driven development using AngularJS.",
                             ImageFileName = "javascript_1.gif",
                             Rating = 4,
-                            Quantity = 1
+                            Quantity = 1,
+                            AvailableQuantity = 1
                         },
                         new Book
                         {
@@ -358,7 +370,8 @@ namespace BookArena.Web
                                 "Beginning Backbone.js is your step-by-step guide to mastering Backbone.js, taking you from downloading Backbone.js to architecting rich, stable, and robust JavaScript applications.",
                             ImageFileName = "javascript_2.png",
                             Rating = 3.5,
-                            Quantity = 1
+                            Quantity = 1,
+                            AvailableQuantity = 1
                         }
                     }
                 },
@@ -376,7 +389,8 @@ namespace BookArena.Web
                                 "PHP Objects, Patterns, and Practice is designed to help readers develop elegant and rock-solid systems through mastery of three key elements: object fundamentals, design principles, and development best practice.",
                             ImageFileName = "php_1.png",
                             Rating = 4,
-                            Quantity = 3
+                            Quantity = 3,
+                            AvailableQuantity = 3
                         }
                     }
                 },
@@ -394,7 +408,8 @@ namespace BookArena.Web
                                 "Real World Windows 8 Development is a developer’s handbook - an essential guide to building complete, end-user ready Windows 8 applications on the XAML and C# programming stack from start to finish.",
                             ImageFileName = "windows8_1.png",
                             Rating = 4.5,
-                            Quantity = 2
+                            Quantity = 2,
+                            AvailableQuantity = 2
                         },
                         new Book
                         {
@@ -404,7 +419,8 @@ namespace BookArena.Web
                                 "Windows 8 App Projects - XAML and C# Edition takes you through the process of building your own apps for Windows 8 in a project oriented, example driven way. The book is aimed at developers looking to build Windows 8 apps in a variety of contexts.",
                             ImageFileName = "windows8_2.png",
                             Rating = 3.5,
-                            Quantity = 1
+                            Quantity = 1,
+                            AvailableQuantity = 1
                         }
                     }
                 }

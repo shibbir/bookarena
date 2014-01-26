@@ -57,9 +57,19 @@ namespace BookArena.DAL.Repository
                 Id = book.BookId,
                 Title = book.Title,
                 ImageFileName = book.ImageFileName,
-                Quantity = book.Quantity
+                AvailableQuantity = book.AvailableQuantity
             }).OrderByDescending(x => x.Id).Take(limit).ToList();
             return latestBooks;
+        }
+
+        public IQueryable<Transaction> Transactions(Expression<Func<Transaction, bool>> predicate)
+        {
+            return _dbContext.Transaction.Where(predicate);
+        }
+
+        public void SaveTransactions(Transaction transaction)
+        {
+            _dbContext.Transaction.Add(transaction);
         }
 
         public void Save()

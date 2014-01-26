@@ -66,3 +66,32 @@
 
     <button ng-disabled="StudentEditForm.$invalid" class="button small medium-2" ng-click="update()">Update</button>
 </form>
+
+<div ng-if="!transactions.length">
+    <div class="secondary alert-box">No transaction found!</div>
+</div>
+
+<div ng-if="transactions.length">
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>BookId</th>
+                <th>Borrowed Date</th>
+                <th>Expected Return Date</th>
+                <th>Returned Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="transaction in transactions">
+                <td>{{$index + 1}}</td>
+                <td><a ng-href="#/books/book/{{transaction.BookId}}">{{transaction.BookId}}</a></td>
+                <td>{{transaction.FormattedBorrowedDate}}</td>
+                <td>{{transaction.FormattedExpectedReturnDate}}</td>
+                <td>{{transaction.FormattedReturnedDate}}</td>
+                <td>{{transaction.Status}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

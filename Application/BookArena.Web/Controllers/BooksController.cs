@@ -128,28 +128,59 @@ namespace BookArena.Web.Controllers
         public JsonResult Borrow(int studentId, int bookId)
         {
             if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse());
-            var book = _bookRepository.Find(x => x.BookId == bookId);
-            if (book == null || book.Quantity != 1)
-            {
-                return Json(new Response
-                {
-                    ResponseType = ResponseType.Error,
-                    Message = "Sorry. This book is not available now."
-                });
-            }
             var student = _studentRepository.Find(x => x.Id == studentId);
             if (student == null)
             {
-                return Json(new Response
+                return Json(new
                 {
-                    ResponseType = ResponseType.Error,
-                    Message = "Invalid student information."
+                    Response = new Response
+                    {
+                        ResponseType = ResponseType.Error,
+                        Message = "Invalid student information."
+                    }
                 });
             }
-            return Json(new Response
+            var transactions = _bookRepository.Transactions(x => x.StudentId == studentId && x.IsActive);
+            if (transactions.Count() > 2)
             {
-                ResponseType = ResponseType.Success,
-                Message = "Operation Successfull."
+                return Json(new
+                {
+                    Response = new Response
+                    {
+                        ResponseType = ResponseType.Error,
+                        Message = "This student already borrowed two books."
+                    }
+                });
+            }
+            var book = _bookRepository.Find(x => x.BookId == bookId && x.AvailableQuantity > 0 && x.Quantity > 0);
+            if (book == null)
+            {
+                return Json(new
+                {
+                    Response = new Response
+                    {
+                        ResponseType = ResponseType.Error,
+                        Message = "Sorry. This book is not available now."
+                    }
+                });
+            }
+            _bookRepository.SaveTransactions(new Transaction
+            {
+                BookId = bookId,
+                StudentId = studentId,
+                IsActive = true
+            });
+            book.AvailableQuantity--;
+            _bookRepository.InsertOrUpdate(book);
+            _bookRepository.Save();
+
+            return Json(new
+            {
+                Response = new Response
+                {
+                    ResponseType = ResponseType.Success,
+                    Message = "Operation Successfull."
+                }
             });
         }
     }
