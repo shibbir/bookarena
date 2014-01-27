@@ -37,7 +37,7 @@ namespace BookArena.Web.Controllers
         public JsonResult Add(Category category)
         {
             if (!Request.IsAuthenticated)
-                return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
+                return Json(Utility.AccessDeniedResponse());
             if (!ModelState.IsValid)
             {
                 return Json(new
@@ -50,7 +50,7 @@ namespace BookArena.Web.Controllers
                     }
                 });
             }
-            var duplicate = _categoryRepository.FindAll().FirstOrDefault(x => x.Title == category.Title);
+            var duplicate = _categoryRepository.Find(x => x.Title == category.Title);
             if (duplicate != null)
                 return Json(new
                 {
@@ -65,6 +65,7 @@ namespace BookArena.Web.Controllers
             _categoryRepository.Save();
             return Json(new
             {
+                Data = category,
                 Response = new Response
                 {
                     ResponseType = ResponseType.Success,
@@ -77,7 +78,7 @@ namespace BookArena.Web.Controllers
         public JsonResult Edit(Category category)
         {
             if (!Request.IsAuthenticated)
-                return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
+                return Json(Utility.AccessDeniedResponse());
             if (!ModelState.IsValid)
             {
                 return Json(new
@@ -90,10 +91,9 @@ namespace BookArena.Web.Controllers
                     }
                 });
             }
-            var duplicateUser =
-                _categoryRepository.FindAll()
-                    .FirstOrDefault(x => x.Title == category.Title && x.CategoryId != category.CategoryId);
-            if (duplicateUser != null)
+            var duplicate =
+                _categoryRepository.Find(x => x.Title == category.Title && x.CategoryId != category.CategoryId);
+            if (duplicate != null)
                 return Json(new
                 {
                     PreserveInput = true,

@@ -3,7 +3,7 @@
 (function(app) {
     app.controller("BookAddCtrl", [
         "$scope", "$rootScope", "$location", "apiService", "notifierService", function($scope, $rootScope, $location, service, notifier) {
-            if ($scope.authenticatedUser.IsAuthenticated) {
+            if ($rootScope.authenticatedUser.IsAuthenticated) {
                 $scope.book = {};
                 $scope.book.isRequired = true;
                 $scope.categories = [];

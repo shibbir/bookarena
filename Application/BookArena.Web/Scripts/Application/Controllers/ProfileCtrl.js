@@ -3,7 +3,7 @@
 (function(app) {
     app.controller("ProfileCtrl", [
         "$scope", "$rootScope", "$location", function($scope, $rootScope, $location) {
-            if (!$scope.authenticatedUser.IsAuthenticated) {
+            if (!$rootScope.authenticatedUser.IsAuthenticated) {
                 $rootScope.globalContainer = {
                     redirectTo: $location.path(),
                     response: {

@@ -67,7 +67,7 @@ namespace BookArena.Web.Controllers
         public JsonResult Add(Student student)
         {
             if (!Request.IsAuthenticated)
-                return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
+                return Json(Utility.AccessDeniedResponse());
             if (!ModelState.IsValid)
             {
                 return Json(new

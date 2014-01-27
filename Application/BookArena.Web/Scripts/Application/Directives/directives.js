@@ -30,6 +30,7 @@
             };
         })
         .directive("cdCategoryAddForm", function () {
+            $(document).foundation();
             return {
                 restrict: "A",
                 templateUrl: "/Template/Category/CategoryAddForm.html"

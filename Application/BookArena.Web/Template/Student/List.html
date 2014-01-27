@@ -1,6 +1,16 @@
 ﻿<h2 class="content-header">All Registered Students</h2>
 <hr />
 
+<div ng-if="fetchInProgress">
+    <div class="spinner">
+        <div></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+</div>
+
 <div ng-if="!students" class="block text-center red"><strong>Sorry, no student found!</strong></div>
 
 <div id="student-container" ng-if="students">

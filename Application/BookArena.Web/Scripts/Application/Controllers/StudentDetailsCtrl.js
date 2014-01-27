@@ -3,7 +3,7 @@
 (function(app) {
     app.controller("StudentDetailsCtrl", [
         "$scope", "$rootScope", "$routeParams", "$location", "apiService", "notifierService", function($scope, $rootScope, $routeParams, $location, service, notifier) {
-            if ($scope.authenticatedUser.IsAuthenticated) {
+            if ($rootScope.authenticatedUser.IsAuthenticated) {
                 $scope.book = {};
                 service.call("/students/student/" + $routeParams.id).then(function(result) {
                     if (result.Data) {
@@ -30,7 +30,7 @@
             }
 
             $scope.update = function() {
-                if ($scope.StudentEditForm.$valid && $scope.authenticatedUser.IsAuthenticated) {
+                if ($scope.StudentEditForm.$valid && $rootScope.authenticatedUser.IsAuthenticated) {
                     service.call("/students/edit/", $("form[name=StudentEditForm]").serialize(), "POST").then(function(result) {
                         notifier.notify(result.Response);
                     });
