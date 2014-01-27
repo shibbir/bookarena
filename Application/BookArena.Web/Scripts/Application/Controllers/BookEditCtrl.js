@@ -3,7 +3,7 @@
 (function(app) {
     app.controller("BookEditCtrl", [
         "$scope", "$rootScope", "$routeParams", "$location", "apiService", "notifierService", function($scope, $rootScope, $routeParams, $location, service, notifier) {
-            if ($rootScope.authenticatedUser.IsAuthenticated) {
+            if ($scope.authenticatedUser.IsAuthenticated) {
                 $scope.book = {};
                 $scope.categories = [];
                 service.call("/books/categories/").then(function(result) {
@@ -25,7 +25,7 @@
                 $location.path("/account/login").replace();
             }
             $scope.update = function() {
-                if ($scope.BookEditForm.$valid && $rootScope.authenticatedUser.IsAuthenticated) {
+                if ($scope.BookEditForm.$valid && $scope.authenticatedUser.IsAuthenticated) {
                     service.call("/books/edit/", $("form[name=BookEditForm]").serialize(), "POST").then(function(result) {
                         notifier.notify(result.Response);
                     });

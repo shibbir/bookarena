@@ -3,20 +3,20 @@
 (function(app) {
     app.controller("RootCtrl", [
         "$scope", "$rootScope", "$location", "apiService", "notifierService", function($scope, $rootScope, $location, service, notifier) {
-            $rootScope.authenticatedUser = {};
-            $rootScope.checkAuthentication = function() {
+            $scope.authenticatedUser = {};
+            $scope.checkAuthentication = function() {
                 service.call("/account/").then(function(result) {
                     if (result.Data) {
-                        $rootScope.authenticatedUser = result.Data;
-                        $rootScope.authenticatedUser.IsAuthenticated = true;
+                        $scope.authenticatedUser = result.Data;
+                        $scope.authenticatedUser.IsAuthenticated = true;
                     }
                 });
             };
 
-            $rootScope.checkAuthentication();
+            $scope.checkAuthentication();
 
             $scope.checkForPermisssionBefore = function(path) {
-                if (!$rootScope.authenticatedUser.IsAuthenticated) {
+                if (!$scope.authenticatedUser.IsAuthenticated) {
                     $rootScope.globalContainer = {
                         redirectTo: path,
                         response: {
@@ -40,7 +40,7 @@
 
             $scope.logout = function() {
                 service.call("/account/logoff").then(function(result) {
-                    $rootScope.authenticatedUser = {};
+                    $scope.authenticatedUser = {};
                     $rootScope.globalContainer = {
                         response: result.Response
                     };

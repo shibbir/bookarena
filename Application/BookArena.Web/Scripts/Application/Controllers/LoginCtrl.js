@@ -6,7 +6,7 @@
             var tempGlobalContainer = $.extend(true, {}, $rootScope.globalContainer);
             $rootScope.globalContainer = null;
 
-            if ($rootScope.authenticatedUser.IsAuthenticated) {
+            if ($scope.authenticatedUser.IsAuthenticated) {
                 $location.path("/").replace();
             }
             if (tempGlobalContainer && tempGlobalContainer.response) {
@@ -21,8 +21,8 @@
                 if ($scope.LoginForm.$valid) {
                     service.call("/account/login/", $("#LoginForm").serialize(), "POST").then(function(result) {
                         if (result.Data) {
-                            $rootScope.authenticatedUser = result.Data;
-                            $rootScope.authenticatedUser.IsAuthenticated = true;
+                            $scope.authenticatedUser = result.Data;
+                            $scope.authenticatedUser.IsAuthenticated = true;
 
                             if (tempGlobalContainer && tempGlobalContainer.redirectTo) {
                                 $location.path(tempGlobalContainer.redirectTo).replace();

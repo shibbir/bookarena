@@ -3,7 +3,7 @@
 (function(app) {
     app.controller("StudentAddCtrl", [
         "$scope", "$rootScope", "$location", "apiService", "notifierService", function($scope, $rootScope, $location, service, notifier) {
-            if (!$rootScope.authenticatedUser.IsAuthenticated) {
+            if (!$scope.authenticatedUser.IsAuthenticated) {
                 $rootScope.globalContainer = {
                     redirectTo: $location.path(),
                     response: {
