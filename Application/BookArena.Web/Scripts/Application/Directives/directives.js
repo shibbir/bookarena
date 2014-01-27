@@ -29,6 +29,12 @@
                 templateUrl: "/Template/Common/SideNavigation.html"
             };
         })
+        .directive("cdCategoryAddForm", function () {
+            return {
+                restrict: "A",
+                templateUrl: "/Template/Category/CategoryAddForm.html"
+            };
+        })
         .directive("cdRating", function() {
             return {
                 restrict: "A",

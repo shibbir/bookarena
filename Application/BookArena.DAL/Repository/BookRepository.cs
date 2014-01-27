@@ -76,10 +76,5 @@ namespace BookArena.DAL.Repository
         {
             _dbContext.SaveChanges();
         }
-
-        public IQueryable<Category> Categories()
-        {
-            return _dbContext.Category;
-        }
     }
 }

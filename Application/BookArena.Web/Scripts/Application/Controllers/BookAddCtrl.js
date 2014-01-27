@@ -7,7 +7,7 @@
                 $scope.book = {};
                 $scope.book.isRequired = true;
                 $scope.categories = [];
-                service.call("/books/categories/").then(function(result) {
+                service.call("/categories/").then(function(result) {
                     $scope.categories = result.Data;
                 });
             } else {

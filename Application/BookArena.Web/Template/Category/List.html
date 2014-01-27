@@ -1,6 +1,8 @@
 ﻿<h2 class="content-header">Book Categories</h2>
 <hr />
 
+<button class="success" data-reveal-id="CategoryAddModal">Add New Category</button>
+
 <div ng-if="!categories" class="block text-center red"><strong>Sorry, no category found!</strong></div>
 
 <div ng-if="fetchInProgress">
@@ -16,7 +18,7 @@
 <div id="category-container" ng-if="categories">
     <input type="search" ng-model="searchText" placeholder="Filter Category" />
     <div ng-repeat="category in categories | filter: searchText" class="categoryBlock">
-        <h5 class="category-header">{{category.Title}} <small class="green">({{category.Books.length}})</small></h5>
+        <h5 class="category-header">{{category.Title}} <small class="green">({{category.Count}})</small></h5>
         <hr />
         <footer class="pull-right">
             <a ng-href="#/books/category/{{category.CategoryId}}" class="button success tiny">
@@ -24,4 +26,9 @@
             </a>
         </footer>
     </div>
+</div>
+
+<div id="CategoryAddModal" class="reveal-modal tiny" data-reveal>
+    <div data-cd-category-add-form></div>
+    <a class="close-reveal-modal">&#215;</a>
 </div>

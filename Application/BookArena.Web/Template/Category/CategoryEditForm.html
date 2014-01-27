@@ -1,0 +1,18 @@
+﻿<h2 class="content-header">Category Edit Form</h2>
+<hr />
+
+<form name="CategoryEditForm" novalidate>
+    <input type="hidden" ng-value="editableCategory.CategoryId" />
+    <div class="row">
+        <div class="small-8 large-8 columns">
+            <label>Title <span class="red required-star">*</span></label>
+            <input type="text" ng-class="CategoryEditForm.Title.$invalid ? 'error': ''" ng-model="editableCategory.Title" name="Title" required />
+            <small ng-show="CategoryEditForm.Title.$error.required" class="error">The Title field is required</small>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-6 large-6 columns">
+            <button ng-disabled="CategoryEditForm.$invalid" style="width: 50%;" class="button small" ng-click="update()">Update</button>
+        </div>
+    </div>
+</form>

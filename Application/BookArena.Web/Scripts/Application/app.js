@@ -47,8 +47,8 @@
                     })
                 .when(
                     "/categories", {
-                        templateUrl: "Template/Book/Category.html",
-                        controller: "BookListCtrl"
+                        templateUrl: "Template/Category/List.html",
+                        controller: "CategoryCtrl"
                     })
                 .when(
                     "/students", {

@@ -12,23 +12,27 @@ namespace BookArena.Web.Controllers
     public class BooksController : Controller
     {
         private readonly IBookRepository _bookRepository;
+        private readonly ICategoryRepository _categoryRepository;
         private readonly IStudentRepository _studentRepository;
 
         public BooksController()
         {
             _bookRepository = new BookRepository();
+            _categoryRepository = new CategoryRepository();
             _studentRepository = new StudentRepository();
         }
 
-        public BooksController(IBookRepository bookRepository, IStudentRepository studentRepository)
+        public BooksController(IBookRepository bookRepository, ICategoryRepository categoryRepository,
+            IStudentRepository studentRepository)
         {
             _bookRepository = bookRepository;
+            _categoryRepository = categoryRepository;
             _studentRepository = studentRepository;
         }
 
         public JsonResult Index()
         {
-            var model = _bookRepository.Categories().Select(category => new
+            var model = _categoryRepository.FindAll().Select(category => new
             {
                 category.CategoryId,
                 category.Title,
@@ -101,20 +105,9 @@ namespace BookArena.Web.Controllers
             });
         }
 
-        public JsonResult Categories()
-        {
-            var model = _bookRepository.Categories().Select(category => new
-            {
-                category.CategoryId,
-                category.Title
-            }).ToList();
-
-            return Json(new {Data = model}, JsonRequestBehavior.AllowGet);
-        }
-
         public JsonResult Category(int id)
         {
-            var model = _bookRepository.Categories().Where(x => x.CategoryId == id).Select(category => new
+            var model = _categoryRepository.FindAll().Where(x => x.CategoryId == id).Select(category => new
             {
                 category.CategoryId,
                 category.Title,
