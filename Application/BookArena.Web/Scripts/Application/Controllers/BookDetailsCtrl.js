@@ -41,7 +41,7 @@
                 }
             };
             $scope.displayBorrowButton = function() {
-                if ($rootScope.authenticatedUser.IsAuthenticated && $scope.book.Quantity) {
+                if ($rootScope.authenticatedUser.IsAuthenticated && $scope.book.AvailableQuantity) {
                     return true;
                 }
                 return false;

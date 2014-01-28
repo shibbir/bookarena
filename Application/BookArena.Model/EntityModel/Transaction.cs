@@ -13,7 +13,8 @@ namespace BookArena.Model.EntityModel
 
             FormattedBorrowedDate = BorrowedDate.ToShortDateString();
             FormattedExpectedReturnDate = ExpectedReturnDate.ToShortDateString();
-            FormattedReturnedDate = ReturnedDate.ToShortDateString();
+
+            FormattedReturnedDate = ReturnedDate == BorrowedDate ? "Not returned" : ReturnedDate.ToShortDateString();
 
             Status = (IsActive ? "Cleared" : "Not Cleared");
         }

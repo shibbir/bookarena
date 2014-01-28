@@ -65,6 +65,7 @@
                 <p>
                     Category: <a ng-href="#/books/category/{{book.Category.CategoryId}}">{{book.Category.Title}}</a>
                 </p>
+                <strong class="red" ng-if="!book.AvailableQuantity">This book is not available now</strong>
             </div>
             <div class="small-5 medium-5 columns">
                 <a ng-click="loginToEditBook()" ng-hide="authenticatedUser.IsAuthenticated">

@@ -19,6 +19,12 @@ namespace BookArena.Web.Controllers
             _bookRepository = new BookRepository();
         }
 
+        public StudentsController(IStudentRepository studentRepository, IBookRepository bookRepository)
+        {
+            _studentRepository = studentRepository;
+            _bookRepository = bookRepository;
+        }
+
         public JsonResult Index(int? page)
         {
             if (!Request.IsAuthenticated)
@@ -80,8 +86,8 @@ namespace BookArena.Web.Controllers
                     }
                 });
             }
-            var duplicateUser = _studentRepository.FindAll().FirstOrDefault(x => x.IdCardNumber == student.IdCardNumber);
-            if (duplicateUser != null)
+            var duplicate = _studentRepository.FindAll().FirstOrDefault(x => x.IdCardNumber == student.IdCardNumber);
+            if (duplicate != null)
                 return Json(new
                 {
                     PreserveInput = true,
@@ -107,7 +113,7 @@ namespace BookArena.Web.Controllers
         public JsonResult Edit(Student student)
         {
             if (!Request.IsAuthenticated)
-                return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
+                return Json(Utility.AccessDeniedResponse());
             if (!ModelState.IsValid)
             {
                 return Json(new
@@ -120,10 +126,10 @@ namespace BookArena.Web.Controllers
                     }
                 });
             }
-            var duplicateUser =
+            var duplicate =
                 _studentRepository.FindAll()
                     .FirstOrDefault(x => x.IdCardNumber == student.IdCardNumber && x.Id != student.Id);
-            if (duplicateUser != null)
+            if (duplicate != null)
                 return Json(new
                 {
                     PreserveInput = true,
