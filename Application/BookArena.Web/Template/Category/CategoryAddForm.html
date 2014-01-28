@@ -1,17 +1,14 @@
-﻿<h2 class="content-header">Category Add Form</h2>
+﻿<h3 class="content-header">Category Add Form</h3>
 <hr />
 
 <form name="CategoryAddForm" novalidate>
     <div class="row">
-        <div class="small-8 large-8 columns">
-            <label>Title <span class="red required-star">*</span></label>
-            <input type="text" ng-class="CategoryAddForm.Title.$invalid ? 'error': ''" ng-model="category.Title" name="Title" required />
-            <small ng-show="CategoryAddForm.Title.$error.required" class="error">The Title field is required</small>
-        </div>
+        <label>Title <span class="red required-star">*</span></label>
+        <input type="text" ng-class="CategoryAddForm.Title.$invalid ? 'error': ''" ng-model="category.Title" name="Title" required />
+        <small ng-show="CategoryAddForm.Title.$error.required" class="error">The Title field is required</small>
     </div>
-    <div class="row">
-        <div class="small-6 large-6 columns">
-            <button ng-disabled="CategoryAddForm.$invalid" style="width: 50%;" class="button small" ng-click="addCategory()">Add</button>
-        </div>
+    <div class="pull-right">
+        <button type="button" class="alert tiny" ng-click="closeModal('#CategoryAddModal')">Close</button>
+        <button type="button" class="tiny" ng-disabled="CategoryAddForm.$invalid" ng-click="addCategory()">Add</button>
     </div>
 </form>

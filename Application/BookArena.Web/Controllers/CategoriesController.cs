@@ -107,6 +107,7 @@ namespace BookArena.Web.Controllers
             _categoryRepository.Save();
             return Json(new
             {
+                Data = category,
                 Response = new Response
                 {
                     ResponseType = ResponseType.Success,

@@ -368,3 +368,7 @@ h2.content-header {
     color: #D35400;
     font-weight: bold;
 }
+#CategoryAddModal, #CategoryEditModal {
+    width: 420px !important;
+    padding: 15px !important;
+}

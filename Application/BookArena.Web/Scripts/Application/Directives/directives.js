@@ -30,10 +30,21 @@
             };
         })
         .directive("cdCategoryAddForm", function () {
-            $(document).foundation();
             return {
                 restrict: "A",
-                templateUrl: "/Template/Category/CategoryAddForm.html"
+                templateUrl: "/Template/Category/CategoryAddForm.html",
+                link: function () {
+                    $(document).foundation();
+                }
+            };
+        })
+        .directive("cdCategoryEditForm", function () {
+            return {
+                restrict: "A",
+                templateUrl: "/Template/Category/CategoryEditForm.html",
+                link: function () {
+                    $(document).foundation();
+                }
             };
         })
         .directive("cdRating", function() {

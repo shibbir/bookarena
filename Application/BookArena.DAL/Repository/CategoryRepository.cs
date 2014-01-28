@@ -35,7 +35,7 @@ namespace BookArena.DAL.Repository
 
         public IQueryable<Category> FindAll(Expression<Func<Category, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return _dbContext.Category.Where(predicate);
         }
 
         public Category Find(Expression<Func<Category, bool>> predicate)

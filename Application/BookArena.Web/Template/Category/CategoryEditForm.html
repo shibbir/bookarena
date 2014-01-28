@@ -1,18 +1,15 @@
-﻿<h2 class="content-header">Category Edit Form</h2>
+﻿<h3 class="content-header">Category Edit Form</h3>
 <hr />
 
 <form name="CategoryEditForm" novalidate>
-    <input type="hidden" ng-value="editableCategory.CategoryId" />
+    <input type="hidden" ng-value="editableCategory.CategoryId" name="CategoryId" />
     <div class="row">
-        <div class="small-8 large-8 columns">
-            <label>Title <span class="red required-star">*</span></label>
-            <input type="text" ng-class="CategoryEditForm.Title.$invalid ? 'error': ''" ng-model="editableCategory.Title" name="Title" required />
-            <small ng-show="CategoryEditForm.Title.$error.required" class="error">The Title field is required</small>
-        </div>
+        <label>Title <span class="red required-star">*</span></label>
+        <input type="text" ng-class="CategoryEditForm.Title.$invalid ? 'error': ''" ng-model="editableCategory.Title" name="Title" required />
+        <small ng-show="CategoryEditForm.Title.$error.required" class="error">The Title field is required</small>
     </div>
-    <div class="row">
-        <div class="small-6 large-6 columns">
-            <button ng-disabled="CategoryEditForm.$invalid" style="width: 50%;" class="button small" ng-click="updateCategory()">Update</button>
-        </div>
+    <div class="pull-right">
+        <button type="button" ng-disabled="CategoryEditForm.$invalid" class="tiny" ng-click="updateCategory()">Update</button>
+        <button type="button" class="alert tiny" ng-click="closeModal('#CategoryEditModal')">Close</button>
     </div>
 </form>

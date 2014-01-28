@@ -37,6 +37,12 @@
                     $location.path(path);
                 }
             };
+            $scope.openModal = function (selector) {
+                $(selector).foundation("reveal", "open");
+            };
+            $scope.closeModal = function(selector) {
+                $(selector).foundation("reveal", "close");
+            };
 
             $scope.logout = function() {
                 service.call("/account/logoff").then(function(result) {

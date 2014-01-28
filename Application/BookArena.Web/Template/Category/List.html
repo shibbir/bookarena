@@ -24,11 +24,19 @@
             <a ng-href="#/books/category/{{category.CategoryId}}" class="button success tiny">
                 View
             </a>
+            <a ng-show="authenticatedUser.IsAuthenticated" class="button success tiny" ng-click="initCategoryEditForm(category)">
+                Edit
+            </a>
         </footer>
     </div>
 </div>
 
 <div id="CategoryAddModal" class="reveal-modal tiny" data-reveal>
     <div data-cd-category-add-form></div>
+    <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<div id="CategoryEditModal" class="reveal-modal tiny" data-reveal>
+    <div data-cd-category-edit-form></div>
     <a class="close-reveal-modal">&#215;</a>
 </div>

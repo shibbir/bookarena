@@ -63,8 +63,9 @@
             <small ng-show="StudentEditForm.IdCardNumber.$invalid" class="error">Invalid Id card</small>
         </div>
     </div>
-
-    <button ng-disabled="StudentEditForm.$invalid" class="button small medium-2" ng-click="update()">Update</button>
+    
+    <a ng-disabled="StudentEditForm.$invalid" class="button small medium-2" ng-click="update()">Update</a>
+    <a class="button small medium-2 secondary" ng-href="#/students/">Cancel</a>
 </form>
 
 <div ng-if="!transactions.length">
