@@ -1,7 +1,7 @@
 ﻿<button class="button loan-button" data-reveal-id="LoanModal" ng-show="displayBorrowButton()">Loan</button>
 
 <div id="LoanModal" class="reveal-modal tiny" data-reveal>
-    <h2>{{book.Title}}</h2>
+    <h3>{{book.Title}}</h3>
     <p class="lead">Search for a student.</p>
     <div class="bouncespinner" ng-show="searchStudentInProgress">
         <div class="bounce1"></div>
@@ -46,6 +46,12 @@
 <h2 class="content-header">Book Information</h2>
 <hr />
 
+<ul class="breadcrumbs">
+    <li><a ng-href="#/">Home</a></li>
+    <li><a ng-href="#/books">Books</a></li>
+    <li class="current"><a>Details</a></li>
+</ul>
+
 <div class="panel callout radius">
     <h5>{{book.Title}}</h5>
     <p>By {{book.Author}}</p>
@@ -66,6 +72,7 @@
                     Category: <a ng-href="#/books/category/{{book.Category.CategoryId}}">{{book.Category.Title}}</a>
                 </p>
                 <strong class="red" ng-if="!book.AvailableQuantity">This book is not available now</strong>
+                <strong class="green" ng-if="book.AvailableQuantity">{{book.AvailableQuantity}} copies available now</strong>
             </div>
             <div class="small-5 medium-5 columns">
                 <a ng-click="loginToEditBook()" ng-hide="authenticatedUser.IsAuthenticated">

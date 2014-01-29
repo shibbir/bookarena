@@ -25,5 +25,6 @@
 /// <reference path="raphael.js" />
 /// <reference path="raphael-min.js" />
 /// <reference path="jquery-2.1.0.js" />
-/// <reference path="foundation.js" />
 /// <reference path="application/controllers/categoryctrl.js" />
+/// <reference path="foundation.js" />
+/// <reference path="application/controllers/booktransactionctrl.js" />

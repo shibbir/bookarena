@@ -21,10 +21,10 @@
         <h5 class="category-header">{{category.Title}} <small class="green">({{category.Count}})</small></h5>
         <hr />
         <footer class="pull-right">
-            <a ng-href="#/books/category/{{category.CategoryId}}" class="button success tiny">
+            <a ng-href="#/books/category/{{category.CategoryId}}" class="button tiny">
                 View
             </a>
-            <a ng-show="authenticatedUser.IsAuthenticated" class="button success tiny" ng-click="initCategoryEditForm(category)">
+            <a ng-show="authenticatedUser.IsAuthenticated" class="button tiny" ng-click="initCategoryEditForm(category)">
                 Edit
             </a>
         </footer>

@@ -1,6 +1,13 @@
 ﻿<h2 class="content-header">Update Book Information</h2>
 <hr />
 
+<ul class="breadcrumbs">
+    <li><a ng-href="#/">Home</a></li>
+    <li><a ng-href="#/books">Books</a></li>
+    <li><a ng-href="#/books/book/{{book.BookId}}">Details</a></li>
+    <li class="current"><a>Edit</a></li>
+</ul>
+
 <form name="BookEditForm" novalidate>
     <input type="hidden" name="BookId" ng-value="book.BookId" required />
     <input type="hidden" name="ImageFileName" ng-value="book.ImageFileName" required />

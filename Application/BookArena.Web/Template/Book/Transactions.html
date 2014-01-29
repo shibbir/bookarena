@@ -1,0 +1,38 @@
+﻿<h2 class="content-header">Transaction History</h2>
+<hr />
+
+<ul class="breadcrumbs">
+    <li><a ng-href="#/">Home</a></li>
+    <li><a ng-href="#/books/">Books</a></li>
+    <li class="current"><a>Transactions</a></li>
+</ul>
+
+<div ng-if="!transactions.length" class="block text-center red"><strong>Sorry, No transaction history found!</strong></div>
+
+<div ng-if="transactions.length">
+    <input type="search" ng-model="searchText" placeholder="filter: e.g name, id" />
+    <table>
+        <thead>
+            <tr>
+                <th width="20">#</th>
+                <th>Borrowed Date</th>
+                <th>Last Submission Date</th>
+                <th>BookId</th>
+                <th>StudentId</th>
+                <th>Status</th>
+                <th width="60">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="transaction in transactions | filter: searchText">
+                <td>{{$index + 1}}</td>
+                <td>{{transaction.FormattedBorrowedDate}}</td>
+                <td>{{transaction.FormattedLastSubmissionDate}}</td>
+                <td class="text-center"><a ng-href="#/books/book{{transaction.BookId}}">{{transaction.BookId}}</a></td>
+                <td class="text-center"><a ng-href="#/students/student/{{transaction.StudentId}}">{{transaction.StudentId}}</a></td>
+                <td>{{transaction.Status}}</td>
+                <td><a ng-href="#/books/transactions/{{transaction.Id}}">Details</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

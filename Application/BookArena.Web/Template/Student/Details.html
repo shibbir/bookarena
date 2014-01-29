@@ -1,6 +1,12 @@
 ﻿<h2 class="content-header">Student Update Section</h2>
 <hr />
 
+<ul class="breadcrumbs">
+    <li><a ng-href="#/">Home</a></li>
+    <li><a ng-href="#/students">Students</a></li>
+    <li class="current"><a>Details</a></li>
+</ul>
+
 <form name="StudentEditForm" novalidate>
     <input type="hidden" ng-value="student.Id" name="Id" required />
     <div class="row">
@@ -79,19 +85,19 @@
                 <th>#</th>
                 <th>BookId</th>
                 <th>Borrowed Date</th>
-                <th>Expected Return Date</th>
-                <th>Returned Date</th>
+                <th>Last Submission Date</th>
                 <th>Status</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="transaction in transactions">
                 <td>{{$index + 1}}</td>
-                <td><a ng-href="#/books/book/{{transaction.BookId}}">{{transaction.BookId}}</a></td>
+                <td class="text-center"><a ng-href="#/books/book/{{transaction.BookId}}">{{transaction.BookId}}</a></td>
                 <td>{{transaction.FormattedBorrowedDate}}</td>
-                <td>{{transaction.FormattedExpectedReturnDate}}</td>
-                <td>{{transaction.FormattedReturnedDate}}</td>
+                <td>{{transaction.FormattedLastSubmissionDate}}</td>
                 <td>{{transaction.Status}}</td>
+                <td><a ng-href="#/books/transactions/{{transaction.Id}}">Details</a></td>
             </tr>
         </tbody>
     </table>

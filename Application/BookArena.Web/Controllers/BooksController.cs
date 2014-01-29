@@ -121,30 +121,6 @@ namespace BookArena.Web.Controllers
         public JsonResult Borrow(int studentId, int bookId)
         {
             if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse());
-            var student = _studentRepository.Find(x => x.Id == studentId);
-            if (student == null)
-            {
-                return Json(new
-                {
-                    Response = new Response
-                    {
-                        ResponseType = ResponseType.Error,
-                        Message = "Invalid student information."
-                    }
-                });
-            }
-            var transactions = _bookRepository.Transactions(x => x.StudentId == studentId && x.IsActive);
-            if (transactions.Count() > 2)
-            {
-                return Json(new
-                {
-                    Response = new Response
-                    {
-                        ResponseType = ResponseType.Error,
-                        Message = "This student already borrowed two books."
-                    }
-                });
-            }
             var book = _bookRepository.Find(x => x.BookId == bookId && x.AvailableQuantity > 0 && x.Quantity > 0);
             if (book == null)
             {
@@ -157,10 +133,46 @@ namespace BookArena.Web.Controllers
                     }
                 });
             }
+            var student = _studentRepository.Find(x => x.Id == studentId);
+            if (student == null)
+            {
+                return Json(new
+                {
+                    Response = new Response
+                    {
+                        ResponseType = ResponseType.Error,
+                        Message = "Invalid student information."
+                    }
+                });
+            }
+            var transactions = _bookRepository.Transactions(x => x.StudentId == studentId && x.IsActive).ToList();
+            if (transactions.Count() > 2)
+            {
+                return Json(new
+                {
+                    Response = new Response
+                    {
+                        ResponseType = ResponseType.Error,
+                        Message = "This student already have two borrowed books."
+                    }
+                });
+            }
+            if (transactions.Any(transaction => transaction.BookId == bookId && transaction.IsActive))
+            {
+                return Json(new
+                {
+                    Response = new Response
+                    {
+                        ResponseType = ResponseType.Error,
+                        Message = "This student already borrowed this book."
+                    }
+                });
+            }
             _bookRepository.SaveTransactions(new Transaction
             {
                 BookId = bookId,
                 StudentId = studentId,
+                Status = "Not returned yet",
                 IsActive = true
             });
             book.AvailableQuantity--;
@@ -175,6 +187,27 @@ namespace BookArena.Web.Controllers
                     Message = "Operation Successfull."
                 }
             });
+        }
+
+        public JsonResult Transactions()
+        {
+            return !Request.IsAuthenticated
+                ? Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet)
+                : Json(new {Data = _bookRepository.Transactions()}, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult Transaction(int id)
+        {
+            if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
+
+            var transaction = _bookRepository.Transactions(x => x.Id == id).FirstOrDefault();
+
+            if (transaction != null)
+            {
+                transaction.Book = _bookRepository.Find(x => x.BookId == transaction.BookId);
+                transaction.Student = _studentRepository.Find(x => x.Id == transaction.StudentId);
+            }
+            return Json(new {Data = JsonConvert.SerializeObject(transaction)}, JsonRequestBehavior.AllowGet);
         }
     }
 }

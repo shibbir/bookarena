@@ -131,9 +131,6 @@ h5.category-header {
 
 .block {
     background: none repeat scroll 0 0 #FFFFFF;
-    -webkit-box-shadow: 0 2px 9px 0 #CCCCCC;
-    -ms-box-shadow: 0 2px 9px 0 #CCCCCC;
-    box-shadow: 0 2px 9px 0 #CCCCCC;
     padding: 50px;
 }
 

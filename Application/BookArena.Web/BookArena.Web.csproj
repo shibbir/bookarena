@@ -237,6 +237,7 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\Application\app.js" />
+    <Content Include="Scripts\Application\Controllers\BookTransactionCtrl.js" />
     <Content Include="Scripts\Application\Controllers\CategoryCtrl.js" />
     <Content Include="Scripts\Application\Controllers\BookAddCtrl.js" />
     <Content Include="Scripts\Application\Controllers\BookDetailsCtrl.js" />
@@ -270,6 +271,8 @@
     <Content Include="Template\Account\Login.html" />
     <Content Include="Template\Account\Profile.html" />
     <Content Include="Template\Book\Add.html" />
+    <Content Include="Template\Book\TransactionDetails.html" />
+    <Content Include="Template\Book\Transactions.html" />
     <Content Include="Template\Category\CategoryEditForm.html" />
     <Content Include="Template\Category\CategoryAddForm.html" />
     <Content Include="Template\Category\List.html" />

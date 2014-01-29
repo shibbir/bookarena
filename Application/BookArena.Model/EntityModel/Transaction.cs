@@ -8,15 +8,7 @@ namespace BookArena.Model.EntityModel
         public Transaction()
         {
             BorrowedDate = DateTime.UtcNow;
-            ExpectedReturnDate = BorrowedDate.AddDays(9);
-            ReturnedDate = DateTime.UtcNow;
-
-            FormattedBorrowedDate = BorrowedDate.ToShortDateString();
-            FormattedExpectedReturnDate = ExpectedReturnDate.ToShortDateString();
-
-            FormattedReturnedDate = ReturnedDate == BorrowedDate ? "Not returned" : ReturnedDate.ToShortDateString();
-
-            Status = (IsActive ? "Cleared" : "Not Cleared");
+            LastSubmissionDate = BorrowedDate.AddDays(9);
         }
 
         public int Id { get; set; }
@@ -28,21 +20,8 @@ namespace BookArena.Model.EntityModel
         public DateTime BorrowedDate { get; set; }
 
         [Column(TypeName = "DateTime2")]
-        public DateTime ExpectedReturnDate { get; set; }
+        public DateTime LastSubmissionDate { get; set; }
 
-        [Column(TypeName = "DateTime2")]
-        public DateTime ReturnedDate { get; set; }
-
-        [NotMapped]
-        public string FormattedBorrowedDate { get; set; }
-
-        [NotMapped]
-        public string FormattedExpectedReturnDate { get; set; }
-
-        [NotMapped]
-        public string FormattedReturnedDate { get; set; }
-
-        [NotMapped]
         public string Status { get; set; }
     }
 }

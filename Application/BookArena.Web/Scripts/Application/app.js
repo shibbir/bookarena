@@ -26,6 +26,16 @@
                         controller: "BookListCtrl"
                     })
                 .when(
+                    "/books/transactions", {
+                        templateUrl: "Template/Book/Transactions.html",
+                        controller: "BookTransactionCtrl"
+                    })
+                .when(
+                    "/books/transactions/:transactionId", {
+                        templateUrl: "Template/Book/TransactionDetails.html",
+                        controller: "BookTransactionCtrl"
+                    })
+                .when(
                     "/books/add", {
                         templateUrl: "Template/Book/Add.html",
                         controller: "BookAddCtrl"

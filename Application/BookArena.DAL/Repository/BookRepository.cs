@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using AutoMapper;
 using BookArena.DAL.Interfaces;
 using BookArena.Model.EntityModel;
 using BookArena.Model.ViewModel;
@@ -62,9 +63,18 @@ namespace BookArena.DAL.Repository
             return latestBooks;
         }
 
-        public IQueryable<Transaction> Transactions(Expression<Func<Transaction, bool>> predicate)
+        public IEnumerable<TransactionViewModel> Transactions()
         {
-            return _dbContext.Transaction.Where(predicate);
+            var transactions = _dbContext.Transaction.ToList();
+            Mapper.CreateMap<Transaction, TransactionViewModel>();
+            return Mapper.Map<List<Transaction>, List<TransactionViewModel>>(transactions);
+        }
+
+        public IEnumerable<TransactionViewModel> Transactions(Expression<Func<Transaction, bool>> predicate)
+        {
+            var transactions = _dbContext.Transaction.Where(predicate).ToList();
+            Mapper.CreateMap<Transaction, TransactionViewModel>();
+            return Mapper.Map<List<Transaction>, List<TransactionViewModel>>(transactions);
         }
 
         public void SaveTransactions(Transaction transaction)

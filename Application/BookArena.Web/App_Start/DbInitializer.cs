@@ -36,13 +36,6 @@ namespace BookArena.Web
                 userManager.AddToRole(user.Id, role);
             }
 
-            context.Config.Add(new Config
-            {
-                FineAmount = 10,
-                BookRentDurationInDays = 10,
-                Institute = "Stamford University Bangladesh"
-            });
-
             new List<Student>
             {
                 new Student
@@ -200,7 +193,7 @@ namespace BookArena.Web
                             ImageFileName = "asp_1.png",
                             Rating = 3,
                             Quantity = 1,
-                            AvailableQuantity = 1
+                            AvailableQuantity = 6
                         },
                         new Book
                         {
@@ -211,7 +204,7 @@ namespace BookArena.Web
                             ImageFileName = "asp_2.png",
                             Rating = 3,
                             Quantity = 1,
-                            AvailableQuantity = 1
+                            AvailableQuantity = 5
                         }
                     }
                 },
@@ -229,7 +222,7 @@ namespace BookArena.Web
                             ImageFileName = "apple_1.png",
                             Rating = 3.5,
                             Quantity = 2,
-                            AvailableQuantity = 2
+                            AvailableQuantity = 4
                         },
                         new Book
                         {
@@ -240,7 +233,7 @@ namespace BookArena.Web
                             ImageFileName = "apple_2.png",
                             Rating = 3,
                             Quantity = 1,
-                            AvailableQuantity = 1
+                            AvailableQuantity = 7
                         },
                         new Book
                         {
@@ -251,7 +244,7 @@ namespace BookArena.Web
                             ImageFileName = "apple_3.png",
                             Rating = 4,
                             Quantity = 2,
-                            AvailableQuantity = 2
+                            AvailableQuantity = 8
                         }
                     }
                 },
@@ -271,7 +264,7 @@ namespace BookArena.Web
                             ImageFileName = "database_1.png",
                             Rating = 3,
                             Quantity = 1,
-                            AvailableQuantity = 1
+                            AvailableQuantity = 5
                         },
                         new Book
                         {
@@ -282,7 +275,7 @@ namespace BookArena.Web
                             ImageFileName = "database_2.png",
                             Rating = 3.5,
                             Quantity = 2,
-                            AvailableQuantity = 2
+                            AvailableQuantity = 4
                         }
                     }
                 },
@@ -302,7 +295,7 @@ namespace BookArena.Web
                             ImageFileName = "html5_1.jpg",
                             Rating = 3,
                             Quantity = 1,
-                            AvailableQuantity = 1
+                            AvailableQuantity = 5
                         },
                         new Book
                         {
@@ -313,7 +306,7 @@ namespace BookArena.Web
                             ImageFileName = "html5_2.jpg",
                             Rating = 4,
                             Quantity = 3,
-                            AvailableQuantity = 3
+                            AvailableQuantity = 7
                         }
                     }
                 },

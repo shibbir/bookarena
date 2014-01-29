@@ -14,7 +14,6 @@ namespace BookArena.DAL
         public DbSet<Category> Category { get; set; }
         public DbSet<Student> Student { get; set; }
         public DbSet<Book> Book { get; set; }
-        public DbSet<Config> Config { get; set; }
         public DbSet<Transaction> Transaction { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

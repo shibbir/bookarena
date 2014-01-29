@@ -28,7 +28,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="student in students | filter: searchText">
-                <td>{{$index}}</td>
+                <td>{{$index + 1}}</td>
                 <td>{{student.Program}}</td>
                 <td>{{student.Batch}}</td>
                 <td>{{student.FirstName}} {{student.LastName}}</td>
