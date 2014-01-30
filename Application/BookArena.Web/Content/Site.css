@@ -369,3 +369,48 @@ h2.content-header {
     width: 420px !important;
     padding: 15px !important;
 }
+
+.my-repeat-animation.ng-enter,
+.my-repeat-animation.ng-leave,
+.my-repeat-animation.ng-move {
+    -webkit-transition: 0.5s linear all;
+    -moz-transition: 0.5s linear all;
+    -ms-transition: 0.5s linear all;
+    -o-transition: 0.5s linear all;
+    transition: 0.5s linear all;
+    position: relative;
+}
+
+.my-repeat-animation.ng-enter {
+    left: -10px;
+    -ms-opacity: 0;
+    opacity: 0;
+}
+
+.my-repeat-animation.ng-enter.ng-enter-active {
+    left: 0;
+    -ms-opacity: 1;
+    opacity: 1;
+}
+
+.my-repeat-animation.ng-leave {
+    left: 0;
+    -ms-opacity: 1;
+    opacity: 1;
+}
+
+.my-repeat-animation.ng-leave.ng-leave-active {
+    left: -10px;
+    -ms-opacity: 0;
+    opacity: 0;
+}
+
+.my-repeat-animation.ng-move {
+    -ms-opacity: 0.5;
+    opacity: 0.5;
+}
+
+.my-repeat-animation.ng-move.ng-move-active {
+    -ms-opacity: 1;
+    opacity: 1;
+}

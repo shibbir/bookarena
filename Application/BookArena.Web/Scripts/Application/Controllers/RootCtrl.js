@@ -4,6 +4,12 @@
     app.controller("RootCtrl", [
         "$scope", "$rootScope", "$location", "apiService", "notifierService", function($scope, $rootScope, $location, service, notifier) {
             $rootScope.authenticatedUser = {};
+            $scope.notImplemented = function () {
+                notifier.notify({
+                    ResponseType: "error",
+                    Message: "Sorry! This feature is not available yet."
+                });
+            };
             $scope.checkAuthentication = function() {
                 service.call("/account/").then(function(result) {
                     if (result.Data) {
