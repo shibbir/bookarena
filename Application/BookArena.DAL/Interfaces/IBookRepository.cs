@@ -12,7 +12,7 @@ namespace BookArena.DAL.Interfaces
         IQueryable<BookViewModel> Books();
         BookViewModel Book(Expression<Func<Book, bool>> predicate);
         IQueryable<BookViewModel> Books(Expression<Func<Book, bool>> predicate);
-        IEnumerable<BasicBookViewModel> LatestBooks(int limit);
+        IQueryable<BookViewModel> LatestBooks(int limit);
         IEnumerable<TransactionViewModel> Transactions();
         IEnumerable<TransactionViewModel> Transactions(Expression<Func<Transaction, bool>> predicate);
         void SaveTransactions(Transaction transaction);

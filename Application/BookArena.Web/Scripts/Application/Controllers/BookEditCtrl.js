@@ -10,9 +10,8 @@
                     $scope.categories = result.Data;
                 });
                 service.call("/books/book/" + $routeParams.id).then(function(result) {
-                    result.Data = $.parseJSON(result.Data);
                     $scope.book = result.Data;
-                    $scope.book.CategoryId = $scope.book.Category.CategoryId;
+                    $scope.book.CategoryId = $scope.book.CategoryId;
                 });
             } else {
                 $rootScope.globalContainer = {

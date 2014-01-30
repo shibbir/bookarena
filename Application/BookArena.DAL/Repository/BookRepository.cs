@@ -105,15 +105,15 @@ namespace BookArena.DAL.Repository
             });
         }
 
-        public IEnumerable<BasicBookViewModel> LatestBooks(int limit)
+        public IQueryable<BookViewModel> LatestBooks(int limit)
         {
-            var latestBooks = _dbContext.Book.Select(book => new BasicBookViewModel
+            var latestBooks = _dbContext.Book.Select(book => new BookViewModel
             {
-                Id = book.BookId,
+                BookId = book.BookId,
                 Title = book.Title,
                 ImageFileName = book.ImageFileName,
                 AvailableQuantity = book.AvailableQuantity
-            }).OrderByDescending(x => x.Id).Take(limit).ToList();
+            }).OrderByDescending(x => x.BookId).Take(limit);
             return latestBooks;
         }
 

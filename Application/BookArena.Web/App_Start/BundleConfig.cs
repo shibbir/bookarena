@@ -12,7 +12,7 @@ namespace BookArena.Web
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                 "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/library").Include(
+            bundles.Add(new ScriptBundle("~/bundles/js").Include(
                 "~/Scripts/jquery-{version}.js",
                 "~/Scripts/foundation.min.js",
                 "~/Scripts/toastr.js",
@@ -22,9 +22,7 @@ namespace BookArena.Web
                 "~/Scripts/angular-animate.js",
                 "~/Scripts/angular-route.js",
                 "~/Scripts/raphael.js",
-                "~/Scripts/morris.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                "~/Scripts/morris.js",
                 "~/Scripts/Application/app.js",
                 "~/Scripts/Application/Services/api-service.js",
                 "~/Scripts/Application/Services/notifier-service.js",
