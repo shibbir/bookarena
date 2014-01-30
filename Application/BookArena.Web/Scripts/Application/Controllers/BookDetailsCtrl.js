@@ -10,7 +10,6 @@
                 $scope.searchedStudent = {};
 
                 service.call("/books/book/" + $routeParams.id).then(function(result) {
-                    result.Data = $.parseJSON(result.Data);
                     $scope.book = result.Data;
                 });
             }();

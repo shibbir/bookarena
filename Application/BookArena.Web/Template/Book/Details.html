@@ -69,7 +69,7 @@
                     Rating: <span cd-rating="{{book.Rating}}"></span>
                 </span>
                 <p>
-                    Category: <a ng-href="#/books/category/{{book.Category.CategoryId}}">{{book.Category.Title}}</a>
+                    Category: <a ng-href="#/books/category/{{book.CategoryId}}">{{book.CategoryTitle}}</a>
                 </p>
                 <strong class="red" ng-if="!book.AvailableQuantity">This book is not available now</strong>
                 <strong class="green" ng-if="book.AvailableQuantity">{{book.AvailableQuantity}} copies available now</strong>

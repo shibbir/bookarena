@@ -51,6 +51,60 @@ namespace BookArena.DAL.Repository
             throw new NotImplementedException();
         }
 
+        public IQueryable<BookViewModel> Books()
+        {
+            return _dbContext.Book.Select(book => new BookViewModel
+            {
+                BookId = book.BookId,
+                Title = book.Title,
+                Author = book.Author,
+                ShortDescription = book.ShortDescription,
+                LongDescription = book.LongDescription,
+                ImageFileName = book.ImageFileName,
+                AvailableQuantity = book.AvailableQuantity,
+                Quantity = book.Quantity,
+                Rating = book.Rating,
+                CategoryTitle = book.Category.Title,
+                CategoryId = book.Category.CategoryId
+            });
+        }
+
+        public BookViewModel Book(Expression<Func<Book, bool>> predicate)
+        {
+            return _dbContext.Book.Where(predicate).Select(book => new BookViewModel
+            {
+                BookId = book.BookId,
+                Title = book.Title,
+                Author = book.Author,
+                ShortDescription = book.ShortDescription,
+                LongDescription = book.LongDescription,
+                ImageFileName = book.ImageFileName,
+                AvailableQuantity = book.AvailableQuantity,
+                Quantity = book.Quantity,
+                Rating = book.Rating,
+                CategoryTitle = book.Category.Title,
+                CategoryId = book.Category.CategoryId
+            }).FirstOrDefault();
+        }
+
+        public IQueryable<BookViewModel> Books(Expression<Func<Book, bool>> predicate)
+        {
+            return _dbContext.Book.Where(predicate).Select(book => new BookViewModel
+            {
+                BookId = book.BookId,
+                Title = book.Title,
+                Author = book.Author,
+                ShortDescription = book.ShortDescription,
+                LongDescription = book.LongDescription,
+                ImageFileName = book.ImageFileName,
+                AvailableQuantity = book.AvailableQuantity,
+                Quantity = book.Quantity,
+                Rating = book.Rating,
+                CategoryTitle = book.Category.Title,
+                CategoryId = book.Category.CategoryId
+            });
+        }
+
         public IEnumerable<BasicBookViewModel> LatestBooks(int limit)
         {
             var latestBooks = _dbContext.Book.Select(book => new BasicBookViewModel

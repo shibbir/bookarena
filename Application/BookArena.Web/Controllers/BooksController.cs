@@ -18,15 +18,13 @@ namespace BookArena.Web.Controllers
         public BooksController()
         {
             _bookRepository = new BookRepository();
-            _categoryRepository = new CategoryRepository();
             _studentRepository = new StudentRepository();
+            _categoryRepository = new CategoryRepository();
         }
 
-        public BooksController(IBookRepository bookRepository, ICategoryRepository categoryRepository,
-            IStudentRepository studentRepository)
+        public BooksController(IBookRepository bookRepository, IStudentRepository studentRepository)
         {
             _bookRepository = bookRepository;
-            _categoryRepository = categoryRepository;
             _studentRepository = studentRepository;
         }
 
@@ -38,7 +36,6 @@ namespace BookArena.Web.Controllers
                 category.Title,
                 category.Books
             }).ToList();
-
             return Json(new {Data = JsonConvert.SerializeObject(model)}, JsonRequestBehavior.AllowGet);
         }
 
@@ -50,9 +47,8 @@ namespace BookArena.Web.Controllers
 
         public JsonResult Book(int id)
         {
-            var model = _bookRepository.Find(x => x.BookId == id);
-
-            return Json(new {Data = JsonConvert.SerializeObject(model)}, JsonRequestBehavior.AllowGet);
+            var model = _bookRepository.Book(x => x.BookId == id);
+            return Json(new {Data = model}, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -113,7 +109,6 @@ namespace BookArena.Web.Controllers
                 category.Title,
                 category.Books
             }).ToList();
-
             return Json(new {Data = JsonConvert.SerializeObject(model)}, JsonRequestBehavior.AllowGet);
         }
 

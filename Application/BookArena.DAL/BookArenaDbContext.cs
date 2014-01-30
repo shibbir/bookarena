@@ -18,9 +18,12 @@ namespace BookArena.DAL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Book>()
-                .HasRequired(t => t.Category)
-                .WithMany(t => t.Books);
+            //modelBuilder.Entity<Book>()
+            //    .HasRequired(t => t.Category);
+                //.WithMany(t => t.Books);
+            modelBuilder.Entity<Category>()
+                .HasMany(t => t.Books);
+                //.HasOptional(t => t.Books);
             base.OnModelCreating(modelBuilder);
         }
     }

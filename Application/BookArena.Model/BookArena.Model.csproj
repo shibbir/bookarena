@@ -65,7 +65,7 @@
     <Compile Include="EntityModel\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EntityModel\Transaction.cs" />
-    <Compile Include="ViewModel\BasicBookViewModel.cs" />
+    <Compile Include="ViewModel\BookViewModels.cs" />
     <Compile Include="ViewModel\TransactionViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
