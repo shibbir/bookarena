@@ -146,7 +146,7 @@ namespace BookArena.Web.Controllers
                 });
             }
             var transactions = _transactionRepository.FindAll(x => x.StudentId == studentId && x.IsActive).ToList();
-            if (transactions.Count() > 2)
+            if (transactions.Count() >= 2)
             {
                 return Json(new
                 {
@@ -186,6 +186,47 @@ namespace BookArena.Web.Controllers
                 {
                     ResponseType = ResponseType.Success,
                     Message = "Operation Successfull."
+                }
+            });
+        }
+
+        [HttpPost]
+        public JsonResult Receive(int id)
+        {
+            if (!Request.IsAuthenticated)
+                return Json(Utility.AccessDeniedResponse());
+
+            var transaction = _transactionRepository.Find(x => x.Id == id && x.IsActive);
+
+            if (transaction == null)
+            {
+                return Json(new
+                {
+                    Response = new Response
+                    {
+                        ResponseType = ResponseType.Error,
+                        Message = "This transaction is already cleared!"
+                    }
+                });
+            }
+
+            var book = _bookRepository.Find(x => x.BookId == transaction.BookId);
+            book.AvailableQuantity++;
+            _bookRepository.InsertOrUpdate(book);
+            _bookRepository.Save();
+
+            transaction.Status = "Returned";
+            transaction.IsActive = false;
+            _transactionRepository.InsertOrUpdate(transaction);
+            _transactionRepository.Save();
+
+            return Json(new
+            {
+                Data = transaction,
+                Response = new Response
+                {
+                    ResponseType = ResponseType.Success,
+                    Message = "The transaction is cleared!"
                 }
             });
         }

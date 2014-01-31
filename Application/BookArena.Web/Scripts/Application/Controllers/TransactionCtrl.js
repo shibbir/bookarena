@@ -16,7 +16,7 @@
                     if (isNaN(id)) {
                         $location.path("/").replace();
                     } else {
-                        service.call("/transactions/transaction/" + id).then(function (result) {
+                        service.call("/transactions/transaction/" + id).then(function(result) {
                             result.Data = $.parseJSON(result.Data);
                             if (result.Data) {
                                 $scope.transactionDetail = result.Data;
@@ -34,9 +34,15 @@
                 };
                 $location.path("/account/login").replace();
             }
-            $scope.clear = function(transaction) {
-                service.call("/transactios/clear/", transaction.serialize(), "POST").then(function(result) {
+            $scope.receiveBook = function(transactionId) {
+                service.call("/books/receive/" + transactionId, null, "POST").then(function(result) {
                     notifier.notify(result.Response);
+                    if (result.Data) {
+                        $scope.cleared = true;
+                        $scope.transactionDetail.IsActive = result.Data.IsActive;
+                        $scope.transactionDetail.Status = result.Data.Status;
+                    }
+
                 });
             };
         }

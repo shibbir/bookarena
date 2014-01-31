@@ -16,7 +16,7 @@
                 }).success(function(result) {
                     $rootScope.fetchInProgress = false;
                     deferred.resolve(result);
-                }).error(function (result, status) {
+                }).error(function(result, status) {
                     $rootScope.fetchInProgress = false;
                     deferred.reject(status);
                 });

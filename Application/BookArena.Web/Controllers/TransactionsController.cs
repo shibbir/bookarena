@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using BookArena.DAL.Interfaces;
 using BookArena.DAL.Repository;
-using BookArena.Model;
 using BookArena.Model.EntityModel;
 using BookArena.Model.ViewModel;
 using BookArena.Web.Helper;
@@ -51,22 +50,6 @@ namespace BookArena.Web.Controllers
                 transaction.Student = _studentRepository.Find(x => x.Id == transaction.StudentId);
             }
             return Json(new {Data = JsonConvert.SerializeObject(transaction)}, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        public JsonResult Clear(Transaction transaction)
-        {
-            if (!Request.IsAuthenticated)
-                return Json(Utility.AccessDeniedResponse());
-
-            return Json(new
-            {
-                Response = new Response
-                {
-                    ResponseType = ResponseType.Success,
-                    Message = "The transaction is cleared!"
-                }
-            });
         }
     }
 }

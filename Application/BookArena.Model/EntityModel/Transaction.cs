@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookArena.Model.EntityModel
@@ -12,8 +13,13 @@ namespace BookArena.Model.EntityModel
         }
 
         public int Id { get; set; }
+
+        [Required]
         public int StudentId { get; set; }
+
+        [Required]
         public int BookId { get; set; }
+
         public bool IsActive { get; set; }
 
         [Column(TypeName = "DateTime2")]

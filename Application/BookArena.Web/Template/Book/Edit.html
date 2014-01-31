@@ -36,13 +36,27 @@
         <div class="large-4 columns">
             <label>Book Quantity <span class="red required-star">*</span></label>
             <select name="Quantity" ng-model="book.Quantity" required ng-class="BookEditForm.Quantity.$invalid ? 'error': ''">
-                <option value="">Select Quantity</option>
+                <option>0</option>
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>
                 <option>5</option>
                 <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19</option>
+                <option>20</option>
             </select>
             <small ng-show="BookEditForm.Quantity.$error.required" class="error">The Book Quantity field is required.</small>
             <input type="hidden" name="AvailableQuantity" ng-value="book.Quantity" />
@@ -57,5 +71,5 @@
     </div>
 
     <a ng-disabled="BookEditForm.$invalid" class="button small medium-3" ng-click="update()">Update</a>
-    <a ng-href="#/books/book/{{book.BookId}}" class="button secondary small medium-3">Cancel</a>
+    <a ng-href="#/books/book/{{book.BookId}}" class="button secondary small medium-3">Go Back</a>
 </form>
