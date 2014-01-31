@@ -24,7 +24,8 @@ namespace BookArena.Web.Controllers
             _transactionRepository = new TransactionRepository();
         }
 
-        public BooksController(IBookRepository bookRepository, IStudentRepository studentRepository, ICategoryRepository categoryRepository, ITransactionRepository transactionRepository)
+        public BooksController(IBookRepository bookRepository, IStudentRepository studentRepository,
+            ICategoryRepository categoryRepository, ITransactionRepository transactionRepository)
         {
             _bookRepository = bookRepository;
             _studentRepository = studentRepository;
@@ -144,7 +145,7 @@ namespace BookArena.Web.Controllers
                     }
                 });
             }
-            var transactions = _transactionRepository.Transactions(x => x.StudentId == studentId && x.IsActive).ToList();
+            var transactions = _transactionRepository.FindAll(x => x.StudentId == studentId && x.IsActive).ToList();
             if (transactions.Count() > 2)
             {
                 return Json(new
@@ -177,6 +178,7 @@ namespace BookArena.Web.Controllers
             book.AvailableQuantity--;
             _bookRepository.InsertOrUpdate(book);
             _bookRepository.Save();
+            _transactionRepository.Save();
 
             return Json(new
             {

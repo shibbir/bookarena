@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using AutoMapper;
 using BookArena.DAL.Interfaces;
 using BookArena.Model.EntityModel;
-using BookArena.Model.ViewModel;
 
 namespace BookArena.DAL.Repository
 {
@@ -38,31 +35,17 @@ namespace BookArena.DAL.Repository
 
         public IQueryable<Transaction> FindAll(Expression<Func<Transaction, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return _dbContext.Transaction.Where(predicate);
         }
 
         public Transaction Find(Expression<Func<Transaction, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return _dbContext.Transaction.Where(predicate).FirstOrDefault();
         }
 
         public IQueryable<Transaction> FindAll()
         {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<TransactionViewModel> Transactions()
-        {
-            var transactions = _dbContext.Transaction.ToList();
-            Mapper.CreateMap<Transaction, TransactionViewModel>();
-            return Mapper.Map<List<Transaction>, List<TransactionViewModel>>(transactions);
-        }
-
-        public IEnumerable<TransactionViewModel> Transactions(Expression<Func<Transaction, bool>> predicate)
-        {
-            var transactions = _dbContext.Transaction.Where(predicate).ToList();
-            Mapper.CreateMap<Transaction, TransactionViewModel>();
-            return Mapper.Map<List<Transaction>, List<TransactionViewModel>>(transactions);
+            return _dbContext.Transaction;
         }
 
         public void Save()

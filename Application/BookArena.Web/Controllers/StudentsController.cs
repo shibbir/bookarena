@@ -4,6 +4,7 @@ using BookArena.DAL.Interfaces;
 using BookArena.DAL.Repository;
 using BookArena.Model;
 using BookArena.Model.EntityModel;
+using BookArena.Model.ViewModel;
 using BookArena.Web.Helper;
 
 namespace BookArena.Web.Controllers
@@ -57,7 +58,9 @@ namespace BookArena.Web.Controllers
             if (!Request.IsAuthenticated)
                 return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
             var model = _studentRepository.Find(x => x.Id == id);
-            var transactions = _transactionRepository.Transactions(x => x.StudentId == id);
+            var transactions =
+                Mapper<Transaction, TransactionViewModel>.ListMap(
+                    _transactionRepository.FindAll(x => x.StudentId == id).ToList());
             return Json(new {Data = model, Transactions = transactions}, JsonRequestBehavior.AllowGet);
         }
 

@@ -4,6 +4,7 @@ using BookArena.DAL.Interfaces;
 using BookArena.DAL.Repository;
 using BookArena.Model;
 using BookArena.Model.EntityModel;
+using BookArena.Model.ViewModel;
 using BookArena.Web.Helper;
 using Newtonsoft.Json;
 
@@ -32,16 +33,17 @@ namespace BookArena.Web.Controllers
 
         public JsonResult Index()
         {
-            return !Request.IsAuthenticated
-                ? Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet)
-                : Json(new {Data = _transactionRepository.Transactions()}, JsonRequestBehavior.AllowGet);
+            if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
+            var data = Mapper<Transaction, TransactionViewModel>.ListMap(_transactionRepository.FindAll().ToList());
+            return Json(new {Data = data}, JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult Transaction(int id)
         {
             if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
 
-            var transaction = _transactionRepository.Transactions(x => x.Id == id).FirstOrDefault();
+            var transaction =
+                Mapper<Transaction, TransactionViewModel>.SingleMap(_transactionRepository.Find(x => x.Id == id));
 
             if (transaction != null)
             {
