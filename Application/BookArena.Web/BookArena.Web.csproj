@@ -186,6 +186,7 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
+    <Compile Include="Controllers\TransactionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -249,7 +250,7 @@
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\Application\app.js" />
-    <Content Include="Scripts\Application\Controllers\BookTransactionCtrl.js" />
+    <Content Include="Scripts\Application\Controllers\TransactionCtrl.js" />
     <Content Include="Scripts\Application\Controllers\CategoryCtrl.js" />
     <Content Include="Scripts\Application\Controllers\BookAddCtrl.js" />
     <Content Include="Scripts\Application\Controllers\BookDetailsCtrl.js" />

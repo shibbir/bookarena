@@ -11,18 +11,18 @@ namespace BookArena.Web.Controllers
     public class StudentsController : Controller
     {
         private readonly IStudentRepository _studentRepository;
-        private readonly IBookRepository _bookRepository;
+        private readonly ITransactionRepository _transactionRepository;
 
         public StudentsController()
         {
             _studentRepository = new StudentRepository();
-            _bookRepository = new BookRepository();
+            _transactionRepository = new TransactionRepository();
         }
 
-        public StudentsController(IStudentRepository studentRepository, IBookRepository bookRepository)
+        public StudentsController(IStudentRepository studentRepository, ITransactionRepository transactionRepository)
         {
             _studentRepository = studentRepository;
-            _bookRepository = bookRepository;
+            _transactionRepository = transactionRepository;
         }
 
         public JsonResult Index(int? page)
@@ -57,7 +57,7 @@ namespace BookArena.Web.Controllers
             if (!Request.IsAuthenticated)
                 return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
             var model = _studentRepository.Find(x => x.Id == id);
-            var transactions = _bookRepository.Transactions(x => x.StudentId == id);
+            var transactions = _transactionRepository.Transactions(x => x.StudentId == id);
             return Json(new {Data = model, Transactions = transactions}, JsonRequestBehavior.AllowGet);
         }
 

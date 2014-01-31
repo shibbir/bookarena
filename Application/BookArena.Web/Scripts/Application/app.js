@@ -28,12 +28,12 @@
                 .when(
                     "/books/transactions", {
                         templateUrl: "Template/Book/Transactions.html",
-                        controller: "BookTransactionCtrl"
+                        controller: "TransactionCtrl"
                     })
                 .when(
                     "/books/transactions/:transactionId", {
                         templateUrl: "Template/Book/TransactionDetails.html",
-                        controller: "BookTransactionCtrl"
+                        controller: "TransactionCtrl"
                     })
                 .when(
                     "/books/add", {

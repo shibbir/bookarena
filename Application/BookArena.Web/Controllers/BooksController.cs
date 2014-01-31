@@ -14,19 +14,22 @@ namespace BookArena.Web.Controllers
         private readonly IBookRepository _bookRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IStudentRepository _studentRepository;
+        private readonly ITransactionRepository _transactionRepository;
 
         public BooksController()
         {
             _bookRepository = new BookRepository();
             _studentRepository = new StudentRepository();
             _categoryRepository = new CategoryRepository();
+            _transactionRepository = new TransactionRepository();
         }
 
-        public BooksController(IBookRepository bookRepository, IStudentRepository studentRepository, ICategoryRepository categoryRepository)
+        public BooksController(IBookRepository bookRepository, IStudentRepository studentRepository, ICategoryRepository categoryRepository, ITransactionRepository transactionRepository)
         {
             _bookRepository = bookRepository;
             _studentRepository = studentRepository;
             _categoryRepository = categoryRepository;
+            _transactionRepository = transactionRepository;
         }
 
         public JsonResult Index()
@@ -141,7 +144,7 @@ namespace BookArena.Web.Controllers
                     }
                 });
             }
-            var transactions = _bookRepository.Transactions(x => x.StudentId == studentId && x.IsActive).ToList();
+            var transactions = _transactionRepository.Transactions(x => x.StudentId == studentId && x.IsActive).ToList();
             if (transactions.Count() > 2)
             {
                 return Json(new
@@ -164,7 +167,7 @@ namespace BookArena.Web.Controllers
                     }
                 });
             }
-            _bookRepository.SaveTransactions(new Transaction
+            _transactionRepository.InsertOrUpdate(new Transaction
             {
                 BookId = bookId,
                 StudentId = studentId,
@@ -183,27 +186,6 @@ namespace BookArena.Web.Controllers
                     Message = "Operation Successfull."
                 }
             });
-        }
-
-        public JsonResult Transactions()
-        {
-            return !Request.IsAuthenticated
-                ? Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet)
-                : Json(new {Data = _bookRepository.Transactions()}, JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult Transaction(int id)
-        {
-            if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
-
-            var transaction = _bookRepository.Transactions(x => x.Id == id).FirstOrDefault();
-
-            if (transaction != null)
-            {
-                transaction.Book = _bookRepository.Find(x => x.BookId == transaction.BookId);
-                transaction.Student = _studentRepository.Find(x => x.Id == transaction.StudentId);
-            }
-            return Json(new {Data = JsonConvert.SerializeObject(transaction)}, JsonRequestBehavior.AllowGet);
         }
     }
 }
