@@ -22,10 +22,11 @@ namespace BookArena.Web.Controllers
             _categoryRepository = new CategoryRepository();
         }
 
-        public BooksController(IBookRepository bookRepository, IStudentRepository studentRepository)
+        public BooksController(IBookRepository bookRepository, IStudentRepository studentRepository, ICategoryRepository categoryRepository)
         {
             _bookRepository = bookRepository;
             _studentRepository = studentRepository;
+            _categoryRepository = categoryRepository;
         }
 
         public JsonResult Index()
