@@ -7,7 +7,7 @@ namespace BookArena.Model.EntityModel
         public int BookId { get; set; }
 
         [Required]
-        [StringLength(50, ErrorMessage = "The {0} must be at most {1} characters long.")]
+        [StringLength(70, ErrorMessage = "The {0} must be at most {1} characters long.")]
         public string Title { get; set; }
 
         [Required]
