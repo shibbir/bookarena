@@ -89,7 +89,7 @@ namespace BookArena.Web.Controllers
                     }
                 });
             }
-            var duplicate = _studentRepository.FindAll().FirstOrDefault(x => x.IdCardNumber == student.IdCardNumber);
+            var duplicate = _studentRepository.Find(x => x.IdCardNumber == student.IdCardNumber);
             if (duplicate != null)
                 return Json(new
                 {
@@ -129,9 +129,7 @@ namespace BookArena.Web.Controllers
                     }
                 });
             }
-            var duplicate =
-                _studentRepository.FindAll()
-                    .FirstOrDefault(x => x.IdCardNumber == student.IdCardNumber && x.Id != student.Id);
+            var duplicate = _studentRepository.Find(x => x.IdCardNumber == student.IdCardNumber && x.Id != student.Id);
             if (duplicate != null)
                 return Json(new
                 {

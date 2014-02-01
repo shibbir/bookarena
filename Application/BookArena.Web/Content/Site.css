@@ -263,6 +263,10 @@ h2.content-header {
     font-size: 10px;
 }
 
+.inline-spinner {
+    margin-top: 10px !important;
+}
+
 .spinner > div {
     background-color: #1ABC9C;
     height: 100%;

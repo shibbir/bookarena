@@ -5,7 +5,6 @@
 
 <ul class="breadcrumbs">
     <li><a ng-href="#/">Home</a></li>
-    <li><a ng-href="#/books">Books</a></li>
     <li><a ng-href="#/transactions">Transactions</a></li>
     <li class="current"><a>Details</a></li>
 </ul>
@@ -13,6 +12,15 @@
 <div ng-if="!transactionDetail" class="block text-center red"><strong>Sorry, No transaction history found!</strong></div>
 
 <div ng-if="transactionDetail">
+    <div class="panel callout radius">
+        <h4>Transaction Details</h4>
+    </div>
+
+    <h5>Borrowed Date: {{transactionDetail.FormattedBorrowedDate}}</h5>
+    <h5>Last Submission Date: {{transactionDetail.FormattedLastSubmissionDate}}</h5>
+    <h5>Status: {{transactionDetail.Status}}</h5>
+    <h5>IsActive: {{transactionDetail.IsActive}}</h5>
+
     <div class="panel callout radius">
         <h4>Book Details</h4>
     </div>
@@ -49,13 +57,4 @@
     <p>
         <a ng-href="#/students/student/{{transactionDetail.Student.Id}}">More Details</a>
     </p>
-
-    <div class="panel callout radius">
-        <h4>Other Details</h4>
-    </div>
-
-    <h5>Borrowed Date: {{transactionDetail.FormattedBorrowedDate}}</h5>
-    <h5>Last Submission Date: {{transactionDetail.FormattedLastSubmissionDate}}</h5>
-    <h5>Status: {{transactionDetail.Status}}</h5>
-    <h5>IsActive: {{transactionDetail.IsActive}}</h5>
 </div>

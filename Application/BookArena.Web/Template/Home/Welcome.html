@@ -31,6 +31,15 @@
 <div class="widget">
     <div class="widget-header"><h4>Book Categories</h4></div>
     <div class="widget-body">
+        <div ng-if="fetchInProgress">
+            <div class="spinner">
+                <div></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
+            </div>
+        </div>
         <div id="bar-chart"></div>
     </div>
 </div>

@@ -33,7 +33,7 @@ namespace BookArena.Web.Controllers
         public JsonResult Index()
         {
             if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
-            var data = Mapper<Transaction, TransactionViewModel>.ListMap(_transactionRepository.FindAll().ToList());
+            var data = Mapper<Transaction, TransactionViewModel>.ListMap(_transactionRepository.FindAll().OrderByDescending(x => x.Id).ToList());
             return Json(new {Data = data}, JsonRequestBehavior.AllowGet);
         }
 

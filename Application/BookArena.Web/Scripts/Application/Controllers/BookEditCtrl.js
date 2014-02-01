@@ -3,15 +3,21 @@
 (function(app) {
     app.controller("BookEditCtrl", [
         "$scope", "$rootScope", "$routeParams", "$location", "apiService", "notifierService", function($scope, $rootScope, $routeParams, $location, service, notifier) {
+            $(document).foundation();
             if ($rootScope.authenticatedUser.IsAuthenticated) {
                 $scope.book = {};
                 $scope.categories = [];
-                service.call("/categories/").then(function(result) {
-                    $scope.categories = result.Data;
-                });
                 service.call("/books/book/" + $routeParams.id).then(function(result) {
-                    $scope.book = result.Data;
-                    $scope.book.CategoryId = $scope.book.CategoryId;
+                    if (result.Data) {
+                        $scope.book = result.Data;
+                        $scope.book.CategoryId = $scope.book.CategoryId;
+
+                        service.call("/categories/").then(function(category) {
+                            $scope.categories = category.Data;
+                        });
+                    } else {
+                        $location.path("/").replace();
+                    }
                 });
             } else {
                 $rootScope.globalContainer = {

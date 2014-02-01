@@ -228,8 +228,11 @@
     <Content Include="Content\Images\php_1.png" />
     <Content Include="Content\Images\php_2.png" />
     <Content Include="Content\Images\profile.jpg" />
+    <Content Include="Content\Images\star-half-big.png" />
     <Content Include="Content\Images\star-half.png" />
+    <Content Include="Content\Images\star-off-big.png" />
     <Content Include="Content\Images\star-off.png" />
+    <Content Include="Content\Images\star-on-big.png" />
     <Content Include="Content\Images\star-on.png" />
     <Content Include="Content\Images\windows8_1.png" />
     <Content Include="Content\Images\windows8_2.png" />
@@ -285,8 +288,8 @@
     <Content Include="Template\Account\Login.html" />
     <Content Include="Template\Account\Profile.html" />
     <Content Include="Template\Book\Add.html" />
-    <Content Include="Template\Book\TransactionDetails.html" />
-    <Content Include="Template\Book\Transactions.html" />
+    <Content Include="Template\Transaction\Details.html" />
+    <Content Include="Template\Transaction\List.html" />
     <Content Include="Template\Category\CategoryEditForm.html" />
     <Content Include="Template\Category\CategoryAddForm.html" />
     <Content Include="Template\Category\List.html" />

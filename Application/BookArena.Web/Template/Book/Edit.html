@@ -8,68 +8,57 @@
     <li class="current"><a>Edit</a></li>
 </ul>
 
-<form name="BookEditForm" novalidate>
+<form name="BookEditForm" novalidate data-abide>
     <input type="hidden" name="BookId" ng-value="book.BookId" required />
+    <input type="hidden" name="Rating" ng-value="book.Rating" />
     <input type="hidden" name="ImageFileName" ng-value="book.ImageFileName" required />
     <div class="row">
         <div class="large-6 columns">
             <label>Title <span class="red required-star">*</span></label>
-            <input type="text" ng-class="BookEditForm.Title.$invalid ? 'error': ''" ng-model="book.Title" name="Title" required />
-            <small ng-show="BookEditForm.Title.$error.required" class="error">The Title field is required</small>
+            <input type="text" ng-model="book.Title" name="Title" required />
+            <small class="error">The Title field is required</small>
         </div>
     </div>
     <div class="row">
         <div class="large-6 columns">
             <label>Author <span class="red required-star">*</span></label>
-            <input type="text" ng-class="BookEditForm.Author.$invalid ? 'error': ''" ng-model="book.Author" name="Author" required />
-            <small ng-show="BookEditForm.Author.$error.required" class="error">The Author field is required</small>
+            <input type="text" ng-model="book.Author" name="Author" required />
+            <small class="error">The Author field is required</small>
         </div>
     </div>
     <div class="row">
         <div class="large-5 columns">
             <label>Category <span class="red required-star">*</span></label>
-            <select name="CategoryId" ng-class="BookEditForm.CategoryId.$invalid ? 'error': ''" ng-model="book.CategoryId" ng-options="option.CategoryId as option.Title for option in categories" required></select>
-            <small ng-show="BookEditForm.CategoryId.$invalid" class="error">The Category field is required</small>
+            <select ng-model="book.CategoryId" ng-options="option.CategoryId as option.Title for option in categories" required></select>
+            <input type="hidden" name="CategoryId" ng-value="book.CategoryId" />
+            <small class="error">The Category field is required</small>
         </div>
     </div>
-    <div class="row" style="margin-top:15px;">
+    <div class="row">
         <div class="large-4 columns">
             <label>Book Quantity <span class="red required-star">*</span></label>
-            <select name="Quantity" ng-model="book.Quantity" required ng-class="BookEditForm.Quantity.$invalid ? 'error': ''">
-                <option>0</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-                <option>9</option>
-                <option>10</option>
-                <option>11</option>
-                <option>12</option>
-                <option>13</option>
-                <option>14</option>
-                <option>15</option>
-                <option>16</option>
-                <option>17</option>
-                <option>18</option>
-                <option>19</option>
-                <option>20</option>
+            <select ng-model="book.Quantity" ng-options="option for option in quantityArray" required>
+                <option value="">Select Quantity</option>
             </select>
-            <small ng-show="BookEditForm.Quantity.$error.required" class="error">The Book Quantity field is required.</small>
-            <input type="hidden" name="AvailableQuantity" ng-value="book.Quantity" />
+            <input type="hidden" name="Quantity" ng-value="book.Quantity" required />
+            <input type="hidden" name="AvailableQuantity" ng-value="book.Quantity" required />
+            <small class="error">The Book Quantity field is required.</small>
         </div>
     </div>
     <div class="row">
         <div class="large-7 columns">
             <label>Short Description</label>
-            <textarea ng-class="BookEditForm.Description.$invalid ? 'error': ''" placeholder="Short Description. e.g main topic, category etc." ng-model="book.ShortDescription" name="ShortDescription" ng-maxlength="500"></textarea>
-            <small ng-show="BookEditForm.ShortDescription.$invalid" class="error">The ShortDescription field must be at most 500 characters long.</small>
+            <textarea placeholder="Short Description. e.g main topic, category etc." ng-model="book.ShortDescription" name="ShortDescription" ng-maxlength="500"></textarea>
+            <small class="error">The ShortDescription field must be at most 500 characters long.</small>
         </div>
     </div>
 
-    <a ng-disabled="BookEditForm.$invalid" class="button small medium-3" ng-click="update()">Update</a>
-    <a ng-href="#/books/book/{{book.BookId}}" class="button secondary small medium-3">Go Back</a>
+    <button type="submit" class="button small medium-3 left" ng-click="update()">Update</button>
+    <div class="spinner inline-spinner left" ng-if="fetchInProgress">
+        <div></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
 </form>

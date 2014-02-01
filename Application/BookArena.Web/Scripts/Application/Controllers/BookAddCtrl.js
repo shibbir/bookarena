@@ -3,6 +3,7 @@
 (function(app) {
     app.controller("BookAddCtrl", [
         "$scope", "$rootScope", "$location", "apiService", "notifierService", function($scope, $rootScope, $location, service, notifier) {
+            $(document).foundation();
             if ($rootScope.authenticatedUser.IsAuthenticated) {
                 $scope.book = {};
                 $scope.book.isRequired = true;
@@ -20,17 +21,19 @@
                 };
                 $location.path("/account/login").replace();
             }
-            $scope.upload = function() {
+            $scope.add = function() {
                 if ($scope.BookAddForm.$valid) {
                     service.call("/books/add/", $("form[name=BookAddForm]").serialize(), "POST").then(function(result) {
                         notifier.notify(result.Response);
 
-                        $scope.book.Title = "";
-                        $scope.book.Author = "";
-                        $scope.book.CategoryId = "";
-                        $scope.book.Edition = "";
-                        $scope.book.Quantity = "";
-                        $scope.book.ShortDescription = "";
+                        if (!result.PreserveInput) {
+                            $scope.book.Title = "";
+                            $scope.book.Author = "";
+                            $scope.book.CategoryId = "";
+                            $scope.book.Edition = "";
+                            $scope.book.Quantity = "";
+                            $scope.book.ShortDescription = "";
+                        }
                     });
                 }
             };

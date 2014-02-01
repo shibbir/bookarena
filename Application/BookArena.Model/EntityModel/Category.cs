@@ -8,6 +8,7 @@ namespace BookArena.Model.EntityModel
         public int CategoryId { get; set; }
 
         [Required]
+        [MinLength(2)]
         [StringLength(16, ErrorMessage = "The {0} must be at most {1} characters long.")]
         public string Title { get; set; }
 

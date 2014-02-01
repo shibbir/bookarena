@@ -7,72 +7,61 @@
     <li class="current"><a>Details</a></li>
 </ul>
 
-<form name="StudentEditForm" novalidate>
+<form name="StudentEditForm" novalidate data-abide>
     <input type="hidden" ng-value="student.Id" name="Id" required />
     <div class="row">
         <div class="large-6 columns">
             <label>First Name <span class="red required-star">*</span></label>
-            <input type="text" ng-class="StudentEditForm.FirstName.$invalid ? 'error': ''" ng-model="student.FirstName" name="FirstName" required />
-            <small ng-show="StudentEditForm.FirstName.$error.required" class="error">Invalid First Name</small>
+            <input type="text" ng-model="student.FirstName" name="FirstName" required />
+            <small class="error">The FirstName field is required</small>
         </div>
     </div>
     <div class="row">
         <div class="large-6 columns">
             <label>Last Name <span class="red required-star">*</span></label>
-            <input type="text" ng-class="StudentEditForm.LastName.$invalid ? 'error': ''" ng-model="student.LastName" name="LastName" required />
-            <small ng-show="StudentEditForm.LastName.$error.required" class="error">Invalid Last Name</small>
+            <input type="text" ng-model="student.LastName" name="LastName" required />
+            <small class="error">The LastName is required</small>
         </div>
     </div>
     <div class="row">
         <div class="large-6 columns">
             <label>Program <span class="red required-star">*</span></label>
-            <select ng-class="StudentEditForm.Program.$invalid ? 'error': ''" ng-model="student.Program" name="Program" required>
+            <select ng-model="student.Program" ng-options="option for option in programs" required>
                 <option value="">Choose Program</option>
-                <option value="CSE">CSE</option>
-                <option value="EEE">EEE</option>
-                <option value="BBA">BBA</option>
-                <option value="CSI">CSI</option>
-                <option value="CEN">CEN</option>
-                <option value="ENG">ENG</option>
-                <option value="ECO">ECO</option>
             </select>
-            <small ng-show="StudentEditForm.Program.$error.required" class="error">Invalid Program</small>
+            <input type="hidden" name="Program" ng-value="student.Program" required />
+            <small class="error">The Program field is required</small>
         </div>
     </div>
     <div class="row">
         <div class="large-6 columns">
             <label>Batch <span class="red required-star">*</span></label>
-            <select ng-class="StudentEditForm.Batch.$invalid ? 'error': ''" ng-model="student.Batch" name="Batch" required>
+            <select ng-model="student.Batch" ng-options="option for option in batches" required>
                 <option value="">Choose Batch</option>
-                <option value="27">27</option>
-                <option value="28">28</option>
-                <option value="29">29</option>
-                <option value="30">30</option>
-                <option value="31">31</option>
-                <option value="32">32</option>
-                <option value="33">33</option>
-                <option value="34">34</option>
-                <option value="35">35</option>
-                <option value="36">36</option>
-                <option value="37">37</option>
-                <option value="38">38</option>
-                <option value="39">39</option>
-                <option value="40">40</option>
             </select>
-            <small ng-show="StudentEditForm.Batch.$error.required" class="error">Invalid Batch</small>
+            <input type="hidden" name="Batch" ng-value="student.Batch" required />
+            <small class="error">The Batch field is required</small>
         </div>
     </div>
     <div class="row">
         <div class="large-6 columns">
             <label>Id Card <span class="red required-star">*</span></label>
-            <input placeholder="e.g 033 05817" type="text" ng-class="StudentEditForm.IdCardNumber.$invalid ? 'error': ''" ng-model="student.IdCardNumber" name="IdCardNumber" required ng-pattern="/^[0-9]{1,15}$/" />
-            <small ng-show="StudentEditForm.IdCardNumber.$invalid" class="error">Invalid Id card</small>
+            <input placeholder="e.g 033 05817" type="text" ng-model="student.IdCardNumber" name="IdCardNumber" required ng-pattern="/^[0-9]{1,15}$/" pattern="^[0-9]{1,15}$" />
+            <small class="error">The Id Card field is invalid</small>
         </div>
     </div>
-    
-    <a ng-disabled="StudentEditForm.$invalid" class="button small medium-2" ng-click="update()">Update</a>
-    <a class="button small medium-2 secondary" ng-href="#/students/">Cancel</a>
+
+    <button type="submit" class="button small medium-2 left" ng-click="update()">Update</button>
+    <div class="spinner inline-spinner left" ng-if="fetchInProgress">
+        <div></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
 </form>
+
+<div class="clearfix"></div>
 
 <div ng-if="!transactions.length">
     <div class="secondary alert-box">No transaction found!</div>

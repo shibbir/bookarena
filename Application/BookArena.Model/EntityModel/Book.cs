@@ -4,7 +4,13 @@ namespace BookArena.Model.EntityModel
 {
     public class Book
     {
+        public Book()
+        {
+            AvailableQuantity = Quantity;
+        }
+
         public int BookId { get; set; }
+        public int CategoryId { get; set; }
 
         [Required]
         [StringLength(70, ErrorMessage = "The {0} must be at most {1} characters long.")]

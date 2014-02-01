@@ -3,7 +3,6 @@
 
 <ul class="breadcrumbs">
     <li><a ng-href="#/">Home</a></li>
-    <li><a ng-href="#/books/">Books</a></li>
     <li class="current"><a>Transactions</a></li>
 </ul>
 
@@ -31,7 +30,7 @@
                 <td class="text-center"><a ng-href="#/books/book{{transaction.BookId}}">{{transaction.BookId}}</a></td>
                 <td class="text-center"><a ng-href="#/students/student/{{transaction.StudentId}}">{{transaction.StudentId}}</a></td>
                 <td>{{transaction.Status}}</td>
-                <td><a ng-href="#/books/transactions/{{transaction.Id}}">Details</a></td>
+                <td><a ng-href="#/transactions/transaction/{{transaction.Id}}">Details</a></td>
             </tr>
         </tbody>
     </table>

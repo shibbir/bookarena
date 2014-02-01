@@ -63,12 +63,26 @@ namespace BookArena.Web.Controllers
             if (!ModelState.IsValid)
                 return Json(new
                 {
+                    PreserveInput = true,
                     Response = new Response
                     {
                         ResponseType = ResponseType.Error,
                         Message = "Invalid book information!"
                     }
                 });
+            var duplicate = _bookRepository.Book(x => x.Title == book.Title);
+            if (duplicate != null)
+            {
+                return Json(new
+                {
+                    PreserveInput = true,
+                    Response = new Response
+                    {
+                        ResponseType = ResponseType.Error,
+                        Message = "The title is already exists!"
+                    }
+                });
+            }
             _bookRepository.InsertOrUpdate(book);
             _bookRepository.Save();
             return Json(new
@@ -94,6 +108,19 @@ namespace BookArena.Web.Controllers
                         Message = "Invalid book information!"
                     }
                 });
+            var duplicate = _bookRepository.Book(x => x.Title == book.Title && x.BookId != book.BookId);
+            if (duplicate != null)
+            {
+                return Json(new
+                {
+                    Response = new Response
+                    {
+                        ResponseType = ResponseType.Error,
+                        Message = "The title is already exists!"
+                    }
+                });
+            }
+
             _bookRepository.InsertOrUpdate(book);
             _bookRepository.Save();
             return Json(new
@@ -177,6 +204,7 @@ namespace BookArena.Web.Controllers
             });
             book.AvailableQuantity--;
             _bookRepository.InsertOrUpdate(book);
+
             _bookRepository.Save();
             _transactionRepository.Save();
 

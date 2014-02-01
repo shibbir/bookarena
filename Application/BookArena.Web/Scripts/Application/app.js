@@ -21,19 +21,19 @@
                         controller: "ProfileCtrl"
                     })
                 .when(
+                    "/transactions", {
+                        templateUrl: "Template/Transaction/List.html",
+                        controller: "TransactionCtrl"
+                    })
+                .when(
+                    "/transactions/transaction/:transactionId", {
+                        templateUrl: "Template/Transaction/Details.html",
+                        controller: "TransactionCtrl"
+                    })
+                .when(
                     "/books", {
                         templateUrl: "Template/Book/List.html",
                         controller: "BookListCtrl"
-                    })
-                .when(
-                    "/books/transactions", {
-                        templateUrl: "Template/Book/Transactions.html",
-                        controller: "TransactionCtrl"
-                    })
-                .when(
-                    "/books/transactions/:transactionId", {
-                        templateUrl: "Template/Book/TransactionDetails.html",
-                        controller: "TransactionCtrl"
                     })
                 .when(
                     "/books/add", {

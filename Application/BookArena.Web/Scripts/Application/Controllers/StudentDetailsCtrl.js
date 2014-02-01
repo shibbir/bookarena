@@ -2,7 +2,8 @@
 
 (function(app) {
     app.controller("StudentDetailsCtrl", [
-        "$scope", "$rootScope", "$routeParams", "$location", "apiService", "notifierService", function($scope, $rootScope, $routeParams, $location, service, notifier) {
+        "$scope", "$rootScope", "$routeParams", "$location", "apiService", "notifierService", function ($scope, $rootScope, $routeParams, $location, service, notifier) {
+            $(document).foundation();
             if ($rootScope.authenticatedUser.IsAuthenticated) {
                 $scope.book = {};
                 service.call("/students/student/" + $routeParams.id).then(function(result) {

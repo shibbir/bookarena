@@ -35,7 +35,7 @@ namespace BookArena.DAL.Repository
 
         public IQueryable<Student> FindAll(Expression<Func<Student, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return _dbContext.Student.Where(predicate);
         }
 
         public Student Find(Expression<Func<Student, bool>> predicate)
