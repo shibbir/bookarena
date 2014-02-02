@@ -27,7 +27,7 @@
                 <td>{{$index + 1}}</td>
                 <td>{{transaction.FormattedBorrowedDate}}</td>
                 <td>{{transaction.FormattedLastSubmissionDate}}</td>
-                <td class="text-center"><a ng-href="#/books/book{{transaction.BookId}}">{{transaction.BookId}}</a></td>
+                <td class="text-center"><a ng-href="#/books/book/{{transaction.BookId}}">{{transaction.BookId}}</a></td>
                 <td class="text-center"><a ng-href="#/students/student/{{transaction.StudentId}}">{{transaction.StudentId}}</a></td>
                 <td>{{transaction.Status}}</td>
                 <td><a ng-href="#/transactions/transaction/{{transaction.Id}}">Details</a></td>

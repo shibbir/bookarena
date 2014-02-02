@@ -11,9 +11,8 @@
                     "onclick": null,
                     "fadeIn": 300,
                     "fadeOut": 1000,
-                    "timeOut": 5000,
-                    "extendedTimeOut": 1000,
-                    "closeButton": true
+                    "timeOut": 3000,
+                    "extendedTimeOut": 1000
                 };
 
                 switch (responseType) {

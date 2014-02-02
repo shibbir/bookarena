@@ -21,6 +21,11 @@ footer.credit a:hover {
     padding: 0 20px 32px;
 }
 
+#wrapper {
+    background: none repeat scroll 0 0 #FAFAFA;
+    border-left: 1px solid #ECF0F1;
+}
+
 .body-content {
     color: #FFFFFF;
     margin-top: -3px;

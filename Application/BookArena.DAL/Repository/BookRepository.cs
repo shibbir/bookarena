@@ -43,7 +43,7 @@ namespace BookArena.DAL.Repository
 
         public Book Find(Expression<Func<Book, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return _dbContext.Book.Where(predicate).FirstOrDefault();
         }
 
         public IQueryable<Book> FindAll()

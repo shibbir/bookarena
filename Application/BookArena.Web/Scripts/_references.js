@@ -26,5 +26,5 @@
 /// <reference path="angular.js" />
 /// <reference path="angular-route.js" />
 /// <reference path="angular-animate.js" />
-/// <reference path="foundation.js" />
 /// <reference path="application/controllers/transactionctrl.js" />
+/// <reference path="foundation.js" />
