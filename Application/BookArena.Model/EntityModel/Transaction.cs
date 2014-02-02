@@ -20,6 +20,8 @@ namespace BookArena.Model.EntityModel
         [Required]
         public int BookId { get; set; }
 
+        public string BookUniqueKey { get; set; }
+
         public bool IsActive { get; set; }
 
         [Column(TypeName = "DateTime2")]

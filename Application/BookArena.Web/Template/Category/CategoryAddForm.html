@@ -1,14 +1,11 @@
 ﻿<h3 class="content-header">Category Add Form</h3>
 <hr />
 
-<form name="CategoryAddForm" novalidate>
+<form name="CategoryAddForm" novalidate data-abide="ajax">
     <div class="row">
         <label>Title <span class="red required-star">*</span></label>
-        <input type="text" ng-class="CategoryAddForm.Title.$invalid ? 'error': ''" ng-model="category.Title" name="Title" required />
-        <small ng-show="CategoryAddForm.Title.$error.required" class="error">The Title field is required</small>
+        <input type="text" ng-model="category.Title" name="Title" required />
+        <small class="error">The Title field is required</small>
     </div>
-    <div class="pull-right">
-        <button type="button" class="alert tiny" ng-click="closeModal('#CategoryAddModal')">Close</button>
-        <button type="button" class="tiny" ng-disabled="CategoryAddForm.$invalid" ng-click="addCategory()">Add</button>
-    </div>
+    <button type="submit" class="tiny full-width" ng-click="addCategory()">Add</button>
 </form>

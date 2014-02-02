@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Constant.cs" />
     <Compile Include="EntityModel\ApplicationUser.cs" />
+    <Compile Include="EntityModel\BookMetaData.cs" />
     <Compile Include="ViewModel\AccountViewModels.cs" />
     <Compile Include="EntityModel\Book.cs" />
     <Compile Include="EntityModel\Category.cs" />

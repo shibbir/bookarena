@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using AutoMapper;
 using BookArena.DAL;
 using BookArena.Model;
 using BookArena.Model.EntityModel;
@@ -33,8 +32,7 @@ namespace BookArena.Web.Controllers
             if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
             var user = UserManager.FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
 
-            Mapper.CreateMap<ApplicationUser, ApplicationUserViewModel>();
-            return Json(new {Data = Mapper.Map<ApplicationUser, ApplicationUserViewModel>(user)},
+            return Json(new {Data = Mapper<ApplicationUser, ApplicationUserViewModel>.SingleMap(user)},
                 JsonRequestBehavior.AllowGet);
         }
 
@@ -63,9 +61,8 @@ namespace BookArena.Web.Controllers
                 });
             }
             await SignInAsync(user, model.RememberMe);
-            Mapper.CreateMap<ApplicationUser, ApplicationUserViewModel>();
 
-            return Json(new {Data = Mapper.Map<ApplicationUser, ApplicationUserViewModel>(user)});
+            return Json(new {Data = Mapper<ApplicationUser, ApplicationUserViewModel>.SingleMap(user)});
         }
 
         //

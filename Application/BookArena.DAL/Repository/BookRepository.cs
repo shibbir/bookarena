@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using AutoMapper;
 using BookArena.DAL.Interfaces;
 using BookArena.Model.EntityModel;
 using BookArena.Model.ViewModel;
@@ -51,27 +49,9 @@ namespace BookArena.DAL.Repository
             throw new NotImplementedException();
         }
 
-        public IQueryable<BookViewModel> Books()
-        {
-            return _dbContext.Book.Select(book => new BookViewModel
-            {
-                BookId = book.BookId,
-                Title = book.Title,
-                Author = book.Author,
-                ShortDescription = book.ShortDescription,
-                LongDescription = book.LongDescription,
-                ImageFileName = book.ImageFileName,
-                AvailableQuantity = book.AvailableQuantity,
-                Quantity = book.Quantity,
-                Rating = book.Rating,
-                CategoryTitle = book.Category.Title,
-                CategoryId = book.Category.CategoryId
-            });
-        }
-
         public BookViewModel Book(Expression<Func<Book, bool>> predicate)
         {
-            return _dbContext.Book.Where(predicate).Select(book => new BookViewModel
+            var viewModel = _dbContext.Book.Where(predicate).Select(book => new BookViewModel
             {
                 BookId = book.BookId,
                 Title = book.Title,
@@ -79,30 +59,21 @@ namespace BookArena.DAL.Repository
                 ShortDescription = book.ShortDescription,
                 LongDescription = book.LongDescription,
                 ImageFileName = book.ImageFileName,
-                AvailableQuantity = book.AvailableQuantity,
                 Quantity = book.Quantity,
                 Rating = book.Rating,
                 CategoryTitle = book.Category.Title,
                 CategoryId = book.Category.CategoryId
             }).FirstOrDefault();
+            if (viewModel != null)
+            {
+                viewModel.AvailableQuantity = AvailableBooks(viewModel.BookId);
+            }
+            return viewModel;
         }
 
-        public IQueryable<BookViewModel> Books(Expression<Func<Book, bool>> predicate)
+        public int AvailableBooks(int bookId)
         {
-            return _dbContext.Book.Where(predicate).Select(book => new BookViewModel
-            {
-                BookId = book.BookId,
-                Title = book.Title,
-                Author = book.Author,
-                ShortDescription = book.ShortDescription,
-                LongDescription = book.LongDescription,
-                ImageFileName = book.ImageFileName,
-                AvailableQuantity = book.AvailableQuantity,
-                Quantity = book.Quantity,
-                Rating = book.Rating,
-                CategoryTitle = book.Category.Title,
-                CategoryId = book.Category.CategoryId
-            });
+            return _dbContext.BookMetaData.Count(x => x.BookId == bookId && x.IsAvailable);
         }
 
         public IQueryable<BookViewModel> LatestBooks(int limit)
@@ -111,29 +82,26 @@ namespace BookArena.DAL.Repository
             {
                 BookId = book.BookId,
                 Title = book.Title,
-                ImageFileName = book.ImageFileName,
-                AvailableQuantity = book.AvailableQuantity
+                ImageFileName = book.ImageFileName
             }).OrderByDescending(x => x.BookId).Take(limit);
             return latestBooks;
         }
 
-        public IEnumerable<TransactionViewModel> Transactions()
+        public void InsertOrUpdateMetaData(BookMetaData entity)
         {
-            var transactions = _dbContext.Transaction.ToList();
-            Mapper.CreateMap<Transaction, TransactionViewModel>();
-            return Mapper.Map<List<Transaction>, List<TransactionViewModel>>(transactions);
+            if (entity.Id == default(int))
+            {
+                _dbContext.BookMetaData.Add(entity);
+            }
+            else
+            {
+                _dbContext.Entry(entity).State = EntityState.Modified;
+            }
         }
 
-        public IEnumerable<TransactionViewModel> Transactions(Expression<Func<Transaction, bool>> predicate)
+        public BookMetaData BookMetaData(Expression<Func<BookMetaData, bool>> predicate)
         {
-            var transactions = _dbContext.Transaction.Where(predicate).ToList();
-            Mapper.CreateMap<Transaction, TransactionViewModel>();
-            return Mapper.Map<List<Transaction>, List<TransactionViewModel>>(transactions);
-        }
-
-        public void SaveTransactions(Transaction transaction)
-        {
-            _dbContext.Transaction.Add(transaction);
+            return _dbContext.BookMetaData.Where(predicate).FirstOrDefault();
         }
 
         public void Save()

@@ -14,16 +14,13 @@ namespace BookArena.DAL
         public DbSet<Category> Category { get; set; }
         public DbSet<Student> Student { get; set; }
         public DbSet<Book> Book { get; set; }
+        public DbSet<BookMetaData> BookMetaData { get; set; }
         public DbSet<Transaction> Transaction { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Book>()
-            //    .HasRequired(t => t.Category);
-                //.WithMany(t => t.Books);
             modelBuilder.Entity<Category>()
                 .HasMany(t => t.Books);
-                //.HasOptional(t => t.Books);
             base.OnModelCreating(modelBuilder);
         }
     }

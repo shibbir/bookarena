@@ -17,6 +17,7 @@
                         if (result.Data) {
                             $scope.category.Title = "";
                             $scope.CategoryAddForm.$setPristine();
+                            result.Data.Count = 0;
                             $scope.categories.push(result.Data);
                         }
                     });

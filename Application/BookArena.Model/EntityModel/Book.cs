@@ -4,11 +4,6 @@ namespace BookArena.Model.EntityModel
 {
     public class Book
     {
-        public Book()
-        {
-            AvailableQuantity = Quantity;
-        }
-
         public int BookId { get; set; }
         public int CategoryId { get; set; }
 
@@ -29,7 +24,6 @@ namespace BookArena.Model.EntityModel
         public string ImageFileName { get; set; }
         public double Rating { get; set; }
         public int Quantity { get; set; }
-        public int AvailableQuantity { get; set; }
         public virtual Category Category { get; set; }
     }
 }

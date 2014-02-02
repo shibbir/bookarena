@@ -1,6 +1,6 @@
-﻿<button class="button loan-button" data-reveal-id="LoanModal" ng-show="displayBorrowButton()">Loan</button>
+﻿<button class="button loan-button" data-reveal-id="BorrowModal" ng-show="displayBorrowButton()" ng-click="resetBorrowSection()">Borrow</button>
 
-<div id="LoanModal" class="reveal-modal tiny" data-reveal>
+<div id="BorrowModal" class="reveal-modal tiny" data-reveal>
     <h3>{{book.Title}}</h3>
     <p class="lead">Search for a student.</p>
     <div class="bouncespinner" ng-show="searchStudentInProgress">
@@ -38,7 +38,7 @@
                 </tr>
             </tbody>
         </table>
-        <button ng-disabled="!book.BookId || !searchedStudent.Id" class="success" style="width: 100%;" ng-click="borrowBook(searchedStudent.Id, book.BookId)">Borrow The Book</button>
+        <button ng-disabled="!book.BookId || !searchedStudent.Id" class="success full-width" ng-click="borrowBook(searchedStudent.Id, book.BookId)">Borrow The Book</button>
     </div>
     <a class="close-reveal-modal">&#215;</a>
 </div>

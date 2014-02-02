@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Globalization;
+using System.Linq;
 using System.Web.Mvc;
 using BookArena.DAL.Interfaces;
 using BookArena.DAL.Repository;
@@ -85,6 +87,25 @@ namespace BookArena.Web.Controllers
             }
             _bookRepository.InsertOrUpdate(book);
             _bookRepository.Save();
+            for (var i = 0; i < book.Quantity; i++)
+            {
+                var uniqueKey = "ISBN " + new Random().Next(1000, 9000).ToString(CultureInfo.InvariantCulture);
+                var key = uniqueKey;
+                var duplicateKey = _bookRepository.BookMetaData(x => x.UniqueKey == key);
+                while (duplicateKey != null)
+                {
+                    uniqueKey = "ISBN " + new Random().Next(1000, 9000).ToString(CultureInfo.InvariantCulture);
+                    var key1 = uniqueKey;
+                    duplicateKey = _bookRepository.BookMetaData(x => x.UniqueKey == key1);
+                }
+                _bookRepository.InsertOrUpdateMetaData(new BookMetaData
+                {
+                    BookId = book.BookId,
+                    IsAvailable = true,
+                    UniqueKey = uniqueKey
+                });
+            }
+            _bookRepository.Save();
             return Json(new
             {
                 Response = new Response
@@ -148,8 +169,8 @@ namespace BookArena.Web.Controllers
         public JsonResult Borrow(int studentId, int bookId)
         {
             if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse());
-            var book = _bookRepository.Find(x => x.BookId == bookId && x.AvailableQuantity > 0 && x.Quantity > 0);
-            if (book == null)
+            var availablebook = _bookRepository.BookMetaData(x => x.BookId == bookId && x.IsAvailable);
+            if (availablebook == null)
             {
                 return Json(new
                 {
@@ -172,8 +193,9 @@ namespace BookArena.Web.Controllers
                     }
                 });
             }
-            var transactions = _transactionRepository.FindAll(x => x.StudentId == studentId && x.IsActive).ToList();
-            if (transactions.Count() >= 2)
+            var borrowerActiveTransactions =
+                _transactionRepository.FindAll(x => x.StudentId == studentId && x.IsActive).ToList();
+            if (borrowerActiveTransactions.Count() >= 2)
             {
                 return Json(new
                 {
@@ -184,7 +206,7 @@ namespace BookArena.Web.Controllers
                     }
                 });
             }
-            if (transactions.Any(transaction => transaction.BookId == bookId && transaction.IsActive))
+            if (borrowerActiveTransactions.Any(transaction => transaction.BookId == bookId && transaction.IsActive))
             {
                 return Json(new
                 {
@@ -198,18 +220,20 @@ namespace BookArena.Web.Controllers
             _transactionRepository.InsertOrUpdate(new Transaction
             {
                 BookId = bookId,
+                BookUniqueKey = availablebook.UniqueKey,
                 StudentId = studentId,
                 Status = "Not returned yet",
                 IsActive = true
             });
-            book.AvailableQuantity--;
-            _bookRepository.InsertOrUpdate(book);
+            availablebook.IsAvailable = false;
+            _bookRepository.InsertOrUpdateMetaData(availablebook);
 
             _bookRepository.Save();
             _transactionRepository.Save();
 
             return Json(new
             {
+                Data = _bookRepository.AvailableBooks(bookId),
                 Response = new Response
                 {
                     ResponseType = ResponseType.Success,
@@ -238,14 +262,15 @@ namespace BookArena.Web.Controllers
                 });
             }
 
-            var book = _bookRepository.Find(x => x.BookId == transaction.BookId);
-            book.AvailableQuantity++;
-            _bookRepository.InsertOrUpdate(book);
-            _bookRepository.Save();
+            var bookMetaData = _bookRepository.BookMetaData(x => x.UniqueKey == transaction.BookUniqueKey);
+            bookMetaData.IsAvailable = true;
+            _bookRepository.InsertOrUpdateMetaData(bookMetaData);
 
             transaction.Status = "Returned";
             transaction.IsActive = false;
             _transactionRepository.InsertOrUpdate(transaction);
+
+            _bookRepository.Save();
             _transactionRepository.Save();
 
             return Json(new

@@ -7,7 +7,7 @@
             $scope.quantityArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
             $scope.programs = ["BBA", "CSE", "CSI", "CEN", "ECO", "EEE", "ENG"];
             $scope.batches = ["25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50"];
-            $scope.notImplemented = function () {
+            $scope.notImplemented = function() {
                 notifier.notify({
                     ResponseType: "error",
                     Message: "Sorry! This feature is not available yet."
@@ -18,6 +18,10 @@
                     if (result.Data) {
                         $rootScope.authenticatedUser = result.Data;
                         $rootScope.authenticatedUser.IsAuthenticated = true;
+
+                        if ($location.path() === "/account/login") {
+                            $location.path("/");
+                        }
                     }
                 });
             };
@@ -46,7 +50,7 @@
                     $location.path(path);
                 }
             };
-            $scope.openModal = function (selector) {
+            $scope.openModal = function(selector) {
                 $(selector).foundation("reveal", "open");
             };
             $scope.closeModal = function(selector) {

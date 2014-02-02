@@ -90,6 +90,10 @@ footer.credit a:hover {
     color: #e67e22;
 }
 
+.full-width {
+    width: 100% !important;
+}
+
 .required-star {
     font-size: 20px;
     font-weight: bold;

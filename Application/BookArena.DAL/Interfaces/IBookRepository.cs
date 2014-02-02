@@ -8,9 +8,10 @@ namespace BookArena.DAL.Interfaces
 {
     public interface IBookRepository : IRepository<Book>
     {
-        IQueryable<BookViewModel> Books();
         BookViewModel Book(Expression<Func<Book, bool>> predicate);
-        IQueryable<BookViewModel> Books(Expression<Func<Book, bool>> predicate);
         IQueryable<BookViewModel> LatestBooks(int limit);
+        void InsertOrUpdateMetaData(BookMetaData metaData);
+        BookMetaData BookMetaData(Expression<Func<BookMetaData, bool>> predicate);
+        int AvailableBooks(int bookId);
     }
 }

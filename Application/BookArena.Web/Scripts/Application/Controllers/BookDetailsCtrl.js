@@ -36,6 +36,9 @@
                 if ($rootScope.authenticatedUser.IsAuthenticated) {
                     service.call("/books/borrow?studentId=" + studentId + "&bookId=" + bookId, null, "POST").then(function(result) {
                         notifier.notify(result.Response);
+                        if (result.Data) {
+                            $scope.book.AvailableQuantity = result.Data;
+                        }
                     });
                 }
             };
@@ -44,6 +47,10 @@
                     return true;
                 }
                 return false;
+            };
+            $scope.resetBorrowSection = function() {
+                $scope.data.idCardNumber = "";
+                $scope.searchedStudent = {};
             };
         }
     ]);

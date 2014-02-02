@@ -1,15 +1,12 @@
 ﻿<h3 class="content-header">Category Edit Form</h3>
 <hr />
 
-<form name="CategoryEditForm" novalidate>
+<form name="CategoryEditForm" novalidate data-abide="ajax">
     <input type="hidden" ng-value="editableCategory.CategoryId" name="CategoryId" />
     <div class="row">
         <label>Title <span class="red required-star">*</span></label>
-        <input type="text" ng-class="CategoryEditForm.Title.$invalid ? 'error': ''" ng-model="editableCategory.Title" name="Title" required />
-        <small ng-show="CategoryEditForm.Title.$error.required" class="error">The Title field is required</small>
+        <input type="text" ng-model="editableCategory.Title" name="Title" required />
+        <small class="error">The Title field is required</small>
     </div>
-    <div class="pull-right">
-        <button type="button" ng-disabled="CategoryEditForm.$invalid" class="tiny" ng-click="updateCategory()">Update</button>
-        <button type="button" class="alert tiny" ng-click="closeModal('#CategoryEditModal')">Close</button>
-    </div>
+    <button type="submit" class="tiny full-width" ng-click="updateCategory()">Update</button>
 </form>

@@ -11,6 +11,7 @@
 <form name="BookEditForm" novalidate data-abide>
     <input type="hidden" name="BookId" ng-value="book.BookId" required />
     <input type="hidden" name="Rating" ng-value="book.Rating" />
+    <input type="hidden" name="Quantity" ng-value="book.Quantity" required />
     <input type="hidden" name="ImageFileName" ng-value="book.ImageFileName" required />
     <div class="row">
         <div class="large-6 columns">
@@ -32,17 +33,6 @@
             <select ng-model="book.CategoryId" ng-options="option.CategoryId as option.Title for option in categories" required></select>
             <input type="hidden" name="CategoryId" ng-value="book.CategoryId" />
             <small class="error">The Category field is required</small>
-        </div>
-    </div>
-    <div class="row">
-        <div class="large-4 columns">
-            <label>Book Quantity <span class="red required-star">*</span></label>
-            <select ng-model="book.Quantity" ng-options="option for option in quantityArray" required>
-                <option value="">Select Quantity</option>
-            </select>
-            <input type="hidden" name="Quantity" ng-value="book.Quantity" required />
-            <input type="hidden" name="AvailableQuantity" ng-value="book.Quantity" required />
-            <small class="error">The Book Quantity field is required.</small>
         </div>
     </div>
     <div class="row">
