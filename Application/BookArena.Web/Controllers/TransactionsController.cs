@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using BookArena.DAL.Interfaces;
-using BookArena.DAL.Repository;
 using BookArena.Model.EntityModel;
 using BookArena.Model.ViewModel;
 using BookArena.Web.Helper;
@@ -15,13 +14,6 @@ namespace BookArena.Web.Controllers
         private readonly IStudentRepository _studentRepository;
         private readonly ITransactionRepository _transactionRepository;
 
-        public TransactionsController()
-        {
-            _bookRepository = new BookRepository();
-            _studentRepository = new StudentRepository();
-            _transactionRepository = new TransactionRepository();
-        }
-
         public TransactionsController(IBookRepository bookRepository, IStudentRepository studentRepository,
             ITransactionRepository transactionRepository)
         {
@@ -33,7 +25,9 @@ namespace BookArena.Web.Controllers
         public JsonResult Index()
         {
             if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
-            var data = Mapper<Transaction, TransactionViewModel>.ListMap(_transactionRepository.FindAll().OrderByDescending(x => x.Id).ToList());
+            var data =
+                Mapper<Transaction, TransactionViewModel>.ListMap(
+                    _transactionRepository.FindAll().OrderByDescending(x => x.Id).ToList());
             return Json(new {Data = data}, JsonRequestBehavior.AllowGet);
         }
 

@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using BookArena.DAL.Interfaces;
-using BookArena.DAL.Repository;
 using BookArena.Model;
 using BookArena.Model.EntityModel;
 using BookArena.Model.ViewModel;
@@ -13,12 +12,6 @@ namespace BookArena.Web.Controllers
     {
         private readonly IStudentRepository _studentRepository;
         private readonly ITransactionRepository _transactionRepository;
-
-        public StudentsController()
-        {
-            _studentRepository = new StudentRepository();
-            _transactionRepository = new TransactionRepository();
-        }
 
         public StudentsController(IStudentRepository studentRepository, ITransactionRepository transactionRepository)
         {

@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using BookArena.DAL.Interfaces;
-using BookArena.DAL.Repository;
 using BookArena.Model;
 using BookArena.Model.EntityModel;
 using BookArena.Web.Helper;
@@ -11,11 +10,6 @@ namespace BookArena.Web.Controllers
     public class CategoriesController : Controller
     {
         private readonly ICategoryRepository _categoryRepository;
-
-        public CategoriesController()
-        {
-            _categoryRepository = new CategoryRepository();
-        }
 
         public CategoriesController(ICategoryRepository categoryRepository)
         {

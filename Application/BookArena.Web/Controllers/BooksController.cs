@@ -3,7 +3,6 @@ using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
 using BookArena.DAL.Interfaces;
-using BookArena.DAL.Repository;
 using BookArena.Model;
 using BookArena.Model.EntityModel;
 using BookArena.Web.Helper;
@@ -17,14 +16,6 @@ namespace BookArena.Web.Controllers
         private readonly ICategoryRepository _categoryRepository;
         private readonly IStudentRepository _studentRepository;
         private readonly ITransactionRepository _transactionRepository;
-
-        public BooksController()
-        {
-            _bookRepository = new BookRepository();
-            _studentRepository = new StudentRepository();
-            _categoryRepository = new CategoryRepository();
-            _transactionRepository = new TransactionRepository();
-        }
 
         public BooksController(IBookRepository bookRepository, IStudentRepository studentRepository,
             ICategoryRepository categoryRepository, ITransactionRepository transactionRepository)
