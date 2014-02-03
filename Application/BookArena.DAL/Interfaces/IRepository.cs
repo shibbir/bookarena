@@ -12,5 +12,6 @@ namespace BookArena.DAL.Interfaces
         TEntity Find(Expression<Func<TEntity, bool>> predicate);
         void InsertOrUpdate(TEntity entity);
         void Delete(int id);
+        void Save();
     }
 }

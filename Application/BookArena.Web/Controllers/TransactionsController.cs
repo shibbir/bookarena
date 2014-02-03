@@ -38,11 +38,10 @@ namespace BookArena.Web.Controllers
             var transaction =
                 Mapper<Transaction, TransactionViewModel>.SingleMap(_transactionRepository.Find(x => x.Id == id));
 
-            if (transaction != null)
-            {
-                transaction.Book = _bookRepository.Find(x => x.BookId == transaction.BookId);
-                transaction.Student = _studentRepository.Find(x => x.Id == transaction.StudentId);
-            }
+            if (transaction == null)
+                return Json(new {Data = JsonConvert.SerializeObject(null)}, JsonRequestBehavior.AllowGet);
+            transaction.Book = _bookRepository.Find(x => x.BookId == transaction.BookId);
+            transaction.Student = _studentRepository.Find(x => x.Id == transaction.StudentId);
             return Json(new {Data = JsonConvert.SerializeObject(transaction)}, JsonRequestBehavior.AllowGet);
         }
     }

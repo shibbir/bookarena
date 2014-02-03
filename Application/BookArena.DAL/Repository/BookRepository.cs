@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
@@ -13,9 +12,9 @@ namespace BookArena.DAL.Repository
     {
         private readonly BookArenaDbContext _dbContext;
 
-        public BookRepository(UnitOfWork uow)
+        public BookRepository()
         {
-            _dbContext = uow.Context;
+            _dbContext = new BookArenaDbContext();
         }
 
         public void InsertOrUpdate(Book entity)
@@ -33,6 +32,11 @@ namespace BookArena.DAL.Repository
         public void Delete(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public void Save()
+        {
+            _dbContext.SaveChanges();
         }
 
         public IQueryable<Book> FindAll(Expression<Func<Book, bool>> predicate)
@@ -77,19 +81,14 @@ namespace BookArena.DAL.Repository
             return _dbContext.BookMetaData.Count(x => x.BookId == bookId && x.IsAvailable);
         }
 
-        public IEnumerable<BookViewModel> LatestBooks(int limit)
+        public IQueryable<BookViewModel> Books()
         {
-            var latestBooks = _dbContext.Book.Select(book => new BookViewModel
+            return _dbContext.Book.Select(book => new BookViewModel
             {
                 BookId = book.BookId,
                 Title = book.Title,
                 ImageFileName = book.ImageFileName,
-            }).OrderByDescending(x => x.BookId).Take(limit).ToList();
-            foreach (var latestBook in latestBooks)
-            {
-                latestBook.AvailableQuantity = AvailableBooks(latestBook.BookId);
-            }
-            return latestBooks;
+            });
         }
 
         public void InsertOrUpdateMetaData(BookMetaData entity)

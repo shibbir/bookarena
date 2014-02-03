@@ -24,7 +24,6 @@ namespace BookArena.Web
         public static void RegisterTypes(IUnityContainer container)
         {
             container.RegisterType<AccountController>(new InjectionConstructor());
-            container.RegisterType<IUnitOfWork, UnitOfWork>();
             container.RegisterType<IBookRepository, BookRepository>();
             container.RegisterType<ICategoryRepository, CategoryRepository>();
             container.RegisterType<IStudentRepository, StudentRepository>();

@@ -11,9 +11,9 @@ namespace BookArena.DAL.Repository
     {
         private readonly BookArenaDbContext _dbContext;
 
-        public TransactionRepository(UnitOfWork uow)
+        public TransactionRepository()
         {
-            _dbContext = uow.Context;
+            _dbContext = new BookArenaDbContext();
         }
 
         public void InsertOrUpdate(Transaction entity)
@@ -31,6 +31,11 @@ namespace BookArena.DAL.Repository
         public void Delete(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public void Save()
+        {
+            _dbContext.SaveChanges();
         }
 
         public IQueryable<Transaction> FindAll(Expression<Func<Transaction, bool>> predicate)

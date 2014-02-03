@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using BookArena.Model.EntityModel;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -19,6 +20,7 @@ namespace BookArena.DAL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Entity<Category>()
                 .HasMany(t => t.Books);
             base.OnModelCreating(modelBuilder);

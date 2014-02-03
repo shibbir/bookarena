@@ -12,17 +12,15 @@ namespace BookArena.Web.Controllers
 {
     public class BooksController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IBookRepository _bookRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IStudentRepository _studentRepository;
         private readonly ITransactionRepository _transactionRepository;
 
-        public BooksController(IUnitOfWork unitOfWork, IBookRepository bookRepository,
+        public BooksController(IBookRepository bookRepository,
             IStudentRepository studentRepository,
             ICategoryRepository categoryRepository, ITransactionRepository transactionRepository)
         {
-            _unitOfWork = unitOfWork;
             _bookRepository = bookRepository;
             _studentRepository = studentRepository;
             _categoryRepository = categoryRepository;
@@ -42,7 +40,11 @@ namespace BookArena.Web.Controllers
 
         public JsonResult Latest()
         {
-            var books = _bookRepository.LatestBooks(5);
+            var books = _bookRepository.Books().OrderByDescending(x => x.BookId).Take(5).ToList();
+            foreach (var book in books)
+            {
+                book.AvailableQuantity = _bookRepository.AvailableBooks(book.BookId);
+            }
             return Json(new {Data = books}, JsonRequestBehavior.AllowGet);
         }
 
@@ -80,7 +82,7 @@ namespace BookArena.Web.Controllers
                 });
             }
             _bookRepository.InsertOrUpdate(book);
-            _unitOfWork.Commit();
+            _bookRepository.Save();
             for (var i = 0; i < book.Quantity; i++)
             {
                 var uniqueKey = "ISBN " + new Random().Next(1000, 9000).ToString(CultureInfo.InvariantCulture);
@@ -99,7 +101,7 @@ namespace BookArena.Web.Controllers
                     UniqueKey = uniqueKey
                 });
             }
-            _unitOfWork.Commit();
+            _bookRepository.Save();
             return Json(new
             {
                 Response = new Response
@@ -137,7 +139,7 @@ namespace BookArena.Web.Controllers
             }
 
             _bookRepository.InsertOrUpdate(book);
-            _unitOfWork.Commit();
+            _bookRepository.Save();
             return Json(new
             {
                 Response = new Response
@@ -222,7 +224,8 @@ namespace BookArena.Web.Controllers
             availablebook.IsAvailable = false;
             _bookRepository.InsertOrUpdateMetaData(availablebook);
 
-            _unitOfWork.Commit();
+            _bookRepository.Save();
+            _transactionRepository.Save();
 
             return Json(new
             {
@@ -263,7 +266,8 @@ namespace BookArena.Web.Controllers
             transaction.IsActive = false;
             _transactionRepository.InsertOrUpdate(transaction);
 
-            _unitOfWork.Commit();
+            _bookRepository.Save();
+            _transactionRepository.Save();
 
             return Json(new
             {

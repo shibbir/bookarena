@@ -10,13 +10,11 @@ namespace BookArena.Web.Controllers
 {
     public class StudentsController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly IStudentRepository _studentRepository;
         private readonly ITransactionRepository _transactionRepository;
 
-        public StudentsController(IUnitOfWork unitOfWork, IStudentRepository studentRepository, ITransactionRepository transactionRepository)
+        public StudentsController(IStudentRepository studentRepository, ITransactionRepository transactionRepository)
         {
-            _unitOfWork = unitOfWork;
             _studentRepository = studentRepository;
             _transactionRepository = transactionRepository;
         }
@@ -96,7 +94,7 @@ namespace BookArena.Web.Controllers
                     }
                 });
             _studentRepository.InsertOrUpdate(student);
-            _unitOfWork.Commit();
+            _studentRepository.Save();
             return Json(new
             {
                 Response = new Response
@@ -136,7 +134,7 @@ namespace BookArena.Web.Controllers
                     }
                 });
             _studentRepository.InsertOrUpdate(student);
-            _unitOfWork.Commit();
+            _studentRepository.Save();
             return Json(new
             {
                 Response = new Response
