@@ -11,9 +11,9 @@ namespace BookArena.DAL.Repository
     {
         private readonly BookArenaDbContext _dbContext;
 
-        public StudentRepository()
+        public StudentRepository(UnitOfWork uow)
         {
-            _dbContext = new BookArenaDbContext();
+            _dbContext = uow.Context;
         }
 
         public void InsertOrUpdate(Student entity)
@@ -46,11 +46,6 @@ namespace BookArena.DAL.Repository
         public IQueryable<Student> FindAll()
         {
             return _dbContext.Student;
-        }
-
-        public void Save()
-        {
-            _dbContext.SaveChanges();
         }
     }
 }

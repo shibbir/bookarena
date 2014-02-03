@@ -11,9 +11,9 @@ namespace BookArena.DAL.Repository
     {
         private readonly BookArenaDbContext _dbContext;
 
-        public CategoryRepository()
+        public CategoryRepository(UnitOfWork uow)
         {
-            _dbContext = new BookArenaDbContext();
+            _dbContext = uow.Context;
         }
 
         public void InsertOrUpdate(Category entity)
@@ -46,11 +46,6 @@ namespace BookArena.DAL.Repository
         public IQueryable<Category> FindAll()
         {
             return _dbContext.Category;
-        }
-
-        public void Save()
-        {
-            _dbContext.SaveChanges();
         }
     }
 }

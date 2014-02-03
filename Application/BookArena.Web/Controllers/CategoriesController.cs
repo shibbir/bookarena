@@ -9,10 +9,12 @@ namespace BookArena.Web.Controllers
 {
     public class CategoriesController : Controller
     {
+        private readonly IUnitOfWork _unitOfWork;
         private readonly ICategoryRepository _categoryRepository;
 
-        public CategoriesController(ICategoryRepository categoryRepository)
+        public CategoriesController(IUnitOfWork unitOfWork, ICategoryRepository categoryRepository)
         {
+            _unitOfWork = unitOfWork;
             _categoryRepository = categoryRepository;
         }
 
@@ -56,7 +58,7 @@ namespace BookArena.Web.Controllers
                     }
                 });
             _categoryRepository.InsertOrUpdate(category);
-            _categoryRepository.Save();
+            _unitOfWork.Commit();
             return Json(new
             {
                 Data = category,
@@ -98,7 +100,7 @@ namespace BookArena.Web.Controllers
                     }
                 });
             _categoryRepository.InsertOrUpdate(category);
-            _categoryRepository.Save();
+            _unitOfWork.Commit();
             return Json(new
             {
                 Data = category,
