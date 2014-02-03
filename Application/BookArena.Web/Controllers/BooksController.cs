@@ -99,7 +99,6 @@ namespace BookArena.Web.Controllers
                     UniqueKey = uniqueKey
                 });
             }
-            //_bookRepository.Save();
             _unitOfWork.Commit();
             return Json(new
             {

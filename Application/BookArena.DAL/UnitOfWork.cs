@@ -1,35 +1,34 @@
-﻿using System;
-using BookArena.DAL.Interfaces;
+﻿using BookArena.DAL.Interfaces;
 
 namespace BookArena.DAL
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly BookArenaDbContext _dbContext;
+        private readonly BookArenaDbContext _context;
 
         public UnitOfWork()
         {
-            _dbContext = new BookArenaDbContext();
+            _context = new BookArenaDbContext();
         }
 
-        public UnitOfWork(BookArenaDbContext bookArenaDbContext)
+        public UnitOfWork(BookArenaDbContext context)
         {
-            _dbContext = bookArenaDbContext;
+            _context = context;
         }
 
         public int Commit()
         {
-            return _dbContext.SaveChanges();
+            return _context.SaveChanges();
         }
 
         internal BookArenaDbContext Context
         {
-            get { return _dbContext; }
+            get { return _context; }
         }
 
         public void Dispose()
         {
-            _dbContext.Dispose();
+            _context.Dispose();
         }
     }
 }
