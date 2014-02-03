@@ -133,11 +133,10 @@ namespace BookArena.Web.Controllers
                     Response = new Response
                     {
                         ResponseType = ResponseType.Error,
-                        Message = "The title is already exists!"
+                        Message = "The title is already exists for another book!"
                     }
                 });
             }
-
             _bookRepository.InsertOrUpdate(book);
             _bookRepository.Save();
             return Json(new

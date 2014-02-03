@@ -46,7 +46,7 @@
     <div class="row">
         <div class="large-6 columns">
             <label>Id Card <span class="red required-star">*</span></label>
-            <input placeholder="e.g 033 05817" type="text" ng-model="student.IdCardNumber" name="IdCardNumber" required ng-pattern="/^[0-9]{1,15}$/" pattern="^[0-9]{1,15}$" />
+            <input placeholder="e.g 033 05817" type="text" ng-model="student.IdCardNumber" name="IdCardNumber" required ng-pattern="/^[0-9]{6,15}$/" pattern="^[0-9]{6,15}$" />
             <small class="error">The Id Card field is invalid</small>
         </div>
     </div>
