@@ -2,8 +2,8 @@
 
 (function(app) {
     app.controller("StudentListCtrl", [
-        "$scope", "$rootScope", "$routeParams", "$location", "apiService", function($scope, $rootScope, $routeParams, $location, service) {
-            if ($rootScope.authenticatedUser.IsAuthenticated) {
+        "$scope", "$rootScope", "$routeParams", "$location", "apiService", "identityService", function ($scope, $rootScope, $routeParams, $location, service, identityService) {
+            if (identityService.isAuthenticated()) {
                 $scope.students = [];
                 if ($routeParams.pageNumber === undefined) {
                     service.call("/students/").then(function(result) {

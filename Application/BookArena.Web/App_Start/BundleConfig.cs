@@ -24,6 +24,7 @@ namespace BookArena.Web
                 "~/Scripts/raphael.js",
                 "~/Scripts/morris.js",
                 "~/Scripts/Application/app.js",
+                "~/Scripts/Application/Services/identity-service.js",
                 "~/Scripts/Application/Services/api-service.js",
                 "~/Scripts/Application/Services/notifier-service.js",
                 "~/Scripts/Application/Directives/Directives.js",

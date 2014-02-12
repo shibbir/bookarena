@@ -28,3 +28,4 @@
 /// <reference path="angular-animate.js" />
 /// <reference path="application/controllers/transactionctrl.js" />
 /// <reference path="foundation.js" />
+/// <reference path="application/services/identity-service.js" />

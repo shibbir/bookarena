@@ -16,6 +16,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookArena.Model", "Applicat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookArena.Web", "Application\BookArena.Web\BookArena.Web.csproj", "{35E2E1DE-3C4F-43BD-8FDD-4BDCED6102FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookArena.Web.ScriptTest", "Application\BookArena.Web.ScriptTest\BookArena.Web.ScriptTest.csproj", "{CEC7E216-2469-4E97-A660-D29521941A45}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,10 @@ Global
 		{35E2E1DE-3C4F-43BD-8FDD-4BDCED6102FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35E2E1DE-3C4F-43BD-8FDD-4BDCED6102FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35E2E1DE-3C4F-43BD-8FDD-4BDCED6102FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEC7E216-2469-4E97-A660-D29521941A45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEC7E216-2469-4E97-A660-D29521941A45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEC7E216-2469-4E97-A660-D29521941A45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEC7E216-2469-4E97-A660-D29521941A45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
