@@ -2,13 +2,14 @@
 
 (function() {
     describe("StudentListCtrl Test Block", function() {
-        var scope, controller;
+        var scope, controller, identity;
         beforeEach(function() {
             module("bookArenaApp");
 
-            inject(function($rootScope, $controller) {
+            inject(function($rootScope, $controller, identityService) {
                 scope = $rootScope.$new();
                 controller = $controller("StudentListCtrl", { $scope: scope });
+                identity = identityService;
             });
         });
 
@@ -16,8 +17,13 @@
             expect(controller).toBeDefined();
         });
 
-        it("should have a list of students", function () {
-            expect(scope.students).toBeDefined();
+        it("should have a student collection only if the user has permission", function () {
+            console.log(identity.isAuthenticated());
+            if (identity.isAuthenticated()) {
+                expect(scope.students).toBeDefined();
+            } else {
+                expect(scope.students).toBeUndefined();
+            }
         });
     });
 })();

@@ -17,7 +17,7 @@
                 service.call("/account/").then(function(result) {
                     if (result.Data) {
                         $rootScope.authenticatedUser = result.Data;
-                        $rootScope.authenticatedUser.IsAuthenticated = true;
+                        $rootScope.authenticatedUser.isAuthenticated = true;
 
                         if ($location.path() === "/account/login") {
                             $location.path("/");
@@ -29,7 +29,7 @@
             $scope.checkAuthentication();
 
             $scope.checkForPermisssionBefore = function(path) {
-                if (!$rootScope.authenticatedUser.IsAuthenticated) {
+                if (!$rootScope.authenticatedUser.isAuthenticated) {
                     $rootScope.globalContainer = {
                         redirectTo: path,
                         response: {
