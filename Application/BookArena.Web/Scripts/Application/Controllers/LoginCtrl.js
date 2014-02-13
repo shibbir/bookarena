@@ -2,11 +2,11 @@
 
 (function(app) {
     app.controller("LoginCtrl", [
-        "$scope", "$rootScope", "$location", "apiService", "notifierService", function($scope, $rootScope, $location, service, notifier) {
+        "$scope", "$rootScope", "$location", "apiService", "notifierService", "identityService", function($scope, $rootScope, $location, service, notifier, identityService) {
             var tempGlobalContainer = $.extend(true, {}, $rootScope.globalContainer);
             $rootScope.globalContainer = null;
 
-            if ($rootScope.authenticatedUser.IsAuthenticated) {
+            if (identityService.isAuthenticated()) {
                 $location.path("/").replace();
             }
             if (tempGlobalContainer && tempGlobalContainer.response) {
@@ -21,8 +21,7 @@
                 if ($scope.LoginForm.$valid) {
                     service.call("/account/login/", $("#LoginForm").serialize(), "POST").then(function(result) {
                         if (result.Data) {
-                            $rootScope.authenticatedUser = result.Data;
-                            $rootScope.authenticatedUser.IsAuthenticated = true;
+                            identityService.setAuthorization(result.Data);
 
                             if (tempGlobalContainer && tempGlobalContainer.redirectTo) {
                                 $location.path(tempGlobalContainer.redirectTo).replace();

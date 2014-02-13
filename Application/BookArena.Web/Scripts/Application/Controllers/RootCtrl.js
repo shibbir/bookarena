@@ -2,31 +2,18 @@
 
 (function(app) {
     app.controller("RootCtrl", [
-        "$scope", "$rootScope", "$location", "apiService", "notifierService", function($scope, $rootScope, $location, service, notifier) {
-            $rootScope.authenticatedUser = {};
+        "$scope", "$rootScope", "$location", "apiService", "notifierService", "identityService", function ($scope, $rootScope, $location, service, notifier, identityService) {
             $scope.notImplemented = function() {
                 notifier.notify({
                     ResponseType: "error",
                     Message: "Sorry! This feature is not available yet."
                 });
             };
-            $scope.checkAuthentication = function() {
-                service.call("/account/").then(function(result) {
-                    if (result.Data) {
-                        $rootScope.authenticatedUser = result.Data;
-                        $rootScope.authenticatedUser.isAuthenticated = true;
 
-                        if ($location.path() === "/account/login") {
-                            $location.path("/");
-                        }
-                    }
-                });
-            };
-
-            $scope.checkAuthentication();
+            identityService.authenticatedUser();
 
             $scope.checkForPermisssionBefore = function(path) {
-                if (!$rootScope.authenticatedUser.isAuthenticated) {
+                if (!identityService.isAuthenticated()) {
                     $rootScope.globalContainer = {
                         redirectTo: path,
                         response: {
@@ -54,14 +41,8 @@
                 $(selector).foundation("reveal", "close");
             };
 
-            $scope.logout = function() {
-                service.call("/account/logoff").then(function(result) {
-                    $rootScope.authenticatedUser = {};
-                    $rootScope.globalContainer = {
-                        response: result.Response
-                    };
-                    $location.path("/account/login");
-                });
+            $scope.logout = function () {
+                identityService.logoff();
             };
         }
     ]);

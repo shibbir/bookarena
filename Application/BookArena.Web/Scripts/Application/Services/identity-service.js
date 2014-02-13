@@ -6,11 +6,15 @@
             var isAuthenticated = function() {
                 return !!($rootScope.authenticatedUser && $rootScope.authenticatedUser.isAuthenticated);
             };
+            var setAuthorization = function(data) {
+                $rootScope.authenticatedUser = data;
+                $rootScope.authenticatedUser.isAuthenticated = true;
+            };
             var authenticatedUser = function() {
+                $rootScope.authenticatedUser = {};
                 apiService.call("/account/").then(function(result) {
                     if (result.Data) {
-                        $rootScope.authenticatedUser = result.Data;
-                        $rootScope.authenticatedUser.isAuthenticated = true;
+                        setAuthorization(result.Data);
 
                         if ($location.path() === "/account/login") {
                             $location.path("/");
@@ -18,9 +22,20 @@
                     }
                 });
             };
+            var logoff = function() {
+                apiService.call("/account/logoff").then(function(result) {
+                    $rootScope.authenticatedUser = {};
+                    $rootScope.globalContainer = {
+                        response: result.Response
+                    };
+                    $location.path("/account/login");
+                });
+            };
             return {
                 isAuthenticated: isAuthenticated,
-                authenticatedUser: authenticatedUser
+                authenticatedUser: authenticatedUser,
+                setAuthorization: setAuthorization,
+                logoff: logoff
             };
         }
     ]);

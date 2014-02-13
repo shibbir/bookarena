@@ -63,7 +63,7 @@
     }).directive("cdRatingInput", function() {
         return {
             restrict: "A",
-            link: function($scope, $element, $attrs) {
+            link: function($scope, $element) {
                 $element.raty({
                     half: true,
                     halfShow: true,
