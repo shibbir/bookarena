@@ -2,13 +2,14 @@
 
 (function(app) {
     app.controller("BookAddCtrl", [
-        "$scope", "$rootScope", "$location", "apiService", "notifierService", function($scope, $rootScope, $location, service, notifier) {
+        "$scope", "$rootScope", "$location", "apiService", "identityService", "notifierService", "sharedService", function($scope, $rootScope, $location, apiService, identityService, notifier, sharedService) {
             $(document).foundation();
-            if ($rootScope.authenticatedUser.IsAuthenticated) {
+            if (identityService.isAuthenticated()) {
                 $scope.book = {};
                 $scope.book.isRequired = true;
                 $scope.categories = [];
-                service.call("/categories/").then(function(result) {
+                $scope.bookQuantities = sharedService.bookQuantities();
+                apiService.call("/categories/").then(function(result) {
                     $scope.categories = result.Data;
                 });
             } else {
@@ -23,7 +24,7 @@
             }
             $scope.add = function() {
                 if ($scope.BookAddForm.$valid) {
-                    service.call("/books/add/", $("form[name=BookAddForm]").serialize(), "POST").then(function(result) {
+                    apiService.call("/books/add/", $("form[name=BookAddForm]").serialize(), "POST").then(function(result) {
                         notifier.notify(result.Response);
 
                         if (!result.PreserveInput) {

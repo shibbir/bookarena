@@ -2,9 +2,9 @@
 
 (function(app) {
     app.controller("BookEditCtrl", [
-        "$scope", "$rootScope", "$routeParams", "$location", "apiService", "notifierService", function($scope, $rootScope, $routeParams, $location, service, notifier) {
+        "$scope", "$rootScope", "$routeParams", "$location", "apiService", "notifierService", "identityService", function($scope, $rootScope, $routeParams, $location, service, notifier, identityService) {
             $(document).foundation();
-            if ($rootScope.authenticatedUser.IsAuthenticated) {
+            if (identityService.isAuthenticated()) {
                 $scope.book = {};
                 $scope.categories = [];
                 service.call("/books/book/" + $routeParams.id).then(function(result) {
@@ -30,7 +30,7 @@
                 $location.path("/account/login").replace();
             }
             $scope.update = function() {
-                if ($scope.BookEditForm.$valid && $rootScope.authenticatedUser.IsAuthenticated) {
+                if (identityService.isAuthenticated() && $scope.BookEditForm.$valid) {
                     service.call("/books/edit/", $("form[name=BookEditForm]").serialize(), "POST").then(function(result) {
                         notifier.notify(result.Response);
                     });

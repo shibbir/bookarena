@@ -27,5 +27,6 @@
 /// <reference path="angular-route.js" />
 /// <reference path="angular-animate.js" />
 /// <reference path="application/controllers/transactionctrl.js" />
-/// <reference path="foundation.js" />
 /// <reference path="application/services/identity-service.js" />
+/// <reference path="foundation.js" />
+/// <reference path="application/services/shared-service.js" />

@@ -18,7 +18,6 @@
         });
 
         it("should have a student collection only if the user has permission", function () {
-            console.log(identity.isAuthenticated());
             if (identity.isAuthenticated()) {
                 expect(scope.students).toBeDefined();
             } else {

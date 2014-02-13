@@ -74,11 +74,11 @@
                 </p>
             </div>
             <div class="small-5 medium-5 columns">
-                <a ng-click="loginToEditBook()" ng-hide="authenticatedUser.IsAuthenticated">
+                <a ng-click="loginToEditBook()" ng-hide="authenticatedUser.isAuthenticated">
                     <i class="fi-lock"></i>
                     Login to edit this book
                 </a>
-                <a ng-href="#/books/edit/{{book.BookId}}" ng-show="authenticatedUser.IsAuthenticated">
+                <a ng-href="#/books/edit/{{book.BookId}}" ng-show="authenticatedUser.isAuthenticated">
                     <i class="fi-page-edit"></i>
                     Edit this book
                 </a>

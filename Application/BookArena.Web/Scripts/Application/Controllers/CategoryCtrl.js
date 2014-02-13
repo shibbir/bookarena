@@ -2,7 +2,7 @@
 
 (function(app) {
     app.controller("CategoryCtrl", [
-        "$scope", "$rootScope", "$location", "$filter", "apiService", "notifierService", function($scope, $rootScope, $location, $filter, service, notifier) {
+        "$scope", "$rootScope", "$location", "$filter", "apiService", "notifierService", "identityService", function($scope, $rootScope, $location, $filter, service, notifier, identityService) {
             $scope.categories = [];
             $scope.category = {};
             service.call("/categories/").then(function(result) {
@@ -11,7 +11,7 @@
                 }
             });
             $scope.addCategory = function() {
-                if ($rootScope.authenticatedUser.IsAuthenticated && $scope.CategoryAddForm.$valid) {
+                if (identityService.isAuthenticated() && $scope.CategoryAddForm.$valid) {
                     service.call("/categories/add/", $("form[name=CategoryAddForm]").serialize(), "POST").then(function(result) {
                         notifier.notify(result.Response);
                         if (result.Data) {
@@ -24,7 +24,7 @@
                 }
             };
             $scope.updateCategory = function() {
-                if ($rootScope.authenticatedUser.IsAuthenticated && $scope.CategoryEditForm.$valid) {
+                if (identityService.isAuthenticated() && $scope.CategoryEditForm.$valid) {
                     service.call("/categories/edit/", $("form[name=CategoryEditForm]").serialize(), "POST").then(function(result) {
                         notifier.notify(result.Response);
                         if (result.Data) {

@@ -284,6 +284,7 @@
     <Content Include="Scripts\Application\Controllers\StudentListCtrl.js" />
     <Content Include="Scripts\Application\Controllers\HomeCtrl.js" />
     <Content Include="Scripts\Application\Directives\directives.js" />
+    <Content Include="Scripts\Application\Services\shared-service.js" />
     <Content Include="Scripts\Application\Services\identity-service.js" />
     <Content Include="Scripts\Application\Services\api-service.js" />
     <Content Include="Scripts\Application\Services\notifier-service.js" />

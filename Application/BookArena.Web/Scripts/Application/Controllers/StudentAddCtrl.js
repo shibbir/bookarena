@@ -2,9 +2,9 @@
 
 (function(app) {
     app.controller("StudentAddCtrl", [
-        "$scope", "$rootScope", "$location", "apiService", "notifierService", function ($scope, $rootScope, $location, service, notifier) {
+        "$scope", "$rootScope", "$location", "apiService", "notifierService", "identityService", "sharedService", function($scope, $rootScope, $location, service, notifier, identityService, sharedService) {
             $(document).foundation();
-            if (!$rootScope.authenticatedUser.IsAuthenticated) {
+            if (!identityService.isAuthenticated()) {
                 $rootScope.globalContainer = {
                     redirectTo: $location.path(),
                     response: {
@@ -15,6 +15,8 @@
                 $location.path("/account/login").replace();
             }
             $scope.student = {};
+            $scope.programs = sharedService.programs();
+            $scope.batches = sharedService.batches();
             $scope.register = function() {
                 if ($scope.StudentRegisterForm.$valid) {
                     service.call("/students/add/", $("form[name=StudentRegisterForm]").serialize(), "POST").then(function(result) {

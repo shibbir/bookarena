@@ -30,7 +30,7 @@
     <div class="row">
         <div class="large-5 columns">
             <label>Book Quantity <span class="red required-star">*</span></label>
-            <select ng-model="book.Quantity" ng-options="option for option in quantityArray" required>
+            <select ng-model="book.Quantity" ng-options="option for option in bookQuantities" required>
                 <option value="">Select Quantity</option>
             </select>
             <input type="hidden" name="Quantity" ng-value="book.Quantity" required />
