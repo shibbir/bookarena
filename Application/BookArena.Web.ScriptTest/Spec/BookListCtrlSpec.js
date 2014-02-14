@@ -16,7 +16,7 @@
             expect(controller).toBeDefined();
         });
 
-        it("should have a list of categories", function () {
+        it("should define a category collection", function() {
             expect(scope.categories).toBeDefined();
         });
     });

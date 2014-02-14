@@ -1,27 +1,28 @@
 ﻿"use strict";
 
-(function () {
-    describe("StudentListCtrl Test Block", function () {
-        var scope, controller, identity;
-        beforeEach(function () {
+(function() {
+    describe("StudentListCtrl", function() {
+        var scope, controller, identity, rootScope;
+        beforeEach(function() {
             module("bookArenaApp");
 
-            inject(function ($rootScope, $controller, identityService) {
+            inject(function($rootScope, $controller, identityService) {
+                rootScope = $rootScope;
                 scope = $rootScope.$new();
                 controller = $controller("StudentListCtrl", { $scope: scope });
                 identity = identityService;
             });
         });
 
-        it("should define a controller a named StudentListCtrl", function () {
+        it("should define a controller a named StudentListCtrl", function() {
             expect(controller).toBeDefined();
         });
 
-        it("should not have a student collection if the user don't have permission", function () {
+        it("should not have a student collection if the user don't have permission", function() {
             expect(scope.students).toBeUndefined();
         });
 
-        it("should have a student collection if the user is logged in", function () {
+        it("should have a student collection if the user is logged in", function() {
             identity.setAuthorization({
                 "Name": "Shibbir Ahmed",
                 "Email": "shibbir@shibbir.net",
@@ -30,6 +31,6 @@
                 "ImageFileName": "profile.jpg"
             });
             expect(scope.students).toBeDefined();
-        })
+        });
     });
 })();
