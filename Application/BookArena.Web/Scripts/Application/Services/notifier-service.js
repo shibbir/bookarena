@@ -2,8 +2,8 @@
     app.factory("notifierService", function() {
         return {
             notify: function(data) {
-                var responseType = data.ResponseType.toLowerCase(),
-                    response = data.Message;
+                var responseType = data.responseType.toLowerCase(),
+                    response = data.message;
 
                 toastr.options = {
                     "debug": false,

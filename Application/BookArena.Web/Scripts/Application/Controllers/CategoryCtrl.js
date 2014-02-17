@@ -6,19 +6,19 @@
             $scope.categories = [];
             $scope.category = {};
             service.call("/categories/").then(function(result) {
-                if (result.Data.length) {
-                    $scope.categories = result.Data;
+                if (result.data.length) {
+                    $scope.categories = result.data;
                 }
             });
             $scope.addCategory = function() {
                 if (identityService.isAuthenticated() && $scope.CategoryAddForm.$valid) {
                     service.call("/categories/add/", $("form[name=CategoryAddForm]").serialize(), "POST").then(function(result) {
-                        notifier.notify(result.Response);
-                        if (result.Data) {
-                            $scope.category.Title = "";
+                        notifier.notify(result.response);
+                        if (result.data) {
+                            $scope.category.title = "";
                             $scope.CategoryAddForm.$setPristine();
-                            result.Data.Count = 0;
-                            $scope.categories.push(result.Data);
+                            result.data.count = 0;
+                            $scope.categories.push(result.data);
                         }
                     });
                 }
@@ -26,10 +26,10 @@
             $scope.updateCategory = function() {
                 if (identityService.isAuthenticated() && $scope.CategoryEditForm.$valid) {
                     service.call("/categories/edit/", $("form[name=CategoryEditForm]").serialize(), "POST").then(function(result) {
-                        notifier.notify(result.Response);
-                        if (result.Data) {
-                            var filteredCategories = $filter("filter")($scope.categories, { CategoryId: result.Data.CategoryId }, true);
-                            filteredCategories[0].Title = result.Data.Title;
+                        notifier.notify(result.response);
+                        if (result.data) {
+                            var filteredCategories = $filter("filter")($scope.categories, { categoryId: result.data.categoryId }, true);
+                            filteredCategories[0].title = result.data.title;
                         }
                     });
                 }

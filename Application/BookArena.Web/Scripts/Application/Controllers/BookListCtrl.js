@@ -7,9 +7,8 @@
 
             if ($routeParams.categoryId === undefined) {
                 service.call("/books/").then(function(result) {
-                    result.Data = $.parseJSON(result.Data);
-                    if (result.Data.length) {
-                        $scope.categories = result.Data;
+                    if (result.data.length) {
+                        $scope.categories = result.data;
                     }
                 });
             } else {
@@ -18,9 +17,8 @@
                     $location.path("/").replace();
                 } else {
                     service.call("/books/category/" + id).then(function(result) {
-                        result.Data = $.parseJSON(result.Data);
-                        if (result.Data.length) {
-                            $scope.categories = result.Data;
+                        if (result.data.length) {
+                            $scope.categories = result.data;
                         }
                     });
                 }

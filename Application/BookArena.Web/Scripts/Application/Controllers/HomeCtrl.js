@@ -4,18 +4,18 @@
     app.controller("HomeCtrl", [
         "$scope", "apiService", function($scope, service) {
             service.call("/books/latest").then(function(result) {
-                if (result.Data.length) {
-                    $scope.latestBooks = result.Data;
+                if (result.data.length) {
+                    $scope.latestBooks = result.data;
                 }
             });
 
             service.call("/categories/").then(function(result) {
-                if (result.Data.length) {
+                if (result.data.length) {
                     Morris.Bar({
                         element: "bar-chart",
-                        data: result.Data,
-                        xkey: "Title",
-                        ykeys: ["Count"],
+                        data: result.data,
+                        xkey: "title",
+                        ykeys: ["count"],
                         labels: ["Number Of Books"],
                         barRatio: 0.4,
                         xLabelAngle: 55,

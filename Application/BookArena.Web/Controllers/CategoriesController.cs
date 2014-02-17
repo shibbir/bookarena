@@ -4,6 +4,7 @@ using BookArena.DAL.Interfaces;
 using BookArena.Model;
 using BookArena.Model.EntityModel;
 using BookArena.Web.Helper;
+using Newtonsoft.Json;
 
 namespace BookArena.Web.Controllers
 {
@@ -16,7 +17,7 @@ namespace BookArena.Web.Controllers
             _categoryRepository = categoryRepository;
         }
 
-        public JsonResult Index()
+        public ActionResult Index()
         {
             var model = _categoryRepository.FindAll().Select(category => new
             {
@@ -24,17 +25,17 @@ namespace BookArena.Web.Controllers
                 category.Title,
                 category.Books.Count
             }).ToList();
-            return Json(new {Data = model}, JsonRequestBehavior.AllowGet);
+            return Content(JsonConvert.SerializeObject(new {Data = model}), "application/json");
         }
 
         [HttpPost]
-        public JsonResult Add(Category category)
+        public ActionResult Add(Category category)
         {
             if (!Request.IsAuthenticated)
-                return Json(Utility.AccessDeniedResponse());
+                return Content(JsonConvert.SerializeObject(Utility.AccessDeniedResponse()), "application/json");
             if (!ModelState.IsValid)
             {
-                return Json(new
+                return Content(JsonConvert.SerializeObject(new
                 {
                     PreserveInput = true,
                     Response = new Response
@@ -42,11 +43,11 @@ namespace BookArena.Web.Controllers
                         ResponseType = ResponseType.Error,
                         Message = "Invalid category information!"
                     }
-                });
+                }), "application/json");
             }
             var duplicate = _categoryRepository.Find(x => x.Title == category.Title);
             if (duplicate != null)
-                return Json(new
+                return Content(JsonConvert.SerializeObject(new
                 {
                     PreserveInput = true,
                     Response = new Response
@@ -54,10 +55,10 @@ namespace BookArena.Web.Controllers
                         ResponseType = ResponseType.Error,
                         Message = "The Title for this category is already exist in the record. Please check again."
                     }
-                });
+                }), "application/json");
             _categoryRepository.InsertOrUpdate(category);
             _categoryRepository.Save();
-            return Json(new
+            return Content(JsonConvert.SerializeObject(new
             {
                 Data = category,
                 Response = new Response
@@ -65,17 +66,17 @@ namespace BookArena.Web.Controllers
                     ResponseType = ResponseType.Success,
                     Message = "Category created successfully."
                 }
-            });
+            }), "application/json");
         }
 
         [HttpPost]
-        public JsonResult Edit(Category category)
+        public ActionResult Edit(Category category)
         {
             if (!Request.IsAuthenticated)
-                return Json(Utility.AccessDeniedResponse());
+                return Content(JsonConvert.SerializeObject(Utility.AccessDeniedResponse()), "application/json");
             if (!ModelState.IsValid)
             {
-                return Json(new
+                return Content(JsonConvert.SerializeObject(new
                 {
                     PreserveInput = true,
                     Response = new Response
@@ -83,12 +84,12 @@ namespace BookArena.Web.Controllers
                         ResponseType = ResponseType.Error,
                         Message = "Invalid category information!"
                     }
-                });
+                }), "application/json");
             }
             var duplicate =
                 _categoryRepository.Find(x => x.Title == category.Title && x.CategoryId != category.CategoryId);
             if (duplicate != null)
-                return Json(new
+                return Content(JsonConvert.SerializeObject(new
                 {
                     PreserveInput = true,
                     Response = new Response
@@ -96,10 +97,10 @@ namespace BookArena.Web.Controllers
                         ResponseType = ResponseType.Error,
                         Message = "The Title for this category is already exist in the record. Please check again."
                     }
-                });
+                }), "application/json");
             _categoryRepository.InsertOrUpdate(category);
             _categoryRepository.Save();
-            return Json(new
+            return Content(JsonConvert.SerializeObject(new
             {
                 Data = category,
                 Response = new Response
@@ -107,7 +108,7 @@ namespace BookArena.Web.Controllers
                     ResponseType = ResponseType.Success,
                     Message = "Category updated successfully."
                 }
-            });
+            }), "application/json");
         }
     }
 }

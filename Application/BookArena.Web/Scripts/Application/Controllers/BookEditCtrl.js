@@ -8,12 +8,11 @@
                 $scope.book = {};
                 $scope.categories = [];
                 service.call("/books/book/" + $routeParams.id).then(function(result) {
-                    if (result.Data) {
-                        $scope.book = result.Data;
-                        $scope.book.CategoryId = $scope.book.CategoryId;
+                    if (result.data) {
+                        $scope.book = result.data;
 
                         service.call("/categories/").then(function(category) {
-                            $scope.categories = category.Data;
+                            $scope.categories = category.data;
                         });
                     } else {
                         $location.path("/").replace();

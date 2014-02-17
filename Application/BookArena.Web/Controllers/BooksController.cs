@@ -16,42 +16,40 @@ namespace BookArena.Web.Controllers
         private readonly ICategoryRepository _categoryRepository;
         private readonly IStudentRepository _studentRepository;
         private readonly ITransactionRepository _transactionRepository;
+        private readonly ModelFactory _modelFactory;
 
         public BooksController(IBookRepository bookRepository,
             IStudentRepository studentRepository,
-            ICategoryRepository categoryRepository, ITransactionRepository transactionRepository)
+            ICategoryRepository categoryRepository, ITransactionRepository transactionRepository,
+            ModelFactory modelFactory)
         {
             _bookRepository = bookRepository;
             _studentRepository = studentRepository;
             _categoryRepository = categoryRepository;
             _transactionRepository = transactionRepository;
+            _modelFactory = modelFactory;
         }
 
-        public JsonResult Index()
+        public ActionResult Index()
         {
-            var model = _categoryRepository.FindAll().Select(category => new
-            {
-                category.CategoryId,
-                category.Title,
-                category.Books
-            }).ToList();
-            return Json(new {Data = JsonConvert.SerializeObject(model)}, JsonRequestBehavior.AllowGet);
+            var model = _categoryRepository.FindAll().ToList().Select(category => _modelFactory.Create(category));
+            return Content(JsonConvert.SerializeObject(new {Data = model}), "application/json");
         }
 
-        public JsonResult Latest()
+        public ActionResult Latest()
         {
             var books = _bookRepository.Books().OrderByDescending(x => x.BookId).Take(5).ToList();
             foreach (var book in books)
             {
                 book.AvailableQuantity = _bookRepository.AvailableBooks(book.BookId);
             }
-            return Json(new {Data = books}, JsonRequestBehavior.AllowGet);
+            return Content(JsonConvert.SerializeObject(new {Data = books}), "application/json");
         }
 
-        public JsonResult Book(int id)
+        public ActionResult Book(int id)
         {
             var model = _bookRepository.Book(x => x.BookId == id);
-            return Json(new {Data = model}, JsonRequestBehavior.AllowGet);
+            return Content(JsonConvert.SerializeObject(new {Data = model}), "application/json");
         }
 
         [HttpPost]
@@ -149,15 +147,14 @@ namespace BookArena.Web.Controllers
             });
         }
 
-        public JsonResult Category(int id)
+        public ActionResult Category(int id)
         {
-            var model = _categoryRepository.FindAll().Where(x => x.CategoryId == id).Select(category => new
-            {
-                category.CategoryId,
-                category.Title,
-                category.Books
-            }).ToList();
-            return Json(new {Data = JsonConvert.SerializeObject(model)}, JsonRequestBehavior.AllowGet);
+            var model =
+                _categoryRepository.FindAll()
+                    .Where(x => x.CategoryId == id)
+                    .ToList()
+                    .Select(category => _modelFactory.Create(category));
+            return Content(JsonConvert.SerializeObject(new {Data = model}), "application/json");
         }
 
         [HttpPost]

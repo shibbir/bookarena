@@ -1,7 +1,7 @@
 ﻿<button class="button loan-button" data-reveal-id="BorrowModal" ng-show="displayBorrowButton()" ng-click="resetBorrowSection()">Borrow</button>
 
 <div id="BorrowModal" class="reveal-modal tiny" data-reveal>
-    <h3>{{book.Title}}</h3>
+    <h3>{{book.title}}</h3>
     <p class="lead">Search for a student.</p>
     <div class="bouncespinner" ng-show="searchStudentInProgress">
         <div class="bounce1"></div>
@@ -36,7 +36,7 @@
                 </tr>
             </tbody>
         </table>
-        <button ng-disabled="!book.BookId || !searchedStudent.Id" class="success full-width" ng-click="borrowBook(searchedStudent.Id, book.BookId)">Borrow The Book</button>
+        <button ng-disabled="!book.bookId || !searchedStudent.Id" class="success full-width" ng-click="borrowBook(searchedStudent.Id, book.bookId)">Borrow The Book</button>
     </div>
     <a class="close-reveal-modal">&#215;</a>
 </div>
@@ -51,26 +51,26 @@
 </ul>
 
 <div class="panel callout radius">
-    <h5>{{book.Title}}</h5>
-    <p>By {{book.Author}}</p>
+    <h5>{{book.title}}</h5>
+    <p>By {{book.author}}</p>
 </div>
 
 <div class="row">
     <div class="small-3 large-3 columns">
-        <img ng-src="/Content/Images/{{book.ImageFileName}}" alt="{{book.Title}}" />
+        <img ng-src="/Content/Images/{{book.imageFileName}}" alt="{{book.title}}" />
         <br /><br />
-        <span class="green">Total Copy: {{book.Quantity}}</span>
-        <p class="green">Available: {{book.AvailableQuantity}}</p>
+        <span class="green">Total Copy: {{book.quantity}}</span>
+        <p class="green">Available: {{book.availableQuantity}}</p>
     </div>
     <div class="small-9 large-9 columns">
         <div class="row">
             <div class="small-12 large-12 columns">
-                <p>{{book.ShortDescription}}</p>
+                <p>{{book.shortDescription}}</p>
                 <span ng-if="book.Rating">
-                    Rating: <span cd-rating="{{book.Rating}}"></span>
+                    Rating: <span cd-rating="{{book.rating}}"></span>
                 </span>
                 <p>
-                    Category: <a ng-href="#/books/category/{{book.CategoryId}}">{{book.CategoryTitle}}</a>
+                    Category: <a ng-href="#/books/category/{{book.categoryId}}">{{book.categoryTitle}}</a>
                 </p>
             </div>
             <div class="small-5 medium-5 columns">
@@ -78,7 +78,7 @@
                     <i class="fi-lock"></i>
                     Login to edit this book
                 </a>
-                <a ng-href="#/books/edit/{{book.BookId}}" ng-show="authenticatedUser.isAuthenticated">
+                <a ng-href="#/books/edit/{{book.bookId}}" ng-show="authenticatedUser.isAuthenticated">
                     <i class="fi-page-edit"></i>
                     Edit this book
                 </a>
@@ -89,7 +89,7 @@
 
 <hr />
 
-<div ng-if="book.LongDescription">{{book.LongDescription}}</div>
+<div ng-if="book.longDescription">{{book.longDescription}}</div>
 
 <div ng-if="!book.LongDescription">
     <h3>What you’ll learn</h3>

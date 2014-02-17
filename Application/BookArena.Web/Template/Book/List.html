@@ -17,13 +17,13 @@
     <input type="search" ng-model="searchText" placeholder="filter books by name, author or category" />
     <div ng-repeat="category in categories | filter:searchText" class="book-wrapper">
         <div class="success alert-box">
-            {{category.Title}}
+            {{category.title}}
         </div>
-        <div ng-if="!category.Books.length"><h4>No books are available for this category.</h4></div>
-        <div ng-if="category.Books.length" ng-repeat="book in category.Books | filter:searchText" class="books">
+        <div ng-if="!category.books.length"><h4>No books are available for this category.</h4></div>
+        <div ng-if="category.books.length" ng-repeat="book in category.books | filter:searchText" class="books">
             <div class="book-body">
-                <a ng-href="#/books/book/{{book.BookId}}">
-                    <img ng-src="/Content/Images/{{book.ImageFileName}}" alt="{{book.Title}}" />
+                <a ng-href="#/books/book/{{book.bookId}}">
+                    <img ng-src="/Content/Images/{{book.imageFileName}}" alt="{{book.title}}" />
                 </a>
             </div>
         </div>

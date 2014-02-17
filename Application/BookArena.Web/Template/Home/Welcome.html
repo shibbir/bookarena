@@ -15,12 +15,12 @@
         </div>
         <div ng-repeat="book in latestBooks" class="latest-books">
             <div class="book-body">
-                <a ng-href="#/books/book/{{book.BookId}}">
-                    <img ng-src="/Content/Images/{{book.ImageFileName}}" alt="{{book.Title}}" />
+                <a ng-href="#/books/book/{{book.bookId}}">
+                    <img ng-src="/Content/Images/{{book.imageFileName}}" alt="{{book.title}}" />
                 </a>
             </div>
             <div class="book-footer text-center">
-                <div data-cd-book-status="{{book.AvailableQuantity}}"></div>
+                <div data-cd-book-status="{{book.availableQuantity}}"></div>
             </div>
         </div>
     </div>

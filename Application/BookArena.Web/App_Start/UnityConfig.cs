@@ -3,6 +3,7 @@ using BookArena.DAL;
 using BookArena.DAL.Interfaces;
 using BookArena.DAL.Repository;
 using BookArena.Web.Controllers;
+using BookArena.Web.Helper;
 using Microsoft.Practices.Unity;
 
 namespace BookArena.Web
@@ -28,6 +29,7 @@ namespace BookArena.Web
             container.RegisterType<ICategoryRepository, CategoryRepository>();
             container.RegisterType<IStudentRepository, StudentRepository>();
             container.RegisterType<ITransactionRepository, TransactionRepository>();
+            container.RegisterType<ModelFactory, ModelFactory>();
         }
     }
 }

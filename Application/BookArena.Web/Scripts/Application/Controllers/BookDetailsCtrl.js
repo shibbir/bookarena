@@ -10,7 +10,7 @@
                 $scope.searchedStudent = {};
 
                 service.call("/books/book/" + $routeParams.id).then(function(result) {
-                    $scope.book = result.Data;
+                    $scope.book = result.data;
                 });
             }();
             $scope.loginToEditBook = function() {
@@ -43,7 +43,7 @@
                 }
             };
             $scope.displayBorrowButton = function() {
-                if (identityService.isAuthenticated() && $scope.book.AvailableQuantity) {
+                if (identityService.isAuthenticated() && $scope.book.availableQuantity) {
                     return true;
                 }
                 return false;
