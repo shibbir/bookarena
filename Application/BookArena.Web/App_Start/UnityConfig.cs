@@ -1,5 +1,4 @@
 using System;
-using BookArena.DAL;
 using BookArena.DAL.Interfaces;
 using BookArena.DAL.Repository;
 using BookArena.Web.Controllers;

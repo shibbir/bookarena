@@ -14,7 +14,7 @@
             }
             $scope.data = {
                 userName: "admin",
-                password: "Hakuna matata"
+                password: "HakunaMatata"
             };
 
             $scope.login = function() {
@@ -29,7 +29,7 @@
                                 $location.path("/").replace();
                             }
                         } else {
-                            notifier.notify(result.Response);
+                            notifier.notify(result.response);
                         }
                     });
                 }

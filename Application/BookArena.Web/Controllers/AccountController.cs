@@ -9,6 +9,7 @@ using BookArena.Web.Helper;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
+using Newtonsoft.Json;
 
 namespace BookArena.Web.Controllers
 {
@@ -40,25 +41,27 @@ namespace BookArena.Web.Controllers
         public async Task<ActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
-                return Json(new
+            {
+                return Content(JsonConvert.SerializeObject(new
                 {
                     Response = new Response
                     {
                         ResponseType = ResponseType.Error,
                         Message = "Invalid username or password."
                     }
-                });
+                }), "application/json");
+            }
             var user = await UserManager.FindAsync(model.UserName, model.Password);
             if (user == null)
             {
-                return Json(new
+                return Content(JsonConvert.SerializeObject(new
                 {
                     Response = new Response
                     {
                         ResponseType = ResponseType.Error,
                         Message = "Invalid username or password."
                     }
-                });
+                }), "application/json");
             }
             await SignInAsync(user, model.RememberMe);
 

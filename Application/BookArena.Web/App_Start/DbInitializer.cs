@@ -14,7 +14,7 @@ namespace BookArena.Web
         protected override void Seed(BookArenaDbContext context)
         {
             const string role = "SuperAdmin";
-            const string password = "Hakuna matata";
+            const string password = "HakunaMatata";
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var user = new ApplicationUser
