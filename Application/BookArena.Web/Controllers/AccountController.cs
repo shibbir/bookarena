@@ -253,14 +253,14 @@ namespace BookArena.Web.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return Json(new
+            return Content(JsonConvert.SerializeObject(new
             {
                 Response = new Response
                 {
                     ResponseType = ResponseType.Success,
                     Message = "You have been logged out!"
                 }
-            }, JsonRequestBehavior.AllowGet);
+            }), "application/json");
         }
 
         //
