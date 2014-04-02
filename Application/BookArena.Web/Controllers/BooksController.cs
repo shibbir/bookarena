@@ -53,11 +53,12 @@ namespace BookArena.Web.Controllers
         }
 
         [HttpPost]
-        public JsonResult Add(Book book)
+        public ActionResult Add(Book book)
         {
             if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse());
             if (!ModelState.IsValid)
-                return Json(new
+            {
+                return Content(JsonConvert.SerializeObject(new
                 {
                     PreserveInput = true,
                     Response = new Response
@@ -65,11 +66,12 @@ namespace BookArena.Web.Controllers
                         ResponseType = ResponseType.Error,
                         Message = "Invalid book information!"
                     }
-                });
+                }), "application/json");
+            }
             var duplicate = _bookRepository.Book(x => x.Title == book.Title);
             if (duplicate != null)
             {
-                return Json(new
+                return Content(JsonConvert.SerializeObject(new
                 {
                     PreserveInput = true,
                     Response = new Response
@@ -77,7 +79,7 @@ namespace BookArena.Web.Controllers
                         ResponseType = ResponseType.Error,
                         Message = "The title is already exists!"
                     }
-                });
+                }), "application/json");
             }
             _bookRepository.InsertOrUpdate(book);
             _bookRepository.Save();
@@ -100,51 +102,53 @@ namespace BookArena.Web.Controllers
                 });
             }
             _bookRepository.Save();
-            return Json(new
+            return Content(JsonConvert.SerializeObject(new
             {
                 Response = new Response
                 {
                     ResponseType = ResponseType.Success,
                     Message = "Book uploaded successfully!"
                 }
-            });
+            }), "application/json");
         }
 
         [HttpPost]
-        public JsonResult Edit(Book book)
+        public ActionResult Edit(Book book)
         {
             if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse());
             if (!ModelState.IsValid)
-                return Json(new
+            {
+                return Content(JsonConvert.SerializeObject(new
                 {
                     Response = new Response
                     {
                         ResponseType = ResponseType.Error,
                         Message = "Invalid book information!"
                     }
-                });
+                }), "application/json");
+            }
             var duplicate = _bookRepository.Book(x => x.Title == book.Title && x.BookId != book.BookId);
             if (duplicate != null)
             {
-                return Json(new
+                return Content(JsonConvert.SerializeObject(new
                 {
                     Response = new Response
                     {
                         ResponseType = ResponseType.Error,
                         Message = "The title is already exists for another book!"
                     }
-                });
+                }), "application/json");
             }
             _bookRepository.InsertOrUpdate(book);
             _bookRepository.Save();
-            return Json(new
+            return Content(JsonConvert.SerializeObject(new
             {
                 Response = new Response
                 {
                     ResponseType = ResponseType.Success,
                     Message = "Book updated successfully!"
                 }
-            });
+            }), "application/json");
         }
 
         public ActionResult Category(int id)
@@ -158,56 +162,56 @@ namespace BookArena.Web.Controllers
         }
 
         [HttpPost]
-        public JsonResult Borrow(int studentId, int bookId)
+        public ActionResult Borrow(int studentId, int bookId)
         {
             if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse());
             var availablebook = _bookRepository.BookMetaData(x => x.BookId == bookId && x.IsAvailable);
             if (availablebook == null)
             {
-                return Json(new
+                return Content(JsonConvert.SerializeObject(new
                 {
                     Response = new Response
                     {
                         ResponseType = ResponseType.Error,
                         Message = "Sorry. This book is not available now."
                     }
-                });
+                }), "application/json");
             }
             var student = _studentRepository.Find(x => x.Id == studentId);
             if (student == null)
             {
-                return Json(new
+                return Content(JsonConvert.SerializeObject(new
                 {
                     Response = new Response
                     {
                         ResponseType = ResponseType.Error,
                         Message = "Invalid student information."
                     }
-                });
+                }), "application/json");
             }
             var borrowerActiveTransactions =
                 _transactionRepository.FindAll(x => x.StudentId == studentId && x.IsActive).ToList();
             if (borrowerActiveTransactions.Count() >= 2)
             {
-                return Json(new
+                return Content(JsonConvert.SerializeObject(new
                 {
                     Response = new Response
                     {
                         ResponseType = ResponseType.Error,
                         Message = "This student already have two borrowed books."
                     }
-                });
+                }), "application/json");
             }
             if (borrowerActiveTransactions.Any(transaction => transaction.BookId == bookId && transaction.IsActive))
             {
-                return Json(new
+                return Content(JsonConvert.SerializeObject(new
                 {
                     Response = new Response
                     {
                         ResponseType = ResponseType.Error,
                         Message = "This student already borrowed this book."
                     }
-                });
+                }), "application/json");
             }
             _transactionRepository.InsertOrUpdate(new Transaction
             {
@@ -223,7 +227,7 @@ namespace BookArena.Web.Controllers
             _bookRepository.Save();
             _transactionRepository.Save();
 
-            return Json(new
+            return Content(JsonConvert.SerializeObject(new
             {
                 Data = _bookRepository.AvailableBooks(bookId),
                 Response = new Response
@@ -231,11 +235,11 @@ namespace BookArena.Web.Controllers
                     ResponseType = ResponseType.Success,
                     Message = "Operation Successfull."
                 }
-            });
+            }), "application/json");
         }
 
         [HttpPost]
-        public JsonResult Receive(int id)
+        public ActionResult Receive(int id)
         {
             if (!Request.IsAuthenticated)
                 return Json(Utility.AccessDeniedResponse());
@@ -244,14 +248,14 @@ namespace BookArena.Web.Controllers
 
             if (transaction == null)
             {
-                return Json(new
+                return Content(JsonConvert.SerializeObject(new
                 {
                     Response = new Response
                     {
                         ResponseType = ResponseType.Error,
                         Message = "This transaction is already cleared!"
                     }
-                });
+                }), "application/json");
             }
 
             var bookMetaData = _bookRepository.BookMetaData(x => x.UniqueKey == transaction.BookUniqueKey);
@@ -265,7 +269,7 @@ namespace BookArena.Web.Controllers
             _bookRepository.Save();
             _transactionRepository.Save();
 
-            return Json(new
+            return Content(JsonConvert.SerializeObject(new
             {
                 Data = transaction,
                 Response = new Response
@@ -273,7 +277,7 @@ namespace BookArena.Web.Controllers
                     ResponseType = ResponseType.Success,
                     Message = "The transaction is cleared!"
                 }
-            });
+            }), "application/json");
         }
     }
 }

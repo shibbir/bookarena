@@ -7,8 +7,8 @@
                 if ($routeParams.transactionId === undefined) {
                     $scope.transactions = [];
                     service.call("/transactions/").then(function(result) {
-                        if (result.Data.length) {
-                            $scope.transactions = result.Data;
+                        if (result.data.length) {
+                            $scope.transactions = result.data;
                         }
                     });
                 } else {
@@ -16,10 +16,9 @@
                     if (isNaN(id)) {
                         $location.path("/").replace();
                     } else {
-                        service.call("/transactions/transaction/" + id).then(function(result) {
-                            result.Data = $.parseJSON(result.Data);
-                            if (result.Data) {
-                                $scope.transactionDetail = result.Data;
+                        service.call("/transactions/transaction/" + id).then(function (result) {
+                            if (result.data) {
+                                $scope.transactionDetail = result.data;
                             }
                         });
                     }
@@ -36,11 +35,11 @@
             }
             $scope.receiveBook = function(transactionId) {
                 service.call("/books/receive/" + transactionId, null, "POST").then(function(result) {
-                    notifier.notify(result.Response);
-                    if (result.Data) {
+                    notifier.notify(result.response);
+                    if (result.data) {
                         $scope.cleared = true;
-                        $scope.transactionDetail.IsActive = result.Data.IsActive;
-                        $scope.transactionDetail.Status = result.Data.Status;
+                        $scope.transactionDetail.isActive = result.data.isActive;
+                        $scope.transactionDetail.status = result.data.status;
                     }
 
                 });

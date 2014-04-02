@@ -16,10 +16,10 @@
             <button class="button postfix" ng-click="searchStudent()">Search</button>
         </div>
     </div>
-    <div ng-if="!searchedStudent.Id" class="error-message">
+    <div ng-if="!searchedStudent.id" class="error-message">
         No record found! Try again.
     </div>
-    <div ng-if="searchedStudent.Id">
+    <div ng-if="searchedStudent.id">
         <table>
             <thead>
                 <tr>
@@ -30,13 +30,13 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{{searchedStudent.FirstName}} {{searchedStudent.LastName}}</td>
-                    <td>{{searchedStudent.Batch}}</td>
-                    <td>{{searchedStudent.Program}} {{searchedStudent.IdCardNumber}}</td>
+                    <td>{{searchedStudent.firstName}} {{searchedStudent.lastName}}</td>
+                    <td>{{searchedStudent.batch}}</td>
+                    <td>{{searchedStudent.program}} {{searchedStudent.idCardNumber}}</td>
                 </tr>
             </tbody>
         </table>
-        <button ng-disabled="!book.bookId || !searchedStudent.Id" class="success full-width" ng-click="borrowBook(searchedStudent.Id, book.bookId)">Borrow The Book</button>
+        <button ng-disabled="!book.bookId || !searchedStudent.id" class="success full-width" ng-click="borrowBook(searchedStudent.id, book.bookId)">Borrow The Book</button>
     </div>
     <a class="close-reveal-modal">&#215;</a>
 </div>

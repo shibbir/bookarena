@@ -6,41 +6,41 @@
     <div class="row">
         <div class="large-6 columns">
             <label>Title <span class="red required-star">*</span></label>
-            <input type="text" ng-model="book.Title" name="Title" required />
+            <input type="text" ng-model="book.title" name="Title" required />
             <small class="error">The Title field is required.</small>
         </div>
     </div>
     <div class="row">
         <div class="large-6 columns">
             <label>Author <span class="red required-star">*</span></label>
-            <input type="text" ng-model="book.Author" name="Author" required />
+            <input type="text" ng-model="book.author" name="Author" required />
             <small class="error">The Author field is required</small>
         </div>
     </div>
     <div class="row">
         <div class="large-5 columns">
             <label>Category <span class="red required-star">*</span></label>
-            <select ng-model="book.CategoryId" ng-options="option.CategoryId as option.Title for option in categories" required>
+            <select ng-model="book.categoryId" ng-options="option.categoryId as option.title for option in categories" required>
                 <option value="">Choose one</option>
             </select>
-            <input type="hidden" name="CategoryId" ng-value="book.CategoryId" required />
+            <input type="hidden" name="CategoryId" ng-value="book.categoryId" required />
             <small class="error">The Category field is required</small>
         </div>
     </div>
     <div class="row">
         <div class="large-5 columns">
             <label>Book Quantity <span class="red required-star">*</span></label>
-            <select ng-model="book.Quantity" ng-options="option for option in bookQuantities" required>
+            <select ng-model="book.quantity" ng-options="option for option in bookQuantities" required>
                 <option value="">Select Quantity</option>
             </select>
-            <input type="hidden" name="Quantity" ng-value="book.Quantity" required />
+            <input type="hidden" name="Quantity" ng-value="book.quantity" required />
             <small class="error">The Book Quantity field is required.</small>
         </div>
     </div>
     <div class="row">
         <div class="large-6 columns">
             <label>Short Description</label>
-            <textarea placeholder="Short Description. e.g main topic, category etc." ng-model="book.ShortDescription" name="ShortDescription" ng-maxlength="500"></textarea>
+            <textarea placeholder="Short Description. e.g main topic, category etc." ng-model="book.shortDescription" name="ShortDescription" ng-maxlength="500"></textarea>
             <small class="error">The ShortDescription field must be at most 500 characters long.</small>
         </div>
     </div>

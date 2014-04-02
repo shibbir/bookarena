@@ -10,7 +10,7 @@
                 $scope.categories = [];
                 $scope.bookQuantities = sharedService.bookQuantities();
                 apiService.call("/categories/").then(function(result) {
-                    $scope.categories = result.Data;
+                    $scope.categories = result.data;
                 });
             } else {
                 $rootScope.globalContainer = {
@@ -25,15 +25,14 @@
             $scope.add = function() {
                 if ($scope.BookAddForm.$valid) {
                     apiService.call("/books/add/", $("form[name=BookAddForm]").serialize(), "POST").then(function(result) {
-                        notifier.notify(result.Response);
+                        notifier.notify(result.response);
 
-                        if (!result.PreserveInput) {
-                            $scope.book.Title = "";
-                            $scope.book.Author = "";
-                            $scope.book.CategoryId = "";
-                            $scope.book.Edition = "";
-                            $scope.book.Quantity = "";
-                            $scope.book.ShortDescription = "";
+                        if (!result.preserveInput) {
+                            $scope.book.title = "";
+                            $scope.book.author = "";
+                            $scope.book.categoryId = "";
+                            $scope.book.quantity = "";
+                            $scope.book.shortDescription = "";
                         }
                     });
                 }

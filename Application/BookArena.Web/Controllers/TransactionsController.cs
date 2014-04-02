@@ -22,16 +22,16 @@ namespace BookArena.Web.Controllers
             _transactionRepository = transactionRepository;
         }
 
-        public JsonResult Index()
+        public ActionResult Index()
         {
             if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
             var data =
                 Mapper<Transaction, TransactionViewModel>.ListMap(
                     _transactionRepository.FindAll().OrderByDescending(x => x.Id).ToList());
-            return Json(new {Data = data}, JsonRequestBehavior.AllowGet);
+            return Content(JsonConvert.SerializeObject(new {Data = data}), "application/json");
         }
 
-        public JsonResult Transaction(int id)
+        public ActionResult Transaction(int id)
         {
             if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
 
@@ -42,7 +42,7 @@ namespace BookArena.Web.Controllers
                 return Json(new {Data = JsonConvert.SerializeObject(null)}, JsonRequestBehavior.AllowGet);
             transaction.Book = _bookRepository.Find(x => x.BookId == transaction.BookId);
             transaction.Student = _studentRepository.Find(x => x.Id == transaction.StudentId);
-            return Json(new {Data = JsonConvert.SerializeObject(transaction)}, JsonRequestBehavior.AllowGet);
+            return Content(JsonConvert.SerializeObject(new {Data = transaction}), "application/json");
         }
     }
 }

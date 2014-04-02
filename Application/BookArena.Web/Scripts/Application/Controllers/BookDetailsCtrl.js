@@ -24,8 +24,8 @@
                     $scope.searchStudentInProgress = true;
                     service.call("/students/studentbyidcard?idCard=" + $scope.data.idCardNumber).then(function(result) {
                         $scope.searchStudentInProgress = false;
-                        if (result.Data) {
-                            $scope.searchedStudent = result.Data;
+                        if (result.data) {
+                            $scope.searchedStudent = result.data;
                         } else {
                             $scope.searchedStudent = {};
                         }
@@ -35,9 +35,9 @@
             $scope.borrowBook = function(studentId, bookId) {
                 if (identityService.isAuthenticated()) {
                     service.call("/books/borrow?studentId=" + studentId + "&bookId=" + bookId, null, "POST").then(function(result) {
-                        notifier.notify(result.Response);
-                        if (result.Data) {
-                            $scope.book.AvailableQuantity = result.Data;
+                        notifier.notify(result.response);
+                        if (result.data) {
+                            $scope.book.AvailableQuantity = result.data;
                         }
                     });
                 }

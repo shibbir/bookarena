@@ -30,8 +30,8 @@
             }
             $scope.update = function() {
                 if (identityService.isAuthenticated() && $scope.BookEditForm.$valid) {
-                    service.call("/books/edit/", $("form[name=BookEditForm]").serialize(), "POST").then(function(result) {
-                        notifier.notify(result.Response);
+                    service.call("/books/edit/", $("form[name=BookEditForm]").serialize(), "POST").then(function (result) {
+                        notifier.notify(result.response);
                     });
                 }
             };

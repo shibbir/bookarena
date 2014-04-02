@@ -5,6 +5,7 @@ using BookArena.Model;
 using BookArena.Model.EntityModel;
 using BookArena.Model.ViewModel;
 using BookArena.Web.Helper;
+using Newtonsoft.Json;
 
 namespace BookArena.Web.Controllers
 {
@@ -57,12 +58,12 @@ namespace BookArena.Web.Controllers
             return Json(new {Data = model, Transactions = transactions}, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult StudentByIdCard(string idCard)
+        public ActionResult StudentByIdCard(string idCard)
         {
             if (!Request.IsAuthenticated)
                 return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
             var model = _studentRepository.Find(x => x.IdCardNumber == idCard);
-            return Json(new {Data = model}, JsonRequestBehavior.AllowGet);
+            return Content(JsonConvert.SerializeObject(new { Data = model }), "application/json");
         }
 
         [HttpPost]
@@ -106,13 +107,13 @@ namespace BookArena.Web.Controllers
         }
 
         [HttpPost]
-        public JsonResult Edit(Student student)
+        public ActionResult Edit(Student student)
         {
             if (!Request.IsAuthenticated)
                 return Json(Utility.AccessDeniedResponse());
             if (!ModelState.IsValid)
             {
-                return Json(new
+                return Content(JsonConvert.SerializeObject(new
                 {
                     PreserveInput = true,
                     Response = new Response
@@ -120,11 +121,12 @@ namespace BookArena.Web.Controllers
                         ResponseType = ResponseType.Error,
                         Message = "Invalid student information!"
                     }
-                });
+                }), "application/json");
             }
             var duplicate = _studentRepository.Find(x => x.IdCardNumber == student.IdCardNumber && x.Id != student.Id);
             if (duplicate != null)
-                return Json(new
+            {
+                return Content(JsonConvert.SerializeObject(new
                 {
                     PreserveInput = true,
                     Response = new Response
@@ -132,17 +134,18 @@ namespace BookArena.Web.Controllers
                         ResponseType = ResponseType.Error,
                         Message = "The ID Card number is already exist in the record. Please check again."
                     }
-                });
+                }), "application/json");
+            }
             _studentRepository.InsertOrUpdate(student);
             _studentRepository.Save();
-            return Json(new
+            return Content(JsonConvert.SerializeObject(new
             {
                 Response = new Response
                 {
                     ResponseType = ResponseType.Success,
                     Message = "Student updated successfully."
                 }
-            });
+            }), "application/json");
         }
     }
 }

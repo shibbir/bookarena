@@ -1,4 +1,4 @@
-﻿<button class="button loan-button" ng-disabled="cleared" ng-click="receiveBook(transactionDetail.Id)" ng-show="authenticatedUser.isAuthenticated && transactionDetail.IsActive">Click to receive</button>
+﻿<button class="button loan-button" ng-disabled="cleared" ng-click="receiveBook(transactionDetail.id)" ng-show="authenticatedUser.isAuthenticated && transactionDetail.isActive">Click to receive</button>
 
 <h2 class="content-header">Transaction Details</h2>
 <hr />
@@ -16,11 +16,11 @@
         <h4>Transaction Details</h4>
     </div>
 
-    <h5>Borrowed Date: {{transactionDetail.FormattedBorrowedDate}}</h5>
-    <h5>Last Submission Date: {{transactionDetail.FormattedLastSubmissionDate}}</h5>
-    <h5>Book Serial: {{transactionDetail.BookUniqueKey}}</h5>
-    <h5>Status: {{transactionDetail.Status}}</h5>
-    <h5>IsActive: {{transactionDetail.IsActive}}</h5>
+    <h5>Borrowed Date: {{transactionDetail.formattedBorrowedDate}}</h5>
+    <h5>Last Submission Date: {{transactionDetail.formattedLastSubmissionDate}}</h5>
+    <h5>Book Serial: {{transactionDetail.bookUniqueKey}}</h5>
+    <h5>Status: {{transactionDetail.status}}</h5>
+    <h5>IsActive: {{transactionDetail.isActive}}</h5>
 
     <div class="panel callout radius">
         <h4>Book Details</h4>
@@ -28,21 +28,21 @@
 
     <div class="row" style="margin-bottom: 10px;">
         <div class="small-7 large-7 columns">
-            <h5>{{transactionDetail.Book.Title}}</h5>
-            <p>By {{transactionDetail.Book.Author}}</p>
-            <span ng-if="transactionDetail.Book.Rating">
-                Rating: <span cd-rating="{{transactionDetail.Book.Rating}}"></span>
+            <h5>{{transactionDetail.book.title}}</h5>
+            <p>By {{transactionDetail.book.author}}</p>
+            <span ng-if="transactionDetail.book.rating">
+                Rating: <span cd-rating="{{transactionDetail.book.rating}}"></span>
             </span>
             <p>
-                Category: <a ng-href="#/books/category/{{transactionDetail.Book.Category.CategoryId}}">{{transactionDetail.Book.Category.Title}}</a>
+                Category: <a ng-href="#/books/category/{{transactionDetail.book.category.categoryId}}">{{transactionDetail.book.category.title}}</a>
             </p>
             <p>
-                <a ng-href="#/books/book/{{transactionDetail.Book.BookId}}">More Details</a>
+                <a ng-href="#/books/book/{{transactionDetail.book.bookId}}">More Details</a>
             </p>
         </div>
         <div class="small-5 large-5 columns">
             <div class="book-body">
-                <img ng-src="/Content/Images/{{transactionDetail.Book.ImageFileName}}" alt="{{transactionDetail.Book.Title}}" />
+                <img ng-src="/Content/Images/{{transactionDetail.book.imageFileName}}" alt="{{transactionDetail.book.title}}" />
             </div>
         </div>
     </div>
@@ -51,11 +51,11 @@
         <h4>Borrower Details</h4>
     </div>
 
-    <h5>Name: {{transactionDetail.Student.FirstName}} {{transactionDetail.Student.LastName}}</h5>
-    <h5>Id Card: {{transactionDetail.Student.IdCardNumber}}</h5>
-    <h5>Batch: {{transactionDetail.Student.Batch}}</h5>
-    <h5>Program: {{transactionDetail.Student.Program}}</h5>
+    <h5>Name: {{transactionDetail.student.firstName}} {{transactionDetail.student.lastName}}</h5>
+    <h5>Id Card: {{transactionDetail.student.idCardNumber}}</h5>
+    <h5>Batch: {{transactionDetail.student.batch}}</h5>
+    <h5>Program: {{transactionDetail.student.program}}</h5>
     <p>
-        <a ng-href="#/students/student/{{transactionDetail.Student.Id}}">More Details</a>
+        <a ng-href="#/students/student/{{transactionDetail.student.id}}">More Details</a>
     </p>
 </div>

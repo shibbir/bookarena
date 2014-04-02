@@ -33,7 +33,7 @@
             $scope.update = function() {
                 if (identityService.isAuthenticated() && $scope.StudentEditForm.$valid) {
                     service.call("/students/edit/", $("form[name=StudentEditForm]").serialize(), "POST").then(function(result) {
-                        notifier.notify(result.Response);
+                        notifier.notify(result.response);
                     });
                 }
             };

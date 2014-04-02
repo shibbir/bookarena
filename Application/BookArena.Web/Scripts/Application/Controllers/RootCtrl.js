@@ -5,8 +5,8 @@
         "$scope", "$rootScope", "$location", "apiService", "notifierService", "identityService", function ($scope, $rootScope, $location, service, notifier, identityService) {
             $scope.notImplemented = function() {
                 notifier.notify({
-                    ResponseType: "error",
-                    Message: "Sorry! This feature is not available yet."
+                    responseType: "error",
+                    message: "Sorry! This feature is not available yet."
                 });
             };
 
@@ -17,15 +17,15 @@
                     $rootScope.globalContainer = {
                         redirectTo: path,
                         response: {
-                            ResponseType: "error",
-                            Message: "Access Denied! You need to login first."
+                            responseType: "error",
+                            message: "Access Denied! You need to login first."
                         }
                     };
 
                     if ($location.path() === "/account/login") {
                         notifier.notify({
-                            ResponseType: "error",
-                            Message: "Access Denied! You need to login first."
+                            responseType: "error",
+                            message: "Access Denied! You need to login first."
                         });
                     } else {
                         $location.path("/account/login");
