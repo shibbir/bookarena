@@ -10,7 +10,7 @@
                 });
             };
 
-            identityService.authenticatedUser();
+            identityService.checkAuthentication();
 
             $scope.checkForPermisssionBefore = function(path) {
                 if (!identityService.isAuthenticated()) {

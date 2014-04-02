@@ -23,7 +23,7 @@
         });
 
         it("should have a student collection if the user is logged in", function() {
-            identity.setAuthorization({
+            identity.setAuthorizationData({
                 "Name": "Shibbir Ahmed",
                 "Email": "shibbir@shibbir.net",
                 "Address": "Dhaka, Bangladesh",

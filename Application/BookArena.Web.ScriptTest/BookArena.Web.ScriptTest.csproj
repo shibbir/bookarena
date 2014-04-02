@@ -55,7 +55,7 @@
     <Content Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.0.js" />
     <Content Include="Scripts\jquery-2.1.0.min.js" />
-    <Content Include="Scripts\sinon-1.7.3.js" />
+    <Content Include="Scripts\sinon-1.9.0.js" />
     <Content Include="SpecRunner.html" />
     <Content Include="Spec\StudentListCtrlSpec.js" />
     <Content Include="Spec\BookListCtrlSpec.js" />

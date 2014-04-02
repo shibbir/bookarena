@@ -6,15 +6,15 @@
             var isAuthenticated = function() {
                 return !!($rootScope.authenticatedUser && $rootScope.authenticatedUser.isAuthenticated);
             };
-            var setAuthorization = function(data) {
+            var setAuthorizationData = function(data) {
                 $rootScope.authenticatedUser = data;
                 $rootScope.authenticatedUser.isAuthenticated = true;
             };
-            var authenticatedUser = function() {
+            var checkAuthentication = function() {
                 $rootScope.authenticatedUser = {};
                 apiService.call("/account/").then(function(result) {
                     if (result.Data) {
-                        setAuthorization(result.Data);
+                        setAuthorizationData(result.Data);
 
                         if ($location.path() === "/account/login") {
                             $location.path("/");
@@ -33,8 +33,8 @@
             };
             return {
                 isAuthenticated: isAuthenticated,
-                authenticatedUser: authenticatedUser,
-                setAuthorization: setAuthorization,
+                checkAuthentication: checkAuthentication,
+                setAuthorizationData: setAuthorizationData,
                 logoff: logoff
             };
         }

@@ -299,6 +299,7 @@
       <DependentUpon>toastr.css</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\App.pubxml" />
+    <None Include="Properties\PublishProfiles\BookArena.pubxml" />
     <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.0.js" />
     <Content Include="Scripts\jquery-2.1.0.min.js" />
