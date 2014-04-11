@@ -4,23 +4,23 @@
     Please login with the current credentials
 </div>
 
-<form name="LoginForm" novalidate id="LoginForm">
+<form name="LoginForm" novalidate id="LoginForm" ng-submit="login()">
     <div class="row">
         <div class="large-12 columns">
             <label>Username</label>
-            <input type="text" ng-class="LoginForm.UserName.$invalid ? 'error': ''" ng-model="data.userName" name="UserName" required />
-            <small ng-show="LoginForm.UserName.$error.required" class="error">Invalid Username</small>
+            <input type="text" ng-class="LoginForm.UserName.$invalid ? 'error': 'success'" ng-model="data.userName" name="UserName" required />
+            <small ng-if="LoginForm.UserName.$invalid && LoginForm.submitted" class="error">Invalid Username</small>
         </div>
     </div>
     <div class="row">
         <div class="large-12 columns">
             <label>Password</label>
-            <input type="password" ng-class="LoginForm.Password.$invalid ? 'error': ''" ng-model="data.password" name="Password" required />
-            <small ng-show="LoginForm.Password.$error.required" class="error">Invalid Password</small>
+            <input type="password" ng-class="LoginForm.Password.$invalid ? 'error': 'success'" ng-model="data.password" name="Password" required />
+            <small ng-if="LoginForm.Password.$invalid && LoginForm.submitted" class="error">Invalid Password</small>
         </div>
     </div>
 
-    <button ng-disabled="LoginForm.$invalid" class="button small medium-2 left" ng-click="login()">Login</button>
+    <button type="submit" class="button small medium-2 left">Login</button>
     <div class="spinner inline-spinner left" ng-if="fetchInProgress">
         <div></div>
         <div class="rect2"></div>

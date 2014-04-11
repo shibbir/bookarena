@@ -32,6 +32,8 @@
                             notifier.notify(result.response);
                         }
                     });
+                } else {
+                    $scope.LoginForm.submitted = true;
                 }
             };
         }

@@ -26,6 +26,10 @@ footer.credit a:hover {
     border-left: 1px solid #ECF0F1;
 }
 
+#LoginForm .row {
+    margin-bottom: 20px;
+}
+
 .body-content {
     color: #FFFFFF;
     margin-top: -3px;
@@ -192,7 +196,6 @@ h2.content-header {
     -webkit-box-shadow: 0 1px 0 #FFFFFF inset;
     -ms-box-shadow: 0 1px 0 #FFFFFF inset;
     box-shadow: 0 1px 0 #FFFFFF inset;
-    min-height: 230px;
     padding: 15px 15px 0;
 }
 
