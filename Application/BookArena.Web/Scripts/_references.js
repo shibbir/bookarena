@@ -31,3 +31,7 @@
 /// <reference path="angular.js" />
 /// <reference path="angular-animate.js" />
 /// <reference path="foundation.js" />
+/// <reference path="foundation.offcanvas.js" />
+/// <reference path="foundation.abide.js" />
+/// <reference path="foundation.topbar.js" />
+/// <reference path="foundation.reveal.js" />

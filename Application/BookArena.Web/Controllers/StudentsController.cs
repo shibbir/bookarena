@@ -20,18 +20,18 @@ namespace BookArena.Web.Controllers
             _transactionRepository = transactionRepository;
         }
 
-        public JsonResult Index(int? page)
+        public ActionResult Index(int? page)
         {
             if (!Request.IsAuthenticated)
-                return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
+                return Content(JsonConvert.SerializeObject(Utility.AccessDeniedResponse()), "application/json");
             const int pageSize = 10;
             var model = GetPagedStudents((page ?? 0)*pageSize, pageSize);
 
-            return Json(new
+            return Content(JsonConvert.SerializeObject(new
             {
                 Data = model,
                 CurrentPage = (page ?? 0)
-            }, JsonRequestBehavior.AllowGet);
+            }), "application/json");
         }
 
         private PagedList<Student> GetPagedStudents(int skip, int take)
@@ -47,15 +47,19 @@ namespace BookArena.Web.Controllers
             };
         }
 
-        public JsonResult Student(int id)
+        public ActionResult Student(int id)
         {
             if (!Request.IsAuthenticated)
-                return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
+                return Content(JsonConvert.SerializeObject(Utility.AccessDeniedResponse()), "application/json");
             var model = _studentRepository.Find(x => x.Id == id);
             var transactions =
                 Mapper<Transaction, TransactionViewModel>.ListMap(
                     _transactionRepository.FindAll(x => x.StudentId == id).ToList());
-            return Json(new {Data = model, Transactions = transactions}, JsonRequestBehavior.AllowGet);
+            return Content(JsonConvert.SerializeObject(new
+            {
+                Data = model,
+                Transactions = transactions
+            }), "application/json");
         }
 
         public ActionResult StudentByIdCard(string idCard)
@@ -63,17 +67,17 @@ namespace BookArena.Web.Controllers
             if (!Request.IsAuthenticated)
                 return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
             var model = _studentRepository.Find(x => x.IdCardNumber == idCard);
-            return Content(JsonConvert.SerializeObject(new { Data = model }), "application/json");
+            return Content(JsonConvert.SerializeObject(new {Data = model}), "application/json");
         }
 
         [HttpPost]
-        public JsonResult Add(Student student)
+        public ActionResult Add(Student student)
         {
             if (!Request.IsAuthenticated)
-                return Json(Utility.AccessDeniedResponse());
+                return Content(JsonConvert.SerializeObject(Utility.AccessDeniedResponse()), "application/json");
             if (!ModelState.IsValid)
             {
-                return Json(new
+                return Content(JsonConvert.SerializeObject(new
                 {
                     PreserveInput = true,
                     Response = new Response
@@ -81,11 +85,12 @@ namespace BookArena.Web.Controllers
                         ResponseType = ResponseType.Error,
                         Message = "Invalid student information!"
                     }
-                });
+                }), "application/json");
             }
             var duplicate = _studentRepository.Find(x => x.IdCardNumber == student.IdCardNumber);
             if (duplicate != null)
-                return Json(new
+            {
+                return Content(JsonConvert.SerializeObject(new
                 {
                     PreserveInput = true,
                     Response = new Response
@@ -93,24 +98,25 @@ namespace BookArena.Web.Controllers
                         ResponseType = ResponseType.Error,
                         Message = "The ID Card number is already exist in the record. Please check again."
                     }
-                });
+                }), "application/json");
+            }
             _studentRepository.InsertOrUpdate(student);
             _studentRepository.Save();
-            return Json(new
+            return Content(JsonConvert.SerializeObject(new
             {
                 Response = new Response
                 {
                     ResponseType = ResponseType.Success,
                     Message = "Student registered successfully."
                 }
-            });
+            }), "application/json");
         }
 
         [HttpPost]
         public ActionResult Edit(Student student)
         {
             if (!Request.IsAuthenticated)
-                return Json(Utility.AccessDeniedResponse());
+                return Content(JsonConvert.SerializeObject(Utility.AccessDeniedResponse()), "application/json");
             if (!ModelState.IsValid)
             {
                 return Content(JsonConvert.SerializeObject(new

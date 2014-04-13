@@ -28,13 +28,19 @@ namespace BookArena.Web.Controllers
             UserManager = userManager;
         }
 
-        public JsonResult Index()
+        public ActionResult Index()
         {
-            if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
+            if (!Request.IsAuthenticated)
+            {
+                return Content(JsonConvert.SerializeObject(Utility.AccessDeniedResponse()), "application/json");
+            }
             var user = UserManager.FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
 
-            return Json(new {Data = Mapper<ApplicationUser, ApplicationUserViewModel>.SingleMap(user)},
-                JsonRequestBehavior.AllowGet);
+            return
+                Content(
+                    JsonConvert.SerializeObject(
+                        new {Data = Mapper<ApplicationUser, ApplicationUserViewModel>.SingleMap(user)}),
+                    "application/json");
         }
 
         [HttpPost]
@@ -65,7 +71,11 @@ namespace BookArena.Web.Controllers
             }
             await SignInAsync(user, model.RememberMe);
 
-            return Json(new {Data = Mapper<ApplicationUser, ApplicationUserViewModel>.SingleMap(user)});
+            return
+                Content(
+                    JsonConvert.SerializeObject(
+                        new {Data = Mapper<ApplicationUser, ApplicationUserViewModel>.SingleMap(user)}),
+                    "application/json");
         }
 
         //

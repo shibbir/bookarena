@@ -20,8 +20,8 @@
             $scope.register = function() {
                 if ($scope.StudentRegisterForm.$valid) {
                     service.call("/students/add/", $("form[name=StudentRegisterForm]").serialize(), "POST").then(function(result) {
-                        notifier.notify(result.Response);
-                        if (!result.PreserveInput) {
+                        notifier.notify(result.response);
+                        if (!result.preserveInput) {
                             $scope.student.firstName = "";
                             $scope.student.lastName = "";
                             $scope.student.program = "";

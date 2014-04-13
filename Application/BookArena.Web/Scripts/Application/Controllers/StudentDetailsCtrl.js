@@ -8,10 +8,10 @@
                 $scope.programs = sharedService.programs();
                 $scope.batches = sharedService.batches();
                 service.call("/students/student/" + $routeParams.id).then(function(result) {
-                    if (result.Data) {
-                        $scope.student = result.Data;
-                        if (result.Transactions.length) {
-                            $scope.transactions = result.Transactions;
+                    if (result.data) {
+                        $scope.student = result.data;
+                        if (result.transactions.length) {
+                            $scope.transactions = result.transactions;
                         } else {
                             $scope.transactions = {};
                         }

@@ -55,7 +55,7 @@ namespace BookArena.Web.Controllers
         [HttpPost]
         public ActionResult Add(Book book)
         {
-            if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse());
+            if (!Request.IsAuthenticated) return Content(JsonConvert.SerializeObject(Utility.AccessDeniedResponse()), "application/json");
             if (!ModelState.IsValid)
             {
                 return Content(JsonConvert.SerializeObject(new
@@ -115,7 +115,7 @@ namespace BookArena.Web.Controllers
         [HttpPost]
         public ActionResult Edit(Book book)
         {
-            if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse());
+            if (!Request.IsAuthenticated) return Content(JsonConvert.SerializeObject(Utility.AccessDeniedResponse()), "application/json");
             if (!ModelState.IsValid)
             {
                 return Content(JsonConvert.SerializeObject(new
@@ -164,7 +164,7 @@ namespace BookArena.Web.Controllers
         [HttpPost]
         public ActionResult Borrow(int studentId, int bookId)
         {
-            if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse());
+            if (!Request.IsAuthenticated) return Content(JsonConvert.SerializeObject(Utility.AccessDeniedResponse()), "application/json");
             var availablebook = _bookRepository.BookMetaData(x => x.BookId == bookId && x.IsAvailable);
             if (availablebook == null)
             {
@@ -242,7 +242,7 @@ namespace BookArena.Web.Controllers
         public ActionResult Receive(int id)
         {
             if (!Request.IsAuthenticated)
-                return Json(Utility.AccessDeniedResponse());
+                return Content(JsonConvert.SerializeObject(Utility.AccessDeniedResponse()), "application/json");
 
             var transaction = _transactionRepository.Find(x => x.Id == id && x.IsActive);
 

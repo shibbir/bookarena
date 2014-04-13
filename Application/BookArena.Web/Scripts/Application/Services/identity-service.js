@@ -13,8 +13,8 @@
             var checkAuthentication = function() {
                 $rootScope.authenticatedUser = {};
                 apiService.call("/account/").then(function(result) {
-                    if (result.Data) {
-                        setAuthorizationData(result.Data);
+                    if (result.data) {
+                        setAuthorizationData(result.data);
 
                         if ($location.path() === "/account/login") {
                             $location.path("/");

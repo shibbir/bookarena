@@ -7,12 +7,12 @@
                 $scope.students = [];
                 if ($routeParams.pageNumber === undefined) {
                     service.call("/students/").then(function(result) {
-                        if (result.Data.Entities.length) {
-                            $scope.students = result.Data.Entities;
+                        if (result.data.entities.length) {
+                            $scope.students = result.data.entities;
 
-                            $scope.hasNext = result.Data.HasNext;
-                            $scope.hasPrevious = result.Data.HasPrevious;
-                            $scope.currentPage = result.CurrentPage;
+                            $scope.hasNext = result.data.hasNext;
+                            $scope.hasPrevious = result.data.hasPrevious;
+                            $scope.currentPage = result.currentPage;
                             $scope.previousPage = $scope.currentPage - 1;
                             $scope.nextPage = $scope.currentPage + 1;
                         }
@@ -23,12 +23,12 @@
                         $location.path("/students/").replace();
                     } else {
                         service.call("/students/index?page=" + pageNumber).then(function(result) {
-                            if (result.Data.Entities.length) {
-                                $scope.students = result.Data.Entities;
+                            if (result.data.entities.length) {
+                                $scope.students = result.data.entities;
 
-                                $scope.hasNext = result.Data.HasNext;
-                                $scope.hasPrevious = result.Data.HasPrevious;
-                                $scope.currentPage = result.CurrentPage;
+                                $scope.hasNext = result.data.hasNext;
+                                $scope.hasPrevious = result.data.hasPrevious;
+                                $scope.currentPage = result.currentPage;
                                 $scope.previousPage = $scope.currentPage - 1;
                                 $scope.nextPage = $scope.currentPage + 1;
                             }

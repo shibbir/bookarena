@@ -14,7 +14,11 @@ namespace BookArena.Web
 
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
                 "~/Scripts/jquery-{version}.js",
-                "~/Scripts/foundation.min.js",
+                "~/Scripts/foundation.js",
+                "~/Scripts/foundation.topbar.js",
+                "~/Scripts/foundation.reveal.js",
+                "~/Scripts/foundation.abide.js",
+                "~/Scripts/foundation.offcanvas.js",
                 "~/Scripts/toastr.js",
                 "~/Scripts/jquery.raty.js",
                 "~/Scripts/respond.js",

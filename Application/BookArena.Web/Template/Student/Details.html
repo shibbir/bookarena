@@ -8,45 +8,45 @@
 </ul>
 
 <form name="StudentEditForm" novalidate data-abide>
-    <input type="hidden" ng-value="student.Id" name="Id" required />
+    <input type="hidden" ng-value="student.id" name="Id" required />
     <div class="row">
-        <div class="large-6 columns">
+        <div class="small-12 large-6 columns">
             <label>First Name <span class="red required-star">*</span></label>
-            <input type="text" ng-model="student.FirstName" name="FirstName" required />
+            <input type="text" ng-model="student.firstName" name="FirstName" required />
             <small class="error">The FirstName field is required</small>
         </div>
     </div>
     <div class="row">
-        <div class="large-6 columns">
+        <div class="small-12 large-6 columns">
             <label>Last Name <span class="red required-star">*</span></label>
-            <input type="text" ng-model="student.LastName" name="LastName" required />
+            <input type="text" ng-model="student.lastName" name="LastName" required />
             <small class="error">The LastName is required</small>
         </div>
     </div>
     <div class="row">
-        <div class="large-6 columns">
+        <div class="small-12 large-6 columns">
             <label>Program <span class="red required-star">*</span></label>
-            <select ng-model="student.Program" ng-options="option for option in programs" required>
+            <select ng-model="student.program" ng-options="option for option in programs" required>
                 <option value="">Choose Program</option>
             </select>
-            <input type="hidden" name="Program" ng-value="student.Program" required />
+            <input type="hidden" name="Program" ng-value="student.program" required />
             <small class="error">The Program field is required</small>
         </div>
     </div>
     <div class="row">
-        <div class="large-6 columns">
+        <div class="small-12 large-6 columns">
             <label>Batch <span class="red required-star">*</span></label>
-            <select ng-model="student.Batch" ng-options="option for option in batches" required>
+            <select ng-model="student.batch" ng-options="option for option in batches" required>
                 <option value="">Choose Batch</option>
             </select>
-            <input type="hidden" name="Batch" ng-value="student.Batch" required />
+            <input type="hidden" name="Batch" ng-value="student.batch" required />
             <small class="error">The Batch field is required</small>
         </div>
     </div>
     <div class="row">
-        <div class="large-6 columns">
+        <div class="small-12 large-6 columns">
             <label>Id Card <span class="red required-star">*</span></label>
-            <input placeholder="e.g 033 05817" type="text" ng-model="student.IdCardNumber" name="IdCardNumber" required ng-pattern="/^[0-9]{6,15}$/" pattern="^[0-9]{6,15}$" />
+            <input placeholder="e.g 033 05817" type="text" ng-model="student.idCardNumber" name="IdCardNumber" required ng-pattern="/^[0-9]{6,15}$/" pattern="^[0-9]{6,15}$" />
             <small class="error">The Id Card field is invalid</small>
         </div>
     </div>
@@ -82,11 +82,11 @@
         <tbody>
             <tr ng-repeat="transaction in transactions">
                 <td>{{$index + 1}}</td>
-                <td class="text-center"><a ng-href="#/books/book/{{transaction.BookId}}">{{transaction.BookId}}</a></td>
-                <td>{{transaction.FormattedBorrowedDate}}</td>
-                <td>{{transaction.FormattedLastSubmissionDate}}</td>
-                <td>{{transaction.Status}}</td>
-                <td><a ng-href="#/transactions/transaction/{{transaction.Id}}">Details</a></td>
+                <td class="text-center"><a ng-href="#/books/book/{{transaction.bookId}}">{{transaction.bookId}}</a></td>
+                <td>{{transaction.formattedBorrowedDate}}</td>
+                <td>{{transaction.formattedLastSubmissionDate}}</td>
+                <td>{{transaction.status}}</td>
+                <td><a ng-href="#/transactions/transaction/{{transaction.id}}">Details</a></td>
             </tr>
         </tbody>
     </table>

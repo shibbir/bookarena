@@ -3,13 +3,13 @@
 
 <div class="row">
     <div class="small-9 large-9 columns">
-        <h3>Name: {{authenticatedUser.Name}}</h3>
-        <h3>Website: <a href="{{authenticatedUser.Website}}" target="blank">{{authenticatedUser.Website}}</a></h3>
-        <h3>Address: {{authenticatedUser.Address}}</h3>
+        <h4>Name: {{authenticatedUser.name}}</h4>
+        <h4>Website: <a href="{{authenticatedUser.Website}}" target="blank">{{authenticatedUser.website}}</a></h4>
+        <h4>Address: {{authenticatedUser.address}}</h4>
     </div>
     <div class="small-3 large-3 columns">
         <a href="http://about.me/shibbir" class="th radius" target="blank">
-            <img ng-src="/Content/Images/{{authenticatedUser.ImageFileName}}" alt="profile" />
+            <img ng-src="/Content/Images/{{authenticatedUser.imageFileName}}" alt="profile" />
         </a>
     </div>
 </div>

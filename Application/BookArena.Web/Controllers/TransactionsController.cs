@@ -24,7 +24,7 @@ namespace BookArena.Web.Controllers
 
         public ActionResult Index()
         {
-            if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
+            if (!Request.IsAuthenticated) return Content(JsonConvert.SerializeObject(Utility.AccessDeniedResponse()), "application/json");
             var data =
                 Mapper<Transaction, TransactionViewModel>.ListMap(
                     _transactionRepository.FindAll().OrderByDescending(x => x.Id).ToList());
@@ -33,7 +33,7 @@ namespace BookArena.Web.Controllers
 
         public ActionResult Transaction(int id)
         {
-            if (!Request.IsAuthenticated) return Json(Utility.AccessDeniedResponse(), JsonRequestBehavior.AllowGet);
+            if (!Request.IsAuthenticated) return Content(JsonConvert.SerializeObject(Utility.AccessDeniedResponse()), "application/json");
 
             var transaction =
                 Mapper<Transaction, TransactionViewModel>.SingleMap(_transactionRepository.Find(x => x.Id == id));

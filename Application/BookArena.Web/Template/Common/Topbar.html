@@ -1,13 +1,12 @@
-﻿<nav class="top-bar" data-topbar>
+﻿<nav class="top-bar hide-for-small" data-topbar>
     <ul class="title-area">
         <li class="name"> <h1><a ng-href="#/">BookArenaApp</a></h1></li>
-        <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
     </ul>
     <section class="top-bar-section">
         <!-- Right Nav Section -->
-        <ul class="right" ng-show="authenticatedUser.isAuthenticated">
+        <ul class="right" ng-if="authenticatedUser.isAuthenticated">
             <li class="has-dropdown">
-                <a href="#">Hello, {{authenticatedUser.Name}}</a>
+                <a href="#">Hello, {{authenticatedUser.name}}</a>
                 <ul class="dropdown">
                     <li><a ng-href="#/account/profile">Profile</a></li>
                     <li><a ng-click="logout()">Logout</a></li>

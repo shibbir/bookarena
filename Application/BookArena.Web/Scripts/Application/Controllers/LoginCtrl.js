@@ -20,8 +20,8 @@
             $scope.login = function() {
                 if ($scope.LoginForm.$valid) {
                     service.call("/account/login/", $("#LoginForm").serialize(), "POST").then(function(result) {
-                        if (result.Data) {
-                            identityService.setAuthorizationData(result.Data);
+                        if (result.data) {
+                            identityService.setAuthorizationData(result.data);
 
                             if (tempGlobalContainer && tempGlobalContainer.redirectTo) {
                                 $location.path(tempGlobalContainer.redirectTo).replace();

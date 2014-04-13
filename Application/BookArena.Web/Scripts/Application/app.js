@@ -2,6 +2,11 @@
 
 (function() {
     var bookArenaApp = angular.module("bookArenaApp", ["ngRoute", "ngAnimate"]);
+    bookArenaApp.run(function($rootScope) {
+        $rootScope.$on("$viewContentLoaded", function() {
+            $(document).foundation();
+        });
+    });
 
     bookArenaApp.config([
         "$routeProvider", function($routeProvider) {

@@ -15,7 +15,7 @@
 
 <div id="book-container" ng-if="categories">
     <input type="search" ng-model="searchText" placeholder="filter books by name, author or category" />
-    <div ng-repeat="category in categories | filter:searchText" class="book-wrapper">
+    <div ng-repeat="category in categories | filter:searchText" class="book-wrapper clearfix">
         <div class="success alert-box">
             {{category.title}}
         </div>

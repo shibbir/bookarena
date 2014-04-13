@@ -15,25 +15,25 @@
 
 <div id="student-container" ng-if="students">
     <input type="search" ng-model="searchText" placeholder="filter: e.g name, id" />
-    <table>
+    <table style="width: 100%;">
         <thead>
             <tr>
-                <th width="20">#</th>
-                <th width="20">Program</th>
-                <th width="20">Batch</th>
-                <th width="240">Name</th>
-                <th width="180">ID Card</th>
-                <th width="100">Action</th>
+                <th>#</th>
+                <th>Program</th>
+                <th>Batch</th>
+                <th>Name</th>
+                <th>ID Card</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="student in students | filter: searchText">
                 <td>{{$index + 1}}</td>
-                <td>{{student.Program}}</td>
-                <td>{{student.Batch}}</td>
-                <td>{{student.FirstName}} {{student.LastName}}</td>
-                <td>{{student.IdCardNumber}}</td>
-                <td><a ng-href="#/students/student/{{student.Id}}">Details</a></td>
+                <td>{{student.program}}</td>
+                <td>{{student.batch}}</td>
+                <td>{{student.firstName}} {{student.lastName}}</td>
+                <td>{{student.idCardNumber}}</td>
+                <td><a ng-href="#/students/student/{{student.id}}">Details</a></td>
             </tr>
         </tbody>
     </table>

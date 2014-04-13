@@ -56,29 +56,29 @@
 </div>
 
 <div class="row">
-    <div class="small-3 large-3 columns">
+    <div class="small-12 large-3 columns">
         <img ng-src="/Content/Images/{{book.imageFileName}}" alt="{{book.title}}" />
         <br /><br />
         <span class="green">Total Copy: {{book.quantity}}</span>
         <p class="green">Available: {{book.availableQuantity}}</p>
     </div>
-    <div class="small-9 large-9 columns">
+    <div class="small-12 large-9 columns">
         <div class="row">
-            <div class="small-12 large-12 columns">
+            <div class="small-12 medium-12 large-12 columns">
                 <p>{{book.shortDescription}}</p>
-                <span ng-if="book.Rating">
+                <span ng-if="book.rating">
                     Rating: <span cd-rating="{{book.rating}}"></span>
                 </span>
                 <p>
                     Category: <a ng-href="#/books/category/{{book.categoryId}}">{{book.categoryTitle}}</a>
                 </p>
             </div>
-            <div class="small-5 medium-5 columns">
-                <a ng-click="loginToEditBook()" ng-hide="authenticatedUser.isAuthenticated">
+            <div class="small-12 medium-12 large-12 columns">
+                <a ng-click="loginToEditBook()" ng-if="!authenticatedUser.isAuthenticated">
                     <i class="fi-lock"></i>
-                    Login to edit this book
+                    Login to edit
                 </a>
-                <a ng-href="#/books/edit/{{book.bookId}}" ng-show="authenticatedUser.isAuthenticated">
+                <a ng-href="#/books/edit/{{book.bookId}}" ng-if="authenticatedUser.isAuthenticated">
                     <i class="fi-page-edit"></i>
                     Edit this book
                 </a>
@@ -95,27 +95,27 @@
     <h3>What you’ll learn</h3>
 
     <ul>
-        <li>automating testing and deployment of your application using Visual Studio 2012 and Team Foundation Server</li>
-        <li>designing and developing your application for Internet scale</li>
-        <li>deploying to the cloud, working with Big Data and adding resiliency to your application’s components</li>
-        <li>migrating a project from ASP.NET web forms to the MVC 4 including recipes for converting DataGrids, Forms, Web Parts, Master Pages and navigation controls</li>
-        <li>Client side data binding and templating  techniques using Web API, Knockout.js and jQuery</li>
-        <li>using the Web API to design web services that can be consumed by mobile devices and tablets running Android, iOS, and Windows 8</li>
+        <li>Cras aliquam ipsum non urna cursus, eget imperdiet est auctor.</li>
+        <li>Etiam sed justo non libero euismod sollicitudin ac mattis dolor.</li>
+        <li>In ac lorem a elit semper aliquam eget eu diam.</li>
+        <li>Duis tempus nisl non mauris auctor, at eleifend felis varius.</li>
+        <li>Donec eget sapien vel quam placerat consequat.</li>
+        <li>Vivamus dictum est non lorem iaculis, eu tempor tellus condimentum.</li>
     </ul>
 
     <h3>Who this book is for</h3>
 
-    <p>This book is a problem-solution guide for web developers looking for a better way to build a modern web application on the Microsoft platform.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non sollicitudin quam, quis accumsan massa. Aliquam erat volutpat.</p>
 
     There are several types of developers that would find this material useful:
 
     <ul>
         <li>
-            veteran ASP.NET Web Forms developers who wish to update their skillset to include ASP.NET MVC
+            Sed adipiscing quam pharetra lacus consectetur, sed bibendum turpis mollis. Aenean lectus mi, feugiat sit amet turpis sit amet, posuere aliquet sem. Sed sodales lobortis turpis eget accumsan.
         </li>
         <li>
-            Project teams who wish to modernize an existing application to allow it to take advantage of MVC 4, .NET 4.5, and Windows Azure
+            Nunc tincidunt, libero in feugiat auctor, sem mi tincidunt mi, sit amet gravida leo tellus sit amet turpis. Proin sed gravida nisi, non commodo dui.
         </li>
-        <li>Novice web developers who are looking to expand their skill set by learning the Microsoft web development stack</li>
+        <li>Praesent tristique enim diam, quis tempus nisi egestas in. Fusce scelerisque venenatis fermentum. Vestibulum aliquam, arcu eu faucibus lobortis, justo arcu malesuada urna, in mollis magna diam in urna.</li>
     </ul>
 </div>

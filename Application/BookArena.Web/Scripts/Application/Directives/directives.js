@@ -15,10 +15,10 @@
                 $element.html(text);
             }
         };
-    }).directive("cdNavigation", function() {
+    }).directive("cdTopbar", function() {
         return {
             restrict: "A",
-            templateUrl: "/Template/Common/Navigation.html",
+            templateUrl: "/Template/Common/Topbar.html",
             link: function() {
                 $(document).foundation();
             }

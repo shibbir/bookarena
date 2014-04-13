@@ -20,19 +20,76 @@
 </head>
 <body ng-app="bookArenaApp">
     <div ng-controller="RootCtrl">
-        <div data-cd-navigation></div>
+        <div data-cd-topbar></div>
         <div class="row" id="wrapper">
-            <div class="small-3 large-3 columns">
+            <div class="small-12 medium-3 large-3 columns">
                 <div data-cd-side-navigation></div>
             </div>
-            <div class="small-9 large-9 columns" style="background-color: #2C3E50;">
+            <div class="small-12 medium-9 large-9 columns" style="background-color: #2C3E50;">
                 <div class="body-content">
-                    @RenderBody()
+                    <div class="off-canvas-wrap">
+                        <div class="inner-wrap">
+                            <!-- OFF CANVAS MENU BAR -->
+                            <nav class="tab-bar hide-for-large-up">
+                                <section class="left-small">
+                                    <a class="left-off-canvas-toggle menu-icon"><span></span></a>
+                                </section>
+                                <section class="right tab-bar-section">
+                                    <h1 class="title">BookArena</h1>
+                                </section>
+
+                            </nav> <!-- END NAV.TAB-BAR HIDE-FOR-LARGE-UP -->
+                            <!-- OFF CANVAS MENU -->
+                            <aside class="left-off-canvas-menu">
+                                <ul class="off-canvas-list">
+                                    <li><label>Navigation</label></li>
+                                    <li><a ng-href="#/">Home <i class="fi-home green"></i></a></li>
+                                    <li>
+                                        <a ng-click="checkForPermisssionBefore('/students/')">
+                                            All Student
+                                            <span class="red required-star">*</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ng-click="checkForPermisssionBefore('/students/add/')">
+                                            Register Student
+                                            <span class="red required-star">*</span>
+                                        </a>
+                                    </li>
+                                    <li><a ng-href="#/books">All Books</a></li>
+                                    <li><a ng-href="#/categories">Category</a></li>
+                                    <li>
+                                        <a ng-click="checkForPermisssionBefore('/books/add/')">
+                                            Upload New Book
+                                            <span class="red required-star">*</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ng-click="checkForPermisssionBefore('/transactions/')">
+                                            Transaction History
+                                            <span class="red required-star">*</span>
+                                        </a>
+                                    </li>
+                                    <li ng-if="!authenticatedUser.isAuthenticated"><a ng-href="#/account/login/">Login</a></li>
+                                    <li ng-if="authenticatedUser.isAuthenticated">
+                                        <a ng-href="#/account/profile">
+                                            Profile
+                                            <i class="fi-torso green"></i>
+                                        </a>
+                                    </li>
+                                    <li ng-if="authenticatedUser.isAuthenticated"><a ng-click="logout()">Logout</a></li>
+                                </ul>
+                            </aside>
+                            @RenderBody()
+                            <!-- CLOSE THE OFF-CANVAS MENU -->
+                            <a class="exit-off-canvas"></a>
+                        </div>
+                    </div> <!-- END OFF CANVAS -->
                 </div>
             </div>
         </div>
         <div class="row" style="background: none repeat scroll 0 0 #178892;">
-            <div class="small-12 large-12 columns">
+            <div class="small-12 medium-12 large-12 columns">
                 <footer class="credit">BookArena: A simple SPA based library manager. Copyright &copy; 2014 <a href="http://shibbir.net/" target="blank">Shibbir Ahmed</a>. All rights reserved.</footer>
             </div>
         </div>
