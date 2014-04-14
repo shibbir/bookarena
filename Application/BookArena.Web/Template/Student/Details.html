@@ -68,26 +68,28 @@
 </div>
 
 <div ng-if="transactions.length">
-    <table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>BookId</th>
-                <th>Borrowed Date</th>
-                <th>Last Submission Date</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="transaction in transactions">
-                <td>{{$index + 1}}</td>
-                <td class="text-center"><a ng-href="#/books/book/{{transaction.bookId}}">{{transaction.bookId}}</a></td>
-                <td>{{transaction.formattedBorrowedDate}}</td>
-                <td>{{transaction.formattedLastSubmissionDate}}</td>
-                <td>{{transaction.status}}</td>
-                <td><a ng-href="#/transactions/transaction/{{transaction.id}}">Details</a></td>
-            </tr>
-        </tbody>
-    </table>
+    <div id="student-transaction-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>BookId</th>
+                    <th>Borrowed Date</th>
+                    <th>Last Submission Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="transaction in transactions">
+                    <td>{{$index + 1}}</td>
+                    <td class="text-center"><a ng-href="#/books/book/{{transaction.bookId}}">{{transaction.bookId}}</a></td>
+                    <td>{{transaction.formattedBorrowedDate}}</td>
+                    <td>{{transaction.formattedLastSubmissionDate}}</td>
+                    <td>{{transaction.status}}</td>
+                    <td><a ng-href="#/transactions/transaction/{{transaction.id}}">Details</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

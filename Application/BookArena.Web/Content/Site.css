@@ -79,6 +79,10 @@ footer.credit a:hover {
     margin-top: 10px;
 }
 
+#student-table table, #transaction-table table, #student-transaction-table table {
+    width: 100%;
+}
+
 .red {
     color: #C0392B;
 }
@@ -431,15 +435,18 @@ h2.content-header {
     .row .row {
         margin: 0 auto;
     }
+
     .loan-button {
         height: 30px;
         margin-left: 77%;
         padding: 0;
         width: 70px;
     }
+
     #wrapper {
         border-left: none;
     }
+
     h2.content-header {
         font-size: 18px;
         line-height: 30px;
@@ -475,10 +482,6 @@ h2.content-header {
         min-height: 0;
     }
 
-    #CategoryAddModal, #CategoryEditModal {
-        width: 300px !important;
-    }
-
     button.tiny, .button.tiny {
         padding: 5px 10px;
     }
@@ -486,6 +489,19 @@ h2.content-header {
     .book-wrapper .books {
         margin-right: 5px;
         width: 135px;
+    }
+
+    #student-table table, #transaction-table table, #student-transaction-table table {
+        margin-bottom: 0;
+    }
+
+    #student-table {
+        margin-bottom: 15px;
+    }
+
+    #student-table, #transaction-table, #student-transaction-table {
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
     }
 }
 

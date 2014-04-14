@@ -26,7 +26,7 @@
                 apiService.call("/account/logoff").then(function(result) {
                     $rootScope.authenticatedUser = {};
                     $rootScope.globalContainer = {
-                        response: result.Response
+                        response: result.response
                     };
                     $location.path("/account/login");
                 });

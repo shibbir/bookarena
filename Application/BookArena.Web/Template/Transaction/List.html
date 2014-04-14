@@ -10,28 +10,30 @@
 
 <div ng-if="transactions.length">
     <input type="search" ng-model="searchText" placeholder="filter: e.g name, id" />
-    <table style="width: 100%;">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Borrowed Date</th>
-                <th>Last Submission Date</th>
-                <th>BookId</th>
-                <th>StudentId</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="transaction in transactions | filter: searchText">
-                <td>{{$index + 1}}</td>
-                <td>{{transaction.formattedBorrowedDate}}</td>
-                <td>{{transaction.formattedLastSubmissionDate}}</td>
-                <td class="text-center"><a ng-href="#/books/book/{{transaction.bookId}}">{{transaction.bookId}}</a></td>
-                <td class="text-center"><a ng-href="#/students/student/{{transaction.studentId}}">{{transaction.studentId}}</a></td>
-                <td>{{transaction.status}}</td>
-                <td><a ng-href="#/transactions/transaction/{{transaction.id}}">Details</a></td>
-            </tr>
-        </tbody>
-    </table>
+    <div id="transaction-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Borrowed Date</th>
+                    <th>Last Submission Date</th>
+                    <th>BookId</th>
+                    <th>StudentId</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="transaction in transactions | filter: searchText">
+                    <td>{{$index + 1}}</td>
+                    <td>{{transaction.formattedBorrowedDate}}</td>
+                    <td>{{transaction.formattedLastSubmissionDate}}</td>
+                    <td class="text-center"><a ng-href="#/books/book/{{transaction.bookId}}">{{transaction.bookId}}</a></td>
+                    <td class="text-center"><a ng-href="#/students/student/{{transaction.studentId}}">{{transaction.studentId}}</a></td>
+                    <td>{{transaction.status}}</td>
+                    <td><a ng-href="#/transactions/transaction/{{transaction.id}}">Details</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
