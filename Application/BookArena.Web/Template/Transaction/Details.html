@@ -1,4 +1,4 @@
-﻿<button class="button loan-button" ng-disabled="cleared" ng-click="receiveBook(transactionDetail.id)" ng-show="authenticatedUser.isAuthenticated && transactionDetail.isActive">Click to receive</button>
+﻿<button class="button loan-button" ng-disabled="cleared" ng-click="receiveBook(transactionDetail.id)" ng-if="authenticatedUser.isAuthenticated && transactionDetail.isActive">Receive</button>
 
 <h2 class="content-header">Transaction Details</h2>
 <hr />

@@ -14,13 +14,7 @@
 
             $scope.checkForPermisssionBefore = function(path) {
                 if (!identityService.isAuthenticated()) {
-                    $rootScope.globalContainer = {
-                        redirectTo: path,
-                        response: {
-                            responseType: "error",
-                            message: "Access Denied! You need to login first."
-                        }
-                    };
+                    identityService.createAccessDeniedResponse(path);
 
                     if ($location.path() === "/account/login") {
                         notifier.notify({

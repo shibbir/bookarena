@@ -5,13 +5,7 @@
         "$scope", "$rootScope", "$location", "apiService", "notifierService", "identityService", "sharedService", function($scope, $rootScope, $location, service, notifier, identityService, sharedService) {
             $(document).foundation();
             if (!identityService.isAuthenticated()) {
-                $rootScope.globalContainer = {
-                    redirectTo: $location.path(),
-                    response: {
-                        ResponseType: "error",
-                        Message: "Access Denied! You need to login first."
-                    }
-                };
+                identityService.createAccessDeniedResponse();
                 $location.path("/account/login").replace();
             }
             $scope.student = {};

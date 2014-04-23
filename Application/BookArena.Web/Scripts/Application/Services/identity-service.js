@@ -31,11 +31,21 @@
                     $location.path("/account/login");
                 });
             };
+            var createAccessDeniedResponse = function(path) {
+                $rootScope.globalContainer = {
+                    redirectTo: path ? path : $location.path(),
+                    response: {
+                        responseType: "error",
+                        message: "Access Denied! You need to login first."
+                    }
+                };
+            };
             return {
                 isAuthenticated: isAuthenticated,
                 checkAuthentication: checkAuthentication,
                 setAuthorizationData: setAuthorizationData,
-                logoff: logoff
+                logoff: logoff,
+                createAccessDeniedResponse: createAccessDeniedResponse
             };
         }
     ]);

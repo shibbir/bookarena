@@ -36,13 +36,7 @@
                     }
                 }
             } else {
-                $rootScope.globalContainer = {
-                    redirectTo: $location.path(),
-                    response: {
-                        ResponseType: "error",
-                        Message: "Access Denied! You need to login first."
-                    }
-                };
+                identityService.createAccessDeniedResponse();
                 $location.path("/account/login").replace();
             }
 
