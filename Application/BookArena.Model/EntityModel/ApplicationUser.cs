@@ -9,10 +9,6 @@ namespace BookArena.Model.EntityModel
         [StringLength(50, ErrorMessage = "The {0} must be at most {1} characters long.")]
         public string Name { get; set; }
 
-        [Required]
-        [EmailAddress, MaxLength(50)]
-        public string Email { get; set; }
-
         [StringLength(100, ErrorMessage = "The {0} must be at most {1} characters long.")]
         public string Address { get; set; }
 
