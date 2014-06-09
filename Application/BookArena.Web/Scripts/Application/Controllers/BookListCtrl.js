@@ -6,7 +6,7 @@
             $scope.categories = [];
 
             if ($routeParams.categoryId === undefined) {
-                service.call("/books/").then(function(result) {
+                service.get("/books/").success(function(result) {
                     if (result.data.length) {
                         $scope.categories = result.data;
                     }
@@ -16,7 +16,7 @@
                 if (isNaN(id)) {
                     $location.path("/").replace();
                 } else {
-                    service.call("/books/category/" + id).then(function(result) {
+                    service.get("/books/category/" + id).success(function(result) {
                         if (result.data.length) {
                             $scope.categories = result.data;
                         }

@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -80,7 +84,7 @@
                                     <li ng-if="authenticatedUser.isAuthenticated"><a ng-click="logout()">Logout</a></li>
                                 </ul>
                             </aside>
-                            @RenderBody()
+                            <div ng-view class="my-repeat-animation"></div>
                             <!-- CLOSE THE OFF-CANVAS MENU -->
                             <a class="exit-off-canvas"></a>
                         </div>

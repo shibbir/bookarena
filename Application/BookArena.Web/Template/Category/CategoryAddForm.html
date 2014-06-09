@@ -4,8 +4,8 @@
 <form name="CategoryAddForm" novalidate data-abide="ajax">
     <div class="row">
         <label>Title <span class="red required-star">*</span></label>
-        <input type="text" ng-model="category.Title" name="Title" required />
+        <input type="text" ng-model="category.title" name="Title" required />
         <small class="error">The Title field is required</small>
     </div>
-    <button type="submit" class="tiny full-width" ng-click="addCategory()">Add</button>
+    <button type="submit" class="tiny full-width" ng-click="addCategory(category)">Add</button>
 </form>

@@ -19,7 +19,7 @@
 
             $scope.login = function() {
                 if ($scope.LoginForm.$valid) {
-                    service.call("/account/login/", $("#LoginForm").serialize(), "POST").then(function(result) {
+                    service.post("/account/login/", $scope.data).success(function (result) {
                         if (result.data) {
                             identityService.setAuthorizationData(result.data);
 

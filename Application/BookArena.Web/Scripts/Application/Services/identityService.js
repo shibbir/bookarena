@@ -12,7 +12,7 @@
             };
             var checkAuthentication = function() {
                 $rootScope.authenticatedUser = {};
-                apiService.call("/account/").then(function(result) {
+                apiService.get("/account/").success(function(result) {
                     if (result.data) {
                         setAuthorizationData(result.data);
 
@@ -23,7 +23,7 @@
                 });
             };
             var logoff = function() {
-                apiService.call("/account/logoff").then(function(result) {
+                apiService.get("/account/logoff").success(function(result) {
                     $rootScope.authenticatedUser = {};
                     $rootScope.globalContainer = {
                         response: result.response

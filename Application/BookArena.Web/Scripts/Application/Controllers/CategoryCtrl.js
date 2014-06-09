@@ -4,15 +4,14 @@
     app.controller("CategoryCtrl", [
         "$scope", "$rootScope", "$location", "$filter", "apiService", "notifierService", "identityService", function($scope, $rootScope, $location, $filter, service, notifier, identityService) {
             $scope.categories = [];
-            $scope.category = {};
-            service.call("/categories/").then(function(result) {
+            service.get("/categories/").success(function(result) {
                 if (result.data.length) {
                     $scope.categories = result.data;
                 }
             });
-            $scope.addCategory = function() {
+            $scope.addCategory = function(category) {
                 if (identityService.isAuthenticated() && $scope.CategoryAddForm.$valid) {
-                    service.call("/categories/add/", $("form[name=CategoryAddForm]").serialize(), "POST").then(function(result) {
+                    service.post("/categories/add/", category).success(function(result) {
                         notifier.notify(result.response);
                         if (result.data) {
                             $scope.category.title = "";
@@ -23,9 +22,9 @@
                     });
                 }
             };
-            $scope.updateCategory = function() {
+            $scope.updateCategory = function (editableCategory) {
                 if (identityService.isAuthenticated() && $scope.CategoryEditForm.$valid) {
-                    service.call("/categories/edit/", $("form[name=CategoryEditForm]").serialize(), "POST").then(function(result) {
+                    service.post("/categories/edit/", editableCategory).success(function (result) {
                         notifier.notify(result.response);
                         if (result.data) {
                             var filteredCategories = $filter("filter")($scope.categories, { categoryId: result.data.categoryId }, true);

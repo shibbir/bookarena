@@ -8,12 +8,12 @@
                 identityService.createAccessDeniedResponse();
                 $location.path("/account/login").replace();
             }
-            $scope.student = {};
             $scope.programs = sharedService.programs();
             $scope.batches = sharedService.batches();
-            $scope.register = function() {
+
+            $scope.register = function(student) {
                 if ($scope.StudentRegisterForm.$valid) {
-                    service.call("/students/add/", $("form[name=StudentRegisterForm]").serialize(), "POST").then(function(result) {
+                    service.post("/students/add/", student).success(function (result) {
                         notifier.notify(result.response);
                         if (!result.preserveInput) {
                             $scope.student.firstName = "";

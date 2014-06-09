@@ -7,11 +7,11 @@
             if (identityService.isAuthenticated()) {
                 $scope.book = {};
                 $scope.categories = [];
-                service.call("/books/book/" + $routeParams.id).then(function(result) {
+                service.get("/books/book/" + $routeParams.id).success(function(result) {
                     if (result.data) {
                         $scope.book = result.data;
 
-                        service.call("/categories/").then(function(category) {
+                        service.get("/categories/").success(function(category) {
                             $scope.categories = category.data;
                         });
                     } else {
@@ -22,9 +22,9 @@
                 identityService.createAccessDeniedResponse();
                 $location.path("/account/login").replace();
             }
-            $scope.update = function() {
+            $scope.update = function(book) {
                 if (identityService.isAuthenticated() && $scope.BookEditForm.$valid) {
-                    service.call("/books/edit/", $("form[name=BookEditForm]").serialize(), "POST").then(function (result) {
+                    service.post("/books/edit/", book).success(function(result) {
                         notifier.notify(result.response);
                     });
                 }

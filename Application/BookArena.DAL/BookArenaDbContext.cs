@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Web.Configuration;
 using BookArena.Model.EntityModel;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -8,7 +9,7 @@ namespace BookArena.DAL
     public class BookArenaDbContext : IdentityDbContext<ApplicationUser>
     {
         public BookArenaDbContext()
-            : base("DefaultConnection")
+            : base(WebConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString)
         {
         }
 

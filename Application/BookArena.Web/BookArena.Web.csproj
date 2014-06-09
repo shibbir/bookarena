@@ -293,23 +293,23 @@
     <Content Include="Scripts\Application\Controllers\StudentListCtrl.js" />
     <Content Include="Scripts\Application\Controllers\HomeCtrl.js" />
     <Content Include="Scripts\Application\Directives\directives.js" />
-    <Content Include="Scripts\Application\Services\shared-service.js" />
-    <Content Include="Scripts\Application\Services\identity-service.js" />
-    <Content Include="Scripts\Application\Services\api-service.js" />
-    <Content Include="Scripts\Application\Services\notifier-service.js" />
+    <Content Include="Scripts\Application\Services\sharedService.js" />
+    <Content Include="Scripts\Application\Services\identityService.js" />
+    <Content Include="Scripts\Application\Services\apiService.js" />
+    <Content Include="Scripts\Application\Services\notifierService.js" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
     <None Include="Properties\PublishProfiles\App.pubxml" />
     <None Include="Properties\PublishProfiles\BookArena.pubxml" />
-    <None Include="Scripts\jquery-2.1.0.intellisense.js" />
     <Content Include="Scripts\foundation.abide.js" />
     <Content Include="Scripts\foundation.js" />
     <Content Include="Scripts\foundation.min.js" />
     <Content Include="Scripts\foundation.offcanvas.js" />
     <Content Include="Scripts\foundation.reveal.js" />
     <Content Include="Scripts\foundation.topbar.js" />
-    <Content Include="Scripts\jquery-2.1.0.js" />
-    <Content Include="Scripts\jquery-2.1.0.min.js" />
+    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery.raty.js" />
     <Content Include="Scripts\modernizr-2.7.2.js" />
     <Content Include="Scripts\morris.js" />
@@ -350,8 +350,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Scripts\jquery-2.1.0.min.map" />
+    <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Scripts\toastr.min.js.map" />
   </ItemGroup>
   <ItemGroup>
@@ -359,7 +358,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BookArena.DAL\BookArena.DAL.csproj">

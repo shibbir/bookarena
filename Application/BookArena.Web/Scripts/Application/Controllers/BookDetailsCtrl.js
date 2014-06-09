@@ -9,7 +9,7 @@
                 $scope.data = {};
                 $scope.searchedStudent = {};
 
-                service.call("/books/book/" + $routeParams.id).then(function(result) {
+                service.get("/books/book/" + $routeParams.id).success(function(result) {
                     $scope.book = result.data;
                 });
             }();
@@ -22,7 +22,7 @@
             $scope.searchStudent = function() {
                 if (identityService.isAuthenticated() && $scope.data.idCardNumber) {
                     $scope.searchStudentInProgress = true;
-                    service.call("/students/studentbyidcard?idCard=" + $scope.data.idCardNumber).then(function(result) {
+                    service.get("/students/studentbyidcard?idCard=" + $scope.data.idCardNumber).success(function(result) {
                         $scope.searchStudentInProgress = false;
                         if (result.data) {
                             $scope.searchedStudent = result.data;
@@ -34,7 +34,7 @@
             };
             $scope.borrowBook = function(studentId, bookId) {
                 if (identityService.isAuthenticated()) {
-                    service.call("/books/borrow?studentId=" + studentId + "&bookId=" + bookId, null, "POST").then(function(result) {
+                    service.post("/books/borrow?studentId=" + studentId + "&bookId=" + bookId, null).success(function(result) {
                         notifier.notify(result.response);
                         if (result.data) {
                             $scope.book.AvailableQuantity = result.data;

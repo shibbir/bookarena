@@ -6,7 +6,7 @@ namespace BookArena.Web.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View("_Layout");
         }
     }
 }

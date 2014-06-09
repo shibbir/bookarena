@@ -7,7 +7,7 @@
             if (identityService.isAuthenticated()) {
                 $scope.programs = sharedService.programs();
                 $scope.batches = sharedService.batches();
-                service.call("/students/student/" + $routeParams.id).then(function(result) {
+                service.get("/students/student/" + $routeParams.id).success(function (result) {
                     if (result.data) {
                         $scope.student = result.data;
                         if (result.transactions.length) {
@@ -24,9 +24,9 @@
                 $location.path("/account/login").replace();
             }
 
-            $scope.update = function() {
+            $scope.update = function(student) {
                 if (identityService.isAuthenticated() && $scope.StudentEditForm.$valid) {
-                    service.call("/students/edit/", $("form[name=StudentEditForm]").serialize(), "POST").then(function(result) {
+                    service.post("/students/edit/", student).success(function (result) {
                         notifier.notify(result.response);
                     });
                 }

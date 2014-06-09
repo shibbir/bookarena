@@ -6,7 +6,7 @@
             if (identityService.isAuthenticated()) {
                 $scope.students = [];
                 if ($routeParams.pageNumber === undefined) {
-                    service.call("/students/").then(function(result) {
+                    service.get("/students/").success(function(result) {
                         if (result.data.entities.length) {
                             $scope.students = result.data.entities;
 
@@ -22,7 +22,7 @@
                     if (isNaN(pageNumber) || pageNumber <= 0) {
                         $location.path("/students/").replace();
                     } else {
-                        service.call("/students/index?page=" + pageNumber).then(function(result) {
+                        service.get("/students/index?page=" + pageNumber).success(function (result) {
                             if (result.data.entities.length) {
                                 $scope.students = result.data.entities;
 

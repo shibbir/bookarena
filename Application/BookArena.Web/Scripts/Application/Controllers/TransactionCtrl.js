@@ -2,11 +2,11 @@
 
 (function(app) {
     app.controller("TransactionCtrl", [
-        "$scope", "$rootScope", "$location", "$routeParams", "apiService", "notifierService", "identityService", function ($scope, $rootScope, $location, $routeParams, service, notifier, identityService) {
+        "$scope", "$rootScope", "$location", "$routeParams", "apiService", "notifierService", "identityService", function($scope, $rootScope, $location, $routeParams, service, notifier, identityService) {
             if (identityService.isAuthenticated()) {
                 if ($routeParams.transactionId === undefined) {
                     $scope.transactions = [];
-                    service.call("/transactions/").then(function(result) {
+                    service.get("/transactions/").success(function(result) {
                         if (result.data.length) {
                             $scope.transactions = result.data;
                         }
@@ -16,7 +16,7 @@
                     if (isNaN(id)) {
                         $location.path("/").replace();
                     } else {
-                        service.call("/transactions/transaction/" + id).then(function (result) {
+                        service.get("/transactions/transaction/" + id).success(function(result) {
                             if (result.data) {
                                 $scope.transactionDetail = result.data;
                             }
@@ -28,7 +28,7 @@
                 $location.path("/account/login").replace();
             }
             $scope.receiveBook = function(transactionId) {
-                service.call("/books/receive/" + transactionId, null, "POST").then(function(result) {
+                service.post("/books/receive/" + transactionId, null).success(function(result) {
                     notifier.notify(result.response);
                     if (result.data) {
                         $scope.cleared = true;

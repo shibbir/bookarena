@@ -3,13 +3,13 @@
 (function(app) {
     app.controller("HomeCtrl", [
         "$scope", "apiService", function($scope, service) {
-            service.call("/books/latest").then(function(result) {
+            service.get("/books/latest").success(function(result) {
                 if (result.data.length) {
                     $scope.latestBooks = result.data;
                 }
             });
 
-            service.call("/categories/").then(function(result) {
+            service.get("/categories/").success(function(result) {
                 if (result.data.length) {
                     Morris.Bar({
                         element: "bar-chart",
