@@ -3,7 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using BookArena.DAL.Interfaces;
-using BookArena.Model.EntityModel;
+using BookArena.Model.EntityModels;
 
 namespace BookArena.DAL.Repository
 {

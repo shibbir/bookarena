@@ -1,4 +1,4 @@
-﻿namespace BookArena.Model.EntityModel
+﻿namespace BookArena.Model.EntityModels
 {
     public class BookMetaData
     {

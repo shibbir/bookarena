@@ -1,4 +1,4 @@
-﻿using BookArena.Model.EntityModel;
+﻿using BookArena.Model.EntityModels;
 
 namespace BookArena.DAL.Interfaces
 {

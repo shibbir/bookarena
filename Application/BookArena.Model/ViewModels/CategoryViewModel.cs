@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BookArena.Model.ViewModel
+namespace BookArena.Model.ViewModels
 {
     public class CategoryViewModel
     {

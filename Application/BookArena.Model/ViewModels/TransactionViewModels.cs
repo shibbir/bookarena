@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using BookArena.Model.EntityModel;
+using BookArena.Model.EntityModels;
 
-namespace BookArena.Model.ViewModel
+namespace BookArena.Model.ViewModels
 {
     [NotMapped]
     public class TransactionViewModel : Transaction

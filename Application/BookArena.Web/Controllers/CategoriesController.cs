@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using BookArena.DAL.Interfaces;
 using BookArena.Model;
-using BookArena.Model.EntityModel;
+using BookArena.Model.EntityModels;
 using BookArena.Web.Helper;
 using Newtonsoft.Json;
 

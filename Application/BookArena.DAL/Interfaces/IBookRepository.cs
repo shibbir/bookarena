@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
-using BookArena.Model.EntityModel;
-using BookArena.Model.ViewModel;
+using BookArena.Model.EntityModels;
+using BookArena.Model.ViewModels;
 
 namespace BookArena.DAL.Interfaces
 {

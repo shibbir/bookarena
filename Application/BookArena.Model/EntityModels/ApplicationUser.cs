@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace BookArena.Model.EntityModel
+namespace BookArena.Model.EntityModels
 {
     public class ApplicationUser : IdentityUser
     {

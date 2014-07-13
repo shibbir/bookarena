@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Web.Configuration;
-using BookArena.Model.EntityModel;
+using BookArena.Model.EntityModels;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace BookArena.DAL

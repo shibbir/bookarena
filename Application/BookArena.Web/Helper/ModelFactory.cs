@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using AutoMapper;
-using BookArena.Model.EntityModel;
-using BookArena.Model.ViewModel;
+using BookArena.Model.EntityModels;
+using BookArena.Model.ViewModels;
 
 namespace BookArena.Web.Helper
 {

@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using BookArena.DAL.Interfaces;
-using BookArena.Model.EntityModel;
-using BookArena.Model.ViewModel;
+using BookArena.Model.EntityModels;
+using BookArena.Model.ViewModels;
 using BookArena.Web.Helper;
 using Newtonsoft.Json;
 
