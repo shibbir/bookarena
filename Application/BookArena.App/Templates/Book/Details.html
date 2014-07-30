@@ -1,18 +1,19 @@
 ﻿<button class="button loan-button" data-reveal-id="BorrowModal" ng-show="displayBorrowButton()" ng-click="resetBorrowSection()">Borrow</button>
 
 <div id="BorrowModal" class="reveal-modal tiny" data-reveal>
-    <h3>{{book.title}}</h3>
-    <p class="lead">Search for a student.</p>
+    <h3 class="modal-title">{{book.title}}</h3>
+    <hr />
+    <div class="search-label">Search student</div>
     <div class="bouncespinner" ng-show="searchStudentInProgress">
         <div class="bounce1"></div>
         <div class="bounce2"></div>
         <div></div>
     </div>
     <div class="row collapse">
-        <div class="small-10 columns">
+        <div class="small-12 large-10 columns">
             <input type="search" ng-model="data.idCardNumber" placeholder="ID Card" />
         </div>
-        <div class="small-2 columns">
+        <div class="small-12 large-2 columns">
             <button class="button postfix" ng-click="searchStudent()">Search</button>
         </div>
     </div>

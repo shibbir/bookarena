@@ -18,7 +18,7 @@ var _app = _app || {};
                         controller: "LoginCtrl"
                     })
                 .when(
-                    "/account/profile", {
+                    "/info", {
                         templateUrl: "Templates/Account/Profile.html",
                         controller: "ProfileCtrl"
                     })

@@ -60,8 +60,18 @@
                                             <span class="red required-star">*</span>
                                         </a>
                                     </li>
-                                    <li><a ng-href="#/books">All Books</a></li>
-                                    <li><a ng-href="#/categories">Category</a></li>
+                                    <li>
+                                        <a ng-href="#/books">
+                                            All Books
+                                            <i class="fi-book green"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ng-href="#/categories">
+                                            Book Categories
+                                            <i class="fi-list-thumbnails green"></i>
+                                        </a>
+                                    </li>
                                     <li>
                                         <a ng-click="checkForPermisssionBefore('/books/add/')">
                                             Upload New Book
@@ -75,13 +85,23 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a ng-href="#/account/profile">
+                                        <a ng-href="#/info">
                                             Project Info
-                                            <i class="fi-torso green"></i>
+                                            <i class="fi-info green"></i>
                                         </a>
                                     </li>
-                                    <li ng-if="!authenticatedUser.hasRegistered"><a ng-href="#/account/login/">Login</a></li>
-                                    <li ng-if="authenticatedUser.hasRegistered"><a ng-click="logout()">Logout</a></li>
+                                    <li ng-if="!authenticatedUser.hasRegistered">
+                                        <a ng-href="#/account/login/">
+                                            Login
+                                            <i class="fi-power green"></i>
+                                        </a>
+                                    </li>
+                                    <li ng-if="authenticatedUser.hasRegistered">
+                                        <a ng-click="logout()">
+                                            Logout
+                                            <i class="fi-power green"></i>
+                                        </a>
+                                    </li>
                                 </ul>
                             </aside>
                             <div ng-view></div>
