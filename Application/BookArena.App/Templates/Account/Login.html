@@ -1,0 +1,34 @@
+﻿<h2 class="content-header">Login Area</h2>
+
+<div class="alert-box" data-alert>
+    Please login with the current credentials
+</div>
+
+<form name="LoginForm" novalidate id="LoginForm">
+    <ul class="ui-error-container" ng-if="LoginForm.submitted && LoginForm.$invalid">
+        <li ng-if="LoginForm.Email.$invalid">The Email field is invalid.</li>
+        <li ng-if="LoginForm.Password.$invalid">The Password field is required.</li>
+    </ul>
+
+    <div class="row">
+        <div class="small-12 large-6 columns">
+            <label>Email</label>
+            <input type="email" ng-model="user.email" id="Email" name="Email" required />
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 large-6 columns">
+            <label>Password</label>
+            <input type="password" ng-model="user.password" id="Password" name="Password" required />
+        </div>
+    </div>
+
+    <button type="button" class="button small medium-2 left" ng-click="login(user)">Login</button>
+    <div class="spinner inline-spinner left" ng-if="loginInProgress">
+        <div></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+</form>

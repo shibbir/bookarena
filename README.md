@@ -5,11 +5,12 @@ Yet another Library Management System
 
 Tools and Technology used in this project:
 
-* [ASP.NET MVC 5](http://www.asp.net/mvc)
+* [ASP.NET Web API](http://www.asp.net/web-api)
 * [ASP.NET Identity](http://www.asp.net/identity)
 * [Entity Framework](http://www.asp.net/entity-framework)
 * [Foundation](http://foundation.zurb.com/)
 * [AngularJS](http://angularjs.org/)
 * [AutoMapper](http://automapper.org/)
+* [Toastr](http://codeseven.github.io/toastr/)
 
 Project Developed By [Shibbir Ahmed](http://shibbir.net/)

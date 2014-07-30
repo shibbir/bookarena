@@ -1,0 +1,14 @@
+﻿<h3 class="content-header">Category Add Form</h3>
+<hr />
+
+<form name="CategoryAddForm" novalidate>
+    <ul class="ui-error-container" ng-if="CategoryAddForm.submitted && CategoryAddForm.$invalid">
+        <li ng-if="CategoryAddForm.Title.$invalid">The Title field is required.</li>
+    </ul>
+
+    <div class="row">
+        <label>Title <span class="red required-star">*</span></label>
+        <input type="text" ng-model="category.title" name="Title" required />
+    </div>
+    <button type="button" class="tiny full-width" ng-click="addCategory(category)">Add</button>
+</form>

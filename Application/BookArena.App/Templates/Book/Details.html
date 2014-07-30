@@ -1,0 +1,121 @@
+﻿<button class="button loan-button" data-reveal-id="BorrowModal" ng-show="displayBorrowButton()" ng-click="resetBorrowSection()">Borrow</button>
+
+<div id="BorrowModal" class="reveal-modal tiny" data-reveal>
+    <h3>{{book.title}}</h3>
+    <p class="lead">Search for a student.</p>
+    <div class="bouncespinner" ng-show="searchStudentInProgress">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div></div>
+    </div>
+    <div class="row collapse">
+        <div class="small-10 columns">
+            <input type="search" ng-model="data.idCardNumber" placeholder="ID Card" />
+        </div>
+        <div class="small-2 columns">
+            <button class="button postfix" ng-click="searchStudent()">Search</button>
+        </div>
+    </div>
+    <div ng-if="!searchedStudent.id" class="error-message">
+        No record found! Try again.
+    </div>
+    <div ng-if="searchedStudent.id">
+        <table>
+            <thead>
+                <tr>
+                    <th width="240">Name</th>
+                    <th width="20">Batch</th>
+                    <th width="180">ID Card</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{searchedStudent.firstName}} {{searchedStudent.lastName}}</td>
+                    <td>{{searchedStudent.batch}}</td>
+                    <td>{{searchedStudent.program}} {{searchedStudent.idCardNumber}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <button ng-disabled="!book.bookId || !searchedStudent.id" class="success full-width" ng-click="borrowBook(searchedStudent.id, book.bookId)">Borrow The Book</button>
+    </div>
+    <a class="close-reveal-modal">&#215;</a>
+</div>
+
+<h2 class="content-header">Book Information</h2>
+<hr />
+
+<ul class="breadcrumbs">
+    <li><a ng-href="#/">Home</a></li>
+    <li><a ng-href="#/books">Books</a></li>
+    <li class="current"><a>Details</a></li>
+</ul>
+
+<div class="panel callout radius">
+    <h5>{{book.title}}</h5>
+    <p>By {{book.author}}</p>
+</div>
+
+<div class="row">
+    <div class="small-12 large-3 columns">
+        <img ng-src="/Content/Images/{{book.imageFileName}}" alt="{{book.title}}" />
+        <br /><br />
+        <span class="green">Total Copy: {{book.quantity}}</span>
+        <p class="green">Available: {{book.availableQuantity}}</p>
+    </div>
+    <div class="small-12 large-9 columns">
+        <div class="row">
+            <div class="small-12 medium-12 large-12 columns">
+                <p>{{book.shortDescription}}</p>
+                <span ng-if="book.rating">
+                    Rating: <span cd-rating="{{book.rating}}"></span>
+                </span>
+                <p>
+                    Category: <a ng-href="#/categories/{{book.categoryId}}/books">{{book.categoryTitle}}</a>
+                </p>
+            </div>
+            <div class="small-12 medium-12 large-12 columns">
+                <a ng-click="loginToEditBook()" ng-if="!authenticatedUser.hasRegistered">
+                    <i class="fi-lock"></i>
+                    Login to edit
+                </a>
+                <a ng-href="#/books/edit/{{book.bookId}}" ng-if="authenticatedUser.hasRegistered">
+                    <i class="fi-page-edit"></i>
+                    Edit this book
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<div ng-if="book.longDescription">{{book.longDescription}}</div>
+
+<div ng-if="!book.LongDescription">
+    <h3>What you’ll learn</h3>
+
+    <ul>
+        <li>Cras aliquam ipsum non urna cursus, eget imperdiet est auctor.</li>
+        <li>Etiam sed justo non libero euismod sollicitudin ac mattis dolor.</li>
+        <li>In ac lorem a elit semper aliquam eget eu diam.</li>
+        <li>Duis tempus nisl non mauris auctor, at eleifend felis varius.</li>
+        <li>Donec eget sapien vel quam placerat consequat.</li>
+        <li>Vivamus dictum est non lorem iaculis, eu tempor tellus condimentum.</li>
+    </ul>
+
+    <h3>Who this book is for</h3>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non sollicitudin quam, quis accumsan massa. Aliquam erat volutpat.</p>
+
+    There are several types of developers that would find this material useful:
+
+    <ul>
+        <li>
+            Sed adipiscing quam pharetra lacus consectetur, sed bibendum turpis mollis. Aenean lectus mi, feugiat sit amet turpis sit amet, posuere aliquet sem. Sed sodales lobortis turpis eget accumsan.
+        </li>
+        <li>
+            Nunc tincidunt, libero in feugiat auctor, sem mi tincidunt mi, sit amet gravida leo tellus sit amet turpis. Proin sed gravida nisi, non commodo dui.
+        </li>
+        <li>Praesent tristique enim diam, quis tempus nisi egestas in. Fusce scelerisque venenatis fermentum. Vestibulum aliquam, arcu eu faucibus lobortis, justo arcu malesuada urna, in mollis magna diam in urna.</li>
+    </ul>
+</div>

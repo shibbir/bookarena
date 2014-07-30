@@ -1,0 +1,67 @@
+﻿<h2 class="content-header">Upload a Book</h2>
+<hr />
+
+<form name="BookAddForm" novalidate>
+    <ul class="ui-error-container" ng-if="BookAddForm.submitted && BookAddForm.$invalid">
+        <li ng-if="BookAddForm.Title.$invalid">The Title field is required.</li>
+        <li ng-if="BookAddForm.Author.$invalid">The Author field is required.</li>
+        <li ng-if="BookAddForm.CategoryId.$invalid">The Category field is required.</li>
+        <li ng-if="BookAddForm.Quantity.$invalid">The Quantity is required.</li>
+        <li ng-if="BookAddForm.ShortDescription.$invalid">The ShortDescription field must be at most 500 characters long.</li>
+    </ul>
+
+    <input type="hidden" name="ImageFileName" value="not_found.png" />
+    <div class="row">
+        <div class="large-6 columns">
+            <label>Title <span class="red required-star">*</span></label>
+            <input type="text" ng-model="book.title" name="Title" required />
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-6 columns">
+            <label>Author <span class="red required-star">*</span></label>
+            <input type="text" ng-model="book.author" name="Author" required />
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-5 columns">
+            <label>Category <span class="red required-star">*</span></label>
+            <select ng-model="book.categoryId" ng-options="option.categoryId as option.title for option in categories" required>
+                <option value="">Choose one</option>
+            </select>
+            <input type="hidden" name="CategoryId" ng-value="book.categoryId" required />
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-5 columns">
+            <label>Book Quantity <span class="red required-star">*</span></label>
+            <select ng-model="book.quantity" ng-options="option for option in bookQuantities" required>
+                <option value="">Select Quantity</option>
+            </select>
+            <input type="hidden" name="Quantity" ng-value="book.quantity" required />
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-6 columns">
+            <label>Short Description</label>
+            <textarea placeholder="Short Description. e.g main topic, category etc." ng-model="book.shortDescription" name="ShortDescription" ng-maxlength="500"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-6 columns">
+            <label>Book Rating</label>
+            <div cd-rating-input></div>
+            <p style="color: #27ae60;">Rating: <span id="Rating"></span></p>
+        </div>
+    </div>
+    <br />
+
+    <button type="button" class="button small medium-2 left" ng-click="add(book)">Add</button>
+    <div class="spinner inline-spinner left" ng-if="addingBook">
+        <div></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+</form>

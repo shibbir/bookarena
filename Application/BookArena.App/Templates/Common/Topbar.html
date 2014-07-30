@@ -1,0 +1,20 @@
+﻿<nav class="top-bar hide-for-small">
+    <ul class="title-area">
+        <li class="name"> <h1><a ng-href="#/">BookArenaApp</a></h1></li>
+    </ul>
+    
+    <section class="top-bar-section">
+        <ul class="right" ng-if="authenticatedUser.hasRegistered">
+            <li><a href="javascript:void(0)">Hello, {{authenticatedUser.email}}</a></li>
+            <li><a ng-click="logout()">Logout</a></li>
+        </ul>
+        <ul class="right">
+            <li>
+                <a ng-href="#/account/login/" ng-if="!authenticatedUser.hasRegistered">Login</a>
+            </li>
+            <li>
+                <a ng-href="#/account/profile/">Project Info</a>
+            </li>
+        </ul>
+    </section>
+</nav>

@@ -1,0 +1,16 @@
+﻿<h3 class="content-header">Category Edit Form</h3>
+<hr />
+
+<form name="CategoryEditForm" novalidate>
+    <ul class="ui-error-container" ng-if="CategoryEditForm.submitted && CategoryEditForm.$invalid">
+        <li ng-if="CategoryEditForm.Title.$invalid">The Title field is required.</li>
+    </ul>
+
+    <input type="hidden" ng-value="editableCategory.categoryId" name="CategoryId" />
+
+    <div class="row">
+        <label>Title <span class="red required-star">*</span></label>
+        <input type="text" ng-model="editableCategory.title" name="Title" required />
+    </div>
+    <button type="button" class="tiny full-width" ng-click="updateCategory(editableCategory)">Update</button>
+</form>

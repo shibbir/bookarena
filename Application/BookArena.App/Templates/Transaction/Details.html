@@ -1,0 +1,61 @@
+﻿<button class="button loan-button" ng-disabled="cleared" ng-click="receiveBook(transactionDetail.id)" ng-if="authenticatedUser.hasRegistered && transactionDetail.isActive">Receive</button>
+
+<h2 class="content-header">Transaction Details</h2>
+<hr />
+
+<ul class="breadcrumbs">
+    <li><a ng-href="#/">Home</a></li>
+    <li><a ng-href="#/transactions">Transactions</a></li>
+    <li class="current"><a>Details</a></li>
+</ul>
+
+<div ng-if="!transactionDetail" class="block text-center red"><strong>Sorry, No transaction history found!</strong></div>
+
+<div ng-if="transactionDetail">
+    <div class="panel callout radius">
+        <h4>Transaction Details</h4>
+    </div>
+
+    <h5>Borrowed Date: {{transactionDetail.formattedBorrowedDate}}</h5>
+    <h5>Last Submission Date: {{transactionDetail.formattedLastSubmissionDate}}</h5>
+    <h5>Book Serial: {{transactionDetail.bookUniqueKey}}</h5>
+    <h5>Status: {{transactionDetail.status}}</h5>
+    <h5>IsActive: {{transactionDetail.isActive}}</h5>
+
+    <div class="panel callout radius">
+        <h4>Book Details</h4>
+    </div>
+
+    <div class="row" style="margin-bottom: 10px;">
+        <div class="small-7 large-7 columns">
+            <h5>{{transactionDetail.book.title}}</h5>
+            <p>By {{transactionDetail.book.author}}</p>
+            <span ng-if="transactionDetail.book.rating">
+                Rating: <span cd-rating="{{transactionDetail.book.rating}}"></span>
+            </span>
+            <p>
+                Category: <a ng-href="#/categories/{{transactionDetail.book.categoryId}}/books">{{transactionDetail.book.categoryTitle}}</a>
+            </p>
+            <p>
+                <a ng-href="#/books/{{transactionDetail.book.bookId}}">More Details</a>
+            </p>
+        </div>
+        <div class="small-5 large-5 columns">
+            <div class="book-body">
+                <img ng-src="/Content/Images/{{transactionDetail.book.imageFileName}}" alt="{{transactionDetail.book.title}}" />
+            </div>
+        </div>
+    </div>
+
+    <div class="panel callout radius">
+        <h4>Borrower Details</h4>
+    </div>
+
+    <h5>Name: {{transactionDetail.student.firstName}} {{transactionDetail.student.lastName}}</h5>
+    <h5>Id Card: {{transactionDetail.student.idCardNumber}}</h5>
+    <h5>Batch: {{transactionDetail.student.batch}}</h5>
+    <h5>Program: {{transactionDetail.student.program}}</h5>
+    <p>
+        <a ng-href="#/students/student/{{transactionDetail.student.id}}">More Details</a>
+    </p>
+</div>

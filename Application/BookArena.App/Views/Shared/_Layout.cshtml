@@ -1,0 +1,104 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BookArena project is a simple library manager based on single page application technology. It is built with asp.net mvc, angular.js and entity framework." />
+    <link rel="icon" type="image/png" href="~/favicon.png" />
+    <title>BookArena - Library Manager</title>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="BookaArena" />
+    <meta property="og:url" content="http://bookarena.shibbir.net/" />
+    <meta property="og:title" content="BookArena: Single Page Application" />
+    <meta property="og:image" content="" />
+    <meta property="og:description" content="BookArena project is a simple library manager based on single page application technology. It is built with asp.net mvc, angular.js and entity framework." />
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body ng-app="bookArena">
+    <div ng-controller="BaseCtrl">
+        <div data-cd-topbar></div>
+        <div class="row" id="wrapper">
+            <div class="small-12 medium-3 large-3 columns">
+                <div data-cd-side-navigation></div>
+            </div>
+            <div class="small-12 medium-9 large-9 columns" style="background-color: #2C3E50;">
+                <div class="body-content">
+                    <div class="off-canvas-wrap" data-offcanvas>
+                        <div class="inner-wrap">
+                            <!-- OFF CANVAS MENU BAR -->
+                            <nav class="tab-bar hide-for-large-up">
+                                <section class="left-small">
+                                    <a class="left-off-canvas-toggle menu-icon"><span></span></a>
+                                </section>
+                                <section class="right tab-bar-section">
+                                    <h1 class="title">BookArena</h1>
+                                </section>
+
+                            </nav> <!-- END NAV.TAB-BAR HIDE-FOR-LARGE-UP -->
+                            <!-- OFF CANVAS MENU -->
+                            <aside class="left-off-canvas-menu">
+                                <ul class="off-canvas-list">
+                                    <li><label>Navigation</label></li>
+                                    <li><a ng-href="#/">Home <i class="fi-home green"></i></a></li>
+                                    <li>
+                                        <a ng-click="checkForPermisssionBefore('/students/')">
+                                            All Student
+                                            <span class="red required-star">*</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ng-click="checkForPermisssionBefore('/students/add/')">
+                                            Register Student
+                                            <span class="red required-star">*</span>
+                                        </a>
+                                    </li>
+                                    <li><a ng-href="#/books">All Books</a></li>
+                                    <li><a ng-href="#/categories">Category</a></li>
+                                    <li>
+                                        <a ng-click="checkForPermisssionBefore('/books/add/')">
+                                            Upload New Book
+                                            <span class="red required-star">*</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ng-click="checkForPermisssionBefore('/transactions/')">
+                                            Transaction History
+                                            <span class="red required-star">*</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a ng-href="#/account/profile">
+                                            Project Info
+                                            <i class="fi-torso green"></i>
+                                        </a>
+                                    </li>
+                                    <li ng-if="!authenticatedUser.hasRegistered"><a ng-href="#/account/login/">Login</a></li>
+                                    <li ng-if="authenticatedUser.hasRegistered"><a ng-click="logout()">Logout</a></li>
+                                </ul>
+                            </aside>
+                            <div ng-view></div>
+                            <!-- CLOSE THE OFF-CANVAS MENU -->
+                            <a class="exit-off-canvas"></a>
+                        </div>
+                    </div> <!-- END OFF CANVAS -->
+                </div>
+            </div>
+        </div>
+        <div class="row" style="background: none repeat scroll 0 0 #178892;">
+            <div class="small-12 medium-12 large-12 columns">
+                <footer class="credit">BookArena: A simple SPA based library manager. Copyright &copy; 2014 <a href="http://shibbir.net/" target="blank">Shibbir Ahmed</a>. All rights reserved.</footer>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/library")
+    @Scripts.Render("~/bundles/application")
+</body>
+</html>
