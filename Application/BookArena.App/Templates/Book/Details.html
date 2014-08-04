@@ -37,7 +37,7 @@
                 </tr>
             </tbody>
         </table>
-        <button ng-disabled="!book.bookId || !searchedStudent.id" class="success full-width" ng-click="borrowBook(searchedStudent.id, book.bookId)">Borrow The Book</button>
+        <button ng-disabled="!book.id || !searchedStudent.id" class="success full-width" ng-click="borrowBook(searchedStudent.id, book.id)">Borrow The Book</button>
     </div>
     <a class="close-reveal-modal">&#215;</a>
 </div>
@@ -79,7 +79,7 @@
                     <i class="fi-lock"></i>
                     Login to edit
                 </a>
-                <a ng-href="#/books/edit/{{book.bookId}}" ng-if="authenticatedUser.hasRegistered">
+                <a ng-href="#/books/edit/{{book.id}}" ng-if="authenticatedUser.hasRegistered">
                     <i class="fi-page-edit"></i>
                     Edit this book
                 </a>

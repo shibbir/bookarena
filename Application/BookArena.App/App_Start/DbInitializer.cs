@@ -185,7 +185,7 @@ namespace BookArena.App
                     {
                         new Book
                         {
-                            BookId = 1,
+                            Id = 1,
                             Title = "Pro ASP.NET MVC 5",
                             Author = "Adam Freeman",
                             ShortDescription =
@@ -196,7 +196,7 @@ namespace BookArena.App
                         },
                         new Book
                         {
-                            BookId = 2,
+                            Id = 2,
                             Title = "ASP.NET MVC 4 Recipes",
                             Author = "John Ciliberti",
                             ShortDescription =
@@ -214,7 +214,7 @@ namespace BookArena.App
                     {
                         new Book
                         {
-                            BookId = 3,
+                            Id = 3,
                             Title = "Objective-C Programmer's Reference",
                             Author = "Carlos Oliveira",
                             ShortDescription =
@@ -225,7 +225,7 @@ namespace BookArena.App
                         },
                         new Book
                         {
-                            BookId = 4,
+                            Id = 4,
                             Title = "Learn Design for iOS Development",
                             Author = "Sian Morson",
                             ShortDescription =
@@ -236,7 +236,7 @@ namespace BookArena.App
                         },
                         new Book
                         {
-                            BookId = 5,
+                            Id = 5,
                             Title = "Beginning 3D Game Development with Unity 4",
                             Author = "Sue Blackman",
                             ShortDescription =
@@ -254,7 +254,7 @@ namespace BookArena.App
                     {
                         new Book
                         {
-                            BookId = 6,
+                            Id = 6,
                             Title = "WordPress for Web Developers",
                             Author = "Stephanie Leary",
                             ShortDescription =
@@ -273,7 +273,7 @@ namespace BookArena.App
                     {
                         new Book
                         {
-                            BookId = 7,
+                            Id = 7,
                             Title = "The Definitive Guide to MongoDB",
                             Author = "David Hows, Eelco Plugge, Peter Membrey, Tim Hawkins",
                             ShortDescription =
@@ -284,7 +284,7 @@ namespace BookArena.App
                         },
                         new Book
                         {
-                            BookId = 8,
+                            Id = 8,
                             Title = "Entity Framework 6 Recipes",
                             Author = "Brian Driscoll, Nitin Gupta, Robert Vettor, Zeeshan Hirani, Larry Tenny",
                             ShortDescription =
@@ -295,7 +295,7 @@ namespace BookArena.App
                         },
                         new Book
                         {
-                            BookId = 9,
+                            Id = 9,
                             Title = "Pro Oracle SQL",
                             Author = "Karen Morton, Kerry Osborne, Robyn Sands, Riyaj Shamsudeen, Jared Still",
                             ShortDescription =
@@ -313,7 +313,7 @@ namespace BookArena.App
                     {
                         new Book
                         {
-                            BookId = 10,
+                            Id = 10,
                             Title = "Beginning Android C++ Game Development",
                             Author = "Bruce Sutherland",
                             ShortDescription =
@@ -324,7 +324,7 @@ namespace BookArena.App
                         },
                         new Book
                         {
-                            BookId = 11,
+                            Id = 11,
                             Title = "Learn 2D Game Development with C#",
                             Author = "Kelvin Sung",
                             ShortDescription =
@@ -342,7 +342,7 @@ namespace BookArena.App
                     {
                         new Book
                         {
-                            BookId = 12,
+                            Id = 12,
                             Title = "Processing: Creative Coding and Generative Art in Processing 2",
                             Author = "Ira Greenberg, Dianna Xu, Deepak Kumar",
                             ShortDescription =
@@ -360,7 +360,7 @@ namespace BookArena.App
                     {
                         new Book
                         {
-                            BookId = 13,
+                            Id = 13,
                             Title = "HTML5 Enterprise Application Development",
                             Author = "Nehal Shah, Gabriel José Balda Ortíz",
                             ShortDescription =
@@ -371,7 +371,7 @@ namespace BookArena.App
                         },
                         new Book
                         {
-                            BookId = 14,
+                            Id = 14,
                             Title = "HTML5 Data and Services Cookbook",
                             Author = "Gorgi Kosev, Mite Mitreski",
                             ShortDescription =
@@ -382,7 +382,7 @@ namespace BookArena.App
                         },
                         new Book
                         {
-                            BookId = 15,
+                            Id = 15,
                             Title = "The Truth About HTML5",
                             Author = "Luke Stevens, RJ Owen",
                             ShortDescription =
@@ -400,7 +400,7 @@ namespace BookArena.App
                     {
                         new Book
                         {
-                            BookId = 16,
+                            Id = 16,
                             Title = "Beginning Java EE 7",
                             Author = "Antonio Goncalves",
                             ShortDescription =
@@ -411,7 +411,7 @@ namespace BookArena.App
                         },
                         new Book
                         {
-                            BookId = 17,
+                            Id = 17,
                             Title = "Pro JPA 2",
                             Author = "Mike Keith, Merrick Schincariol",
                             ShortDescription =
@@ -422,7 +422,7 @@ namespace BookArena.App
                         },
                         new Book
                         {
-                            BookId = 18,
+                            Id = 18,
                             Title = "Beginning Java with WebSphere",
                             Author = "Robert W. Janson",
                             ShortDescription =
@@ -433,7 +433,7 @@ namespace BookArena.App
                         },
                         new Book
                         {
-                            BookId = 19,
+                            Id = 19,
                             Title = "Pro Hibernate and MongoDB",
                             Author = "Anghel Leonard",
                             ShortDescription =
@@ -451,7 +451,7 @@ namespace BookArena.App
                     {
                         new Book
                         {
-                            BookId = 20,
+                            Id = 20,
                             Title = "Dependency Injection with AngularJS",
                             Author = "Alex Knol",
                             ShortDescription =
@@ -462,7 +462,7 @@ namespace BookArena.App
                         },
                         new Book
                         {
-                            BookId = 21,
+                            Id = 21,
                             Title = "Beginning Backbone.js",
                             Author = "James Sugrue",
                             ShortDescription =
@@ -480,7 +480,7 @@ namespace BookArena.App
                     {
                         new Book
                         {
-                            BookId = 22,
+                            Id = 22,
                             Title = "Git Recipes",
                             Author = "Wodzimierz Gajda",
                             ShortDescription =
@@ -498,7 +498,7 @@ namespace BookArena.App
                     {
                         new Book
                         {
-                            BookId = 23,
+                            Id = 23,
                             Title = "PHP Objects, Patterns, and Practice",
                             Author = "Matt Zandstra",
                             ShortDescription =
@@ -509,7 +509,7 @@ namespace BookArena.App
                         },
                         new Book
                         {
-                            BookId = 24,
+                            Id = 24,
                             Title = "Practical PHP and MySQL Website Databases",
                             Author = "Adrian W. West",
                             ShortDescription =
@@ -528,7 +528,7 @@ namespace BookArena.App
                     {
                         new Book
                         {
-                            BookId = 25,
+                            Id = 25,
                             Title = "Real World Windows 8 Development",
                             Author = "Samidip Basu",
                             ShortDescription =
@@ -539,7 +539,7 @@ namespace BookArena.App
                         },
                         new Book
                         {
-                            BookId = 26,
+                            Id = 26,
                             Title = "Windows 8 App Projects - XAML and C# Edition",
                             Author = "Nico Vermeir",
                             ShortDescription =
@@ -566,7 +566,7 @@ namespace BookArena.App
                     uniqueKeys.Add(uniqueKey);
                     context.BookMetaData.Add(new BookMetaData
                     {
-                        BookId = book.BookId,
+                        BookId = book.Id,
                         IsAvailable = true,
                         UniqueKey = uniqueKey
                     });

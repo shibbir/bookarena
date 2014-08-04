@@ -12,7 +12,7 @@ namespace BookArena.App.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Account")]
-    public class AccountController : ApiController
+    public class AccountController : BaseApiController
     {
         private ApplicationUserManager _userManager;
 
@@ -35,7 +35,6 @@ namespace BookArena.App.Controllers
 
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
-        // GET api/Account/UserInfo
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("UserInfo")]
         public UserInfoViewModel GetUserInfo()
@@ -49,7 +48,6 @@ namespace BookArena.App.Controllers
             };
         }
 
-        // POST api/Account/Logout
         [Route("Logout")]
         public IHttpActionResult Logout()
         {

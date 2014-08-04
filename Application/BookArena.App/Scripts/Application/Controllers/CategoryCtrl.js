@@ -25,6 +25,7 @@
                             $scope.CategoryAddForm.$setPristine();
                             result.data.count = 0;
                             $scope.categories.push(result.data);
+                            $scope.CategoryAddForm.submitted = false;
                         }
                     }).error(function(error) {
                         notifierService.notifyError(error.message);

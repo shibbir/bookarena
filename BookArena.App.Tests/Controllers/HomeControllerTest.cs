@@ -10,15 +10,11 @@ namespace BookArena.App.Tests.Controllers
         [TestMethod]
         public void Index()
         {
-            // Arrange
             var controller = new HomeController();
 
-            // Act
             var result = controller.Index() as ViewResult;
 
-            // Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual("Home Page", result.ViewBag.Title);
         }
     }
 }

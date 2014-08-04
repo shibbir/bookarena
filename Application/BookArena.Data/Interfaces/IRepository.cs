@@ -10,8 +10,9 @@ namespace BookArena.Data.Interfaces
         IQueryable<TEntity> FindAll();
         IQueryable<TEntity> FindAll(Expression<Func<TEntity, bool>> predicate);
         TEntity Find(Expression<Func<TEntity, bool>> predicate);
-        void InsertOrUpdate(TEntity entity);
-        void Delete(int id);
+        void Insert(TEntity entity);
+        void Update(TEntity entity);
+        void Delete(object id);
         void Save();
     }
 }

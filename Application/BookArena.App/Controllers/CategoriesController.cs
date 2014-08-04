@@ -44,7 +44,7 @@ namespace BookArena.App.Controllers
                 return BadRequest("The Title for this category is already exist in the record. Please check again.");
             }
 
-            _categoryRepository.InsertOrUpdate(category);
+            _categoryRepository.Insert(category);
             _categoryRepository.Save();
 
             return Ok(new
@@ -68,7 +68,7 @@ namespace BookArena.App.Controllers
                 return BadRequest("The Title for this category is already exist in the record. Please check again.");
             }
 
-            _categoryRepository.InsertOrUpdate(category);
+            _categoryRepository.Update(category);
             _categoryRepository.Save();
 
             return Ok(new

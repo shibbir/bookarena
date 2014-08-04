@@ -40,9 +40,9 @@ namespace BookArena.App.Controllers
             }
 
             var books =
-                _bookRepository.FindAll().OrderByDescending(x => x.BookId).Take(5).Select(book => new BasicBookViewModel
+                _bookRepository.FindAll().OrderByDescending(x => x.Id).Take(5).Select(book => new BasicBookViewModel
                 {
-                    BookId = book.BookId,
+                    BookId = book.Id,
                     Title = book.Title,
                     ImageFileName = book.ImageFileName
                 }).ToList();
@@ -56,8 +56,8 @@ namespace BookArena.App.Controllers
         [AllowAnonymous]
         public IHttpActionResult Get(int id)
         {
-            var model = _modelFactory.Create(_bookRepository.Find(x => x.BookId == id));
-            model.AvailableQuantity = _bookRepository.AvailableBooks(model.BookId);
+            var model = _modelFactory.Create(_bookRepository.Find(x => x.Id == id));
+            model.AvailableQuantity = _bookRepository.AvailableBooks(model.Id);
             return Ok(model);
         }
 
@@ -73,7 +73,7 @@ namespace BookArena.App.Controllers
                 return BadRequest("The title is already exists!");
             }
 
-            _bookRepository.InsertOrUpdate(book);
+            _bookRepository.Insert(book);
             _bookRepository.Save();
 
             for (var i = 0; i < book.Quantity; i++)
@@ -89,7 +89,7 @@ namespace BookArena.App.Controllers
                 }
                 _bookRepository.InsertOrUpdateMetaData(new BookMetaData
                 {
-                    BookId = book.BookId,
+                    BookId = book.Id,
                     IsAvailable = true,
                     UniqueKey = uniqueKey
                 });
@@ -108,13 +108,13 @@ namespace BookArena.App.Controllers
                 return BadRequest("Invalid book information!");
             }
 
-            var duplicate = _bookRepository.Find(x => x.Title == book.Title && x.BookId != book.BookId);
+            var duplicate = _bookRepository.Find(x => x.Title == book.Title && x.Id != book.Id);
 
             if (duplicate != null)
             {
                 return BadRequest("The title is already exists for another book!");
             }
-            _bookRepository.InsertOrUpdate(book);
+            _bookRepository.Update(book);
             _bookRepository.Save();
 
             return Ok(new
@@ -146,7 +146,7 @@ namespace BookArena.App.Controllers
             {
                 return BadRequest("This student already borrowed this book.");
             }
-            _transactionRepository.InsertOrUpdate(new Transaction
+            _transactionRepository.Insert(new Transaction
             {
                 BookId = bookId,
                 BookUniqueKey = availablebook.UniqueKey,

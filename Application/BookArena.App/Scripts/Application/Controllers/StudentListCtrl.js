@@ -15,11 +15,11 @@
                 if (!$routeParams.pageNumber) {
                     $scope.fetchingStudents = true;
                     service.get("/api/students", config).success(function(result) {
-                        if (result.data.entities.length) {
-                            $scope.students = result.data.entities;
+                        if (result.entities.length) {
+                            $scope.students = result.entities;
 
-                            $scope.hasNext = result.data.hasNext;
-                            $scope.hasPrevious = result.data.hasPrevious;
+                            $scope.hasNext = result.hasNext;
+                            $scope.hasPrevious = result.hasPrevious;
                             $scope.currentPage = result.currentPage;
                             $scope.previousPage = $scope.currentPage - 1;
                             $scope.nextPage = $scope.currentPage + 1;
@@ -33,11 +33,11 @@
                     } else {
                         config.params.page = pageNumber;
                         service.get("/api/students", config).success(function(result) {
-                            if (result.data.entities.length) {
-                                $scope.students = result.data.entities;
+                            if (result.entities.length) {
+                                $scope.students = result.entities;
 
-                                $scope.hasNext = result.data.hasNext;
-                                $scope.hasPrevious = result.data.hasPrevious;
+                                $scope.hasNext = result.hasNext;
+                                $scope.hasPrevious = result.hasPrevious;
                                 $scope.currentPage = result.currentPage;
                                 $scope.previousPage = $scope.currentPage - 1;
                                 $scope.nextPage = $scope.currentPage + 1;

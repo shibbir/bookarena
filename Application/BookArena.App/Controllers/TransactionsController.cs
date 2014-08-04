@@ -39,7 +39,7 @@ namespace BookArena.App.Controllers
 
             if (transaction == null) return BadRequest("Transaction not found!");
 
-            transaction.Book = _modelFactory.Create(_bookRepository.Find(x => x.BookId == transaction.BookId));
+            transaction.Book = _modelFactory.Create(_bookRepository.Find(x => x.Id == transaction.BookId));
             transaction.Student = _studentRepository.Find(x => x.Id == transaction.StudentId);
             return Ok(transaction);
         }
@@ -59,7 +59,7 @@ namespace BookArena.App.Controllers
 
             transaction.Status = "Returned";
             transaction.IsActive = false;
-            _transactionRepository.InsertOrUpdate(transaction);
+            _transactionRepository.Update(transaction);
 
             _bookRepository.Save();
             _transactionRepository.Save();

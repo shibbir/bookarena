@@ -2,6 +2,7 @@
 using System.Web.Http;
 using BookArena.App.Helper;
 using BookArena.App.ViewModels;
+using BookArena.Core;
 using BookArena.Data.Interfaces;
 using BookArena.Model;
 
@@ -19,33 +20,22 @@ namespace BookArena.App.Controllers
             _transactionRepository = transactionRepository;
         }
 
-        private PagedList<Student> GetPagedStudents(int skip, int take)
-        {
-            var query = _studentRepository.FindAll().OrderBy(x => x.Id);
-            var studentCount = query.Count();
-            var students = query.Skip(skip).Take(take).ToList();
-            return new PagedList<Student>
-            {
-                Entities = students,
-                HasNext = (skip + 10 < studentCount),
-                HasPrevious = (skip > 0)
-            };
-        }
-
         public IHttpActionResult Get(int? page, int pageSize = 10)
         {
-            var model = GetPagedStudents((page ?? 0) * pageSize, pageSize);
+            var query = _studentRepository.FindAll().OrderBy(x => x.Id);
+            var model = Pagination<Student>.GetPagedData(query, page, pageSize);
 
-            return Ok(new
-            {
-                Data = model,
-                CurrentPage = (page ?? 0)
-            });
+            return Ok(model);
         }
 
         public IHttpActionResult Get(int id)
         {
             var model = _studentRepository.Find(x => x.Id == id);
+
+            if (model == null)
+            {
+                return NotFound();
+            }
 
             var transactions =
                 Mapper<Transaction, TransactionViewModel>.ListMap(
@@ -78,7 +68,7 @@ namespace BookArena.App.Controllers
                 return BadRequest("The ID Card number is already exist in the record. Please check again.");
             }
 
-            _studentRepository.InsertOrUpdate(student);
+            _studentRepository.Insert(student);
             _studentRepository.Save();
 
             return Ok(new
@@ -99,7 +89,7 @@ namespace BookArena.App.Controllers
             {
                 return BadRequest("The ID Card number is already exist in the record. Please check again.");
             }
-            _studentRepository.InsertOrUpdate(student);
+            _studentRepository.Update(student);
             _studentRepository.Save();
 
             return Ok(new

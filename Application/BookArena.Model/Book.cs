@@ -4,7 +4,7 @@ namespace BookArena.Model
 {
     public class Book
     {
-        public int BookId { get; set; }
+        public int Id { get; set; }
         public int CategoryId { get; set; }
 
         [Required]
