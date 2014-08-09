@@ -1,6 +1,6 @@
-﻿"use strict";
+﻿(function(app) {
+    "use strict";
 
-(function(app) {
     app.controller("StudentAddCtrl", [
         "$scope", "$rootScope", "$location", "apiService", "notifierService", "identityService", "sharedService", function($scope, $rootScope, $location, apiService, notifierService, identityService, sharedService) {
 
@@ -16,7 +16,7 @@
             $scope.programs = sharedService.programs();
             $scope.batches = sharedService.batches();
 
-            $scope.register = function (student) {
+            $scope.register = function(student) {
                 $scope.StudentRegisterForm.submitted = true;
 
                 if ($scope.StudentRegisterForm.$valid) {
@@ -30,9 +30,9 @@
                         $scope.student.idCardNumber = "";
 
                         $scope.addingStudent = false;
-                    }).error(function(error) {
-                        notifierService.notifyError(error.message);
+                    }).error(function(errorResponse) {
                         $scope.addingStudent = false;
+                        $scope.displayErrors(errorResponse);
                     });
                 }
             };

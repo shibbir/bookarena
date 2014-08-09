@@ -15,12 +15,21 @@
         var notifySuccess = function(message) {
             toastr.success(message);
         };
-        var notifyError = function(message) {
-            toastr.error(message);
+
+        var notifyError = function(error) {
+            if (Array.isArray(error)) {
+                error.forEach(function(err) {
+                    toastr.error(err);
+                });
+            } else {
+                toastr.error(error);
+            }
         };
+
         var notifyWarning = function(message) {
             toastr.warning(message);
         };
+
         var notifyInfo = function(message) {
             toastr.info(message);
         };

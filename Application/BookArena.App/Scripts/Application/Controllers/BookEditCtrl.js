@@ -1,6 +1,6 @@
-﻿"use strict";
+﻿(function(app) {
+    "use strict";
 
-(function(app) {
     app.controller("BookEditCtrl", [
         "$scope", "$rootScope", "$routeParams", "$location", "apiService", "notifierService", "identityService", function($scope, $rootScope, $routeParams, $location, apiService, notifierService, identityService) {
             if (identityService.isLoggedIn()) {
@@ -33,9 +33,9 @@
                     apiService.put("/api/books/", book, config).success(function(result) {
                         notifierService.notifySuccess(result.message);
                         $scope.editingBook = false;
-                    }).error(function(error) {
-                        notifierService.notifyError(error.message);
+                    }).error(function(errorResponse) {
                         $scope.editingBook = false;
+                        $scope.displayErrors(errorResponse);
                     });
                 }
             };

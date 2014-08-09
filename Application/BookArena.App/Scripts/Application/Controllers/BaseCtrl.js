@@ -1,6 +1,6 @@
-﻿"use strict";
+﻿(function(app) {
+    "use strict";
 
-(function(app) {
     app.controller("BaseCtrl", [
         "$scope", "$rootScope", "$location", "apiService", "notifierService", "identityService", function($scope, $rootScope, $location, service, notifierService, identityService) {
             $scope.notImplemented = function() {
@@ -41,6 +41,17 @@
                     };
                     $location.path("/account/login");
                 });
+            };
+
+            $scope.displayErrors = function(errorResponse) {
+                if (errorResponse.modelState) {
+                    var errors = _.flatten(_.map(errorResponse.modelState, function(items) {
+                        return items;
+                    }));
+                    notifierService.notifyError(errors);
+                } else {
+                    notifierService.notifyError(errorResponse.message);
+                }
             };
         }
     ]);

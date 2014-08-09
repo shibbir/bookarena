@@ -1,6 +1,6 @@
-﻿"use strict";
+﻿(function (app) {
+    "use strict";
 
-(function(app) {
     app.factory("identityService", [
         "$rootScope", "$location", "$http", "apiService", function($rootScope, $location, $http, apiService) {
 

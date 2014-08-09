@@ -1,6 +1,6 @@
-﻿"use strict";
+﻿(function (app) {
+    "use strict";
 
-(function(app) {
     app.controller("TransactionCtrl", [
         "$scope", "$rootScope", "$location", "$routeParams", "apiService", "notifierService", "identityService", function($scope, $rootScope, $location, $routeParams, apiService, notifierService, identityService) {
             if (identityService.isLoggedIn()) {

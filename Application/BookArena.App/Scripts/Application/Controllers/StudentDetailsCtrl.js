@@ -1,6 +1,6 @@
-﻿"use strict";
+﻿(function(app) {
+    "use strict";
 
-(function(app) {
     app.controller("StudentDetailsCtrl", [
         "$scope", "$rootScope", "$routeParams", "$location", "apiService", "notifierService", "identityService", "sharedService", function($scope, $rootScope, $routeParams, $location, apiService, notifierService, identityService, sharedService) {
             if (identityService.isLoggedIn()) {
@@ -36,9 +36,9 @@
                     apiService.put("/api/students/", student, config).success(function(result) {
                         notifierService.notifySuccess(result.message);
                         $scope.editingStudent = false;
-                    }).error(function(error) {
-                        notifierService.notifyError(error.message);
+                    }).error(function(errorResponse) {
                         $scope.editingStudent = false;
+                        $scope.displayErrors(errorResponse);
                     });
                 }
             };

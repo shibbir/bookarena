@@ -35,7 +35,7 @@ namespace BookArena.App.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest("Invalid category information!");
+                return BadRequest(ModelState);
             }
 
             var duplicate = _categoryRepository.Find(x => x.Title == category.Title);
@@ -58,7 +58,7 @@ namespace BookArena.App.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest("Invalid category information!");
+                return BadRequest(ModelState);
             }
             var duplicate =
                 _categoryRepository.Find(x => x.Title == category.Title && x.CategoryId != category.CategoryId);

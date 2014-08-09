@@ -19,6 +19,7 @@ namespace BookArena.App
                 "~/Scripts/respond.js",
                 "~/Scripts/angular.js",
                 "~/Scripts/angular-route.js",
+                "~/Scripts/underscore.js",
                 "~/Scripts/raphael.js",
                 "~/Scripts/morris.js"));
 

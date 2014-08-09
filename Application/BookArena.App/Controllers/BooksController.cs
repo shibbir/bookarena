@@ -65,7 +65,7 @@ namespace BookArena.App.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest("Invalid book information!");
+                return BadRequest(ModelState);
             }
             var duplicate = _bookRepository.Find(x => x.Title == book.Title);
             if (duplicate != null)
@@ -105,7 +105,7 @@ namespace BookArena.App.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest("Invalid book information!");
+                return BadRequest(ModelState);
             }
 
             var duplicate = _bookRepository.Find(x => x.Title == book.Title && x.Id != book.Id);

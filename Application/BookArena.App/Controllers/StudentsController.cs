@@ -53,6 +53,11 @@ namespace BookArena.App.Controllers
         {
             var model = _studentRepository.Find(x => x.IdCardNumber == idCard);
 
+            if (model == null)
+            {
+                return NotFound();
+            }
+
             return Ok(model);
         }
 
@@ -60,7 +65,7 @@ namespace BookArena.App.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest("Invalid student information!");
+                return BadRequest(ModelState);
             }
             var duplicate = _studentRepository.Find(x => x.IdCardNumber == student.IdCardNumber);
             if (duplicate != null)
@@ -81,7 +86,7 @@ namespace BookArena.App.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest("Invalid student information!");
+                return BadRequest(ModelState);
             }
             var duplicate = _studentRepository.Find(x => x.IdCardNumber == student.IdCardNumber && x.Id != student.Id);
 

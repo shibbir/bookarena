@@ -32,3 +32,5 @@
 /// <reference path="application/services/identityservice.js" />
 /// <reference path="application/services/notifierservice.js" />
 /// <reference path="application/services/sharedservice.js" />
+/// <reference path="underscore-min.js" />
+/// <reference path="underscore.js" />
