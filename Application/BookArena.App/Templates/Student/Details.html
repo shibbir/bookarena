@@ -67,11 +67,11 @@
 
 <div class="clearfix"></div>
 
-<div ng-if="!transactions.length">
+<div ng-if="!transactions || !transactions.length">
     <div class="secondary alert-box">No transaction found!</div>
 </div>
 
-<div ng-if="transactions.length">
+<div ng-if="transactions && transactions.length">
     <div id="student-transaction-table">
         <table>
             <thead>

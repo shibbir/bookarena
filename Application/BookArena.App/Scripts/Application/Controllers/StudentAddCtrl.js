@@ -21,8 +21,8 @@
 
                 if ($scope.StudentRegisterForm.$valid) {
                     $scope.addingStudent = true;
-                    apiService.post("/api/students/", student, config).success(function(result) {
-                        notifierService.notifySuccess(result.message);
+                    apiService.post("/api/students/", student, config).success(function() {
+                        notifierService.notifySuccess("Student registered successfully.");
                         $scope.student.firstName = "";
                         $scope.student.lastName = "";
                         $scope.student.program = "";
@@ -30,6 +30,7 @@
                         $scope.student.idCardNumber = "";
 
                         $scope.addingStudent = false;
+                        $scope.StudentRegisterForm.submitted = false;
                     }).error(function(errorResponse) {
                         $scope.addingStudent = false;
                         $scope.displayErrors(errorResponse);

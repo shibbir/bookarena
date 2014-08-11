@@ -11,13 +11,13 @@
                     headers: identityService.getSecurityHeaders()
                 };
 
-                apiService.get("/api/students/" + $routeParams.id, config).success(function(result) {
-                    if (result.data) {
-                        $scope.student = result.data;
-                        if (result.transactions.length) {
-                            $scope.transactions = result.transactions;
-                        } else {
-                            $scope.transactions = {};
+                apiService.get("/api/students/" + $routeParams.id, config).success(function(student) {
+                    if (student.id) {
+                        $scope.student = angular.copy(student);
+                        delete $scope.student.transactions;
+
+                        if (student.transactions && student.transactions.length) {
+                            $scope.transactions = student.transactions;
                         }
                     } else {
                         $location.path("/").replace();
@@ -33,9 +33,10 @@
 
                 if (identityService.isLoggedIn() && $scope.StudentEditForm.$valid) {
                     $scope.editingStudent = true;
-                    apiService.put("/api/students/", student, config).success(function(result) {
-                        notifierService.notifySuccess(result.message);
+                    apiService.put("/api/students/", student, config).success(function() {
+                        notifierService.notifySuccess("Student updated successfully.");
                         $scope.editingStudent = false;
+                        $scope.StudentEditForm.submitted = false;
                     }).error(function(errorResponse) {
                         $scope.editingStudent = false;
                         $scope.displayErrors(errorResponse);

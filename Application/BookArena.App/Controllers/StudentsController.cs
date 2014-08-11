@@ -36,16 +36,13 @@ namespace BookArena.App.Controllers
             {
                 return NotFound();
             }
+            
+            var transactions = _transactionRepository.FindAll(x => x.StudentId == id).ToList();
 
-            var transactions =
-                Mapper<Transaction, TransactionViewModel>.ListMap(
-                    _transactionRepository.FindAll(x => x.StudentId == id).ToList());
+            var student = Mapper<Student, StudentViewModel>.SingleMap(model);
+            student.Transactions = Mapper<Transaction, TransactionViewModel>.ListMap(transactions);
 
-            return Ok(new
-            {
-                Data = model,
-                Transactions = transactions
-            });
+            return Ok(student);
         }
 
         [Route("api/students/search/{idCard}")]
@@ -76,10 +73,7 @@ namespace BookArena.App.Controllers
             _studentRepository.Insert(student);
             _studentRepository.Save();
 
-            return Ok(new
-            {
-                Message = "Student registered successfully."
-            });
+            return Ok();
         }
 
         public IHttpActionResult Put(Student student)
@@ -97,10 +91,7 @@ namespace BookArena.App.Controllers
             _studentRepository.Update(student);
             _studentRepository.Save();
 
-            return Ok(new
-            {
-                Message = "Student updated successfully."
-            });
+            return Ok();
         }
     }
 }

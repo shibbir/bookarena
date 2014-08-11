@@ -1,13 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Web.Http.Results;
 using BookArena.App.Controllers;
+using BookArena.App.ViewModels;
 using BookArena.Core;
 using BookArena.Data.Interfaces;
 using BookArena.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Telerik.JustMock;
-using Telerik.JustMock.Helpers;
+using Moq;
 
 namespace BookArena.App.Tests.Controllers
 {
@@ -15,26 +17,20 @@ namespace BookArena.App.Tests.Controllers
     public class StudentControllerTest
     {
         [TestMethod]
-        public void GetAllStudents_ShouldReturnAllStudents()
+        public void ShouldReturnPagedResultOfStudents()
         {
-            var testModel = Pagination<Student>.GetPagedData(GetTestStudents().OrderBy(x => x.Id), 0, 10);
+            var studentRepository = new Mock<IStudentRepository>();
+            var transactionRepository = new Mock<ITransactionRepository>();
 
-            var testResult = new
-            {
-                Data = testModel,
-                CurrentPage = 0
-            };
+            studentRepository.Setup(x => x.FindAll()).Returns(GetTestStudents());
 
-            var studentRepository = Mock.Create<IStudentRepository>();
-            var transactionRepository = Mock.Create<ITransactionRepository>();
+            var controller = new StudentsController(studentRepository.Object, transactionRepository.Object);
+            var actionResult = controller.Get(0, 10);
 
-            Mock.Arrange(() => studentRepository.FindAll()).Returns(GetTestStudents());
+            var contentResult = actionResult as OkNegotiatedContentResult<PagedResult<Student>>;
 
-            var controller = new StudentsController(studentRepository, transactionRepository);
-
-            var result = controller.Get(0, 10) as OkNegotiatedContentResult<object>;
-            Assert.IsNotNull(result);
-            Assert.AreEqual(testResult, result.Content);
+            Assert.IsNotNull(contentResult);
+            Assert.IsNotNull(contentResult.Content);
         }
 
         private static IQueryable<Student> GetTestStudents()
@@ -64,6 +60,25 @@ namespace BookArena.App.Tests.Controllers
             return testStudents.AsQueryable();
         }
 
+        private static IQueryable<Transaction> GetTestTransactions()
+        {
+            var testTransactions = new List<Transaction>
+            {
+                new Transaction
+                {
+                    Id = 1,
+                    IsActive = true
+                },
+                new Transaction
+                {
+                    Id = 2,
+                    IsActive = false
+                }
+            };
+
+            return testTransactions.AsQueryable();
+        }
+
         private static Student GetTestStudent()
         {
             return new Student
@@ -78,21 +93,77 @@ namespace BookArena.App.Tests.Controllers
         }
 
         [TestMethod]
-        public void GetReturnsNotFound()
+        public void Should_Return_NotFoundResult_When_Student_NotFound()
         {
-            var studentRepository = Mock.Create<IStudentRepository>();
-            var transactionRepository = Mock.Create<ITransactionRepository>();
+            var studentRepository = new Mock<IStudentRepository>();
+            var transactionRepository = new Mock<ITransactionRepository>();
 
-            var students = Mock.Create<IQueryable<Student>>();
+            var controller = new StudentsController(studentRepository.Object, transactionRepository.Object);
 
-            studentRepository.Arrange(x => x.FindAll()).Returns(students);
-            students.Arrange(x => x).Returns(GetTestStudent());
+            Assert.IsInstanceOfType(controller.Get(99), typeof (NotFoundResult));
+            Assert.IsInstanceOfType(controller.Get("xxx-xxx-xxx"), typeof (NotFoundResult));
+        }
 
-            var controller = new StudentsController(studentRepository, transactionRepository);
+        [TestMethod]
+        public void ShouldReturnStudent()
+        {
+            var studentRepository = new Mock<IStudentRepository>();
+            var transactionRepository = new Mock<ITransactionRepository>();
 
-            var actionResult = controller.Get(9999);
+            studentRepository.Setup(x => x.Find(It.IsAny<Expression<Func<Student, bool>>>())).Returns(GetTestStudent());
+            transactionRepository.Setup(x => x.FindAll(It.IsAny<Expression<Func<Transaction, bool>>>()))
+                .Returns(GetTestTransactions());
 
-            Assert.IsInstanceOfType(actionResult, typeof (NotFoundResult));
+            var controller = new StudentsController(studentRepository.Object, transactionRepository.Object);
+
+            var actionResult = controller.Get(1);
+            var contentResult = actionResult as OkNegotiatedContentResult<StudentViewModel>;
+
+            Assert.IsNotNull(contentResult);
+            Assert.IsNotNull(contentResult.Content);
+            Assert.AreEqual(1, contentResult.Content.Id);
+        }
+
+        [TestMethod]
+        public void ShouldCreateNewStudent()
+        {
+            var studentRepository = new Mock<IStudentRepository>();
+            var transactionRepository = new Mock<ITransactionRepository>();
+
+            studentRepository.Setup(x => x.Find(It.IsAny<Expression<Func<Student, bool>>>()));
+
+            var controller = new StudentsController(studentRepository.Object, transactionRepository.Object);
+            var actionResult = controller.Post(GetTestStudent());
+
+            Assert.IsInstanceOfType(actionResult, typeof (OkResult));
+        }
+
+        [TestMethod]
+        public void Should_Return_BadRequestErrorMessageResult_When_Inserting_Student_With_Duplicate_IdCard()
+        {
+            var studentRepository = new Mock<IStudentRepository>();
+            var transactionRepository = new Mock<ITransactionRepository>();
+
+            studentRepository.Setup(x => x.Find(It.IsAny<Expression<Func<Student, bool>>>())).Returns(GetTestStudent());
+
+            var controller = new StudentsController(studentRepository.Object, transactionRepository.Object);
+            var actionResult = controller.Post(GetTestStudent());
+
+            Assert.IsInstanceOfType(actionResult, typeof (BadRequestErrorMessageResult));
+        }
+
+        [TestMethod]
+        public void ShouldUpdateStudent()
+        {
+            var studentRepository = new Mock<IStudentRepository>();
+            var transactionRepository = new Mock<ITransactionRepository>();
+
+            studentRepository.Setup(x => x.Find(It.IsAny<Expression<Func<Student, bool>>>()));
+
+            var controller = new StudentsController(studentRepository.Object, transactionRepository.Object);
+            var actionResult = controller.Put(GetTestStudent());
+
+            Assert.IsInstanceOfType(actionResult, typeof (OkResult));
         }
     }
 }

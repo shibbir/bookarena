@@ -1,6 +1,6 @@
-﻿"use strict";
+﻿(function(app) {
+    "use strict";
 
-(function(app) {
     app.factory("apiService", [
         "$http", function($http) {
 
