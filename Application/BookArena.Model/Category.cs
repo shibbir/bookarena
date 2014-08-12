@@ -5,7 +5,7 @@ namespace BookArena.Model
 {
     public class Category
     {
-        public int CategoryId { get; set; }
+        public int Id { get; set; }
 
         [Required]
         [MinLength(2)]

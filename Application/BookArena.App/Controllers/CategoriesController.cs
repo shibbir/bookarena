@@ -24,7 +24,7 @@ namespace BookArena.App.Controllers
         {
             var model = _categoryRepository.FindAll().Select(category => new
             {
-                category.CategoryId,
+                category.Id,
                 category.Title,
                 category.Books.Count
             }).ToList();
@@ -61,7 +61,7 @@ namespace BookArena.App.Controllers
                 return BadRequest(ModelState);
             }
             var duplicate =
-                _categoryRepository.Find(x => x.Title == category.Title && x.CategoryId != category.CategoryId);
+                _categoryRepository.Find(x => x.Title == category.Title && x.Id != category.Id);
 
             if (duplicate != null)
             {
@@ -84,7 +84,7 @@ namespace BookArena.App.Controllers
         {
             var model =
                 _categoryRepository.FindAll()
-                    .Where(x => x.CategoryId == categoryId)
+                    .Where(x => x.Id == categoryId)
                     .ToList()
                     .Select(category => _modelFactory.Create(category));
             return Ok(model);

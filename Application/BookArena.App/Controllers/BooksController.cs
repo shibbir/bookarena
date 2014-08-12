@@ -95,10 +95,7 @@ namespace BookArena.App.Controllers
                 });
             }
             _bookRepository.Save();
-            return Ok(new
-            {
-                Message = "Book uploaded successfully!"
-            });
+            return Ok();
         }
 
         public IHttpActionResult Put(Book book)
@@ -117,10 +114,7 @@ namespace BookArena.App.Controllers
             _bookRepository.Update(book);
             _bookRepository.Save();
 
-            return Ok(new
-            {
-                Message = "Book updated successfully!"
-            });
+            return Ok();
         }
 
         [HttpPost]

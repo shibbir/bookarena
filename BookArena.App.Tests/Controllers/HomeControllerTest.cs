@@ -8,7 +8,7 @@ namespace BookArena.App.Tests.Controllers
     public class HomeControllerTest
     {
         [TestMethod]
-        public void Index()
+        public void Should_Return_Layout()
         {
             var controller = new HomeController();
 

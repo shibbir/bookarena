@@ -103,7 +103,8 @@
     <Reference Include="System.Net.Http.WebRequest" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\StudentControllerTest.cs" />
+    <Compile Include="Controllers\StudentsControllerTest.cs" />
+    <Compile Include="Controllers\BooksControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>

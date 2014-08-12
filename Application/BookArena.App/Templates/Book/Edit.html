@@ -36,7 +36,7 @@
     <div class="row">
         <div class="large-5 columns">
             <label>Category <span class="red required-star">*</span></label>
-            <select ng-model="book.categoryId" ng-options="option.categoryId as option.title for option in categories" required></select>
+            <select ng-model="book.categoryId" ng-options="option.id as option.title for option in categories" required></select>
             <input type="hidden" name="CategoryId" ng-value="book.categoryId" />
         </div>
     </div>

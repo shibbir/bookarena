@@ -26,8 +26,8 @@
                 $scope.BookAddForm.submitted = true;
                 if ($scope.BookAddForm.$valid) {
                     $scope.addingBook = true;
-                    apiService.post("/api/books/", book, config).success(function(result) {
-                        notifierService.notifySuccess(result.message);
+                    apiService.post("/api/books/", book, config).success(function() {
+                        notifierService.notifySuccess("Book uploaded successfully!");
 
                         $scope.book.title = "";
                         $scope.book.author = "";

@@ -1,6 +1,6 @@
-﻿"use strict";
+﻿(function (app) {
+    "use strict";
 
-(function(app) {
     app.controller("BookListCtrl", [
         "$scope", "$routeParams", "$location", "apiService", function($scope, $routeParams, $location, service) {
             $scope.categories = [];

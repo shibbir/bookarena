@@ -30,8 +30,8 @@
                         headers: identityService.getSecurityHeaders()
                     }
 
-                    apiService.put("/api/books/", book, config).success(function(result) {
-                        notifierService.notifySuccess(result.message);
+                    apiService.put("/api/books/", book, config).success(function() {
+                        notifierService.notifySuccess("Book updated successfully!");
                         $scope.editingBook = false;
                     }).error(function(errorResponse) {
                         $scope.editingBook = false;

@@ -11,7 +11,7 @@ namespace BookArena.App.Helper
         {
             return new CategoryViewModel
             {
-                CategoryId = category.CategoryId,
+                Id = category.Id,
                 Title = category.Title,
                 Books = category.Books.Select(Create)
             };

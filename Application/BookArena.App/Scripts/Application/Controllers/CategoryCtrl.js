@@ -45,7 +45,7 @@
                     apiService.put("/api/categories/", editableCategory, config).success(function(result) {
                         notifierService.notifySuccess(result.message);
                         if (result.data) {
-                            var filteredCategories = $filter("filter")($scope.categories, { categoryId: result.data.categoryId }, true);
+                            var filteredCategories = $filter("filter")($scope.categories, { id: result.data.id }, true);
                             filteredCategories[0].title = result.data.title;
                         }
                     }).error(function(errorResponse) {
