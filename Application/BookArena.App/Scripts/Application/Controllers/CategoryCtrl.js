@@ -20,15 +20,14 @@
                     var config = {
                         headers: identityService.getSecurityHeaders()
                     };
-                    apiService.post("/api/categories/", category, config).success(function(result) {
-                        notifierService.notifySuccess(result.message);
-                        if (result.data) {
-                            $scope.category.title = "";
-                            $scope.CategoryAddForm.$setPristine();
-                            result.data.count = 0;
-                            $scope.categories.push(result.data);
-                            $scope.CategoryAddForm.submitted = false;
-                        }
+                    apiService.post("/api/categories/", category, config).success(function (newCategory) {
+                        notifierService.notifySuccess("Category created successfully.");
+
+                        $scope.category.title = "";
+                        $scope.CategoryAddForm.$setPristine();
+                        newCategory.count = 0;
+                        $scope.categories.push(category);
+                        $scope.CategoryAddForm.submitted = false;
                     }).error(function(errorResponse) {
                         $scope.displayErrors(errorResponse);
                     });
@@ -42,12 +41,12 @@
                     var config = {
                         headers: identityService.getSecurityHeaders()
                     };
-                    apiService.put("/api/categories/", editableCategory, config).success(function(result) {
-                        notifierService.notifySuccess(result.message);
-                        if (result.data) {
-                            var filteredCategories = $filter("filter")($scope.categories, { id: result.data.id }, true);
-                            filteredCategories[0].title = result.data.title;
-                        }
+                    apiService.put("/api/categories/", editableCategory, config).success(function(category) {
+                        notifierService.notifySuccess("Category updated successfully.");
+
+                        var filteredCategories = $filter("filter")($scope.categories, { id: category.id }, true);
+                        filteredCategories[0].title = category.title;
+
                     }).error(function(errorResponse) {
                         $scope.displayErrors(errorResponse);
                     });

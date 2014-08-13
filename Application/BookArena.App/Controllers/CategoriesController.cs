@@ -31,6 +31,19 @@ namespace BookArena.App.Controllers
             return Ok(model);
         }
 
+        [AllowAnonymous]
+        [Route("{categoryId}/books")]
+        public IHttpActionResult Get(int categoryId)
+        {
+            var model =
+                _categoryRepository.FindAll()
+                    .Where(x => x.Id == categoryId)
+                    .ToList()
+                    .Select(category => _modelFactory.Create(category));
+
+            return Ok(model);
+        }
+
         public IHttpActionResult Post(Category category)
         {
             if (!ModelState.IsValid)
@@ -47,11 +60,7 @@ namespace BookArena.App.Controllers
             _categoryRepository.Insert(category);
             _categoryRepository.Save();
 
-            return Ok(new
-            {
-                Data = category,
-                Message = "Category created successfully."
-            });
+            return Ok(category);
         }
 
         public IHttpActionResult Put(Category category)
@@ -71,23 +80,7 @@ namespace BookArena.App.Controllers
             _categoryRepository.Update(category);
             _categoryRepository.Save();
 
-            return Ok(new
-            {
-                Data = category,
-                Message = "Category updated successfully."
-            });
-        }
-
-        [AllowAnonymous]
-        [Route("{categoryId}/books")]
-        public IHttpActionResult Get(int categoryId)
-        {
-            var model =
-                _categoryRepository.FindAll()
-                    .Where(x => x.Id == categoryId)
-                    .ToList()
-                    .Select(category => _modelFactory.Create(category));
-            return Ok(model);
+            return Ok(category);
         }
     }
 }
