@@ -4,11 +4,6 @@
     app.controller("StudentAddCtrl", [
         "$scope", "$rootScope", "$location", "apiService", "notifierService", "identityService", "sharedService", function($scope, $rootScope, $location, apiService, notifierService, identityService, sharedService) {
 
-            if (!identityService.isLoggedIn()) {
-                identityService.createAccessDeniedResponse();
-                $location.path("/account/login").replace();
-            }
-
             var config = {
                 headers: identityService.getSecurityHeaders()
             };
@@ -21,6 +16,7 @@
 
                 if ($scope.StudentRegisterForm.$valid) {
                     $scope.addingStudent = true;
+
                     apiService.post("/api/students/", student, config).success(function() {
                         notifierService.notifySuccess("Student registered successfully.");
                         $scope.student.firstName = "";

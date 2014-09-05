@@ -4,7 +4,8 @@
 <div class="row">
     <div class="small-9 large-9 columns">
         <h4>Name: {{projectInfo.author.name}}</h4>
-        <h4>Website: <a href="http://shibbir.net/" target="_blank">http://shibbir.net/</a></h4>
+        <h4>Website: <a href="{{projectInfo.author.website}}" target="_blank">{{projectInfo.author.website}}</a></h4>
+        <h4>Twitter: <a ng-href="https://twitter.com/{{projectInfo.author.twitter}}" target="_blank">{{projectInfo.author.twitter}}</a></h4>
         <h4>Address: {{projectInfo.author.address}}</h4>
     </div>
     <div class="small-3 large-3 columns">

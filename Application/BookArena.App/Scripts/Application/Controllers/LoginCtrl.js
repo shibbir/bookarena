@@ -1,6 +1,6 @@
-﻿"use strict";
+﻿(function(app) {
+    "use strict";
 
-(function(app) {
     app.controller("LoginCtrl", [
         "$scope", "$rootScope", "$location", "notifierService", "identityService", function($scope, $rootScope, $location, notifierService, identityService) {
             var tempGlobalContainer = $.extend(true, {}, $rootScope.globalContainer);

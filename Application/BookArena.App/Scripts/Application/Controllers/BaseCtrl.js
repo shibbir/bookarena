@@ -7,26 +7,14 @@
                 notifierService.notifyError("Sorry! This feature is not available yet.");
             };
 
-            $scope.redirectToHome = function() {
+            $scope.redirectToHome = function () {
                 $location.path("/");
             };
 
-            $scope.checkForPermisssionBefore = function(path) {
-                if (!identityService.isLoggedIn()) {
-                    identityService.createAccessDeniedResponse(path);
-
-                    if ($location.path() === "/account/login") {
-                        notifierService.notifyError("Access Denied! You need to login first.");
-                    } else {
-                        $location.path("/account/login");
-                    }
-                } else {
-                    $location.path(path);
-                }
-            };
             $scope.openModal = function(selector) {
                 $(selector).foundation("reveal", "open");
             };
+
             $scope.closeModal = function(selector) {
                 $(selector).foundation("reveal", "close");
             };

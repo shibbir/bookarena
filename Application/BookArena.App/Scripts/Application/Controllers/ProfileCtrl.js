@@ -1,12 +1,13 @@
-﻿"use strict";
+﻿(function(app) {
+    "use strict";
 
-(function(app) {
     app.controller("ProfileCtrl", [
         "$scope", function($scope) {
             $scope.projectInfo = {
                 author: {
                     name: "Shibbir Ahmed",
                     website: "http://shibbir.net/",
+                    twitter: "shibbir_net",
                     address: "Dhaka, Bangladesh",
                     gravatar: "profile.jpg"
                 },

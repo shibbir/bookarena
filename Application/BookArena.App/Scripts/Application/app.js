@@ -1,12 +1,23 @@
-﻿"use strict";
-
-var _app = _app || {};
+﻿var _app = _app || {};
 
 (function() {
+    "use strict";
+
     _app = angular.module("bookArena", ["ngRoute"]);
 
     _app.config([
         "$routeProvider", function($routeProvider) {
+            var authCheck = {
+                auth: function($q, identityService) {
+                    var defer = $q.defer();
+                    if (!identityService.isLoggedIn()) {
+                        defer.reject();
+                    } else {
+                        defer.resolve();
+                    }
+                    return defer.promise;
+                }
+            };
             $routeProvider
                 .when("/", {
                     templateUrl: "Templates/Home/Welcome.html",
@@ -25,12 +36,14 @@ var _app = _app || {};
                 .when(
                     "/transactions", {
                         templateUrl: "Templates/Transaction/List.html",
-                        controller: "TransactionCtrl"
+                        controller: "TransactionCtrl",
+                        resolve: authCheck
                     })
                 .when(
                     "/transactions/:transactionId", {
                         templateUrl: "Templates/Transaction/Details.html",
-                        controller: "TransactionCtrl"
+                        controller: "TransactionCtrl",
+                        resolve: authCheck
                     })
                 .when(
                     "/books", {
@@ -40,7 +53,8 @@ var _app = _app || {};
                 .when(
                     "/books/add", {
                         templateUrl: "Templates/Book/Add.html",
-                        controller: "BookAddCtrl"
+                        controller: "BookAddCtrl",
+                        resolve: authCheck
                     })
                 .when(
                     "/books/:id", {
@@ -50,7 +64,8 @@ var _app = _app || {};
                 .when(
                     "/books/edit/:id", {
                         templateUrl: "Templates/Book/Edit.html",
-                        controller: "BookEditCtrl"
+                        controller: "BookEditCtrl",
+                        resolve: authCheck
                     })
                 .when(
                     "/categories/:categoryId/books", {
@@ -65,26 +80,31 @@ var _app = _app || {};
                 .when(
                     "/students", {
                         templateUrl: "Templates/Student/List.html",
-                        controller: "StudentListCtrl"
+                        controller: "StudentListCtrl",
+                        resolve: authCheck
                     })
                 .when(
                     "/students/page/:pageNumber", {
                         templateUrl: "Templates/Student/List.html",
-                        controller: "StudentListCtrl"
+                        controller: "StudentListCtrl",
+                        resolve: authCheck
                     })
                 .when(
                     "/students/add", {
                         templateUrl: "Templates/Student/Add.html",
-                        controller: "StudentAddCtrl"
+                        controller: "StudentAddCtrl",
+                        resolve: authCheck
                     }).when(
                     "/students/:id", {
                         templateUrl: "Templates/Student/Details.html",
-                        controller: "StudentDetailsCtrl"
+                        controller: "StudentDetailsCtrl",
+                        resolve: authCheck
                     })
                 .when(
                     "/students/edit/:id", {
                         templateUrl: "Templates/Student/Edit.html",
-                        controller: "StudentEditCtrl"
+                        controller: "StudentEditCtrl",
+                        resolve: authCheck
                     })
                 .otherwise({ redirectTo: "/" });
         }
@@ -92,6 +112,11 @@ var _app = _app || {};
 
     _app.run([
         "$rootScope", "$timeout", "$location", "identityService", function($rootScope, $timeout, $location, identityService) {
+
+            $rootScope.$on("$routeChangeError", function(event, current) {
+                identityService.createAccessDeniedResponse(current);
+                $location.path("/account/login");
+            });
 
             $rootScope.$on("$locationChangeStart", function() {
                 if (identityService.getAccessToken()) {

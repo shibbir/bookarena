@@ -1,14 +1,11 @@
-﻿(function (app) {
+﻿(function(app) {
     "use strict";
 
     app.controller("BookAddCtrl", [
-        "$scope", "$rootScope", "$location", "apiService", "identityService", "notifierService", "sharedService", function($scope, $rootScope, $location, apiService, identityService, notifierService, sharedService) {
-            $(document).foundation();
-            if (identityService.isLoggedIn()) {
+        "$scope", "$rootScope", "$location", "apiService", "identityService", "notifierService", "sharedService", function($scope, $rootScope, $location, apiService, identityService, notifierService, sharedService) {            
 
-                var config = {
-                    headers: identityService.getSecurityHeaders()
-                };
+            $scope.init = function() {
+                $(document).foundation();
 
                 $scope.book = {};
                 $scope.book.isRequired = true;
@@ -18,14 +15,17 @@
                 apiService.get("/api/categories/").success(function(result) {
                     $scope.categories = result;
                 });
-            } else {
-                identityService.createAccessDeniedResponse();
-                $location.path("/account/login").replace();
-            }
+            }();
+
             $scope.add = function(book) {
                 $scope.BookAddForm.submitted = true;
+                var config = {
+                    headers: identityService.getSecurityHeaders()
+                };
+
                 if ($scope.BookAddForm.$valid) {
                     $scope.addingBook = true;
+
                     apiService.post("/api/books/", book, config).success(function() {
                         notifierService.notifySuccess("Book uploaded successfully!");
 
@@ -36,7 +36,7 @@
                         $scope.book.shortDescription = "";
 
                         $scope.addingBook = false;
-                    }).error(function (errorResponse) {
+                    }).error(function(errorResponse) {
                         $scope.addingBook = false;
                         $scope.displayErrors(errorResponse);
                     });

@@ -3,7 +3,7 @@
 
     app.controller("BookEditCtrl", [
         "$scope", "$rootScope", "$routeParams", "$location", "apiService", "notifierService", "identityService", function($scope, $rootScope, $routeParams, $location, apiService, notifierService, identityService) {
-            if (identityService.isLoggedIn()) {
+            $scope.init = function() {
                 $scope.book = {};
                 $scope.categories = [];
 
@@ -18,10 +18,8 @@
                         $location.path("/").replace();
                     }
                 });
-            } else {
-                identityService.createAccessDeniedResponse();
-                $location.path("/account/login").replace();
-            }
+            }();
+
             $scope.update = function(book) {
                 $scope.BookEditForm.submitted = true;
                 if (identityService.isLoggedIn() && $scope.BookEditForm.$valid) {

@@ -5,7 +5,6 @@ using System.Linq.Expressions;
 using System.Web.Http.Results;
 using BookArena.App.Controllers;
 using BookArena.App.Helper;
-using BookArena.App.ViewModels;
 using BookArena.Data.Interfaces;
 using BookArena.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

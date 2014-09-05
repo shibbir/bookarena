@@ -1,4 +1,4 @@
-﻿(function (app) {
+﻿(function(app) {
     "use strict";
 
     app.factory("identityService", [
@@ -28,7 +28,7 @@
             var getUserInfo = function(accessToken) {
                 var headers;
 
-                if (typeof (accessToken) !== "undefined") {
+                if (accessToken) {
                     headers = getAuthorizedHeaders(accessToken);
                 } else {
                     headers = getSecurityHeaders();
@@ -48,7 +48,7 @@
 
             var createAccessDeniedResponse = function(path) {
                 $rootScope.globalContainer = {
-                    redirectTo: path ? path : $location.path(),
+                    redirectTo: path.originalPath,
                     message: "Access Denied! You need to login first.",
                     notifyType: "error"
                 };

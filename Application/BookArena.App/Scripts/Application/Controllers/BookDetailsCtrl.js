@@ -1,6 +1,6 @@
-﻿"use strict";
+﻿(function(app) {
+    "use strict";
 
-(function(app) {
     app.controller("BookDetailsCtrl", [
         "$scope", "$rootScope", "$routeParams", "$location", "apiService", "notifierService", "identityService", function($scope, $rootScope, $routeParams, $location, service, notifier, identityService) {
             $scope.init = function() {
@@ -13,12 +13,14 @@
                     $scope.book = result;
                 });
             }();
+
             $scope.loginToEditBook = function() {
                 $rootScope.globalContainer = {
                     redirectTo: "/books/edit/" + $routeParams.id
                 };
                 $location.path("/account/login/");
             };
+
             $scope.searchStudent = function() {
                 if (identityService.isLoggedIn() && $scope.data.idCardNumber) {
                     $scope.searchStudentInProgress = true;
@@ -37,6 +39,7 @@
                     });
                 }
             };
+
             $scope.borrowBook = function(studentId, bookId) {
                 if (identityService.isLoggedIn()) {
                     var config = {
@@ -53,12 +56,14 @@
                     });
                 }
             };
+
             $scope.displayBorrowButton = function() {
                 if (identityService.isLoggedIn() && $scope.book.availableQuantity) {
                     return true;
                 }
                 return false;
             };
+
             $scope.resetBorrowSection = function() {
                 $scope.data.idCardNumber = "";
                 $scope.searchedStudent = {};
