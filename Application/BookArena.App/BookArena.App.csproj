@@ -119,7 +119,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -274,21 +274,14 @@
     <Content Include="Content\Images\windows8_2.png" />
     <Content Include="Content\morris.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="Content\toastr.css" />
-    <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.png" />
     <Content Include="Global.asax" />
-    <Content Include="Content\toastr.scss" />
-    <Content Include="Content\toastr.less" />
     <Content Include="Content\foundation-icons.eot" />
     <Content Include="Content\foundation-icons.ttf" />
     <Content Include="Content\foundation-icons.woff" />
+    <Content Include=".bowerrc" />
+    <Content Include="bower.json" />
     <None Include="Properties\PublishProfiles\Publish.pubxml" />
-    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
-    <Content Include="Scripts\angular-route.js" />
-    <Content Include="Scripts\angular-route.min.js" />
-    <Content Include="Scripts\angular.js" />
-    <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\Application\app.js" />
     <Content Include="Scripts\Application\Controllers\BookAddCtrl.js" />
     <Content Include="Scripts\Application\Controllers\BookDetailsCtrl.js" />
@@ -311,23 +304,6 @@
     <Content Include="Scripts\foundation.js" />
     <Content Include="Scripts\foundation.offcanvas.js" />
     <Content Include="Scripts\foundation.reveal.js" />
-    <Content Include="Scripts\jquery-2.1.1.js" />
-    <Content Include="Scripts\jquery-2.1.1.min.js" />
-    <Content Include="Scripts\jquery-2.1.1.min.map" />
-    <Content Include="Scripts\jquery.raty.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\morris.js" />
-    <Content Include="Scripts\morris.min.js" />
-    <Content Include="Scripts\raphael-min.js" />
-    <Content Include="Scripts\raphael.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.js" />
-    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\toastr.js" />
-    <Content Include="Scripts\toastr.min.js" />
-    <Content Include="Scripts\underscore.js" />
-    <Content Include="Scripts\underscore.min.js" />
     <Content Include="Templates\Account\Login.html" />
     <Content Include="Templates\Account\Profile.html" />
     <Content Include="Templates\Book\Add.html" />
@@ -358,8 +334,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Scripts\toastr.min.js.map" />
-    <Content Include="Scripts\underscore.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

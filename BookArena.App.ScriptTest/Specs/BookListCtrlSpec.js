@@ -1,6 +1,6 @@
-﻿"use strict";
+﻿(function () {
+    "use strict";
 
-(function() {
     describe("BookListCtrl Test Block", function() {
         var scope, controller;
         beforeEach(function() {

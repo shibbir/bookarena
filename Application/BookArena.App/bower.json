@@ -1,0 +1,31 @@
+{
+  "name": "BookArena",
+  "version": "1.0.0",
+  "homepage": "http://bookarena.shibbir.net/",
+  "authors": [
+    "Shibbir Ahmed <shibbir.cse@gmail.com>"
+  ],
+  "description": "Simple library management system",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "/Vendors/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "underscore": "~1.7.0",
+    "angular": "~1.3.0",
+    "angular-route": "~1.3.0",
+    "jquery": "~2.1.1",
+    "toastr": "~2.0.3",
+    "modernizr": "~2.8.3",
+    "morris": "~0.5.2",
+    "raphael": "~2.1.2",
+    "raty": "~2.7.0",
+    "respond": "~1.4.2"
+  }
+}

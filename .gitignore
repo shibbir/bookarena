@@ -62,3 +62,10 @@ _ReSharper*/
 
 #Publish files
 *.pubxml
+
+# --------------------
+# Bower Files
+# --------------------
+.bower-*/
+bower_components
+vendors

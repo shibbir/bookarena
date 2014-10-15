@@ -7,21 +7,21 @@ namespace BookArena.App
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                "~/Scripts/modernizr-*"));
+                "~/Vendors/bower_components/modernizr/modernizr.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/library").Include(
-                "~/Scripts/jquery-{version}.js",
+                "~/Vendors/bower_components/jquery/dist/jquery.js",
                 "~/Scripts/foundation.js",
                 "~/Scripts/foundation.reveal.js",
                 "~/Scripts/foundation.offcanvas.js",
-                "~/Scripts/toastr.js",
-                "~/Scripts/jquery.raty.js",
-                "~/Scripts/respond.js",
-                "~/Scripts/angular.js",
-                "~/Scripts/angular-route.js",
-                "~/Scripts/underscore.js",
-                "~/Scripts/raphael.js",
-                "~/Scripts/morris.js"));
+                "~/Vendors/bower_components/toastr/toastr.js",
+                "~/Vendors/bower_components/raty/lib/jquery.raty.js",
+                "~/Vendors/bower_components/dest/respond.src.js",
+                "~/Vendors/bower_components/angular/angular.js",
+                "~/Vendors/bower_components/angular-route/angular-route.js",
+                "~/Vendors/bower_components/underscore/underscore.js",
+                "~/Vendors/bower_components/raphael/raphael.js",
+                "~/Vendors/bower_components/morris/morris.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/application").Include(
                 "~/Scripts/Application/app.js",
@@ -45,10 +45,10 @@ namespace BookArena.App
                 "~/Scripts/Application/Controllers/StudentDetailsCtrl.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Content/toastr.css",
+                "~/Vendors/bower_components/toastr/toastr.css",
                 "~/Content/foundation.css",
                 "~/Content/foundation-icons.css",
-                "~/Content/morris.css",
+                "~/Vendors/bower_components/morris/morris.css",
                 "~/Content/site.css"));
 
             BundleTable.EnableOptimizations = false;

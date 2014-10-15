@@ -1,6 +1,6 @@
-﻿"use strict";
+﻿(function () {
+    "use strict";
 
-(function() {
     describe("StudentListCtrl", function() {
         var scope, controller, identity, rootScope;
         beforeEach(function() {
