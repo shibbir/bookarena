@@ -30,4 +30,4 @@
             });
         }
     ]);
-})(_app);
+})(angular.module("bookArena"));

@@ -1,11 +1,9 @@
-﻿var _app = _app || {};
-
-(function() {
+﻿(function() {
     "use strict";
 
-    _app = angular.module("bookArena", ["ngRoute"]);
+    var app = angular.module("bookArena", ["ngRoute"]);
 
-    _app.config([
+    app.config([
         "$routeProvider", function($routeProvider) {
             var authCheck = {
                 auth: function($q, identityService) {
@@ -110,7 +108,7 @@
         }
     ]);
 
-    _app.run([
+    app.run([
         "$rootScope", "$timeout", "$location", "identityService", function($rootScope, $timeout, $location, identityService) {
 
             $rootScope.$on("$routeChangeError", function(event, current) {

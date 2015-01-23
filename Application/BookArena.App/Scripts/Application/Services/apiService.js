@@ -3,7 +3,6 @@
 
     app.factory("apiService", [
         "$http", function($http) {
-
             var get = function(url, config) {
                 return $http.get(url, config);
             };
@@ -16,15 +15,8 @@
                 return $http.put(url, data, config);
             };
 
-            var patch = function(url, data) {
-                return $http({
-                    url: url,
-                    method: "PATCH",
-                    data: data,
-                    headers: {
-                        "Content-Type": "application/json;charset=utf-8"
-                    }
-                });
+            var patch = function(url, data, config) {
+                return $http.patch(url, data, config);
             };
 
             var remove = function(url, config) {
@@ -40,4 +32,4 @@
             };
         }
     ]);
-})(_app);
+})(angular.module("bookArena"));

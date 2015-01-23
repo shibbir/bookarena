@@ -1,4 +1,6 @@
-﻿(function(app) {
+﻿(function (app) {
+    "use strict";
+
     app.directive("cdBookStatus", function() {
         return {
             restrict: "A",
@@ -15,14 +17,16 @@
                 $element.html(text);
             }
         };
-    }).directive("cdTopbar", function() {
+    }).directive("topBar", function() {
         return {
-            restrict: "A",
+            restrict: "E",
+            replace: true,
             templateUrl: "/Templates/Common/Topbar.html"
         };
-    }).directive("cdSideNavigation", function() {
+    }).directive("sideNavigation", function() {
         return {
-            restrict: "A",
+            restrict: "E",
+            replace: true,
             templateUrl: "/Templates/Common/SideNavigation.html"
         };
     }).directive("cdCategoryAddForm", function() {
@@ -76,4 +80,4 @@
             }
         };
     });
-})(_app);
+})(angular.module("bookArena"));

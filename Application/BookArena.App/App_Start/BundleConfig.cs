@@ -21,7 +21,7 @@ namespace BookArena.App
                 "~/Vendors/bower_components/angular-route/angular-route.js",
                 "~/Vendors/bower_components/underscore/underscore.js",
                 "~/Vendors/bower_components/raphael/raphael.js",
-                "~/Vendors/bower_components/morris/morris.js"));
+                "~/Vendors/bower_components/morrisjs/morris.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/application").Include(
                 "~/Scripts/Application/app.js",
@@ -47,7 +47,7 @@ namespace BookArena.App
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Vendors/bower_components/toastr/toastr.css",
                 "~/Content/foundation.css",
-                "~/Content/foundation-icons.css",
+                "~/Vendors/bower_components/foundation-icon-fonts/foundation-icons.css",
                 "~/Vendors/bower_components/morris/morris.css",
                 "~/Content/site.css"));
 

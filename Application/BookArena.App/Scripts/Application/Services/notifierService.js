@@ -41,4 +41,4 @@
             notifyInfo: notifyInfo
         };
     });
-})(_app);
+})(angular.module("bookArena"));
