@@ -10,50 +10,65 @@
         <li ng-if="BookAddForm.ShortDescription.$invalid">The ShortDescription field must be at most 500 characters long.</li>
     </ul>
 
-    <input type="hidden" name="ImageFileName" value="not_found.png" />
     <div class="row">
-        <div class="large-6 columns">
-            <label>Title <span class="red required-star">*</span></label>
-            <input type="text" ng-model="book.title" name="Title" required />
+        <div class="large-8 columns">
+            <div class="row">
+                <div class="large-8 columns">
+                    <label>Title <span class="red required-star">*</span></label>
+                    <input type="text" ng-model="book.title" name="Title" required/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-8 columns">
+                    <label>Author <span class="red required-star">*</span></label>
+                    <input type="text" ng-model="book.author" name="Author" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-8 columns">
+                    <label>Category <span class="red required-star">*</span></label>
+                    <select ng-model="book.categoryId" ng-options="option.id as option.title for option in categories" required>
+                        <option value="">Choose one</option>
+                    </select>
+                    <input type="hidden" name="CategoryId" ng-value="book.categoryId" required/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-8 columns">
+                    <label>Book Quantity <span class="red required-star">*</span></label>
+                    <select ng-model="book.quantity" ng-options="option for option in bookQuantities" required>
+                        <option value="">Select Quantity</option>
+                    </select>
+                    <input type="hidden" name="Quantity" ng-value="book.quantity" required/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-8 columns">
+                    <label>Short Description</label>
+                    <textarea placeholder="Short Description. e.g main topic, category etc." ng-model="book.shortDescription" name="ShortDescription" ng-maxlength="500"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-8 columns">
+                    <label>Book Rating</label>
+                    <div cd-rating-input></div>
+                    <p style="color: #27ae60;">Rating: <span id="Rating"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="large-4 columns">
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>Upload Book Cover</label>
+                    <div class="th upload-preview-wrapper">
+                        <img src="/Content/Images/question_mark.png" ng-src="{{ book.filePreview }}" alt="" />
+                    </div>
+                    <input type="file" title="Select photo" multiple accept="image/*" ng-file-select ng-file-change="attachPhoto($files)" />
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="large-6 columns">
-            <label>Author <span class="red required-star">*</span></label>
-            <input type="text" ng-model="book.author" name="Author" required />
-        </div>
-    </div>
-    <div class="row">
-        <div class="large-5 columns">
-            <label>Category <span class="red required-star">*</span></label>
-            <select ng-model="book.categoryId" ng-options="option.id as option.title for option in categories" required>
-                <option value="">Choose one</option>
-            </select>
-            <input type="hidden" name="CategoryId" ng-value="book.categoryId" required />
-        </div>
-    </div>
-    <div class="row">
-        <div class="large-5 columns">
-            <label>Book Quantity <span class="red required-star">*</span></label>
-            <select ng-model="book.quantity" ng-options="option for option in bookQuantities" required>
-                <option value="">Select Quantity</option>
-            </select>
-            <input type="hidden" name="Quantity" ng-value="book.quantity" required />
-        </div>
-    </div>
-    <div class="row">
-        <div class="large-6 columns">
-            <label>Short Description</label>
-            <textarea placeholder="Short Description. e.g main topic, category etc." ng-model="book.shortDescription" name="ShortDescription" ng-maxlength="500"></textarea>
-        </div>
-    </div>
-    <div class="row">
-        <div class="large-6 columns">
-            <label>Book Rating</label>
-            <div cd-rating-input></div>
-            <p style="color: #27ae60;">Rating: <span id="Rating"></span></p>
-        </div>
-    </div>
+
     <br />
 
     <button type="button" class="button small medium-2 left" ng-click="add(book)">Add</button>

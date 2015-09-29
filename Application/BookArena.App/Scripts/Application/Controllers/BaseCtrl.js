@@ -41,6 +41,8 @@
                     notifierService.notifyError(errorResponse.message);
                 }
             };
+
+            $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
         }
     ]);
 })(angular.module("bookArena"));

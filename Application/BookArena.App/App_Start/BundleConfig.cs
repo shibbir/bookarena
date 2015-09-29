@@ -21,7 +21,8 @@ namespace BookArena.App
                 "~/Vendors/bower_components/angular-route/angular-route.js",
                 "~/Vendors/bower_components/underscore/underscore.js",
                 "~/Vendors/bower_components/raphael/raphael.js",
-                "~/Vendors/bower_components/morrisjs/morris.js"));
+                "~/Vendors/bower_components/morrisjs/morris.js",
+                "~/Vendors/bower_components/ng-file-upload/angular-file-upload.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/application").Include(
                 "~/Scripts/Application/app.js",
@@ -29,20 +30,21 @@ namespace BookArena.App
                 "~/Scripts/Application/Services/sharedService.js",
                 "~/Scripts/Application/Services/apiService.js",
                 "~/Scripts/Application/Services/notifierService.js",
-                "~/Scripts/Application/Directives/Directives.js",
-                "~/Scripts/Application/Controllers/BaseCtrl.js",
-                "~/Scripts/Application/Controllers/HomeCtrl.js",
-                "~/Scripts/Application/Controllers/LoginCtrl.js",
-                "~/Scripts/Application/Controllers/ProfileCtrl.js",
-                "~/Scripts/Application/Controllers/CategoryCtrl.js",
-                "~/Scripts/Application/Controllers/BookListCtrl.js",
-                "~/Scripts/Application/Controllers/TransactionCtrl.js",
-                "~/Scripts/Application/Controllers/BookAddCtrl.js",
-                "~/Scripts/Application/Controllers/BookEditCtrl.js",
-                "~/Scripts/Application/Controllers/BookDetailsCtrl.js",
-                "~/Scripts/Application/Controllers/StudentListCtrl.js",
-                "~/Scripts/Application/Controllers/StudentAddCtrl.js",
-                "~/Scripts/Application/Controllers/StudentDetailsCtrl.js"));
+                "~/Scripts/Application/Services/fileService.js",
+                "~/Scripts/Application/Directives/directives.js",
+                "~/Scripts/Application/Controllers/baseCtrl.js",
+                "~/Scripts/Application/Controllers/homeCtrl.js",
+                "~/Scripts/Application/Controllers/loginCtrl.js",
+                "~/Scripts/Application/Controllers/profileCtrl.js",
+                "~/Scripts/Application/Controllers/categoryCtrl.js",
+                "~/Scripts/Application/Controllers/bookListCtrl.js",
+                "~/Scripts/Application/Controllers/transactionCtrl.js",
+                "~/Scripts/Application/Controllers/bookAddCtrl.js",
+                "~/Scripts/Application/Controllers/bookEditCtrl.js",
+                "~/Scripts/Application/Controllers/bookDetailsCtrl.js",
+                "~/Scripts/Application/Controllers/studentListCtrl.js",
+                "~/Scripts/Application/Controllers/studentAddCtrl.js",
+                "~/Scripts/Application/Controllers/studentDetailsCtrl.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Vendors/bower_components/toastr/toastr.css",

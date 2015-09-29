@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using BookArena.App.Helper;
 using BookArena.App.ViewModels;
@@ -61,14 +65,42 @@ namespace BookArena.App.Controllers
             return Ok(model);
         }
 
-        public IHttpActionResult Post(Book book)
+        public async Task<IHttpActionResult> Post()
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var duplicate = _bookRepository.Find(x => x.Title == book.Title);
-            if (duplicate != null)
+
+            var imageFileName = "";
+
+            var provider = GetMultipartProvider();
+            var result = await Request.Content.ReadAsMultipartAsync(provider);
+
+            if (HttpContext.Current.Request.Files.Count != 0)
+            {
+                var file = HttpContext.Current.Request.Files[0];
+                file.SaveAs(
+                    HttpContext.Current.Server.MapPath("~/App_Data/FileUploads/" + file.FileName +
+                                                       Path.GetExtension(file.FileName)));
+                imageFileName = file.FileName + Path.GetExtension(file.FileName);
+            }
+
+            DeleteTempFiles();
+
+            var book = new Book
+            {
+                Title = result.FormData["Title"],
+                Author = result.FormData["Author"],
+                LongDescription = result.FormData["LongDescription"],
+                ShortDescription = result.FormData["ShortDescription"],
+                Quantity = int.Parse(result.FormData["Quantity"]),
+                CategoryId = int.Parse(result.FormData["CategoryId"]),
+                //Rating = double.Parse(result.FormData["Rating"]),
+                ImageFileName = imageFileName
+            };
+
+            if (_bookRepository.Find(x => x.Title == book.Title) != null)
             {
                 return BadRequest("The title is already exists!");
             }
@@ -159,6 +191,26 @@ namespace BookArena.App.Controllers
                 Data = _bookRepository.AvailableBooks(bookId),
                 Message = "Operation Successfull."
             });
+        }
+
+        private static MultipartFormDataStreamProvider GetMultipartProvider()
+        {
+            const string uploadFolder = "~/App_Data/FileUploads";
+            var root = HttpContext.Current.Server.MapPath(uploadFolder);
+            Directory.CreateDirectory(root);
+
+            return new MultipartFormDataStreamProvider(root);
+        }
+
+        private static void DeleteTempFiles()
+        {
+            var files = Directory.GetFiles(HttpContext.Current.Server.MapPath("~/App_Data/FileUploads"),
+                @"*BodyPart_*");
+
+            foreach (var file in files)
+            {
+                File.Delete(file);
+            }
         }
     }
 }

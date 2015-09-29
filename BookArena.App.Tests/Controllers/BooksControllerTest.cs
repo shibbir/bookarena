@@ -87,25 +87,25 @@ namespace BookArena.App.Tests.Controllers
             Assert.AreEqual(1, contentResult.Content.Id);
         }
 
-        [TestMethod]
-        public void Should_Create_New_Book()
-        {
-            _bookRepository.Setup(x => x.Find(It.IsAny<Expression<Func<Book, bool>>>()));
+        //[TestMethod]
+        //public void Should_Create_New_Book()
+        //{
+        //    _bookRepository.Setup(x => x.Find(It.IsAny<Expression<Func<Book, bool>>>()));
 
-            var actionResult = _controller.Post(GetTestBook());
+        //    var actionResult = _controller.Post(GetTestBook());
 
-            Assert.IsInstanceOfType(actionResult, typeof (OkResult));
-        }
+        //    Assert.IsInstanceOfType(actionResult, typeof (OkResult));
+        //}
 
-        [TestMethod]
-        public void Should_Return_BadRequestErrorMessageResult_When_Inserting_Book_With_Existing_Title()
-        {
-            _bookRepository.Setup(x => x.Find(It.IsAny<Expression<Func<Book, bool>>>())).Returns(GetTestBook());
+        //[TestMethod]
+        //public void Should_Return_BadRequestErrorMessageResult_When_Inserting_Book_With_Existing_Title()
+        //{
+        //    _bookRepository.Setup(x => x.Find(It.IsAny<Expression<Func<Book, bool>>>())).Returns(GetTestBook());
 
-            var actionResult = _controller.Post(GetTestBook());
+        //    var actionResult = _controller.Post(GetTestBook());
 
-            Assert.IsInstanceOfType(actionResult, typeof (BadRequestErrorMessageResult));
-        }
+        //    Assert.IsInstanceOfType(actionResult, typeof (BadRequestErrorMessageResult));
+        //}
 
         [TestMethod]
         public void Should_Update_Book()

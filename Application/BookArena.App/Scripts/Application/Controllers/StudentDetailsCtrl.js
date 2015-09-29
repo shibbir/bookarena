@@ -2,7 +2,8 @@
     "use strict";
 
     app.controller("StudentDetailsCtrl", [
-        "$scope", "$rootScope", "$routeParams", "$location", "apiService", "notifierService", "identityService", "sharedService", function($scope, $rootScope, $routeParams, $location, apiService, notifierService, identityService, sharedService) {
+        "$scope", "$rootScope", "$routeParams", "$location", "apiService", "notifierService", "identityService", "sharedService",
+        function ($scope, $rootScope, $routeParams, $location, apiService, notifierService, identityService, sharedService) {
             $scope.programs = sharedService.programs();
             $scope.batches = sharedService.batches();
 

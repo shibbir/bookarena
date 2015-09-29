@@ -27,6 +27,7 @@
     "raphael": "~2.1.2",
     "raty": "~2.7.0",
     "respond": "~1.4.2",
-    "foundation-icon-fonts": "*"
+    "foundation-icon-fonts": "*",
+    "ng-file-upload": "~2.1.1"
   }
 }
