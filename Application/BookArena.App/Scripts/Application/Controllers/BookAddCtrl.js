@@ -18,32 +18,30 @@
                 });
             }();
 
-            $scope.attachPhoto = function($files) {
-                if ($files && $files.length) {
-                    $scope.book.file = $files[0];
+            $scope.attachPhoto = function(file) {
+                $scope.book.file = file;
 
-                    var errorMessages = [];
+                var errorMessages = [];
 
-                    if ($scope.book.file.size > 1024 * 1024 * 2) {
-                        errorMessages.push("File size is too large. Max upload size is 2MB.");
-                    }
+                if ($scope.book.file.size > 1024 * 1024 * 2) {
+                    errorMessages.push("File size is too large. Max upload size is 2MB.");
+                }
 
-                    if (errorMessages.length) {
-                        notifierService.notifyInfo(errorMessages);
-                    } else {
-                        if ($scope.fileReaderSupported && $scope.book.file.type.indexOf("image") > -1) {
-                            var fileReader = new FileReader();
+                if (errorMessages.length) {
+                    notifierService.notifyInfo(errorMessages);
+                } else {
+                    if ($scope.fileReaderSupported && $scope.book.file.type.indexOf("image") > -1) {
+                        var fileReader = new FileReader();
 
-                            fileReader.readAsDataURL($scope.book.file);
+                        fileReader.readAsDataURL($scope.book.file);
 
-                            var loadFile = function (fileReader) {
-                                fileReader.onload = function (e) {
-                                    $timeout(function () {
-                                        $scope.book.filePreview = e.target.result;
-                                    });
-                                };
-                            }(fileReader);
-                        }
+                        var loadFile = function(fileReader) {
+                            fileReader.onload = function(e) {
+                                $timeout(function() {
+                                    $scope.book.filePreview = e.target.result;
+                                });
+                            };
+                        }(fileReader);
                     }
                 }
             };
@@ -71,6 +69,10 @@
                     });
                 }
             };
+
+            $rootScope.$on("Broadcast::RatingAvailable", function(event, score) {
+                $scope.book.rating = score;
+            });
 
             $scope.resetBookUploadForm = function() {
                 $scope.book.title = "";

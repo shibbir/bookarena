@@ -1,7 +1,4 @@
 ﻿/// <autosync enabled="true" />
-/// <reference path="foundation.js" />
-/// <reference path="foundation.offcanvas.js" />
-/// <reference path="foundation.reveal.js" />
 /// <reference path="application/app.js" />
 /// <reference path="application/directives/directives.js" />
 /// <reference path="application/services/apiservice.js" />

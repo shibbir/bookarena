@@ -1,7 +1,7 @@
 ﻿(function() {
     "use strict";
 
-    var app = angular.module("bookArena", ["ngRoute", "angularFileUpload"]);
+    var app = angular.module("bookArena", ["ngRoute", "ngFileUpload"]);
 
     app.config([
         "$routeProvider", function($routeProvider) {

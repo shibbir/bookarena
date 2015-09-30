@@ -2,7 +2,7 @@
     "use strict";
 
     app.factory("fileService", [
-        "$upload", "identityService", function($upload, identityService) {
+        "Upload", "identityService", function ($upload, identityService) {
 
             var upload = function(config) {
                 return $upload.upload({

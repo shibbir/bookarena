@@ -2,7 +2,9 @@
 <hr />
 
 <div class="widget">
-    <div class="widget-header"><h4>Latest Books</h4></div>
+    <div class="widget-header">
+        <h4>Latest Books</h4>
+    </div>
     <div class="widget-body clearfix">
         <div ng-if="fetchingBooks">
             <div class="spinner">
@@ -16,7 +18,7 @@
         <div ng-repeat="book in latestBooks" class="latest-books">
             <div class="book-body">
                 <a ng-href="#/books/{{book.bookId}}">
-                    <img ng-src="/Content/Images/{{book.imageFileName}}" alt="{{book.title}}" />
+                    <img ng-src="{{book.imageFilePath}}" alt="{{book.title}}" />
                 </a>
             </div>
             <div class="book-footer text-center">
@@ -29,7 +31,9 @@
 <div class="clearfix"></div>
 
 <div class="widget">
-    <div class="widget-header"><h4>Book Categories</h4></div>
+    <div class="widget-header">
+        <h4>Book Categories</h4>
+    </div>
     <div class="widget-body">
         <div ng-if="fetchingCategories">
             <div class="spinner">

@@ -48,7 +48,7 @@ namespace BookArena.App.Controllers
                 {
                     BookId = book.Id,
                     Title = book.Title,
-                    ImageFileName = book.ImageFileName
+                    ImageFilePath = "/Content/Images/" + book.ImageFileName
                 }).ToList();
             foreach (var book in books)
             {
@@ -61,18 +61,17 @@ namespace BookArena.App.Controllers
         public IHttpActionResult Get(int id)
         {
             var model = _modelFactory.Create(_bookRepository.Find(x => x.Id == id));
+            if (model == null)
+            {
+                return NotFound();
+            }
             model.AvailableQuantity = _bookRepository.AvailableBooks(model.Id);
             return Ok(model);
         }
 
         public async Task<IHttpActionResult> Post()
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var imageFileName = "";
+            var imageFileName = string.Empty;
 
             var provider = GetMultipartProvider();
             var result = await Request.Content.ReadAsMultipartAsync(provider);
@@ -81,12 +80,11 @@ namespace BookArena.App.Controllers
             {
                 var file = HttpContext.Current.Request.Files[0];
                 file.SaveAs(
-                    HttpContext.Current.Server.MapPath("~/App_Data/FileUploads/" + file.FileName +
-                                                       Path.GetExtension(file.FileName)));
-                imageFileName = file.FileName + Path.GetExtension(file.FileName);
-            }
+                    HttpContext.Current.Server.MapPath("~/Content/Images/" + file.FileName));
+                imageFileName = file.FileName;
 
-            DeleteTempFiles();
+                ClearBodyPartFiles();
+            }
 
             var book = new Book
             {
@@ -96,7 +94,7 @@ namespace BookArena.App.Controllers
                 ShortDescription = result.FormData["ShortDescription"],
                 Quantity = int.Parse(result.FormData["Quantity"]),
                 CategoryId = int.Parse(result.FormData["CategoryId"]),
-                //Rating = double.Parse(result.FormData["Rating"]),
+                Rating = double.Parse(result.FormData["Rating"]),
                 ImageFileName = imageFileName
             };
 
@@ -193,21 +191,50 @@ namespace BookArena.App.Controllers
             });
         }
 
+        [HttpPost]
+        [Route("api/Books/Upload")]
+        public async Task<IHttpActionResult> Upload()
+        {
+            var provider = GetMultipartProvider();
+            var result = await Request.Content.ReadAsMultipartAsync(provider);
+
+            if (HttpContext.Current.Request.Files.Count == 0) return BadRequest();
+
+            var file = HttpContext.Current.Request.Files[0];
+            file.SaveAs(
+                HttpContext.Current.Server.MapPath("~/Content/Images/" + file.FileName));
+
+            var bookId = int.Parse(result.FormData["Id"]);
+            var book = _bookRepository.Find(x => x.Id == bookId);
+            if (File.Exists(HttpContext.Current.Server.MapPath("~/Content/Images/" + book.ImageFileName)))
+            {
+                File.Delete(HttpContext.Current.Server.MapPath("~/Content/Images/" + book.ImageFileName));
+            }
+            book.ImageFileName = file.FileName;
+
+            _bookRepository.Update(book);
+            _bookRepository.Save();
+
+            ClearBodyPartFiles();
+
+            return Ok(_modelFactory.Create(book));
+        }
+
         private static MultipartFormDataStreamProvider GetMultipartProvider()
         {
-            const string uploadFolder = "~/App_Data/FileUploads";
+            const string uploadFolder = "~/Content/Images";
             var root = HttpContext.Current.Server.MapPath(uploadFolder);
             Directory.CreateDirectory(root);
 
             return new MultipartFormDataStreamProvider(root);
         }
 
-        private static void DeleteTempFiles()
+        private static void ClearBodyPartFiles()
         {
-            var files = Directory.GetFiles(HttpContext.Current.Server.MapPath("~/App_Data/FileUploads"),
+            var files = Directory.GetFiles(HttpContext.Current.Server.MapPath("~/Content/Images"),
                 @"*BodyPart_*");
 
-            foreach (var file in files)
+            foreach (var file in files.Where(File.Exists))
             {
                 File.Delete(file);
             }

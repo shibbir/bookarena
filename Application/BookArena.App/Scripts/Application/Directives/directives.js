@@ -1,4 +1,4 @@
-﻿(function (app) {
+﻿(function(app) {
     "use strict";
 
     app.directive("cdBookStatus", function() {
@@ -61,11 +61,12 @@
                 });
             }
         };
-    }).directive("cdRatingInput", function() {
+    }).directive("cdRatingInput", function($rootScope) {
         return {
             restrict: "A",
-            link: function($scope, $element) {
+            link: function($scope, $element, $attrs) {
                 $element.raty({
+                    score: $attrs.cdRatingInput,
                     half: true,
                     halfShow: true,
                     starHalf: "/Content/Images/star-half-big.png",
@@ -74,8 +75,11 @@
                     hints: ["Poor", "Average", "Good", "Very Good", "Excellent"],
                     target: "#Rating",
                     targetKeep: true,
-                    targetText: "Not Rated yet!",
-                    scoreName: "Rating"
+                    noRatedMsg: "Not Rated yet!",
+                    scoreName: "Rating",
+                    click: function(score) {
+                        $rootScope.$broadcast("Broadcast::RatingAvailable", score);
+                    }
                 });
             }
         };

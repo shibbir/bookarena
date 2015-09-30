@@ -4,7 +4,7 @@
 <ul class="breadcrumbs">
     <li><a ng-href="#/">Home</a></li>
     <li><a ng-href="#/books">Books</a></li>
-    <li><a ng-href="#/books/{{book.bookId}}">Details</a></li>
+    <li><a ng-href="#/books/{{book.id}}">Details</a></li>
     <li class="current"><a>Edit</a></li>
 </ul>
 
@@ -16,43 +16,62 @@
         <li ng-if="BookEditForm.ShortDescription.$invalid">The ShortDescription field must be at most 500 characters long.</li>
     </ul>
 
-    <input type="hidden" name="BookId" ng-value="book.bookId" required />
-    <input type="hidden" name="Rating" ng-value="book.rating" />
-    <input type="hidden" name="Quantity" ng-value="book.quantity" required />
-    <input type="hidden" name="ImageFileName" ng-value="book.imageFileName" required />
+    <div class="row">
+        <div class="large-8 columns">
 
-    <div class="row">
-        <div class="large-6 columns">
-            <label>Title <span class="red required-star">*</span></label>
-            <input type="text" ng-model="book.title" name="Title" required />
-        </div>
-    </div>
-    <div class="row">
-        <div class="large-6 columns">
-            <label>Author <span class="red required-star">*</span></label>
-            <input type="text" ng-model="book.author" name="Author" required />
-        </div>
-    </div>
-    <div class="row">
-        <div class="large-5 columns">
-            <label>Category <span class="red required-star">*</span></label>
-            <select ng-model="book.categoryId" ng-options="option.id as option.title for option in categories" required></select>
-            <input type="hidden" name="CategoryId" ng-value="book.categoryId" />
-        </div>
-    </div>
-    <div class="row">
-        <div class="large-7 columns">
-            <label>Short Description</label>
-            <textarea placeholder="Short Description. e.g main topic, category etc." ng-model="book.shortDescription" name="ShortDescription" ng-maxlength="500"></textarea>
-        </div>
-    </div>
+            <div class="row">
+                <div class="large-8 columns">
+                    <label>Title <span class="red required-star">*</span></label>
+                    <input type="text" ng-model="book.title" name="Title" required/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-8 columns">
+                    <label>Author <span class="red required-star">*</span></label>
+                    <input type="text" ng-model="book.author" name="Author" required/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-8 columns">
+                    <label>Category <span class="red required-star">*</span></label>
+                    <select ng-model="book.categoryId" ng-options="option.id as option.title for option in categories" required></select>
+                    <input type="hidden" name="CategoryId" ng-value="book.categoryId"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-10 columns">
+                    <label>Short Description</label>
+                    <textarea placeholder="Short Description. e.g main topic, category etc." ng-model="book.shortDescription" name="ShortDescription" ng-maxlength="500"></textarea>
+                </div>
+            </div>
 
-    <button type="button" class="button small medium-3 left" ng-click="update(book)">Update</button>
-    <div class="spinner inline-spinner left" ng-if="editingBook">
-        <div></div>
-        <div class="rect2"></div>
-        <div class="rect3"></div>
-        <div class="rect4"></div>
-        <div class="rect5"></div>
+            <div class="row" ng-if="book.rating">
+                <div class="large-8 columns">
+                    <label>Rating</label>
+                    <div cd-rating-input="{{book.rating}}"></div>
+                    <p style="color: #27ae60;">Rating: <span id="Rating"></span></p>
+                </div>
+            </div>
+
+            <button type="button" class="button small medium-3 left" ng-click="update(book)">Update</button>
+            <div class="spinner inline-spinner left" ng-if="editingBook">
+                <div></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
+            </div>
+        </div>
+        <div class="large-4 columns">
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>Change Book Cover</label>
+                    <div class="th upload-preview-wrapper">
+                        <img src="/Content/Images/question_mark.png" ng-src="{{ book.imageFilePath }}" alt="{{ book.title }}"/>
+                    </div>
+                    <input type="file" title="Select photo" multiple accept="image/*" ngf-pattern="'image/*'" ngf-select ngf-change="uploadPhoto($file)"/>
+                </div>
+            </div>
+        </div>
     </div>
 </form>

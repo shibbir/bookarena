@@ -226,12 +226,12 @@ h2.content-header {
 .upload-preview-wrapper {
     height: 180px;
     padding: 5px;
-    width: 80%;
+    width: 70%;
     text-align: center;
 }
 
 .upload-preview-wrapper img {
-    max-height: 160px;
+    height: 160px;
 }
 
 .bouncespinner {

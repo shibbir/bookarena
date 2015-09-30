@@ -236,8 +236,6 @@
     <Compile Include="ViewModels\TransactionViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\foundation.css" />
-    <Content Include="Content\foundation.min.css" />
     <Content Include="Content\Images\apple_1.png" />
     <Content Include="Content\Images\apple_2.png" />
     <Content Include="Content\Images\apple_3.png" />
@@ -298,9 +296,6 @@
     <Content Include="Scripts\Application\Services\identityService.js" />
     <Content Include="Scripts\Application\Services\notifierService.js" />
     <Content Include="Scripts\Application\Services\sharedService.js" />
-    <Content Include="Scripts\foundation.js" />
-    <Content Include="Scripts\foundation.offcanvas.js" />
-    <Content Include="Scripts\foundation.reveal.js" />
     <Content Include="Templates\Account\Login.html" />
     <Content Include="Templates\Account\Profile.html" />
     <Content Include="Templates\Book\Add.html" />
