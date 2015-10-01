@@ -6,9 +6,6 @@ namespace BookArena.App
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                "~/Vendors/bower_components/modernizr/modernizr.js"));
-
             bundles.Add(new ScriptBundle("~/bundles/library").Include(
                 "~/Vendors/bower_components/jquery/dist/jquery.js",
                 "~/Vendors/bower_components/foundation/js/foundation/foundation.js",
@@ -16,7 +13,7 @@ namespace BookArena.App
                 "~/Vendors/bower_components/foundation/js/foundation/foundation.offcanvas.js",
                 "~/Vendors/bower_components/toastr/toastr.js",
                 "~/Vendors/bower_components/raty/lib/jquery.raty.js",
-                "~/Vendors/bower_components/dest/respond.src.js",
+                "~/Vendors/bower_components/respond/dest/respond.src.js",
                 "~/Vendors/bower_components/angular/angular.js",
                 "~/Vendors/bower_components/angular-route/angular-route.js",
                 "~/Vendors/bower_components/underscore/underscore.js",
@@ -49,11 +46,12 @@ namespace BookArena.App
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Vendors/bower_components/toastr/toastr.css",
                 "~/Vendors/bower_components/foundation/css/foundation.css",
-                "~/Vendors/bower_components/foundation-icon-fonts/foundation-icons.css",
-                "~/Vendors/bower_components/morris/morris.css",
-                "~/Content/site.css"));
+                "~/Vendors/bower_components/morrisjs/morris.css",
+                "~/Content/site.css")
+                .Include("~/Vendors/bower_components/foundation-icon-fonts/foundation-icons.css",
+                    new CssRewriteUrlTransform()));
 
-            BundleTable.EnableOptimizations = false;
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

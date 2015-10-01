@@ -61,7 +61,7 @@
                 });
             }
         };
-    }).directive("cdRatingInput", function($rootScope) {
+    }).directive("cdRatingInput", ["$rootScope", function($rootScope) {
         return {
             restrict: "A",
             link: function($scope, $element, $attrs) {
@@ -83,5 +83,5 @@
                 });
             }
         };
-    });
+    }]);
 })(angular.module("bookArena"));

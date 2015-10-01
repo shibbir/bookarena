@@ -6,7 +6,7 @@
     app.config([
         "$routeProvider", function($routeProvider) {
             var authCheck = {
-                auth: function($q, identityService) {
+                auth: ["$q", "identityService", function($q, identityService) {
                     var defer = $q.defer();
                     if (!identityService.isLoggedIn()) {
                         defer.reject();
@@ -14,7 +14,7 @@
                         defer.resolve();
                     }
                     return defer.promise;
-                }
+                }]
             };
             $routeProvider
                 .when("/", {
