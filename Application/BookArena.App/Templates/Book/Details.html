@@ -1,26 +1,26 @@
-﻿<button class="button loan-button" data-reveal-id="BorrowModal" ng-show="displayBorrowButton()" ng-click="resetBorrowSection()">Borrow</button>
+﻿<button class="button loan-button" data-reveal-id="BorrowModal" ng-show="vm.displayBorrowButton()" ng-click="vm.resetBorrowSection()">Borrow</button>
 
 <div id="BorrowModal" class="reveal-modal tiny" data-reveal>
-    <h3 class="modal-title">{{book.title}}</h3>
-    <hr />
+    <h3 class="modal-title">{{vm.book.title}}</h3>
+    <hr/>
     <div class="search-label">Search student</div>
-    <div class="bouncespinner" ng-show="searchStudentInProgress">
+    <div class="bouncespinner" ng-show="vm.searchStudentInProgress">
         <div class="bounce1"></div>
         <div class="bounce2"></div>
         <div></div>
     </div>
     <div class="row collapse">
         <div class="small-12 large-10 columns">
-            <input type="search" ng-model="data.idCardNumber" placeholder="ID Card" />
+            <input type="search" ng-model="vm.data.idCardNumber" placeholder="ID Card"/>
         </div>
         <div class="small-12 large-2 columns">
-            <button class="button postfix" ng-click="searchStudent()">Search</button>
+            <button class="button postfix" ng-click="vm.searchStudent()">Search</button>
         </div>
     </div>
-    <div ng-if="!searchedStudent.id" class="error-message">
+    <div ng-if="!vm.searchedStudent.id" class="error-message">
         No record found! Try again.
     </div>
-    <div ng-if="searchedStudent.id">
+    <div ng-if="vm.searchedStudent.id">
         <table>
             <thead>
                 <tr>
@@ -31,13 +31,13 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>{{searchedStudent.firstName}} {{searchedStudent.lastName}}</td>
-                    <td>{{searchedStudent.batch}}</td>
-                    <td>{{searchedStudent.program}} {{searchedStudent.idCardNumber}}</td>
+                    <td>{{vm.searchedStudent.firstName}} {{vm.searchedStudent.lastName}}</td>
+                    <td>{{vm.searchedStudent.batch}}</td>
+                    <td>{{vm.searchedStudent.program}} {{vm.searchedStudent.idCardNumber}}</td>
                 </tr>
             </tbody>
         </table>
-        <button ng-disabled="!book.id || !searchedStudent.id" class="success full-width" ng-click="borrowBook(searchedStudent.id, book.id)">Borrow The Book</button>
+        <button ng-disabled="!vm.book.id || !vm.searchedStudent.id" class="success full-width" ng-click="vm.borrowBook(vm.searchedStudent.id, vm.book.id)">Borrow The Book</button>
     </div>
     <a class="close-reveal-modal">&#215;</a>
 </div>
@@ -52,34 +52,34 @@
 </ul>
 
 <div class="panel callout radius">
-    <h5>{{book.title}}</h5>
-    <p>By {{book.author}}</p>
+    <h5>{{vm.book.title}}</h5>
+    <p>By {{vm.book.author}}</p>
 </div>
 
 <div class="row">
     <div class="small-12 large-3 columns">
-        <img ng-src="{{book.imageFilePath}}" alt="{{book.title}}" />
+        <img ng-src="{{vm.book.imageFilePath}}" alt="{{vm.book.title}}" />
         <br /><br />
-        <span class="green">Total Copy: {{book.quantity}}</span>
-        <p class="green">Available: {{book.availableQuantity}}</p>
+        <span class="green">Total Copy: {{vm.book.quantity}}</span>
+        <p class="green">Available: {{vm.book.availableQuantity}}</p>
     </div>
     <div class="small-12 large-9 columns">
         <div class="row">
             <div class="small-12 medium-12 large-12 columns">
-                <p>{{book.shortDescription}}</p>
+                <p>{{vm.book.shortDescription}}</p>
                 <span ng-if="book.rating">
-                    Rating: <span cd-rating="{{book.rating}}"></span>
+                    Rating: <span cd-rating="{{vm.book.rating}}"></span>
                 </span>
                 <p>
-                    Category: <a ng-href="#/categories/{{book.categoryId}}/books">{{book.categoryTitle}}</a>
+                    Category: <a ng-href="#/categories/{{vm.book.categoryId}}/books">{{vm.book.categoryTitle}}</a>
                 </p>
             </div>
             <div class="small-12 medium-12 large-12 columns">
-                <a ng-click="loginToEditBook()" ng-if="!authenticatedUser.hasRegistered">
+                <a ng-click="vm.loginToEditBook()" ng-if="!authenticatedUser.hasRegistered">
                     <i class="fi-lock"></i>
                     Login to edit
                 </a>
-                <a ng-href="#/books/edit/{{book.id}}" ng-if="authenticatedUser.hasRegistered">
+                <a ng-href="#/books/edit/{{vm.book.id}}" ng-if="authenticatedUser.hasRegistered">
                     <i class="fi-page-edit"></i>
                     Edit this book
                 </a>
@@ -90,9 +90,9 @@
 
 <hr />
 
-<div ng-if="book.longDescription">{{book.longDescription}}</div>
+<div ng-if="vm.book.longDescription">{{vm.book.longDescription}}</div>
 
-<div ng-if="!book.LongDescription">
+<div ng-if="!vm.book.LongDescription">
     <h3>What you’ll learn</h3>
 
     <ul>

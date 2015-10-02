@@ -6,10 +6,11 @@
     <li class="current"><a>Transactions</a></li>
 </ul>
 
-<div ng-if="!transactions.length" class="block text-center red"><strong>Sorry, No transaction history found!</strong></div>
+<div ng-if="!vm.transactions.length" class="block text-center red"><strong>Sorry, No transaction history found!</strong></div>
 
-<div ng-if="transactions.length">
-    <input type="search" ng-model="searchText" placeholder="filter: e.g name, id" />
+<div ng-if="vm.transactions.length">
+    <input type="search" ng-model="vm.searchText" placeholder="filter: e.g name, id"/>
+
     <div id="transaction-table">
         <table>
             <thead>
@@ -24,7 +25,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="transaction in transactions | filter: searchText">
+                <tr ng-repeat="transaction in vm.transactions | filter: vm.searchText">
                     <td>{{$index + 1}}</td>
                     <td>{{transaction.formattedBorrowedDate}}</td>
                     <td>{{transaction.formattedLastSubmissionDate}}</td>

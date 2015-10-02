@@ -125,7 +125,7 @@ namespace BookArena.App.Controllers
                 });
             }
             _bookRepository.Save();
-            return Ok();
+            return Ok(book);
         }
 
         public IHttpActionResult Put(Book book)

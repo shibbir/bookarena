@@ -1,54 +1,65 @@
 ﻿<h2 class="content-header">Student Register Section</h2>
 <hr />
 
-<form name="StudentRegisterForm" novalidate>
-    <ul class="ui-error-container" ng-if="StudentRegisterForm.submitted && StudentRegisterForm.$invalid">
-        <li ng-if="StudentRegisterForm.FirstName.$invalid">The FirstName field is required.</li>
-        <li ng-if="StudentRegisterForm.LastName.$invalid">The LastName field is required.</li>
-        <li ng-if="StudentRegisterForm.Program.$error.required">The Program field is required.</li>
-        <li ng-if="StudentRegisterForm.Batch.$invalid">The Batch field is required.</li>
-        <li ng-if="StudentRegisterForm.IdCardNumber.$invalid">The IdCard field is invalid.</li>
-    </ul>
+<form name="vm.StudentRegisterForm" novalidate ng-submit="vm.register()">
+
+    <div class="ui-error-container" ng-if="vm.StudentRegisterForm.submitted && vm.StudentRegisterForm.$invalid">
+        <div ng-messages="vm.StudentRegisterForm.FirstName.$error">
+            <span ng-message="required">The FirstName field is required.</span>
+        </div>
+        <div ng-messages="vm.StudentRegisterForm.LastName.$error">
+            <span ng-message="required">The LastName field is required.</span>
+        </div>
+        <div ng-messages="vm.StudentRegisterForm.Program.$error">
+            <span ng-message="required">The Program field is required.</span>
+        </div>
+        <div ng-messages="vm.StudentRegisterForm.Batch.$error">
+            <span ng-message="required">The Batch field is required.</span>
+        </div>
+        <div ng-messages="vm.StudentRegisterForm.IdCardNumber.$error">
+            <span ng-message="required">The IdCard field is required.</span>
+            <span ng-message="pattern">The IdCard field is invalid.</span>
+        </div>
+    </div>
 
     <div class="row">
         <div class="small-12 large-6 columns">
             <label>First Name <span class="red required-star">*</span></label>
-            <input type="text" ng-model="student.firstName" name="FirstName" required />
+            <input type="text" ng-model="vm.student.firstName" name="FirstName" required />
         </div>
     </div>
     <div class="row">
         <div class="small-12 large-6 columns">
             <label>Last Name <span class="red required-star">*</span></label>
-            <input type="text" ng-model="student.lastName" name="LastName" required />
+            <input type="text" ng-model="vm.student.lastName" name="LastName" required />
         </div>
     </div>
     <div class="row">
         <div class="small-12 large-6 columns">
             <label>Program <span class="red required-star">*</span></label>
-            <select ng-model="student.program" ng-options="option for option in programs" required>
+            <select name="Program" ng-model="vm.student.program" ng-options="option for option in vm.programs" required>
                 <option value="">Choose Program</option>
             </select>
-            <input type="hidden" name="Program" ng-value="student.program" required />
         </div>
     </div>
     <div class="row">
         <div class="small-12 large-6 columns">
             <label>Batch <span class="red required-star">*</span></label>
-            <select ng-model="student.batch" ng-options="option for option in batches" required>
+            <select name="Batch" ng-model="vm.student.batch" ng-options="option for option in vm.batches" required>
                 <option value="">Choose Batch</option>
             </select>
-            <input type="hidden" name="Batch" ng-value="student.batch" required />
         </div>
     </div>
     <div class="row">
         <div class="small-12 large-6 columns">
             <label>Id Card <span class="red required-star">*</span></label>
-            <input placeholder="e.g 03305817" type="text" ng-model="student.idCardNumber" name="IdCardNumber" required pattern="^[0-9]{6,15}$" ng-pattern="/^[0-9]{6,15}$/" />
+            <input placeholder="e.g 03305817" type="text" ng-model="vm.student.idCardNumber" name="IdCardNumber" required pattern="^[0-9]{6,15}$" ng-pattern="/^[0-9]{6,15}$/" />
         </div>
     </div>
 
-    <button type="button" class="button small medium-2 left" ng-click="register(student)">Register</button>
-    <div class="spinner inline-spinner left" ng-if="addingStudent">
+    <button type="submit" class="button small medium-2 left">Register</button>
+
+    <div class="spinner inline-spinner left" ng-if="vm.addingStudent">
         <div></div>
         <div class="rect2"></div>
         <div class="rect3"></div>

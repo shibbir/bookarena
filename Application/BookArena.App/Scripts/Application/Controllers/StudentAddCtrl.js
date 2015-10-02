@@ -2,34 +2,36 @@
     "use strict";
 
     app.controller("StudentAddCtrl", [
-        "$scope", "$rootScope", "$location", "apiService", "notifierService", "identityService", "sharedService", function($scope, $rootScope, $location, apiService, notifierService, identityService, sharedService) {
+        "$rootScope", "$location", "apiService", "notifierService", "identityService", "sharedService", function($rootScope, $location, apiService, notifierService, identityService, sharedService) {
+
+            var vm = this;
 
             var config = {
                 headers: identityService.getSecurityHeaders()
             };
 
-            $scope.programs = sharedService.programs();
-            $scope.batches = sharedService.batches();
+            vm.programs = sharedService.programs();
+            vm.batches = sharedService.batches();
 
-            $scope.register = function(student) {
-                $scope.StudentRegisterForm.submitted = true;
+            vm.register = function() {
+                vm.StudentRegisterForm.submitted = true;
 
-                if ($scope.StudentRegisterForm.$valid) {
-                    $scope.addingStudent = true;
+                if (vm.StudentRegisterForm.$valid) {
+                    vm.addingStudent = true;
 
-                    apiService.post("/api/students/", student, config).success(function() {
+                    apiService.post("/api/students/", vm.student, config).success(function(data) {
                         notifierService.notifySuccess("Student registered successfully.");
-                        $scope.student.firstName = "";
-                        $scope.student.lastName = "";
-                        $scope.student.program = "";
-                        $scope.student.batch = "";
-                        $scope.student.idCardNumber = "";
+                        vm.student.firstName = "";
+                        vm.student.lastName = "";
+                        vm.student.program = "";
+                        vm.student.batch = "";
+                        vm.student.idCardNumber = "";
 
-                        $scope.addingStudent = false;
-                        $scope.StudentRegisterForm.submitted = false;
+                        vm.addingStudent = false;
+                        $location.path("/students/" + data.id);
                     }).error(function(errorResponse) {
-                        $scope.addingStudent = false;
-                        $scope.displayErrors(errorResponse);
+                        vm.addingStudent = false;
+                        sharedService.displayErrors(errorResponse);
                     });
                 }
             };

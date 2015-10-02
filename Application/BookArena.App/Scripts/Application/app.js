@@ -1,107 +1,125 @@
 ﻿(function() {
     "use strict";
 
-    var app = angular.module("bookArena", ["ngRoute", "ngFileUpload"]);
+    var app = angular.module("bookArena", ["ngRoute", "ngMessages", "ngFileUpload"]);
 
     app.config([
         "$routeProvider", function($routeProvider) {
             var authCheck = {
-                auth: ["$q", "identityService", function($q, identityService) {
-                    var defer = $q.defer();
-                    if (!identityService.isLoggedIn()) {
-                        defer.reject();
-                    } else {
-                        defer.resolve();
+                auth: [
+                    "$q", "identityService", function($q, identityService) {
+                        var defer = $q.defer();
+                        if (!identityService.isLoggedIn()) {
+                            defer.reject();
+                        } else {
+                            defer.resolve();
+                        }
+                        return defer.promise;
                     }
-                    return defer.promise;
-                }]
+                ]
             };
             $routeProvider
                 .when("/", {
                     templateUrl: "Templates/Home/Welcome.html",
-                    controller: "HomeCtrl"
+                    controller: "HomeCtrl",
+                    controllerAs: "vm"
                 })
                 .when(
                     "/account/login", {
                         templateUrl: "Templates/Account/Login.html",
-                        controller: "LoginCtrl"
+                        controller: "LoginCtrl",
+                        controllerAs: "vm"
                     })
                 .when(
                     "/info", {
                         templateUrl: "Templates/Account/Profile.html",
-                        controller: "ProfileCtrl"
+                        controller: "ProfileCtrl",
+                        controllerAs: "vm"
                     })
                 .when(
                     "/transactions", {
                         templateUrl: "Templates/Transaction/List.html",
                         controller: "TransactionCtrl",
+                        controllerAs: "vm",
                         resolve: authCheck
                     })
                 .when(
                     "/transactions/:transactionId", {
                         templateUrl: "Templates/Transaction/Details.html",
                         controller: "TransactionCtrl",
+                        controllerAs: "vm",
                         resolve: authCheck
                     })
                 .when(
                     "/books", {
                         templateUrl: "Templates/Book/List.html",
-                        controller: "BookListCtrl"
+                        controller: "BookListCtrl",
+                        controllerAs: "vm"
                     })
                 .when(
                     "/books/add", {
                         templateUrl: "Templates/Book/Add.html",
                         controller: "BookAddCtrl",
+                        controllerAs: "vm",
                         resolve: authCheck
                     })
                 .when(
                     "/books/:id", {
                         templateUrl: "Templates/Book/Details.html",
-                        controller: "BookDetailsCtrl"
+                        controller: "BookDetailsCtrl",
+                        controllerAs: "vm"
                     })
                 .when(
                     "/books/edit/:id", {
                         templateUrl: "Templates/Book/Edit.html",
                         controller: "BookEditCtrl",
+                        controllerAs: "vm",
                         resolve: authCheck
                     })
                 .when(
                     "/categories/:categoryId/books", {
                         templateUrl: "Templates/Book/List.html",
-                        controller: "BookListCtrl"
+                        controller: "BookListCtrl",
+                        controllerAs: "vm"
                     })
                 .when(
                     "/categories", {
                         templateUrl: "Templates/Category/List.html",
-                        controller: "CategoryCtrl"
+                        controller: "CategoryCtrl",
+                        controllerAs: "vm"
                     })
                 .when(
                     "/students", {
                         templateUrl: "Templates/Student/List.html",
                         controller: "StudentListCtrl",
+                        controllerAs: "vm",
                         resolve: authCheck
                     })
                 .when(
                     "/students/page/:pageNumber", {
                         templateUrl: "Templates/Student/List.html",
                         controller: "StudentListCtrl",
+                        controllerAs: "vm",
                         resolve: authCheck
                     })
                 .when(
                     "/students/add", {
                         templateUrl: "Templates/Student/Add.html",
                         controller: "StudentAddCtrl",
+                        controllerAs: "vm",
                         resolve: authCheck
                     }).when(
                     "/students/:id", {
                         templateUrl: "Templates/Student/Details.html",
                         controller: "StudentDetailsCtrl",
+                        controllerAs: "vm",
                         resolve: authCheck
                     })
                 .when(
                     "/students/edit/:id", {
                         templateUrl: "Templates/Student/Edit.html",
                         controller: "StudentEditCtrl",
+                        controllerAs: "vm",
                         resolve: authCheck
                     })
                 .otherwise({ redirectTo: "/" });

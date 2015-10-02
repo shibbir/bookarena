@@ -1,7 +1,7 @@
 ﻿<h2 class="content-header">All Registered Students</h2>
 <hr />
 
-<div ng-if="fetchingStudents">
+<div ng-if="vm.fetchingStudents">
     <div class="spinner">
         <div></div>
         <div class="rect2"></div>
@@ -11,10 +11,10 @@
     </div>
 </div>
 
-<div ng-if="!students" class="block text-center red"><strong>Sorry, no student found!</strong></div>
+<div ng-if="!vm.students.length" class="block text-center red"><strong>Sorry, no student found!</strong></div>
 
-<div id="student-container" ng-if="students">
-    <input type="search" ng-model="searchText" placeholder="filter: e.g name, id" />
+<div id="student-container" ng-if="vm.students.length">
+    <input type="search" ng-model="vm.searchText" placeholder="filter: e.g name, id" />
     <div id="student-table">
         <table>
             <thead>
@@ -28,7 +28,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="student in students | filter: searchText">
+                <tr ng-repeat="student in vm.students | filter: vm.searchText">
                     <td>{{$index + 1}}</td>
                     <td>{{student.program}}</td>
                     <td>{{student.batch}}</td>
@@ -39,7 +39,7 @@
             </tbody>
         </table>
     </div>
-    
-    <button class="button tiny medium-2" ng-disabled="!hasPrevious" ng-click="goToPage(previousPage)">Previous</button>
-    <button class="button tiny medium-2" ng-disabled="!hasNext" ng-click="goToPage(nextPage)">Next</button>
+
+    <button class="button tiny medium-2" ng-disabled="!vm.hasPrevious" ng-click="vm.goToPage(vm.previousPage)">Previous</button>
+    <button class="button tiny medium-2" ng-disabled="!vm.hasNext" ng-click="vm.goToPage(vm.nextPage)">Next</button>
 </div>

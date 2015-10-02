@@ -2,7 +2,9 @@
     "use strict";
 
     app.factory("fileService", [
-        "Upload", "identityService", function ($upload, identityService) {
+        "Upload", "identityService", function($upload, identityService) {
+
+            var fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
 
             var upload = function(config) {
                 return $upload.upload({
@@ -15,7 +17,8 @@
             };
 
             return {
-                upload: upload
+                upload: upload,
+                fileReaderSupported: fileReaderSupported
             };
         }
     ]);

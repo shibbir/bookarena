@@ -29,6 +29,7 @@
     "foundation-icon-fonts": "*",
     "ng-file-upload": "~8.0.4",
     "foundation": "~5.5.2",
-    "morris.js": "morrisjs#~0.5.1"
+    "morris.js": "morrisjs#~0.5.1",
+    "angular-messages": "~1.4.7"
   }
 }

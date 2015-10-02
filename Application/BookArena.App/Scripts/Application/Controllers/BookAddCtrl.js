@@ -2,43 +2,48 @@
     "use strict";
 
     app.controller("BookAddCtrl", [
-        "$scope", "$rootScope", "$location", "apiService", "identityService", "notifierService", "sharedService", "$timeout", "fileService",
-        function ($scope, $rootScope, $location, apiService, identityService, notifierService, sharedService, $timeout, fileService) {
+        "$rootScope", "$location", "apiService", "identityService", "notifierService", "sharedService", "$timeout", "fileService",
+        function($rootScope, $location, apiService, identityService, notifierService, sharedService, $timeout, fileService) {
 
-            $scope.init = function() {
+            var vm = this;
+
+            vm.init = function() {
                 $(document).foundation();
 
-                $scope.book = {};
-                $scope.book.isRequired = true;
-                $scope.categories = [];
-                $scope.bookQuantities = sharedService.bookQuantities();
+                vm.book = {};
+                vm.categories = [];
+                vm.bookQuantities = sharedService.bookQuantities();
 
                 apiService.get("/api/categories/").success(function(result) {
-                    $scope.categories = result;
+                    vm.categories = result;
                 });
             }();
 
-            $scope.attachPhoto = function(file) {
-                $scope.book.file = file;
+            vm.attachPhoto = function(file) {
+                if (!file) {
+                    return;
+                }
+
+                vm.file = file;
 
                 var errorMessages = [];
 
-                if ($scope.book.file.size > 1024 * 1024 * 2) {
+                if (vm.file.size > 1024 * 1024 * 2) {
                     errorMessages.push("File size is too large. Max upload size is 2MB.");
                 }
 
                 if (errorMessages.length) {
                     notifierService.notifyInfo(errorMessages);
                 } else {
-                    if ($scope.fileReaderSupported && $scope.book.file.type.indexOf("image") > -1) {
+                    if (fileService.fileReaderSupported && vm.file.type.indexOf("image") > -1) {
                         var fileReader = new FileReader();
 
-                        fileReader.readAsDataURL($scope.book.file);
+                        fileReader.readAsDataURL(vm.file);
 
                         var loadFile = function(fileReader) {
                             fileReader.onload = function(e) {
                                 $timeout(function() {
-                                    $scope.book.filePreview = e.target.result;
+                                    vm.filePreview = e.target.result;
                                 });
                             };
                         }(fileReader);
@@ -46,42 +51,43 @@
                 }
             };
 
-            $scope.add = function(book) {
-                $scope.BookAddForm.submitted = true;
+            vm.add = function() {
+                vm.BookAddForm.submitted = true;
 
-                if ($scope.BookAddForm.$valid) {
-                    $scope.addingBook = true;
+                if (vm.BookAddForm.$valid) {
+                    vm.addingBook = true;
 
                     var uploadConfig = {
                         url: "/api/books/",
-                        file: $scope.book.file,
-                        data: book
+                        file: vm.file,
+                        data: vm.book
                     };
 
-                    fileService.upload(uploadConfig).progress(function (evt) {
+                    fileService.upload(uploadConfig).progress(function(evt) {
                         console.log("percent: " + parseInt(100.0 * evt.loaded / evt.total));
-                    }).success(function () {
+                    }).success(function(data) {
                         notifierService.notifySuccess("Book uploaded successfully!");
-                        $scope.resetBookUploadForm();
-                    }).error(function (errorResponse) {
-                        $scope.addingBook = false;
-                        $scope.displayErrors(errorResponse);
+                        vm.resetForm();
+                        $location.path("/books/" + data.id);
+                    }).error(function(errorResponse) {
+                        vm.addingBook = false;
+                        sharedService.displayErrors(errorResponse);
                     });
                 }
             };
 
             $rootScope.$on("Broadcast::RatingAvailable", function(event, score) {
-                $scope.book.rating = score;
+                vm.book.rating = score;
             });
 
-            $scope.resetBookUploadForm = function() {
-                $scope.book.title = "";
-                $scope.book.author = "";
-                $scope.book.categoryId = "";
-                $scope.book.quantity = "";
-                $scope.book.shortDescription = "";
+            vm.resetForm = function() {
+                vm.book.title = "";
+                vm.book.author = "";
+                vm.book.category = "";
+                vm.book.quantity = "";
+                vm.book.shortDescription = "";
 
-                $scope.addingBook = false;
+                vm.addingBook = false;
             };
         }
     ]);

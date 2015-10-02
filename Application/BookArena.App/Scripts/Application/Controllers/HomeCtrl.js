@@ -2,22 +2,25 @@
 
 (function(app) {
     app.controller("HomeCtrl", [
-        "$scope", "apiService", function ($scope, apiService) {
-            $scope.fetchingBooks = true;
-            $scope.fetchingCategories = true;
+        "apiService", function(apiService) {
 
-            apiService.get("/api/books/").success(function (result) {
-                if (result.length) {
-                    $scope.latestBooks = result;
+            var vm = this;
+
+            vm.fetchingBooks = true;
+            vm.fetchingCategories = true;
+
+            apiService.get("/api/books/").success(function(data) {
+                if (data.length) {
+                    vm.latestBooks = data;
                 }
-                $scope.fetchingBooks = false;
+                vm.fetchingBooks = false;
             });
 
-            apiService.get("/api/categories/").success(function (result) {
-                if (result.length) {
+            apiService.get("/api/categories/").success(function(data) {
+                if (data.length) {
                     Morris.Bar({
                         element: "bar-chart",
-                        data: result,
+                        data: data,
                         xkey: "title",
                         ykeys: ["count"],
                         labels: ["Number Of Books"],
@@ -26,7 +29,7 @@
                         hideHover: "auto"
                     });
                 }
-                $scope.fetchingCategories = false;
+                vm.fetchingCategories = false;
             });
         }
     ]);

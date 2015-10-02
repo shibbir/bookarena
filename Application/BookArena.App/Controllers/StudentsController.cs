@@ -36,7 +36,7 @@ namespace BookArena.App.Controllers
             {
                 return NotFound();
             }
-            
+
             var transactions = _transactionRepository.FindAll(x => x.StudentId == id).ToList();
 
             var student = Mapper<Student, StudentViewModel>.SingleMap(model);
@@ -73,7 +73,7 @@ namespace BookArena.App.Controllers
             _studentRepository.Insert(student);
             _studentRepository.Save();
 
-            return Ok();
+            return Ok(student);
         }
 
         public IHttpActionResult Put(Student student)

@@ -2,8 +2,12 @@
     "use strict";
 
     app.controller("StudentListCtrl", [
-        "$scope", "$rootScope", "$routeParams", "$location", "apiService", "identityService", function($scope, $rootScope, $routeParams, $location, service, identityService) {
-            $scope.students = [];
+        "$rootScope", "$routeParams", "$location", "apiService", "identityService", function($rootScope, $routeParams, $location, service, identityService) {
+
+            var vm = this;
+
+            vm.students = [];
+
             var config = {
                 headers: identityService.getSecurityHeaders(),
                 params: {
@@ -12,18 +16,18 @@
                 }
             };
             if (!$routeParams.pageNumber) {
-                $scope.fetchingStudents = true;
+                vm.fetchingStudents = true;
                 service.get("/api/students", config).success(function(result) {
                     if (result.entities.length) {
-                        $scope.students = result.entities;
+                        vm.students = result.entities;
 
-                        $scope.hasNext = result.hasNext;
-                        $scope.hasPrevious = result.hasPrevious;
-                        $scope.currentPage = result.currentPage;
-                        $scope.previousPage = $scope.currentPage - 1;
-                        $scope.nextPage = $scope.currentPage + 1;
+                        vm.hasNext = result.hasNext;
+                        vm.hasPrevious = result.hasPrevious;
+                        vm.currentPage = result.currentPage;
+                        vm.previousPage = vm.currentPage - 1;
+                        vm.nextPage = vm.currentPage + 1;
                     }
-                    $scope.fetchingStudents = false;
+                    vm.fetchingStudents = false;
                 });
             } else {
                 var pageNumber = parseInt($routeParams.pageNumber);
@@ -33,19 +37,19 @@
                     config.params.page = pageNumber;
                     service.get("/api/students", config).success(function(result) {
                         if (result.entities.length) {
-                            $scope.students = result.entities;
+                            vm.students = result.entities;
 
-                            $scope.hasNext = result.hasNext;
-                            $scope.hasPrevious = result.hasPrevious;
-                            $scope.currentPage = result.currentPage;
-                            $scope.previousPage = $scope.currentPage - 1;
-                            $scope.nextPage = $scope.currentPage + 1;
+                            vm.hasNext = result.hasNext;
+                            vm.hasPrevious = result.hasPrevious;
+                            vm.currentPage = result.currentPage;
+                            vm.previousPage = vm.currentPage - 1;
+                            vm.nextPage = vm.currentPage + 1;
                         }
                     });
                 }
             }
 
-            $scope.goToPage = function(number) {
+            vm.goToPage = function(number) {
                 $location.path("/students/page/" + number);
             };
         }

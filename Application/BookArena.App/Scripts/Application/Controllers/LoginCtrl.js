@@ -2,7 +2,10 @@
     "use strict";
 
     app.controller("LoginCtrl", [
-        "$scope", "$rootScope", "$location", "notifierService", "identityService", function($scope, $rootScope, $location, notifierService, identityService) {
+        "$rootScope", "$location", "notifierService", "identityService", function($rootScope, $location, notifierService, identityService) {
+
+            var vm = this;
+
             var tempGlobalContainer = $.extend(true, {}, $rootScope.globalContainer);
             $rootScope.globalContainer = null;
 
@@ -10,10 +13,7 @@
                 $location.path("/").replace();
             }
 
-            $scope.user = {
-                email: "shibbir.cse@gmail.com",
-                password: "HakunaMatata71"
-            };
+            vm.user = {};
 
             if (tempGlobalContainer && tempGlobalContainer.message) {
                 if (tempGlobalContainer.notifyType === "success") {
@@ -27,14 +27,14 @@
                 }
             }
 
-            $scope.login = function(user) {
-                $scope.LoginForm.submitted = true;
+            vm.login = function() {
+                vm.LoginForm.submitted = true;
 
-                if ($scope.LoginForm.$valid) {
-                    $scope.loginInProgress = true;
+                if (vm.LoginForm.$valid) {
+                    vm.loginInProgress = true;
 
-                    identityService.login(user).success(function(data) {
-                        $scope.loginInProgress = false;
+                    identityService.login(vm.user).success(function(data) {
+                        vm.loginInProgress = false;
 
                         if (data.userName && data.access_token) {
                             identityService.setAccessToken(data.access_token);
@@ -47,7 +47,7 @@
                             }
                         }
                     }).error(function(error) {
-                        $scope.loginInProgress = false;
+                        vm.loginInProgress = false;
 
                         if (error.error_description) {
                             notifierService.notifyError(error.error_description);

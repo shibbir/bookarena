@@ -2,45 +2,49 @@
     "use strict";
 
     app.controller("BookDetailsCtrl", [
-        "$scope", "$rootScope", "$routeParams", "$location", "apiService", "notifierService", "identityService", function($scope, $rootScope, $routeParams, $location, service, notifier, identityService) {
-            $scope.init = function() {
+        "$rootScope", "$routeParams", "$location", "apiService", "notifierService", "identityService",
+        function($rootScope, $routeParams, $location, service, notifier, identityService) {
+
+            var vm = this;
+
+            vm.init = function() {
                 $(document).foundation();
-                $scope.book = {};
-                $scope.data = {};
-                $scope.searchedStudent = {};
+                vm.book = {};
+                vm.data = {};
+                vm.searchedStudent = {};
 
                 service.get("/api/books/" + $routeParams.id).success(function(result) {
-                    $scope.book = result;
+                    vm.book = result;
                 });
             }();
 
-            $scope.loginToEditBook = function() {
+            vm.loginToEditBook = function() {
                 $rootScope.globalContainer = {
                     redirectTo: "/books/edit/" + $routeParams.id
                 };
                 $location.path("/account/login/");
             };
 
-            $scope.searchStudent = function() {
-                if (identityService.isLoggedIn() && $scope.data.idCardNumber) {
-                    $scope.searchStudentInProgress = true;
+            vm.searchStudent = function() {
+                if (identityService.isLoggedIn() && vm.data.idCardNumber) {
+                    vm.searchStudentInProgress = true;
 
                     var config = {
                         headers: identityService.getSecurityHeaders()
                     };
 
-                    service.get("/api/students/search/" + $scope.data.idCardNumber, config).success(function(result) {
-                        $scope.searchStudentInProgress = false;
+                    service.get("/api/students/search/" + vm.data.idCardNumber, config).success(function(result) {
+                        vm.searchStudentInProgress = false;
                         if (result) {
-                            $scope.searchedStudent = result;
+                            vm.searchedStudent = result;
                         } else {
-                            $scope.searchedStudent = {};
+                            vm.searchedStudent = {};
                         }
                     });
                 }
             };
 
-            $scope.borrowBook = function(studentId, bookId) {
+            vm.borrowBook = function(studentId, bookId) {
                 if (identityService.isLoggedIn()) {
                     var config = {
                         headers: identityService.getSecurityHeaders()
@@ -49,7 +53,7 @@
                     service.post("/api/books/borrow?studentId=" + studentId + "&bookId=" + bookId, null, config).success(function(result) {
                         notifier.notifySuccess(result.message);
                         if (result.data) {
-                            $scope.book.AvailableQuantity = result.data;
+                            vm.book.AvailableQuantity = result.data;
                         }
                     }).error(function(error) {
                         notifier.notifyError(error.message);
@@ -57,16 +61,16 @@
                 }
             };
 
-            $scope.displayBorrowButton = function() {
-                if (identityService.isLoggedIn() && $scope.book.availableQuantity) {
+            vm.displayBorrowButton = function() {
+                if (identityService.isLoggedIn() && vm.book.availableQuantity) {
                     return true;
                 }
                 return false;
             };
 
-            $scope.resetBorrowSection = function() {
-                $scope.data.idCardNumber = "";
-                $scope.searchedStudent = {};
+            vm.resetBorrowSection = function() {
+                vm.data.idCardNumber = "";
+                vm.searchedStudent = {};
             };
         }
     ]);

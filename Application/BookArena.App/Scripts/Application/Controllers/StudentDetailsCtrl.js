@@ -2,42 +2,45 @@
     "use strict";
 
     app.controller("StudentDetailsCtrl", [
-        "$scope", "$rootScope", "$routeParams", "$location", "apiService", "notifierService", "identityService", "sharedService",
-        function ($scope, $rootScope, $routeParams, $location, apiService, notifierService, identityService, sharedService) {
-            $scope.programs = sharedService.programs();
-            $scope.batches = sharedService.batches();
+        "$rootScope", "$routeParams", "$location", "apiService", "notifierService", "identityService", "sharedService",
+        function($rootScope, $routeParams, $location, apiService, notifierService, identityService, sharedService) {
+
+            var vm = this;
+
+            vm.programs = sharedService.programs();
+            vm.batches = sharedService.batches();
 
             var config = {
                 headers: identityService.getSecurityHeaders()
             };
 
-            apiService.get("/api/students/" + $routeParams.id, config).success(function(student) {
-                if (student.id) {
-                    $scope.student = angular.copy(student);
-                    delete $scope.student.transactions;
+            apiService.get("/api/students/" + $routeParams.id, config).success(function(data) {
+                if (data.id) {
+                    vm.student = angular.copy(data);
+                    delete vm.student.transactions;
 
-                    if (student.transactions && student.transactions.length) {
-                        $scope.transactions = student.transactions;
+                    if (data.transactions && data.transactions.length) {
+                        vm.transactions = data.transactions;
                     }
                 } else {
                     $location.path("/").replace();
                 }
             });
 
-            $scope.update = function(student) {
-                $scope.StudentEditForm.submitted = true;
+            vm.update = function() {
+                vm.StudentEditForm.submitted = true;
 
-                if (identityService.isLoggedIn() && $scope.StudentEditForm.$valid) {
-                    $scope.editingStudent = true;
+                if (identityService.isLoggedIn() && vm.StudentEditForm.$valid) {
+                    vm.editingStudent = true;
 
-                    apiService.put("/api/students/", student, config).success(function() {
+                    apiService.put("/api/students/", vm.student, config).success(function() {
                         notifierService.notifySuccess("Student updated successfully.");
 
-                        $scope.editingStudent = false;
-                        $scope.StudentEditForm.submitted = false;
+                        vm.editingStudent = false;
+                        vm.StudentEditForm.submitted = false;
                     }).error(function(errorResponse) {
-                        $scope.editingStudent = false;
-                        $scope.displayErrors(errorResponse);
+                        vm.editingStudent = false;
+                        sharedService.displayErrors(errorResponse);
                     });
                 }
             };

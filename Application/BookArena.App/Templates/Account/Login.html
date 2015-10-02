@@ -4,27 +4,32 @@
     Please login with the current credentials
 </div>
 
-<form name="LoginForm" novalidate id="LoginForm">
-    <ul class="ui-error-container" ng-if="LoginForm.submitted && LoginForm.$invalid">
-        <li ng-if="LoginForm.Email.$invalid">The Email field is invalid.</li>
-        <li ng-if="LoginForm.Password.$invalid">The Password field is required.</li>
-    </ul>
+<form name="vm.LoginForm" novalidate id="LoginForm" ng-submit="vm.login()">
+    <div class="ui-error-container" ng-if="vm.LoginForm.submitted && vm.LoginForm.$invalid">
+        <div ng-messages="vm.LoginForm.Email.$error">
+            <span ng-message="required">The Email field is required.</span>
+        </div>
+        <div ng-messages="vm.LoginForm.Password.$error">
+            <span ng-message="required">The Password field is required.</span>
+        </div>
+    </div>
 
     <div class="row">
         <div class="small-12 large-6 columns">
             <label>Email</label>
-            <input type="email" ng-model="user.email" id="Email" name="Email" required />
+            <input type="email" ng-model="vm.user.email" id="Email" name="Email" required/>
         </div>
     </div>
     <div class="row">
         <div class="small-12 large-6 columns">
             <label>Password</label>
-            <input type="password" ng-model="user.password" id="Password" name="Password" required />
+            <input type="password" ng-model="vm.user.password" id="Password" name="Password" required/>
         </div>
     </div>
 
-    <button type="button" class="button small medium-2 left" ng-click="login(user)">Login</button>
-    <div class="spinner inline-spinner left" ng-if="loginInProgress">
+    <button type="submit" class="button small medium-2 left">Login</button>
+
+    <div class="spinner inline-spinner left" ng-if="vm.loginInProgress">
         <div></div>
         <div class="rect2"></div>
         <div class="rect3"></div>

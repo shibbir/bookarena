@@ -2,16 +2,20 @@
     "use strict";
 
     app.controller("TransactionCtrl", [
-        "$scope", "$rootScope", "$location", "$routeParams", "apiService", "notifierService", "identityService", function($scope, $rootScope, $location, $routeParams, apiService, notifierService, identityService) {
+        "$rootScope", "$location", "$routeParams", "apiService", "notifierService", "identityService", function($rootScope, $location, $routeParams, apiService, notifierService, identityService) {
+
+            var vm = this;
+
             var config = {
                 headers: identityService.getSecurityHeaders()
             };
 
             if (!$routeParams.transactionId) {
-                $scope.transactions = [];
+                vm.transactions = [];
+
                 apiService.get("/api/transactions/", config).success(function(result) {
                     if (result.length) {
-                        $scope.transactions = result;
+                        vm.transactions = result;
                     }
                 });
             } else {
@@ -21,20 +25,20 @@
                 } else {
                     apiService.get("/api/transactions/" + id, config).success(function(result) {
                         if (result) {
-                            $scope.transactionDetail = result;
+                            vm.transactionDetail = result;
                         }
                     });
                 }
             }
 
-            $scope.receiveBook = function(transactionId) {
+            vm.receiveBook = function(transactionId) {
                 apiService.put("/api/transactions/" + transactionId, null, config).success(function(result) {
                     notifierService.notifySuccess(result.message);
 
                     if (result.data) {
-                        $scope.cleared = true;
-                        $scope.transactionDetail.isActive = result.data.isActive;
-                        $scope.transactionDetail.status = result.data.status;
+                        vm.cleared = true;
+                        vm.transactionDetail.isActive = result.data.isActive;
+                        vm.transactionDetail.status = result.data.status;
                     }
 
                 });

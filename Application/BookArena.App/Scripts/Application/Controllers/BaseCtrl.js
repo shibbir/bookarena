@@ -7,16 +7,8 @@
                 notifierService.notifyError("Sorry! This feature is not available yet.");
             };
 
-            $scope.redirectToHome = function () {
+            $scope.redirectToHome = function() {
                 $location.path("/");
-            };
-
-            $scope.openModal = function(selector) {
-                $(selector).foundation("reveal", "open");
-            };
-
-            $scope.closeModal = function(selector) {
-                $(selector).foundation("reveal", "close");
             };
 
             $scope.logout = function() {
@@ -30,19 +22,6 @@
                     $location.path("/account/login");
                 });
             };
-
-            $scope.displayErrors = function(errorResponse) {
-                if (errorResponse.modelState) {
-                    var errors = _.flatten(_.map(errorResponse.modelState, function(items) {
-                        return items;
-                    }));
-                    notifierService.notifyError(errors);
-                } else {
-                    notifierService.notifyError(errorResponse.message);
-                }
-            };
-
-            $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
         }
     ]);
 })(angular.module("bookArena"));

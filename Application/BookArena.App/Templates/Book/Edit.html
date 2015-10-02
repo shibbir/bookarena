@@ -4,17 +4,28 @@
 <ul class="breadcrumbs">
     <li><a ng-href="#/">Home</a></li>
     <li><a ng-href="#/books">Books</a></li>
-    <li><a ng-href="#/books/{{book.id}}">Details</a></li>
+    <li><a ng-href="#/books/{{vm.book.id}}">Details</a></li>
     <li class="current"><a>Edit</a></li>
 </ul>
 
-<form name="BookEditForm" novalidate>
-    <ul class="ui-error-container" ng-if="BookEditForm.submitted && BookEditForm.$invalid">
-        <li ng-if="BookEditForm.Title.$invalid">The Title field is required.</li>
-        <li ng-if="BookEditForm.Author.$invalid">The Author field is required.</li>
-        <li ng-if="BookEditForm.CategoryId.$invalid">The Category field is required.</li>
-        <li ng-if="BookEditForm.ShortDescription.$invalid">The ShortDescription field must be at most 500 characters long.</li>
-    </ul>
+<form name="vm.BookEditForm" novalidate ng-submit="vm.update()">
+    <div class="ui-error-container" ng-if="vm.BookEditForm.submitted && vm.BookEditForm.$invalid">
+        <div ng-messages="vm.BookEditForm.Title.$error">
+            <span ng-message="required">The Title field is required.</span>
+        </div>
+        <div ng-messages="vm.BookEditForm.Author.$error">
+            <span ng-message="required">The Author field is required.</span>
+        </div>
+        <div ng-messages="vm.BookEditForm.Category.$error">
+            <span ng-message="required">The Category field is required.</span>
+        </div>
+        <div ng-messages="vm.BookEditForm.Quantity.$error">
+            <span ng-message="required">The Quantity field is required.</span>
+        </div>
+        <div ng-messages="vm.BookEditForm.ShortDescription.$error">
+            <span ng-message="maxlength">The ShortDescription field must be at most 500 characters long.</span>
+        </div>
+    </div>
 
     <div class="row">
         <div class="large-8 columns">
@@ -22,39 +33,38 @@
             <div class="row">
                 <div class="large-8 columns">
                     <label>Title <span class="red required-star">*</span></label>
-                    <input type="text" ng-model="book.title" name="Title" required/>
+                    <input type="text" ng-model="vm.book.title" name="Title" required />
                 </div>
             </div>
             <div class="row">
                 <div class="large-8 columns">
                     <label>Author <span class="red required-star">*</span></label>
-                    <input type="text" ng-model="book.author" name="Author" required/>
+                    <input type="text" ng-model="vm.book.author" name="Author" required />
                 </div>
             </div>
             <div class="row">
                 <div class="large-8 columns">
                     <label>Category <span class="red required-star">*</span></label>
-                    <select ng-model="book.categoryId" ng-options="option.id as option.title for option in categories" required></select>
-                    <input type="hidden" name="CategoryId" ng-value="book.categoryId"/>
+                    <select name="Category" ng-model="vm.book.categoryId" ng-options="option.id as option.title for option in vm.categories" required></select>
                 </div>
             </div>
             <div class="row">
                 <div class="large-10 columns">
                     <label>Short Description</label>
-                    <textarea placeholder="Short Description. e.g main topic, category etc." ng-model="book.shortDescription" name="ShortDescription" ng-maxlength="500"></textarea>
+                    <textarea placeholder="Short Description. e.g main topic, category etc." ng-model="vm.book.shortDescription" name="ShortDescription" ng-maxlength="500"></textarea>
                 </div>
             </div>
 
-            <div class="row" ng-if="book.rating">
+            <div class="row" ng-if="vm.book.rating">
                 <div class="large-8 columns">
                     <label>Rating</label>
-                    <div cd-rating-input="{{book.rating}}"></div>
+                    <div cd-rating-input="{{vm.book.rating}}"></div>
                     <p style="color: #27ae60;">Rating: <span id="Rating"></span></p>
                 </div>
             </div>
 
-            <button type="button" class="button small medium-3 left" ng-click="update(book)">Update</button>
-            <div class="spinner inline-spinner left" ng-if="editingBook">
+            <button type="submit" class="button small medium-3 left">Update</button>
+            <div class="spinner inline-spinner left" ng-if="vm.editingBook">
                 <div></div>
                 <div class="rect2"></div>
                 <div class="rect3"></div>
@@ -67,9 +77,9 @@
                 <div class="large-12 columns">
                     <label>Change Book Cover</label>
                     <div class="th upload-preview-wrapper">
-                        <img src="/Content/Images/question_mark.png" ng-src="{{ book.imageFilePath }}" alt="{{ book.title }}"/>
+                        <img src="/Content/Images/question_mark.png" ng-src="{{ vm.book.imageFilePath }}" alt="{{ vm.book.title }}" />
                     </div>
-                    <input type="file" title="Select photo" multiple accept="image/*" ngf-pattern="'image/*'" ngf-select ngf-change="uploadPhoto($file)"/>
+                    <input type="file" title="Select photo" multiple accept="image/*" ngf-pattern="'image/*'" ngf-select ngf-change="vm.uploadPhoto($file)" />
                 </div>
             </div>
         </div>

@@ -16,6 +16,7 @@ namespace BookArena.App
                 "~/Vendors/bower_components/respond/dest/respond.src.js",
                 "~/Vendors/bower_components/angular/angular.js",
                 "~/Vendors/bower_components/angular-route/angular-route.js",
+                "~/Vendors/bower_components/angular-messages/angular-messages.js",
                 "~/Vendors/bower_components/underscore/underscore.js",
                 "~/Vendors/bower_components/raphael/raphael.js",
                 "~/Vendors/bower_components/morrisjs/morris.js",
@@ -51,7 +52,7 @@ namespace BookArena.App
                 .Include("~/Vendors/bower_components/foundation-icon-fonts/foundation-icons.css",
                     new CssRewriteUrlTransform()));
 
-            BundleTable.EnableOptimizations = true;
+            BundleTable.EnableOptimizations = false;
         }
     }
 }

@@ -3,9 +3,9 @@
 
 <button ng-disabled="!authenticatedUser.hasRegistered" ng-show="authenticatedUser.hasRegistered" class="success tiny" data-reveal-id="CategoryAddModal">Add New Category</button>
 
-<div ng-if="!categories" class="block text-center red"><strong>Sorry, no category found!</strong></div>
+<div ng-if="!vm.categories" class="block text-center red"><strong>Sorry, no category found!</strong></div>
 
-<div ng-if="fetchingCategories">
+<div ng-if="vm.fetchingCategories">
     <div class="spinner">
         <div></div>
         <div class="rect2"></div>
@@ -15,16 +15,16 @@
     </div>
 </div>
 
-<div id="category-container" ng-if="categories">
-    <input type="search" ng-model="searchText" placeholder="Filter Category" />
-    <div ng-repeat="category in categories | filter: searchText" class="categoryBlock">
+<div id="category-container" ng-if="vm.categories">
+    <input type="search" ng-model="vm.searchText" placeholder="Filter Category" />
+    <div ng-repeat="category in vm.categories | filter: vm.searchText" class="categoryBlock">
         <h5 class="category-header">{{category.title}} <small class="green">({{category.count}})</small></h5>
         <hr />
         <footer class="pull-right">
             <a ng-href="#/categories/{{category.id}}/books" class="button tiny">
                 View
             </a>
-            <a ng-show="authenticatedUser.hasRegistered" class="button tiny" ng-click="initCategoryEditForm(category)">
+            <a ng-show="authenticatedUser.hasRegistered" class="button tiny" ng-click="vm.initCategoryEditForm(category)">
                 Edit
             </a>
         </footer>

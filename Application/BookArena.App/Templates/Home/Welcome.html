@@ -6,7 +6,7 @@
         <h4>Latest Books</h4>
     </div>
     <div class="widget-body clearfix">
-        <div ng-if="fetchingBooks">
+        <div ng-if="vm.fetchingBooks">
             <div class="spinner">
                 <div></div>
                 <div class="rect2"></div>
@@ -15,7 +15,7 @@
                 <div class="rect5"></div>
             </div>
         </div>
-        <div ng-repeat="book in latestBooks" class="latest-books">
+        <div ng-repeat="book in vm.latestBooks" class="latest-books">
             <div class="book-body">
                 <a ng-href="#/books/{{book.bookId}}">
                     <img ng-src="{{book.imageFilePath}}" alt="{{book.title}}" />
@@ -35,7 +35,7 @@
         <h4>Book Categories</h4>
     </div>
     <div class="widget-body">
-        <div ng-if="fetchingCategories">
+        <div ng-if="vm.fetchingCategories">
             <div class="spinner">
                 <div></div>
                 <div class="rect2"></div>

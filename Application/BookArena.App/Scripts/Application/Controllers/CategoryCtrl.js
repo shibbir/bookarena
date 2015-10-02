@@ -2,34 +2,40 @@
     "use strict";
 
     app.controller("CategoryCtrl", [
-        "$scope", "$rootScope", "$location", "$filter", "apiService", "notifierService", "identityService", function($scope, $rootScope, $location, $filter, apiService, notifierService, identityService) {
-            $scope.categories = [];
-            $scope.fetchingCategories = true;
+        "$scope", "$rootScope", "$location", "$filter", "apiService", "notifierService", "identityService", "sharedService",
+        function($scope, $rootScope, $location, $filter, apiService, notifierService, identityService, sharedService) {
 
-            apiService.get("/api/categories/").success(function(result) {
-                if (result.length) {
-                    $scope.categories = result;
+            var vm = this;
+
+            vm.categories = [];
+            vm.fetchingCategories = true;
+
+            apiService.get("/api/categories/").success(function(data) {
+                if (data.length) {
+                    vm.categories = data;
                 }
-                $scope.fetchingCategories = false;
+                vm.fetchingCategories = false;
             });
 
-            $scope.addCategory = function(category) {
+            $scope.addCategory = function() {
                 $scope.CategoryAddForm.submitted = true;
 
                 if (identityService.isLoggedIn() && $scope.CategoryAddForm.$valid) {
                     var config = {
                         headers: identityService.getSecurityHeaders()
                     };
-                    apiService.post("/api/categories/", category, config).success(function (newCategory) {
+                    apiService.post("/api/categories/", $scope.category, config).success(function (newCategory) {
                         notifierService.notifySuccess("Category created successfully.");
+                        $scope.CategoryAddForm.submitted = false;
 
                         $scope.category.title = "";
                         $scope.CategoryAddForm.$setPristine();
                         newCategory.count = 0;
-                        $scope.categories.push(category);
-                        $scope.CategoryAddForm.submitted = false;
+
+                        vm.categories.push(newCategory);
+                        
                     }).error(function(errorResponse) {
-                        $scope.displayErrors(errorResponse);
+                        sharedService.displayErrors(errorResponse);
                     });
                 }
             };
@@ -44,17 +50,17 @@
                     apiService.put("/api/categories/", editableCategory, config).success(function(category) {
                         notifierService.notifySuccess("Category updated successfully.");
 
-                        var filteredCategories = $filter("filter")($scope.categories, { id: category.id }, true);
+                        var filteredCategories = $filter("filter")(vm.categories, { id: category.id }, true);
                         filteredCategories[0].title = category.title;
 
                     }).error(function(errorResponse) {
-                        $scope.displayErrors(errorResponse);
+                        sharedService.displayErrors(errorResponse);
                     });
                 }
             };
 
-            $scope.initCategoryEditForm = function(category) {
-                $scope.openModal("#CategoryEditModal");
+            vm.initCategoryEditForm = function(category) {
+                $("#CategoryEditModal").foundation("reveal", "open");
                 $scope.editableCategory = $.extend(true, {}, category);
             };
         }

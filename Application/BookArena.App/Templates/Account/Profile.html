@@ -3,14 +3,14 @@
 
 <div class="row">
     <div class="small-9 large-9 columns">
-        <h4>Name: {{projectInfo.author.name}}</h4>
-        <h4>Website: <a href="{{projectInfo.author.website}}" target="_blank">{{projectInfo.author.website}}</a></h4>
-        <h4>Twitter: <a ng-href="https://twitter.com/{{projectInfo.author.twitter}}" target="_blank">{{projectInfo.author.twitter}}</a></h4>
-        <h4>Address: {{projectInfo.author.address}}</h4>
+        <h4>Name: {{vm.projectInfo.author.name}}</h4>
+        <h4>Website: <a href="{{vm.projectInfo.author.website}}" target="_blank">{{vm.projectInfo.author.website}}</a></h4>
+        <h4>Twitter: <a ng-href="https://twitter.com/{{vm.projectInfo.author.twitter}}" target="_blank">{{vm.projectInfo.author.twitter}}</a></h4>
+        <h4>Address: {{vm.projectInfo.author.address}}</h4>
     </div>
     <div class="small-3 large-3 columns">
         <a href="http://about.me/shibbir" class="th radius" target="_blank">
-            <img ng-src="/Content/Images/{{projectInfo.author.gravatar}}" alt="profile" />
+            <img ng-src="/Content/Images/{{vm.projectInfo.author.gravatar}}" alt="profile" />
         </a>
     </div>
 </div>
@@ -20,7 +20,7 @@
 <h5>BookArena is a <a target="_blank" href="http://en.wikipedia.org/wiki/Single-page_application">SPA</a> based basic library management system built with these awesome tools:</h5>
 
 <ul>
-    <li ng-repeat="tool in projectInfo.tools">
+    <li ng-repeat="tool in vm.projectInfo.tools">
         <a target="_blank" href="{{tool.url}}">{{tool.title}}</a>
     </li>
 </ul>

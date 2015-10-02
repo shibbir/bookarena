@@ -2,8 +2,11 @@
     "use strict";
 
     app.controller("ProfileCtrl", [
-        "$scope", function($scope) {
-            $scope.projectInfo = {
+        function() {
+
+            var vm = this;
+
+            vm.projectInfo = {
                 author: {
                     name: "Shibbir Ahmed",
                     website: "http://shibbir.net/",
