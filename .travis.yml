@@ -1,2 +1,3 @@
 language: csharp
 solution: BookArena.sln
+sudo: false

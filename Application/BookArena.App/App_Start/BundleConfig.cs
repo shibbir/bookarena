@@ -52,7 +52,7 @@ namespace BookArena.App
                 .Include("~/Vendors/bower_components/foundation-icon-fonts/foundation-icons.css",
                     new CssRewriteUrlTransform()));
 
-            BundleTable.EnableOptimizations = false;
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

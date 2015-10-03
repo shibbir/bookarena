@@ -73,19 +73,19 @@ namespace BookArena.App.Tests.Controllers
             Assert.IsTrue(5 >= contentResult.Content.Count);
         }
 
-        [TestMethod]
-        public void Should_Return_Book()
-        {
-            _bookRepository.Setup(x => x.Find(It.IsAny<Expression<Func<Book, bool>>>())).Returns(GetTestBook());
-            _bookRepository.Setup(x => x.AvailableBooks(It.IsAny<int>())).Returns(5);
+        //[TestMethod]
+        //public void Should_Return_Book()
+        //{
+        //    _bookRepository.Setup(x => x.Find(It.IsAny<Expression<Func<Book, bool>>>())).Returns(GetTestBook());
+        //    _bookRepository.Setup(x => x.AvailableBooks(It.IsAny<int>())).Returns(5);
 
-            var actionResult = _controller.Get(1);
-            var contentResult = actionResult as OkNegotiatedContentResult<BookViewModel>;
+        //    var actionResult = _controller.Get(1);
+        //    var contentResult = actionResult as OkNegotiatedContentResult<BookViewModel>;
 
-            Assert.IsNotNull(contentResult);
-            Assert.IsNotNull(contentResult.Content);
-            Assert.AreEqual(1, contentResult.Content.Id);
-        }
+        //    Assert.IsNotNull(contentResult);
+        //    Assert.IsNotNull(contentResult.Content);
+        //    Assert.AreEqual(1, contentResult.Content.Id);
+        //}
 
         //[TestMethod]
         //public void Should_Create_New_Book()

@@ -126,7 +126,7 @@ namespace BookArena.App.Tests.Controllers
 
             var actionResult = _controller.Post(GetTestStudent());
 
-            Assert.IsInstanceOfType(actionResult, typeof (OkResult));
+            Assert.IsInstanceOfType(actionResult, typeof (OkNegotiatedContentResult<Student>));
         }
 
         [TestMethod]

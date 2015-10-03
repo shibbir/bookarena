@@ -3,6 +3,7 @@ using System.Web.Http;
 using BookArena.App.Helper;
 using BookArena.Data.Interfaces;
 using BookArena.Model;
+using BookArena.App.ViewModels;
 
 namespace BookArena.App.Controllers
 {
@@ -22,12 +23,12 @@ namespace BookArena.App.Controllers
         [AllowAnonymous]
         public IHttpActionResult Get()
         {
-            var model = _categoryRepository.FindAll().Select(category => new
+            var model = _categoryRepository.FindAll().ToList().Select(category => new CategoryViewModel
             {
-                category.Id,
-                category.Title,
-                category.Books.Count
-            }).ToList();
+                Id = category.Id,
+                Title = category.Title,
+                Count = category.Books.Count
+            });
             return Ok(model);
         }
 

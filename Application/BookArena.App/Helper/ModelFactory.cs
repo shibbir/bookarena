@@ -8,9 +8,9 @@ namespace BookArena.App.Helper
 {
     public class ModelFactory
     {
-        public CategoryViewModel Create(Category category)
+        public CategoryWithBooksViewModel Create(Category category)
         {
-            return new CategoryViewModel
+            return new CategoryWithBooksViewModel
             {
                 Id = category.Id,
                 Title = category.Title,

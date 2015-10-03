@@ -27,7 +27,7 @@
     "raty": "~2.7.0",
     "respond": "~1.4.2",
     "foundation-icon-fonts": "*",
-    "ng-file-upload": "~8.0.4",
+    "ng-file-upload": "~9.0.3",
     "foundation": "~5.5.2",
     "morris.js": "morrisjs#~0.5.1",
     "angular-messages": "~1.4.7"

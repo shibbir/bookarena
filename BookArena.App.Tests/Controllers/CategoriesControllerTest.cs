@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Web.Http.Results;
 using BookArena.App.Controllers;
 using BookArena.App.Helper;
+using BookArena.App.ViewModels;
 using BookArena.Data.Interfaces;
 using BookArena.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -68,7 +69,7 @@ namespace BookArena.App.Tests.Controllers
 
             var actionResult = _controller.Get();
 
-            var contentResult = actionResult as OkNegotiatedContentResult<Object>;
+            var contentResult = actionResult as OkNegotiatedContentResult<IEnumerable<CategoryViewModel>>;
 
             Assert.IsNotNull(contentResult);
             Assert.IsNotNull(contentResult.Content);
