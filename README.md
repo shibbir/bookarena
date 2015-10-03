@@ -1,7 +1,7 @@
 # BookArena
 Yet another Library Management System. [See the live application](http://bookarena.shibbir.net/)
 
-[![Build Status](https://travis-ci.org/shibbir/bookarena.svg?branch=master)](https://travis-ci.org/shibbir/bookarena)
+[![Build status](https://ci.appveyor.com/api/projects/status/u003168x0fcncbf9?svg=true)](https://ci.appveyor.com/project/shibbir/bookarena-cxb6k)
 [![dependencies](https://www.versioneye.com/user/projects/56102c5da19334001e000001/badge.svg?style=flat)](https://www.versioneye.com/user/projects/56102c5da19334001e000001?child=summary)
 [![Coverage Status](https://coveralls.io/repos/shibbir/bookarena/badge.svg?branch=master&service=github)](https://coveralls.io/github/shibbir/bookarena?branch=master)
 ![License](https://img.shields.io/badge/license-MIT-lightgray.svg)
