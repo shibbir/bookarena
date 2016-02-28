@@ -22,101 +22,47 @@
 </head>
 <body ng-app="bookArena">
     <div ng-controller="BaseCtrl">
-        <top-bar></top-bar>
-        <div class="row" id="wrapper">
-            <div class="small-12 medium-3 large-3 columns">
-                <side-navigation></side-navigation>
-            </div>
-            <div class="small-12 medium-9 large-9 columns" style="background-color: #2C3E50;">
-                <div class="body-content">
-                    <div class="off-canvas-wrap" data-offcanvas>
-                        <div class="inner-wrap">
-                            <!-- OFF CANVAS MENU BAR -->
-                            <nav class="tab-bar hide-for-large-up">
-                                <section class="left-small">
-                                    <a class="left-off-canvas-toggle menu-icon"><span></span></a>
-                                </section>
-                                <section class="right tab-bar-section">
-                                    <h1 class="title">BookArena</h1>
-                                </section>
 
-                            </nav> <!-- END NAV.TAB-BAR HIDE-FOR-LARGE-UP -->
-                            <!-- OFF CANVAS MENU -->
-                            <aside class="left-off-canvas-menu">
-                                <ul class="off-canvas-list">
-                                    <li><label>Navigation</label></li>
-                                    <li><a ng-href="#/">Home <i class="fi-home green"></i></a></li>
-                                    <li>
-                                        <a ng-href="#/students/">
-                                            All Student
-                                            <span class="red required-star">*</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a ng-href="#/students/add/">
-                                            Register Student
-                                            <span class="red required-star">*</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a ng-href="#/books">
-                                            All Books
-                                            <i class="fi-book green"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a ng-href="#/categories">
-                                            Book Categories
-                                            <i class="fi-list-thumbnails green"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a ng-href="#/books/add/">
-                                            Upload New Book
-                                            <span class="red required-star">*</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a ng-href="#/transactions/">
-                                            Transaction History
-                                            <span class="red required-star">*</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a ng-href="#/info">
-                                            Project Info
-                                            <i class="fi-info green"></i>
-                                        </a>
-                                    </li>
-                                    <li ng-if="!authenticatedUser.hasRegistered">
-                                        <a ng-href="#/account/login/">
-                                            Login
-                                            <i class="fi-power green"></i>
-                                        </a>
-                                    </li>
-                                    <li ng-if="authenticatedUser.hasRegistered">
-                                        <a ng-click="logout()">
-                                            Logout
-                                            <i class="fi-power green"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </aside>
-                            <div ng-view></div>
-                            <!-- CLOSE THE OFF-CANVAS MENU -->
-                            <a class="exit-off-canvas"></a>
-                        </div>
-                    </div> <!-- END OFF CANVAS -->
+        <div class="off-canvas-wrapper">
+            <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+
+                <!-- off-canvas title bar for 'small' screen -->
+                <div class="title-bar" data-responsive-toggle="widemenu" data-hide-for="medium">
+                    <div class="title-bar-left">
+                        <button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
+                        <span class="title-bar-title">BookArena</span>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row" style="background: none repeat scroll 0 0 #178892;">
-            <div class="small-12 medium-12 large-12 columns">
-                <footer class="credit">
-                    BookArena: A simple SPA based library manager.
-                    Licensed under MIT.
-                    Copyright &copy; 2014 - @DateTime.Now.Year.
-                </footer>
+
+                <!-- off-canvas left menu -->
+                <off-canvas-menu></off-canvas-menu>
+
+                <!-- "wider" top-bar menu for 'medium' and up -->
+                <top-bar></top-bar>
+
+                <!-- original content goes in this container -->
+                <div class="off-canvas-content" data-off-canvas-content>
+                    <div id="wrapper" class="row">
+                        <div class="small-12 medium-3 large-3 columns">
+                            <side-navigation></side-navigation>
+                        </div>
+                        <div class="content small-12 medium-9 large-9 columns">
+                            <div ng-view></div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="background: none repeat scroll 0 0 #178892;">
+                        <div class="small-12 medium-12 large-12 columns">
+                            <footer class="credit">
+                                BookArena: A simple SPA based library manager.
+                                Licensed under MIT.
+                                Copyright &copy; 2014 - @DateTime.Now.Year.
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- close wrapper, no more content after this -->
             </div>
         </div>
     </div>

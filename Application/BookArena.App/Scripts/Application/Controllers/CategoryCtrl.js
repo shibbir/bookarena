@@ -60,7 +60,7 @@
             };
 
             vm.initCategoryEditForm = function(category) {
-                $("#CategoryEditModal").foundation("reveal", "open");
+                $("#CategoryEditModal").foundation("open");
                 $scope.editableCategory = $.extend(true, {}, category);
             };
         }

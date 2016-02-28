@@ -65,7 +65,7 @@
         </div>
     </div>
 
-    <button type="submit" class="button small medium-2 left">Update</button>
+    <button type="submit" class="button medium-2">Update</button>
     <div class="spinner inline-spinner left" ng-if="vm.editingStudent">
         <div></div>
         <div class="rect2"></div>
@@ -78,7 +78,7 @@
 <div class="clearfix"></div>
 
 <div ng-if="!vm.transactions || !vm.transactions.length">
-    <div class="secondary alert-box">No transaction found!</div>
+    <div class="primary callout">No transaction found!</div>
 </div>
 
 <div ng-if="vm.transactions && vm.transactions.length">

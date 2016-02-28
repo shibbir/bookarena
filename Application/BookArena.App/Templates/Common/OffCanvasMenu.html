@@ -1,0 +1,56 @@
+﻿<div class="off-canvas position-left" id="offCanvasLeft" data-off-canvas>
+    <ul class="vertical menu">
+        <li><label>Navigation</label></li>
+        <li><a ng-href="#/">Home <i class="fi-home green"></i></a></li>
+        <li>
+            <a ng-href="#/students/">
+                All Student
+            </a>
+        </li>
+        <li>
+            <a ng-href="#/students/add/">
+                Register Student
+            </a>
+        </li>
+        <li>
+            <a ng-href="#/books">
+                All Books
+                <i class="fi-book green"></i>
+            </a>
+        </li>
+        <li>
+            <a ng-href="#/categories">
+                Book Categories
+                <i class="fi-list-thumbnails green"></i>
+            </a>
+        </li>
+        <li>
+            <a ng-href="#/books/add/">
+                Upload New Book
+            </a>
+        </li>
+        <li>
+            <a ng-href="#/transactions/">
+                Transaction History
+            </a>
+        </li>
+        <li>
+            <a ng-href="#/info">
+                Project Info
+                <i class="fi-info green"></i>
+            </a>
+        </li>
+        <li ng-if="!authenticatedUser.hasRegistered">
+            <a ng-href="#/account/login/">
+                Login
+                <i class="fi-power green"></i>
+            </a>
+        </li>
+        <li ng-if="authenticatedUser.hasRegistered">
+            <a ng-click="logout()">
+                Logout
+                <i class="fi-power green"></i>
+            </a>
+        </li>
+    </ul>
+</div>

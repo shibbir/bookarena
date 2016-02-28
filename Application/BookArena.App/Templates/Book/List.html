@@ -15,14 +15,15 @@
 
 <div id="book-container" ng-if="vm.categories.length">
     <input type="search" ng-model="vm.searchText" placeholder="filter books by name, author or category"/>
-    <div ng-repeat="category in vm.categories | filter:vm.searchText" class="book-wrapper clearfix">
-        <div class="success alert-box">
-            {{category.title}}
-        </div>
+
+    <div ng-repeat="category in vm.categories | filter: vm.searchText" class="book-wrapper clearfix">
+        <div class="success callout" ng-bind="category.title"></div>
+
         <div ng-if="!category.books.length">
-            <h4>No books are available for this category.</h4>
+            <h4>No books are available in this category.</h4>
         </div>
-        <div ng-if="category.books.length" ng-repeat="book in category.books | filter:vm.searchText" class="books">
+
+        <div ng-if="category.books.length" ng-repeat="book in category.books | filter: vm.searchText" class="books">
             <div class="book-body">
                 <a ng-href="#/books/{{book.id}}">
                     <img ng-src="{{book.imageFilePath}}" alt="{{book.title}}"/>

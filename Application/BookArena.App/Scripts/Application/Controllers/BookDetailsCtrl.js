@@ -40,6 +40,8 @@
                         } else {
                             vm.searchedStudent = {};
                         }
+                    }).error(function() {
+                        vm.searchStudentInProgress = false;
                     });
                 }
             };

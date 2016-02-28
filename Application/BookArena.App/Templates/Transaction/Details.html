@@ -1,4 +1,4 @@
-﻿<button class="button loan-button" ng-disabled="cleared" ng-click="vm.receiveBook(vm.transactionDetail.id)" ng-if="authenticatedUser.hasRegistered && vm.transactionDetail.isActive">Receive</button>
+﻿<button class="button" ng-disabled="cleared" ng-click="vm.receiveBook(vm.transactionDetail.id)" ng-if="authenticatedUser.hasRegistered && vm.transactionDetail.isActive">Receive</button>
 
 <h2 class="content-header">Transaction Details</h2>
 <hr />
@@ -11,7 +11,7 @@
 
 <div ng-if="!vm.transactionDetail" class="block text-center red"><strong>Sorry, No transaction history found!</strong></div>
 
-<div ng-if="vm.transactionDetail">
+<div ng-if="vm.transactionDetail" class="transaction-details">
     <div class="panel callout radius">
         <h4>Transaction Details</h4>
     </div>
@@ -22,7 +22,7 @@
     <h5>Status: {{vm.transactionDetail.status}}</h5>
     <h5>IsActive: {{vm.transactionDetail.isActive}}</h5>
 
-    <div class="panel callout radius">
+    <div class="primary callout">
         <h4>Book Details</h4>
     </div>
 
@@ -47,7 +47,7 @@
         </div>
     </div>
 
-    <div class="panel callout radius">
+    <div class="primary callout">
         <h4>Borrower Details</h4>
     </div>
 

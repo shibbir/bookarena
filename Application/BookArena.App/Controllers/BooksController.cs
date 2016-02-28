@@ -44,7 +44,7 @@ namespace BookArena.App.Controllers
             }
 
             var books =
-                _bookRepository.FindAll().OrderByDescending(x => x.Id).Take(5).Select(book => new BasicBookViewModel
+                _bookRepository.FindAll().OrderByDescending(x => x.Id).Take(6).Select(book => new BasicBookViewModel
                 {
                     BookId = book.Id,
                     Title = book.Title,
@@ -162,7 +162,7 @@ namespace BookArena.App.Controllers
             }
             var borrowerActiveTransactions =
                 _transactionRepository.FindAll(x => x.StudentId == studentId && x.IsActive).ToList();
-            if (borrowerActiveTransactions.Count() >= 2)
+            if (borrowerActiveTransactions.Count >= 2)
             {
                 return BadRequest("This student already have two borrowed books.");
             }
@@ -201,11 +201,11 @@ namespace BookArena.App.Controllers
             if (HttpContext.Current.Request.Files.Count == 0) return BadRequest();
 
             var file = HttpContext.Current.Request.Files[0];
-            file.SaveAs(
-                HttpContext.Current.Server.MapPath("~/Content/Images/" + file.FileName));
+            file.SaveAs(HttpContext.Current.Server.MapPath("~/Content/Images/" + file.FileName));
 
             var bookId = int.Parse(result.FormData["Id"]);
             var book = _bookRepository.Find(x => x.Id == bookId);
+
             if (File.Exists(HttpContext.Current.Server.MapPath("~/Content/Images/" + book.ImageFileName)))
             {
                 File.Delete(HttpContext.Current.Server.MapPath("~/Content/Images/" + book.ImageFileName));

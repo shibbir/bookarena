@@ -1,7 +1,7 @@
 ﻿<h2 class="content-header">Book Categories</h2>
 <hr />
 
-<button ng-disabled="!authenticatedUser.hasRegistered" ng-show="authenticatedUser.hasRegistered" class="success tiny" data-reveal-id="CategoryAddModal">Add New Category</button>
+<button ng-disabled="!authenticatedUser.hasRegistered" ng-show="authenticatedUser.hasRegistered" class="button success" data-open="CategoryAddModal">Add New Category</button>
 
 <div ng-if="!vm.categories" class="block text-center red"><strong>Sorry, no category found!</strong></div>
 
@@ -21,22 +21,28 @@
         <h5 class="category-header">{{category.title}} <small class="green">({{category.count}})</small></h5>
         <hr />
         <footer class="pull-right">
-            <a ng-href="#/categories/{{category.id}}/books" class="button tiny">
+            <a ng-href="#/categories/{{category.id}}/books" class="button small">
                 View
             </a>
-            <a ng-show="authenticatedUser.hasRegistered" class="button tiny" ng-click="vm.initCategoryEditForm(category)">
+            <a ng-show="authenticatedUser.hasRegistered" class="button small" ng-click="vm.initCategoryEditForm(category)">
                 Edit
             </a>
         </footer>
     </div>
 </div>
 
-<div id="CategoryAddModal" class="reveal-modal tiny" data-reveal>
+<div id="CategoryAddModal" class="reveal tiny" data-reveal>
     <div data-cd-category-add-form></div>
-    <a class="close-reveal-modal">&#215;</a>
+
+    <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>
 
-<div id="CategoryEditModal" class="reveal-modal tiny" data-reveal>
+<div id="CategoryEditModal" class="reveal tiny" data-reveal>
     <div data-cd-category-edit-form></div>
-    <a class="close-reveal-modal">&#215;</a>
+
+    <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>

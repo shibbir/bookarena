@@ -77,7 +77,7 @@ namespace BookArena.App.Controllers
 
         private class ExternalLoginData
         {
-            public string LoginProvider { get; private set; }
+            private string LoginProvider { get; set; }
             private string ProviderKey { get; set; }
             private string UserName { get; set; }
 

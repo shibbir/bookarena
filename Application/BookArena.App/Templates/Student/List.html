@@ -14,9 +14,10 @@
 <div ng-if="!vm.students.length" class="block text-center red"><strong>Sorry, no student found!</strong></div>
 
 <div id="student-container" ng-if="vm.students.length">
-    <input type="search" ng-model="vm.searchText" placeholder="filter: e.g name, id" />
+    <input type="search" ng-model="vm.searchText" placeholder="filter: e.g name, id"/>
+
     <div id="student-table">
-        <table>
+        <table class="stack">
             <thead>
                 <tr>
                     <th>#</th>
@@ -40,6 +41,6 @@
         </table>
     </div>
 
-    <button class="button tiny medium-2" ng-disabled="!vm.hasPrevious" ng-click="vm.goToPage(vm.previousPage)">Previous</button>
-    <button class="button tiny medium-2" ng-disabled="!vm.hasNext" ng-click="vm.goToPage(vm.nextPage)">Next</button>
+    <button class="button medium-2" ng-disabled="!vm.hasPrevious" ng-click="vm.goToPage(vm.previousPage)">Previous</button>
+    <button class="button medium-2" ng-disabled="!vm.hasNext" ng-click="vm.goToPage(vm.nextPage)">Next</button>
 </div>

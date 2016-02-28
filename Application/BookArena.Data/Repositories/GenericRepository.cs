@@ -17,44 +17,6 @@ namespace BookArena.Data.Repositories
             DbSet = Context.Set<TEntity>();
         }
 
-        public virtual IEnumerable<TEntity> Get(
-            Expression<Func<TEntity, bool>> filter = null,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            string includeProperties = "")
-        {
-            IQueryable<TEntity> query = DbSet;
-
-            if (filter != null)
-            {
-                query = query.Where(filter);
-            }
-
-            query = includeProperties.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries)
-                .Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
-
-            return orderBy != null ? orderBy(query).ToList() : query.ToList();
-        }
-
-        public virtual TEntity GetById(object id)
-        {
-            return DbSet.Find(id);
-        }
-
-        public virtual TEntity Find(Expression<Func<TEntity, bool>> predicate)
-        {
-            return DbSet.Where(predicate).FirstOrDefault();
-        }
-
-        public virtual IQueryable<TEntity> FindAll(Expression<Func<TEntity, bool>> predicate)
-        {
-            return DbSet.Where(predicate);
-        }
-
-        public virtual IQueryable<TEntity> FindAll()
-        {
-            return DbSet;
-        }
-
         public virtual void Insert(TEntity entity)
         {
             DbSet.Add(entity);
@@ -84,6 +46,64 @@ namespace BookArena.Data.Repositories
         public virtual void Save()
         {
             Context.SaveChanges();
+        }
+
+        public virtual IEnumerable<TEntity> Get(
+            Expression<Func<TEntity, bool>> filter = null,
+            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
+            string includeProperties = "")
+        {
+            IQueryable<TEntity> query = DbSet;
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            query = includeProperties.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries)
+                .Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
+
+            return orderBy != null ? orderBy(query).ToList() : query.ToList();
+        }
+
+        public virtual TEntity Find(object id)
+        {
+            return DbSet.Find(id);
+        }
+
+        public virtual TEntity Find(Expression<Func<TEntity, bool>> predicate)
+        {
+            return DbSet.Where(predicate).FirstOrDefault();
+        }
+
+        public virtual TEntity FindIncluding(Expression<Func<TEntity, bool>> filter = null, params Expression<Func<TEntity, object>>[] includeProperties)
+        {
+            IQueryable<TEntity> query = DbSet;
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            query = includeProperties.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
+
+            return query.AsNoTracking().FirstOrDefault();
+        }
+
+        public virtual IQueryable<TEntity> FindAll()
+        {
+            return DbSet;
+        }
+
+        public virtual IQueryable<TEntity> FindAll(Expression<Func<TEntity, bool>> predicate)
+        {
+            return DbSet.Where(predicate);
+        }
+
+        public virtual IQueryable<TEntity> FindAllIncluding(params Expression<Func<TEntity, object>>[] includeProperties)
+        {
+            return includeProperties.Aggregate<Expression<Func<TEntity, object>>, IQueryable<TEntity>>(DbSet,
+                (current, property) => current.Include(property));
         }
     }
 }

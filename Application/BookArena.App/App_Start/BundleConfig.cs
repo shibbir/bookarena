@@ -7,20 +7,18 @@ namespace BookArena.App
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/library").Include(
-                "~/Vendors/bower_components/jquery/dist/jquery.js",
-                "~/Vendors/bower_components/foundation/js/foundation/foundation.js",
-                "~/Vendors/bower_components/foundation/js/foundation/foundation.reveal.js",
-                "~/Vendors/bower_components/foundation/js/foundation/foundation.offcanvas.js",
-                "~/Vendors/bower_components/toastr/toastr.js",
-                "~/Vendors/bower_components/raty/lib/jquery.raty.js",
-                "~/Vendors/bower_components/respond/dest/respond.src.js",
-                "~/Vendors/bower_components/angular/angular.js",
-                "~/Vendors/bower_components/angular-route/angular-route.js",
-                "~/Vendors/bower_components/angular-messages/angular-messages.js",
-                "~/Vendors/bower_components/underscore/underscore.js",
-                "~/Vendors/bower_components/raphael/raphael.js",
-                "~/Vendors/bower_components/morrisjs/morris.js",
-                "~/Vendors/bower_components/ng-file-upload/ng-file-upload.js"));
+                "~/bower_components/jquery/dist/jquery.js",
+                "~/bower_components/foundation-sites/dist/foundation.js",
+                "~/bower_components/toastr/toastr.js",
+                "~/bower_components/raty/lib/jquery.raty.js",
+                "~/bower_components/respond/dest/respond.src.js",
+                "~/bower_components/angular/angular.js",
+                "~/bower_components/angular-route/angular-route.js",
+                "~/bower_components/angular-messages/angular-messages.js",
+                "~/bower_components/underscore/underscore.js",
+                "~/bower_components/raphael/raphael.js",
+                "~/bower_components/morrisjs/morris.js",
+                "~/bower_components/ng-file-upload/ng-file-upload.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/application").Include(
                 "~/Scripts/Application/app.js",
@@ -45,14 +43,11 @@ namespace BookArena.App
                 "~/Scripts/Application/Controllers/studentDetailsCtrl.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Vendors/bower_components/toastr/toastr.css",
-                "~/Vendors/bower_components/foundation/css/foundation.css",
-                "~/Vendors/bower_components/morrisjs/morris.css",
+                "~/bower_components/toastr/toastr.css",
+                "~/bower_components/foundation-sites/dist/foundation.css",
+                "~/bower_components/morrisjs/morris.css",
                 "~/Content/site.css")
-                .Include("~/Vendors/bower_components/foundation-icon-fonts/foundation-icons.css",
-                    new CssRewriteUrlTransform()));
-
-            BundleTable.EnableOptimizations = true;
+                .Include("~/bower_components/foundation-icon-fonts/foundation-icons.css", new CssRewriteUrlTransform()));
         }
     }
 }

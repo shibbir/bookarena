@@ -21,14 +21,12 @@ namespace BookArena.App.Helper
         public BookViewModel Create(Book book)
         {
             Mapper.CreateMap<Book, BookViewModel>()
-                .ForMember(dest => dest.ImageFilePath,
-                    opt =>
-                        opt.ResolveUsing<ImageResolver>().FromMember(src => src));
+                .ForMember(dest => dest.ImageFilePath, opt => opt.ResolveUsing<ImagePathResolver>().FromMember(src => src));
             return Mapper.Map<Book, BookViewModel>(book);
         }
     }
 
-    public class ImageResolver : ValueResolver<Book, string>
+    public class ImagePathResolver : ValueResolver<Book, string>
     {
         protected override string ResolveCore(Book book)
         {
