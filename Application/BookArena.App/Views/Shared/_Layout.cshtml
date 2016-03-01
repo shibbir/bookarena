@@ -20,50 +20,48 @@
 
     @Styles.Render("~/Content/css")
 </head>
-<body ng-app="bookArena">
-    <div ng-controller="BaseCtrl">
+<body>
 
-        <div class="off-canvas-wrapper">
-            <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+    <div class="off-canvas-wrapper">
+        <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
 
-                <!-- off-canvas title bar for 'small' screen -->
-                <div class="title-bar" data-responsive-toggle="widemenu" data-hide-for="medium">
-                    <div class="title-bar-left">
-                        <button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
-                        <span class="title-bar-title">BookArena</span>
-                    </div>
+            <!-- off-canvas title bar for 'small' screen -->
+            <div class="title-bar" data-responsive-toggle="widemenu" data-hide-for="medium">
+                <div class="title-bar-left">
+                    <button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
+                    <span class="title-bar-title">BookArena</span>
                 </div>
-
-                <!-- off-canvas left menu -->
-                <off-canvas-menu></off-canvas-menu>
-
-                <!-- "wider" top-bar menu for 'medium' and up -->
-                <top-bar></top-bar>
-
-                <!-- original content goes in this container -->
-                <div class="off-canvas-content" data-off-canvas-content>
-                    <div id="wrapper" class="row">
-                        <div class="small-12 medium-3 large-3 columns">
-                            <side-navigation></side-navigation>
-                        </div>
-                        <div class="content small-12 medium-9 large-9 columns">
-                            <div ng-view></div>
-                        </div>
-                    </div>
-
-                    <div class="row" style="background: none repeat scroll 0 0 #178892;">
-                        <div class="small-12 medium-12 large-12 columns">
-                            <footer class="credit">
-                                BookArena: A simple SPA based library manager.
-                                Licensed under MIT.
-                                Copyright &copy; 2014 - @DateTime.Now.Year.
-                            </footer>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- close wrapper, no more content after this -->
             </div>
+
+            <!-- off-canvas left menu -->
+            <off-canvas-menu></off-canvas-menu>
+
+            <!-- "wider" top-bar menu for 'medium' and up -->
+            <top-bar></top-bar>
+
+            <!-- original content goes in this container -->
+            <div class="off-canvas-content" data-off-canvas-content>
+                <div id="wrapper" class="row">
+                    <div class="small-12 medium-3 large-3 columns">
+                        <side-bar></side-bar>
+                    </div>
+                    <div class="content small-12 medium-9 large-9 columns">
+                        <div ng-view></div>
+                    </div>
+                </div>
+
+                <div class="row" style="background: none repeat scroll 0 0 #178892;">
+                    <div class="small-12 medium-12 large-12 columns">
+                        <footer class="credit">
+                            BookArena: A simple SPA based library manager.
+                            Licensed under MIT.
+                            Copyright &copy; 2014 - @DateTime.Now.Year.
+                        </footer>
+                    </div>
+                </div>
+            </div>
+
+            <!-- close wrapper, no more content after this -->
         </div>
     </div>
     @Scripts.Render("~/bundles/library")

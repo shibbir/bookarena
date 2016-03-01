@@ -1,0 +1,134 @@
+﻿<div id="BorrowModal" class="reveal tiny" data-reveal>
+    <h5 class="modal-title">{{vm.book.title}}</h5>
+    <hr/>
+
+    <div class="search-label">Search student</div>
+
+    <div class="bouncespinner" ng-show="vm.searchStudentInProgress">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div></div>
+    </div>
+
+    <div class="row collapse">
+        <div class="small-12 large-10 columns">
+            <input type="search" ng-model="vm.data.idCardNumber" placeholder="ID Card"/>
+        </div>
+        <div class="small-12 large-2 columns">
+            <button class="button postfix" ng-click="vm.searchStudent()">Search</button>
+        </div>
+    </div>
+
+    <div ng-if="!vm.searchedStudent.id" class="error-message">
+        No record found! Try again.
+    </div>
+
+    <div ng-if="vm.searchedStudent.id">
+        <table>
+            <thead>
+                <tr>
+                    <th width="240">Name</th>
+                    <th width="20">Batch</th>
+                    <th width="180">ID Card</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{vm.searchedStudent.firstName}} {{vm.searchedStudent.lastName}}</td>
+                    <td>{{vm.searchedStudent.batch}}</td>
+                    <td>{{vm.searchedStudent.program}} {{vm.searchedStudent.idCardNumber}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <button ng-disabled="!vm.book.id || !vm.searchedStudent.id" class="button success full-width" ng-click="vm.borrowBook(vm.searchedStudent.id, vm.book.id)">Borrow The Book</button>
+    </div>
+    <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<h2 class="content-header">Book Information</h2>
+<hr />
+
+<ul class="breadcrumbs">
+    <li><a ng-href="#/">Home</a></li>
+    <li><a ng-href="#/books">Books</a></li>
+    <li class="current"><a>Details</a></li>
+</ul>
+
+<div class="callout primary">
+    <h5>{{vm.book.title}}</h5>
+    <p>By {{vm.book.author}}</p>
+</div>
+
+<div class="row">
+    <div class="small-12 large-3 columns">
+        <img ng-src="{{vm.book.imageFilePath}}" alt="{{vm.book.title}}"/>
+        <br/><br/>
+        <span class="green">Total Copy: {{vm.book.quantity}}</span>
+        <p class="green">Available: {{vm.book.availableQuantity}}</p>
+    </div>
+
+    <div class="small-12 large-9 columns">
+        <div class="row">
+            <div class="small-12 medium-12 large-12 columns">
+                <p class="book-short-description">{{vm.book.shortDescription}}</p>
+                <span ng-if="vm.book.rating" class="green">
+                    Rating: <span data-rating="{{vm.book.rating}}"></span>
+                </span>
+                <p>
+                    <span class="green">Category:</span> <a ng-href="#/categories/{{vm.book.categoryId}}/books">{{vm.book.categoryTitle}}</a>
+                </p>
+            </div>
+
+            <div class="small-12 medium-12 large-12 columns">
+                <div>
+                    <a ng-click="vm.loginToEditBook()" ng-if="!authenticatedUser.hasRegistered">
+                        <i class="fi-lock"></i>
+                        Login to edit
+                    </a>
+                    <a ng-href="#/books/edit/{{vm.book.id}}" ng-if="authenticatedUser.hasRegistered">
+                        <i class="fi-page-edit"></i>
+                        Edit this book
+                    </a>
+                </div>
+                <a data-open="BorrowModal" ng-show="vm.displayBorrowButton()" ng-click="vm.resetBorrowSection()">
+                    Borrow this book
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<div ng-if="vm.book.longDescription" class="book-long-description">{{vm.book.longDescription}}</div>
+
+<div ng-if="!vm.book.LongDescription" class="book-long-description">
+    <h3>What you’ll learn</h3>
+
+    <ul>
+        <li>Cras aliquam ipsum non urna cursus, eget imperdiet est auctor.</li>
+        <li>Etiam sed justo non libero euismod sollicitudin ac mattis dolor.</li>
+        <li>In ac lorem a elit semper aliquam eget eu diam.</li>
+        <li>Duis tempus nisl non mauris auctor, at eleifend felis varius.</li>
+        <li>Donec eget sapien vel quam placerat consequat.</li>
+        <li>Vivamus dictum est non lorem iaculis, eu tempor tellus condimentum.</li>
+    </ul>
+
+    <h3>Who this book is for</h3>
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non sollicitudin quam, quis accumsan massa. Aliquam erat volutpat.</p>
+
+    There are several types of developers that would find this material useful:
+
+    <ul>
+        <li>
+            Sed adipiscing quam pharetra lacus consectetur, sed bibendum turpis mollis. Aenean lectus mi, feugiat sit amet turpis sit amet, posuere aliquet sem. Sed sodales lobortis turpis eget accumsan.
+        </li>
+        <li>
+            Nunc tincidunt, libero in feugiat auctor, sem mi tincidunt mi, sit amet gravida leo tellus sit amet turpis. Proin sed gravida nisi, non commodo dui.
+        </li>
+        <li>Praesent tristique enim diam, quis tempus nisi egestas in. Fusce scelerisque venenatis fermentum. Vestibulum aliquam, arcu eu faucibus lobortis, justo arcu malesuada urna, in mollis magna diam in urna.</li>
+    </ul>
+</div>

@@ -1,0 +1,90 @@
+﻿<h2 class="content-header">Upload a Book</h2>
+<hr />
+
+<form name="vm.BookAddForm" novalidate ng-submit="vm.add()">
+    <div class="ui-error-container" ng-if="vm.BookAddForm.submitted && vm.BookAddForm.$invalid">
+        <div ng-messages="vm.BookAddForm.Title.$error">
+            <span ng-message="required">The Title field is required.</span>
+        </div>
+        <div ng-messages="vm.BookAddForm.Author.$error">
+            <span ng-message="required">The Author field is required.</span>
+        </div>
+        <div ng-messages="vm.BookAddForm.Category.$error">
+            <span ng-message="required">The Category field is required.</span>
+        </div>
+        <div ng-messages="vm.BookAddForm.Quantity.$error">
+            <span ng-message="required">The Quantity field is required.</span>
+        </div>
+        <div ng-messages="vm.BookAddForm.ShortDescription.$error">
+            <span ng-message="maxlength">The ShortDescription field must be at most 500 characters long.</span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="large-8 columns">
+            <div class="row">
+                <div class="large-8 columns">
+                    <label>Title <span class="red required-star">*</span></label>
+                    <input type="text" ng-model="vm.book.title" name="Title" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-8 columns">
+                    <label>Author <span class="red required-star">*</span></label>
+                    <input type="text" ng-model="vm.book.author" name="Author" required />
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-8 columns">
+                    <label>Category <span class="red required-star">*</span></label>
+                    <select name="Category" ng-model="vm.book.categoryId" ng-options="option.id as option.title for option in vm.categories" required>
+                        <option value="">Choose one</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-8 columns">
+                    <label>Book Quantity <span class="red required-star">*</span></label>
+                    <select name="Quantity" ng-model="vm.book.quantity" ng-options="option for option in vm.bookQuantities" required>
+                        <option value="">Select Quantity</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-10 columns">
+                    <label>Short Description</label>
+                    <textarea placeholder="Short Description. e.g main topic, category etc." ng-model="vm.book.shortDescription" name="ShortDescription" ng-maxlength="500"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-8 columns">
+                    <label>Book Rating</label>
+                    <div data-rating-input></div>
+                    <p style="color: #27ae60;">Rating: <span id="Rating"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="large-4 columns">
+            <div class="row">
+                <div class="large-12 columns">
+                    <label>Upload Book Cover</label>
+                    <div class="th upload-preview-wrapper">
+                        <img src="/Content/Images/question_mark.png" ng-src="{{ vm.filePreview }}" alt="" />
+                    </div>
+                    <input type="file" title="Select photo" multiple accept="image/*" ngf-pattern="'image/*'" ngf-select ngf-change="vm.attachPhoto($file)" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <button type="submit" class="button medium-2">Add</button>
+    <div class="spinner inline-spinner left" ng-if="vm.addingBook">
+        <div></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+    </div>
+</form>

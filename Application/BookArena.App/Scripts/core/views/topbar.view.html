@@ -1,0 +1,16 @@
+﻿<div id="widemenu" class="top-bar">
+    <div class="top-bar-left">
+        <ul class="menu">
+            <li class="topbar-title"><a ng-href="#/">BookArena</a></li>
+        </ul>
+    </div>
+
+    <div class="top-bar-right">
+        <ul class="menu">
+            <li><a ng-href="#/credit/">Project Info</a></li>
+            <li ng-if="authenticatedUser.hasRegistered"><a href="javascript:void(0)">Hello, {{authenticatedUser.email}}</a></li>
+            <li ng-if="authenticatedUser.hasRegistered"><a ng-href="#/account/logout/">Logout</a></li>
+            <li ng-if="!authenticatedUser.hasRegistered"><a ng-href="#/account/login/">Login</a></li>
+        </ul>
+    </div>
+</div>
