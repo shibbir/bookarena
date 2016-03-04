@@ -4,7 +4,7 @@
     app.directive("categoryEditForm", function() {
         return {
             restrict: "A",
-            templateUrl: "Scripts/books/views/category.edit.view.html",
+            templateUrl: "Scripts/books/views/edit.category.view.html",
             link: function() {
                 $(document).foundation();
             }

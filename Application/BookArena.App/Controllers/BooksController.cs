@@ -79,8 +79,7 @@ namespace BookArena.App.Controllers
             if (HttpContext.Current.Request.Files.Count != 0)
             {
                 var file = HttpContext.Current.Request.Files[0];
-                file.SaveAs(
-                    HttpContext.Current.Server.MapPath("~/Content/Images/" + file.FileName));
+                file.SaveAs(HttpContext.Current.Server.MapPath("~/Content/Images/" + file.FileName));
                 imageFileName = file.FileName;
 
                 ClearBodyPartFiles();
@@ -231,8 +230,7 @@ namespace BookArena.App.Controllers
 
         private static void ClearBodyPartFiles()
         {
-            var files = Directory.GetFiles(HttpContext.Current.Server.MapPath("~/Content/Images"),
-                @"*BodyPart_*");
+            var files = Directory.GetFiles(HttpContext.Current.Server.MapPath("~/Content/Images"), @"*BodyPart_*");
 
             foreach (var file in files.Where(File.Exists))
             {

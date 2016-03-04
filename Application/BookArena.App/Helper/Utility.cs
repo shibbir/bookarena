@@ -7,18 +7,20 @@ namespace BookArena.App.Helper
     {
         public static TDestination SingleMap(TSource model)
         {
-            Mapper.CreateMap<TSource, TDestination>();
-            var entity = Mapper.Map<TSource, TDestination>(model);
+            var config = new MapperConfiguration(cfg => { cfg.CreateMap<TSource, TDestination>(); });
 
-            return entity;
+            var mapper = config.CreateMapper();
+
+            return mapper.Map<TSource, TDestination>(model);
         }
 
         public static List<TDestination> ListMap(List<TSource> model)
         {
-            Mapper.CreateMap<TSource, TDestination>();
-            var entity = Mapper.Map<List<TSource>, List<TDestination>>(model);
+            var config = new MapperConfiguration(cfg => { cfg.CreateMap<TSource, TDestination>(); });
 
-            return entity;
+            var mapper = config.CreateMapper();
+
+            return mapper.Map<List<TSource>, List<TDestination>>(model);
         }
     }
 }

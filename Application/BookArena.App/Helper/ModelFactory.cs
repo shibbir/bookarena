@@ -20,9 +20,13 @@ namespace BookArena.App.Helper
 
         public BookViewModel Create(Book book)
         {
-            Mapper.CreateMap<Book, BookViewModel>()
-                .ForMember(dest => dest.ImageFilePath, opt => opt.ResolveUsing<ImagePathResolver>().FromMember(src => src));
-            return Mapper.Map<Book, BookViewModel>(book);
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Book, BookViewModel>().ForMember(dest => dest.ImageFilePath, opt => opt.ResolveUsing<ImagePathResolver>().FromMember(src => src));
+            });
+
+            var mapper = config.CreateMapper();
+            return mapper.Map<Book, BookViewModel>(book);
         }
     }
 

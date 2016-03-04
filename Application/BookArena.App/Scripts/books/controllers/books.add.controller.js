@@ -24,21 +24,19 @@
                     return;
                 }
 
-                vm.file = file;
-
                 var errorMessages = [];
 
-                if (vm.file.size > 1024 * 1024 * 2) {
+                if (file.size > 1024 * 1024 * 2) {
                     errorMessages.push("File size is too large. Max upload size is 2MB.");
                 }
 
                 if (errorMessages.length) {
                     notifierService.notifyInfo(errorMessages);
                 } else {
-                    if (fileService.fileReaderSupported && vm.file.type.indexOf("image") > -1) {
+                    if (fileService.isFileReaderSupported && file.type.indexOf("image") > -1) {
                         var fileReader = new FileReader();
 
-                        fileReader.readAsDataURL(vm.file);
+                        fileReader.readAsDataURL(file);
 
                         var loadFile = function(fileReader) {
                             fileReader.onload = function(e) {
@@ -48,6 +46,8 @@
                             };
                         }(fileReader);
                     }
+
+                    vm.book.coverImage = file;
                 }
             };
 
@@ -59,11 +59,10 @@
 
                     var uploadConfig = {
                         url: "/api/books/",
-                        file: vm.file,
                         data: vm.book
                     };
 
-                    fileService.upload(uploadConfig).progress(function(evt) {
+                    fileService.postMultipartForm(uploadConfig).progress(function (evt) {
                         console.log("percent: " + parseInt(100.0 * evt.loaded / evt.total));
                     }).success(function(data) {
                         notifierService.notifySuccess("Book uploaded successfully!");

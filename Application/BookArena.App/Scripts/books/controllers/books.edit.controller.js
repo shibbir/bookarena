@@ -59,15 +59,14 @@
                 if (errorMessages.length) {
                     notifierService.notifyInfo(errorMessages);
                 } else {
-                    if (fileService.fileReaderSupported && file.type.indexOf("image") > -1) {
+                    if (fileService.isFileReaderSupported && file.type.indexOf("image") > -1) {
                         vm.editingBook = true;
 
                         var uploadConfig = {
                             url: "/api/books/upload",
-                            file: file,
-                            data: { id: $routeParams.id }
+                            data: { id: $routeParams.id, file: file }
                         };
-                        fileService.upload(uploadConfig).progress(function(evt) {
+                        fileService.postMultipartForm(uploadConfig).progress(function(evt) {
                             console.log("percent: " + parseInt(100.0 * evt.loaded / evt.total));
                         }).success(function(result) {
                             vm.book = result;

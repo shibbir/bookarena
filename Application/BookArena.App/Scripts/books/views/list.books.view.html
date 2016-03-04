@@ -1,16 +1,6 @@
 ﻿<h2 class="content-header">All Books</h2>
 <hr />
 
-<div ng-if="vm.fetchingBooks">
-    <div class="spinner">
-        <div></div>
-        <div class="rect2"></div>
-        <div class="rect3"></div>
-        <div class="rect4"></div>
-        <div class="rect5"></div>
-    </div>
-</div>
-
 <div ng-if="!vm.categories.length" class="block text-center red"><strong>Sorry, BookArena library is currently empty!</strong></div>
 
 <div id="book-container" ng-if="vm.categories.length">

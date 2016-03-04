@@ -80,7 +80,7 @@
                     <div class="th upload-preview-wrapper">
                         <img src="/Content/Images/question_mark.png" ng-src="{{ vm.book.imageFilePath }}" alt="{{ vm.book.title }}" />
                     </div>
-                    <input type="file" title="Select photo" multiple accept="image/*" ngf-pattern="'image/*'" ngf-select ngf-change="vm.uploadPhoto($file)" />
+                    <input type="file" title="Select photo" accept="image/*" ngf-select="vm.uploadPhoto($file)" />
                 </div>
             </div>
         </div>

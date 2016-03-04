@@ -5,15 +5,7 @@
 
 <div ng-if="!vm.categories" class="block text-center red"><strong>Sorry, no category found!</strong></div>
 
-<div ng-if="vm.fetchingCategories">
-    <div class="spinner">
-        <div></div>
-        <div class="rect2"></div>
-        <div class="rect3"></div>
-        <div class="rect4"></div>
-        <div class="rect5"></div>
-    </div>
-</div>
+<div ng-if="vm.fetchingCategories"></div>
 
 <div id="category-container" ng-if="vm.categories">
     <input type="search" ng-model="vm.searchText" placeholder="Filter Category" />
