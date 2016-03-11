@@ -70,6 +70,8 @@ namespace BookArena.App
                 "~/bower_components/morrisjs/morris.css",
                 "~/Content/site.css")
                 .Include("~/bower_components/foundation-icon-fonts/foundation-icons.css", new CssRewriteUrlTransform()));
+
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

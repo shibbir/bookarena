@@ -31,6 +31,32 @@
     border-top: 1px solid #e9e9e9;
 }
 
+.mobile-ofc {
+    background: #121212;
+    font-size: 0.8125rem;
+    font-weight: bold;
+}
+
+.mobile-ofc.menu a {
+    height: 45px;
+    line-height: 45px;
+    color: #e6e6e6;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.mobile-ofc.menu a:hover:not(.button), .mobile-ofc.menu a:focus {
+    background: black;
+}
+
+.mobile-ofc .title {
+    color: #8a8a8a;
+    padding: 10px;
+    padding-left: 15px;
+    font-size: 0.8em;
+    background: #2c2c2c;
+}
+
 .content {
     min-height: 608px !important;
     background-color: #2C3E50;
@@ -281,11 +307,11 @@ h2.content-header {
         margin: 0 auto;
     }
 
-    .loan-button {
-        height: 30px;
-        margin-left: 77%;
-        padding: 0;
-        width: 70px;
+    .sidebar-header {
+        font-size: 14px;
+        padding-left: 8px;
+        padding-top: 4px;
+        font-weight: bold;
     }
 
     #wrapper {
@@ -308,11 +334,11 @@ h2.content-header {
     }
 
     .widget-body .latest-books {
-        margin-right: 5px;
+        margin-right: 10px;
     }
 
     .latest-books .book-body {
-        width: 112px;
+        width: 102px;
     }
 
     hr {
