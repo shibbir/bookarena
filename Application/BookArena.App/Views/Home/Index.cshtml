@@ -1,0 +1,36 @@
+<div class="off-canvas-wrapper">
+    <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+
+        <div class="title-bar" data-responsive-toggle="widemenu" data-hide-for="medium">
+            <div class="title-bar-left">
+                <button class="menu-icon" type="button" data-open="offCanvasLeft"></button>
+                <span class="title-bar-title">BookArena</span>
+            </div>
+        </div>
+
+        <off-canvas-menu></off-canvas-menu>
+
+        <top-bar></top-bar>
+
+        <div class="off-canvas-content" data-off-canvas-content>
+            <div id="wrapper" class="row">
+                <div class="small-12 medium-3 large-3 columns">
+                    <side-bar></side-bar>
+                </div>
+                <div class="content small-12 medium-9 large-9 columns">
+                    <div ng-view></div>
+                </div>
+            </div>
+
+            <div class="row" style="background: none repeat scroll 0 0 #178892;">
+                <div class="small-12 medium-12 large-12 columns">
+                    <footer class="credit">
+                        BookArena.
+                        Licensed under MIT.
+                        Copyright &copy; 2014 - @DateTime.Now.Year.
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Globalization;
@@ -19,9 +19,9 @@ namespace BookArena.App
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var user = new ApplicationUser
             {
-                Name = "Shibbir Ahmed",
-                UserName = "shibbir.cse@gmail.com",
-                Email = "shibbir.cse@gmail.com"
+                Name = "Administrator",
+                UserName = "admin@bookarena.com",
+                Email = "admin@bookarena.com"
             };
 
             if (!roleManager.RoleExists(role))

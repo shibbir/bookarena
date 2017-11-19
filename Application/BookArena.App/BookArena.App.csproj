@@ -23,6 +23,7 @@
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -282,8 +283,7 @@
     <Content Include="Content\site.css" />
     <Content Include="favicon.png" />
     <Content Include="Global.asax" />
-    <Content Include=".bowerrc" />
-    <Content Include="bower.json" />
+    <Content Include="package.json" />
     <None Include="Properties\PublishProfiles\Publish.pubxml" />
     <Content Include="Scripts\books\controllers\books.category.controller.js" />
     <Content Include="Scripts\books\directives\category.edit.directive.js" />
@@ -295,8 +295,6 @@
     <Content Include="Scripts\books\views\edit.category.view.html" />
     <Content Include="Scripts\books\views\list.categories.view.html" />
     <Content Include="Scripts\core\config\core.routes.js" />
-    <Content Include="Scripts\core\controllers\core.credit.controller.js" />
-    <Content Include="Scripts\core\views\credit.view.html" />
     <Content Include="Scripts\transactions\config\transactions.routes.js" />
     <Content Include="Scripts\transactions\controllers\transactions.controller.js" />
     <Content Include="Scripts\transactions\transactions.module.js" />
@@ -349,11 +347,11 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Scripts\_references.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\core\core.module.js" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

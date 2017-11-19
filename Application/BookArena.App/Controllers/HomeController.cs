@@ -1,4 +1,4 @@
-﻿using System.Web.Mvc;
+using System.Web.Mvc;
 
 namespace BookArena.App.Controllers
 {
@@ -6,7 +6,7 @@ namespace BookArena.App.Controllers
     {
         public ActionResult Index()
         {
-            return View("_Layout");
+            return View();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿"use strict";
+"use strict";
 
 (function(app) {
     app.config([
@@ -7,11 +7,6 @@
                 .when("/", {
                     templateUrl: "Scripts/core/views/home.view.html",
                     controller: "HomeCtrl",
-                    controllerAs: "vm"
-                })
-                .when("/credit", {
-                    templateUrl: "Scripts/core/views/credit.view.html",
-                    controller: "CreditCtrl",
                     controllerAs: "vm"
                 })
                 .otherwise({ redirectTo: "/" });

@@ -1,4 +1,4 @@
-﻿using System.Web.Optimization;
+using System.Web.Optimization;
 
 namespace BookArena.App
 {
@@ -7,18 +7,17 @@ namespace BookArena.App
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/library").Include(
-                "~/bower_components/jquery/dist/jquery.js",
-                "~/bower_components/foundation-sites/dist/foundation.js",
-                "~/bower_components/toastr/toastr.js",
-                "~/bower_components/raty/lib/jquery.raty.js",
-                "~/bower_components/respond/dest/respond.src.js",
-                "~/bower_components/angular/angular.js",
-                "~/bower_components/angular-route/angular-route.js",
-                "~/bower_components/angular-messages/angular-messages.js",
-                "~/bower_components/underscore/underscore.js",
-                "~/bower_components/raphael/raphael.js",
-                "~/bower_components/morrisjs/morris.js",
-                "~/bower_components/ng-file-upload/ng-file-upload.js"));
+                "~/node_modules/jquery/dist/jquery.js",
+                "~/node_modules/foundation-sites/dist/foundation.js",
+                "~/node_modules/toastr/toastr.js",
+                "~/node_modules/raty-js/lib/jquery.raty.js",
+                "~/node_modules/angular/angular.js",
+                "~/node_modules/angular-route/angular-route.js",
+                "~/node_modules/angular-messages/angular-messages.js",
+                "~/node_modules/underscore/underscore.js",
+                "~/node_modules/raphael/raphael.js",
+                "~/node_modules/morris.js/morris.js",
+                "~/node_modules/ng-file-upload/dist/ng-file-upload.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/application").Include(
                 "~/Scripts/core/config/config.js",
@@ -34,7 +33,6 @@ namespace BookArena.App
                 "~/Scripts/core/directives/core.sidebar.directive.js",
                 "~/Scripts/core/directives/core.offcanvas.directive.js",
                 "~/Scripts/core/controllers/core.home.controller.js",
-                "~/Scripts/core/controllers/core.credit.controller.js",
 
                 "~/Scripts/users/users.module.js",
                 "~/Scripts/users/config/users.routes.js",
@@ -65,11 +63,11 @@ namespace BookArena.App
                 "~/Scripts/transactions/controllers/transactions.controller.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/bower_components/toastr/toastr.css",
-                "~/bower_components/foundation-sites/dist/foundation.css",
-                "~/bower_components/morrisjs/morris.css",
+                "~/node_modules/toastr/build/toastr.css",
+                "~/node_modules/foundation-sites/dist/foundation.css",
+                "~/node_modules/morris.js/morris.css",
                 "~/Content/site.css")
-                .Include("~/bower_components/foundation-icon-fonts/foundation-icons.css", new CssRewriteUrlTransform()));
+                .Include("~/node_modules/foundation-icon-fonts/foundation-icons.css", new CssRewriteUrlTransform()));
 
             BundleTable.EnableOptimizations = true;
         }
