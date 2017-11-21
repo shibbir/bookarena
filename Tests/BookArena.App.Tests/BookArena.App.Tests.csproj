@@ -117,21 +117,21 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Application\BookArena.App\BookArena.App.csproj">
+    <ProjectReference Include="..\..\Source\BookArena.Presentation\BookArena.Presentation.csproj">
       <Project>{402759F0-6735-4402-8DE0-14581DC9535E}</Project>
-      <Name>BookArena.App</Name>
+      <Name>BookArena.Presentation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Application\BookArena.Core\BookArena.Core.csproj">
-      <Project>{ea23d749-d3bb-4f0e-b13a-38576d861a13}</Project>
+    <ProjectReference Include="..\..\Source\BookArena.Core\BookArena.Core.csproj">
+      <Project>{EA23D749-D3BB-4F0E-B13A-38576D861A13}</Project>
       <Name>BookArena.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Application\BookArena.Data\BookArena.Data.csproj">
-      <Project>{0cdb3f8f-99c0-4333-9fb0-b384385405be}</Project>
-      <Name>BookArena.Data</Name>
+    <ProjectReference Include="..\..\Source\BookArena.Persistence\BookArena.Persistence.csproj">
+      <Project>{0CDB3F8F-99C0-4333-9FB0-B384385405BE}</Project>
+      <Name>BookArena.Persistence</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Application\BookArena.Model\BookArena.Model.csproj">
-      <Project>{980459C6-6E0A-41B3-B55B-FB005D9A95F0}</Project>
-      <Name>BookArena.Model</Name>
+    <ProjectReference Include="..\..\Source\BookArena.Domain\BookArena.Domain.csproj">
+      <Project>{980459c6-6e0a-41b3-b55b-fb005d9a95f0}</Project>
+      <Name>BookArena.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

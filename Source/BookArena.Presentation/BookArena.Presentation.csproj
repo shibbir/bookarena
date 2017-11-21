@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BookArena.App</RootNamespace>
-    <AssemblyName>BookArena.App</AssemblyName>
+    <RootNamespace>BookArena.Presentation</RootNamespace>
+    <AssemblyName>BookArena.Presentation</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -360,17 +360,17 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BookArena.Persistence\BookArena.Persistence.csproj">
+      <Project>{0CDB3F8F-99C0-4333-9FB0-B384385405BE}</Project>
+      <Name>BookArena.Persistence</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BookArena.Domain\BookArena.Domain.csproj">
+      <Project>{980459c6-6e0a-41b3-b55b-fb005d9a95f0}</Project>
+      <Name>BookArena.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BookArena.Core\BookArena.Core.csproj">
       <Project>{ea23d749-d3bb-4f0e-b13a-38576d861a13}</Project>
       <Name>BookArena.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BookArena.Data\BookArena.Data.csproj">
-      <Project>{0CDB3F8F-99C0-4333-9FB0-B384385405BE}</Project>
-      <Name>BookArena.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BookArena.Model\BookArena.Model.csproj">
-      <Project>{980459c6-6e0a-41b3-b55b-fb005d9a95f0}</Project>
-      <Name>BookArena.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

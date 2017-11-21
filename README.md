@@ -33,7 +33,7 @@ $ yarn install
 ## Demo
 
 ```bash
-Username: shibbir.cse@gmail.com
+Username: admin@bookarena.com
 Password: HakunaMatata71
 ```
 

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("BookArena.Data")]
+[assembly: AssemblyTitle("BookArena.Domain")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("BookArena.Data")]
+[assembly: AssemblyProduct("BookArena.Domain")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("77baf4b2-97dc-4daa-a805-7590d7dc800c")]
+[assembly: Guid("9247b7ab-8d62-4634-b028-22a1ab36f975")]
 
 // Version information for an assembly consists of the following four values:
 //

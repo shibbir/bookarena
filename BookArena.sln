@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30626.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{DBBBD752-ECFF-4B44-BCC1-B9716251A0D7}"
 	ProjectSection(SolutionItems) = preProject
@@ -10,17 +10,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{DBBBD7
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookArena.Model", "Application\BookArena.Model\BookArena.Model.csproj", "{980459C6-6E0A-41B3-B55B-FB005D9A95F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookArena.Domain", "Source\BookArena.Domain\BookArena.Domain.csproj", "{980459C6-6E0A-41B3-B55B-FB005D9A95F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookArena.Data", "Application\BookArena.Data\BookArena.Data.csproj", "{0CDB3F8F-99C0-4333-9FB0-B384385405BE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookArena.Persistence", "Source\BookArena.Persistence\BookArena.Persistence.csproj", "{0CDB3F8F-99C0-4333-9FB0-B384385405BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookArena.App", "Application\BookArena.App\BookArena.App.csproj", "{402759F0-6735-4402-8DE0-14581DC9535E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookArena.Core", "Source\BookArena.Core\BookArena.Core.csproj", "{EA23D749-D3BB-4F0E-B13A-38576D861A13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookArena.App.Tests", "BookArena.App.Tests\BookArena.App.Tests.csproj", "{590D2005-9584-47EB-BC6C-DA34A7D2412E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookArena.Presentation", "Source\BookArena.Presentation\BookArena.Presentation.csproj", "{402759F0-6735-4402-8DE0-14581DC9535E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookArena.Core", "Application\BookArena.Core\BookArena.Core.csproj", "{EA23D749-D3BB-4F0E-B13A-38576D861A13}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookArena.App.ScriptTest", "BookArena.App.ScriptTest\BookArena.App.ScriptTest.csproj", "{3C65C30C-A689-48DB-B076-F9611924EE72}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookArena.App.Tests", "Tests\BookArena.App.Tests\BookArena.App.Tests.csproj", "{590D2005-9584-47EB-BC6C-DA34A7D2412E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +34,10 @@ Global
 		{0CDB3F8F-99C0-4333-9FB0-B384385405BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CDB3F8F-99C0-4333-9FB0-B384385405BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CDB3F8F-99C0-4333-9FB0-B384385405BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA23D749-D3BB-4F0E-B13A-38576D861A13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA23D749-D3BB-4F0E-B13A-38576D861A13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA23D749-D3BB-4F0E-B13A-38576D861A13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA23D749-D3BB-4F0E-B13A-38576D861A13}.Release|Any CPU.Build.0 = Release|Any CPU
 		{402759F0-6735-4402-8DE0-14581DC9535E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{402759F0-6735-4402-8DE0-14581DC9535E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{402759F0-6735-4402-8DE0-14581DC9535E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -44,16 +46,11 @@ Global
 		{590D2005-9584-47EB-BC6C-DA34A7D2412E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{590D2005-9584-47EB-BC6C-DA34A7D2412E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{590D2005-9584-47EB-BC6C-DA34A7D2412E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EA23D749-D3BB-4F0E-B13A-38576D861A13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EA23D749-D3BB-4F0E-B13A-38576D861A13}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EA23D749-D3BB-4F0E-B13A-38576D861A13}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EA23D749-D3BB-4F0E-B13A-38576D861A13}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3C65C30C-A689-48DB-B076-F9611924EE72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3C65C30C-A689-48DB-B076-F9611924EE72}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3C65C30C-A689-48DB-B076-F9611924EE72}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3C65C30C-A689-48DB-B076-F9611924EE72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CBC4B06C-9D18-4F5F-BF1C-50640B5445FC}
 	EndGlobalSection
 EndGlobal
