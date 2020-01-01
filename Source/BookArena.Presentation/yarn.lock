@@ -10,9 +10,9 @@ angular-route@1.5.11:
   version "1.5.11"
   resolved "https://registry.yarnpkg.com/angular-route/-/angular-route-1.5.11.tgz#49614f3a167f54291e449fe8ba05d39c58924b83"
 
-angular@1.5.11:
-  version "1.5.11"
-  resolved "https://registry.yarnpkg.com/angular/-/angular-1.5.11.tgz#8c5ba7386f15965c9acf3429f6881553aada30d6"
+angular@1.7.9:
+  version "1.7.9"
+  resolved "https://registry.yarnpkg.com/angular/-/angular-1.7.9.tgz#e52616e8701c17724c3c238cfe4f9446fd570bc4"
 
 ansi-regex@^2.0.0:
   version "2.1.1"
@@ -297,7 +297,7 @@ raphael@2.1.4:
   dependencies:
     eve "git://github.com/adobe-webplatform/eve.git#eef80ed"
 
-raty-js@^2.8.0:
+raty-js@2.8.0:
   version "2.8.0"
   resolved "https://registry.yarnpkg.com/raty-js/-/raty-js-2.8.0.tgz#023cecfe0c4dbc695e14e1dc44ecd4cc80b2fead"
   dependencies:
