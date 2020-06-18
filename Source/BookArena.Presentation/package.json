@@ -4,7 +4,7 @@
   "author": "Shibbir Ahmed",
   "license": "MIT",
   "dependencies": {
-    "angular": "1.7.9",
+    "angular": "1.8.0",
     "angular-messages": "1.5.11",
     "angular-route": "1.5.11",
     "foundation-icon-fonts": "0.1.1",
